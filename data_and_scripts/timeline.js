@@ -14,7 +14,8 @@ node_xj({
                 'id': d.id,
                 'survey_year': d.survey_year,
                 'typologies': d.typologies,
-                'group': d.typologies.split(';').length
+                'group': d.typologies.split(';').length,
+                'capacity_group': d.capacity_group
             }
         })
         fs.writeFile("./data/timeline.json", JSON.stringify(result, null, null), function(err) {

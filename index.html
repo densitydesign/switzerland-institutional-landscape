@@ -48,23 +48,24 @@
                 </div>
             </div>
         </section>
-        <section id="surveyed-institutions" class="sub-chapter container">
+        <section id="multipurpose" class="sub-chapter container">
             <div class="row">
                 <div class="col-12">
                     <h3>1.3 - Purpose of institutions</h3>
                 </div>
             </div>
             <div class="row visualisation">
-                <div id="sankey" class="col-8">
-                    Qui visualizzazione bubbles
+                <div class="col-12 text-right">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1933)">1933</button>
+                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1940)">1940</button>
+                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1954)">1954</button>
+                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1965)">1965</button>
+                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1980)">1980</button>
+                    </div>
                 </div>
-                <div class="col-4">
-                    <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-                </div>
-            </div>
-            <div class="row visualisation">
-                <div id="sankey" class="col-8">
-                    Qui visualizzazione rete tipologie
+                <div id="bubblechart" class="col-12">
+                    <!-- to be filled with d3 -->
                 </div>
                 <div class="col-4">
                     <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
@@ -76,14 +77,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
-
-
     <script src="./js/timeline.js"></script>
-
+    <script src="./js/bubblechart.js"></script>
     <!-- Keep at the end of everything -->
     <script src="./js/main.js"></script>
-
-
 </body>
 
 </html>
