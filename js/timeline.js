@@ -2,6 +2,7 @@ function Timeline(id, data) {
 	
 	this.id = id;
 	this.data = data;
+
 	this.svg;
 	this.width;
 
@@ -24,7 +25,6 @@ function Timeline(id, data) {
 		if (tipologia) {
 			console.log(tipologia);
 		}
-
 
 	}
 	
