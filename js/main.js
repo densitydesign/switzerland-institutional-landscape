@@ -1,5 +1,6 @@
 let timeline,
-    bubblechart;
+    bubblechart,
+    map_total;
 
 $(document).ready(function() {
 
@@ -20,7 +21,7 @@ $(document).ready(function() {
         timeline = new Timeline('#timeline');
         timeline.draw();
 
-        bubblechart = new Bubblechart('#bubblechart', datasets[1])
+        bubblechart = new Bubblechart('#bubblechart', datasets[1]);
         bubblechart.draw();
 
 
@@ -41,5 +42,15 @@ $(document).ready(function() {
 
         });
     });
+
+    d3.queue()
+        .defer(d3.json, './data_and_scripts/data/ch.json')
+        .defer(d3.json, './data_and_scripts/data/map_total.json')
+        .await(function(error, swiss, data) {
+            if (error) throw error;
+
+            map_total = new MapTotal('#map-total', swiss, data);
+            map_total.draw(1954);
+        })
 
 });
