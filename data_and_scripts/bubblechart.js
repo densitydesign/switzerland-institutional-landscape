@@ -18,7 +18,7 @@ node_xj({
                 'capacity_group': d.capacity_group
             }
         })
-        fs.writeFile("./data/timeline.json", JSON.stringify(result, null, null), function(err) {
+        fs.writeFile("./data/bubblechart.json", JSON.stringify(result, null, null), function(err) {
             if (err) {
                 return console.log(err);
             }

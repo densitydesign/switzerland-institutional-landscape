@@ -1,6 +1,26 @@
+/* General for all viz */
+
+.label {
+	font-size: .65rem;
+	pointer-events: none;
+	opacity: 1;
+	fill: #333;
+}
+
+.label.hidden {
+	opacity: 0;
+}
+
 /* 1.3 bubblechart - purpose of institutions */
 
-.node {
-	/*fill: white;*/
-	/*stroke: grey;*/
+#bubblechart svg {
+	/*border: 1px solid black;*/
 }
+
+circle.node {
+	stroke: #074050;
+	stroke-width: .5px;
+	cursor: pointer;
+}
+
+

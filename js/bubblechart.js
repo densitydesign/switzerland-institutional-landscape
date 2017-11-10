@@ -1,170 +1,244 @@
 function Bubblechart(id, data) {
 
-  let nodes,
-    links,
-    simulation;
+    let svg,
+        width,
+        height,
+        nodes,
+        links,
+        simulation,
+        g,
+        link,
+        node,
+        label,
+        color,
+        radius;
 
-  let g, link, node, label,
-    color = d3.scaleOrdinal().range(['#b3ccbd','#9abba7','#81aa91','#61806d']),
+    // #d3f2a3,#97e196,#6cc08b,#4c9b82,#217a79,#105965,#074050
+
+    color = d3.scaleOrdinal()
+        .range(['#d3f2a3', '#6cc08b', '#217a79', '#074050'])
+        .domain([1, 2, 3, 4])
+
     radius = d3.scaleOrdinal()
-    .range([1.78412 * 2.5, 1.78412 * 2.5, 2.52313 * 2.5, 3.98942 * 2.5, 5.6419 * 2.5, 6.9098829894267 * 2.5, 7.9788456080287 * 2.5])
-    .domain(['not specified', '0 - 19', '20 - 49', '50 - 99', '100 - 149', '150 - 199', '200 - over']);
+        .range([2, 4, 6, 8, 10, 12, 14])
+        .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over"])
 
-  this.id = id;
+    this.id = id;
 
-  if (data) {
-    this.data = d3.nest()
-      .key(function(d) { return d.survey_year; })
-      .entries(data);
-    // console.table(this.data)
-  }
-
-  let theData = this.data;
-
-  this.init = function() {
-    this.svg = d3.select(this.id)
-      .append('svg');
-    this.svg.style('border', '1px solid black')
-
-    g = this.svg.append("g");
-    link = g.append("g")
-      .attr("stroke", "#000")
-      .attr("stroke-width", 1.5)
-      .selectAll(".link");
-    node = g.append("g")
-      .attr("stroke", "#fff")
-      .attr("stroke-width", 1.5)
-      .selectAll(".node");
-    label = g.append("g")
-      .attr("fill", "#333")
-      .selectAll(".label");
-  }
-
-  nodes = [];
-  links = [];
-
-  simulation = d3.forceSimulation(nodes)
-    .force("charge", d3.forceManyBody()
-      .strength(-10))
-    .force("collide", d3.forceManyBody()
-      .strength(-10))
-    .force("link", d3.forceLink(links)
-      .distance(200))
-    .force("x", d3.forceX())
-    .force("y", d3.forceY())
-    .alphaDecay(.1)
-    .on("tick", null);
-
-  this.draw = function(year) {
-
-    // check if svg has been craeted, if not runs init()
-    if (!this.svg) {
-      this.init();
-    }
-    // this.svg.style('border', '1px solid blue');
-    this.width = d3.select(this.id)
-      .node()
-      .offsetWidth - 30;
-    this.height = this.width * .75;
-    if (this.height > window.innerHeight) { this.height = window.innerHeight * .8 }
-    this.svg.attr('width', this.width)
-      .attr('height', this.height);
-
-    g.attr("transform", "translate(" + this.width / 2 + "," + this.height / 2 + ")");
-
-    if (year) {
-      console.log(year)
-      update(this.data, year);
-    } else {
-      var years_list = [1933, 1940, 1954, 1965, 1980];
-      var index = 0;
-      update(theData, years_list[index]);
-      index++;
-
-      // d3.interval(function() {
-      //   console.log('no year selected')
-      //   update(theData, years_list[index]);
-      //   index++;
-      //   if (index > years_list.length - 1) {
-      //     index = 0;
-      //   }
-      // }, 4000, d3.now());
+    if (data) {
+        data = d3.nest()
+            .key(function(d) { return d.survey_year; })
+            .entries(data);
     }
 
-    function update(data, selectedYear) {
 
-      nodes = data.filter(function(d) { return d.key == selectedYear })[0].values
+    // let theData = data;
 
-      // Apply the general update pattern to the nodes.
-      node = node.data(nodes, function(d) { return d.id; });
+    this.init = function() {
+        this.svg = d3.select(this.id).append('svg');
 
-      node.exit()
-        .transition()
-        .duration(500)
-        .attr('r', 0)
-        .remove();
+        g = this.svg.append("g");
+        node = g.append("g")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5)
+            .selectAll(".node");
+        label = g.append("g")
+            .attr("fill", "#333")
+            .selectAll(".label");
 
-      node = node.enter()
-        .append("circle")
-        .classed('node', true)
-        .attr("fill", function(d) {return color(d.group);})
-        .attr("r", 0)
-        .attr("data-id", function(d) { return d.id })
-        .on('click', function(d) {
-          console.log(d)
-        })
-        .merge(node);
-
-      node.transition()
-        .duration(500)
-        .delay(function(d, i) { return i * 3 })
-        .attr('r', function(d) { return 6; return radius(d.capacity_group); })
-
-      // Apply the general update pattern to the label.
-      label = label.data(nodes, function(d) { return d.id; });
-      label.exit()
-        .remove();
-      label = label.enter()
-        .append("text")
-        .classed('label', true)
-        // .attr('opacity',0)
-        .attr('text-anchor', 'middle')
-        .attr('font-size', '0.4rem')
-        .html(function(d) { return d.id })
-        .merge(label);
-
-      // Apply the general update pattern to the links.
-      link = link.data(links, function(d) { return d.source.id + "-" + d.target.id; });
-      link.exit()
-        .remove();
-      link = link.enter()
-        .append("line")
-        .merge(link);
-
-      // Update and restart the simulation.
-      simulation.nodes(nodes);
-      simulation.force("collide", d3.forceCollide(function(d) { return 6+2; return radius(d.capacity_group) + 4 })
-        .iterations(16))
-      simulation.force("link")
-        .links(links);
-      simulation.alpha(1)
-        .on("tick", ticked)
-        .restart();
+        svg = this.svg;
     }
 
-    function ticked() {
-      node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+    nodes = [];
+    links = [];
 
-      label.attr("x", function(d) { return d.x; })
-        .attr("y", function(d) { return d.y; });
+    simulation = d3.forceSimulation(nodes)
+        .force("charge", d3.forceManyBody().strength(-8))
+        .force("y", d3.forceY().strength(0.2))
+        .alphaDecay(.01)
+        .on("tick", null);
 
-      link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-    }
+    this.draw = function(year) {
 
-  } //draw
+        // check if svg has been craeted, if not runs init()
+        if (!this.svg) {
+            this.init();
+        }
+        // this.svg.style('border', '1px solid blue');
+        width = d3.select(this.id)
+            .node()
+            .offsetWidth - 30;
+
+        height = width * .6;
+        if (height > window.innerHeight) { height = window.innerHeight * .8 }
+        this.svg.attr('width', width)
+            .attr('height', height);
+
+        g.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        if (year) {
+            // console.log(year)
+            update(data, year);
+        } else {
+            var years_list = [1933, 1940, 1954, 1965, 1980];
+            var index = 0;
+            update(data, years_list[index]);
+            index++;
+        }
+
+
+
+        function update(data, selectedYear) {
+
+            nodes = data.filter(function(d) { return d.key == selectedYear })[0].values
+
+            // Apply the general update pattern to the nodes.
+            node = node.data(nodes, function(d) { return d.id; });
+
+            node.exit()
+                .transition()
+                .duration(500)
+                .attr('r', 0)
+                .remove();
+
+            node = node.enter()
+                .append("circle")
+                .classed('node', true)
+                .attr("r", 0)
+                .merge(node)
+                .attr("fill", function(d) {
+                    if (d.capacity_group == "not specified") {
+                        return '#fff'
+                    } else {
+                        return color(d.group);
+                    }
+                })
+                .on('mouseenter', function(d) {
+                    svg.selectAll('.label').filter(function(e) { return e.id == d.id }).classed('hidden', false);
+                })
+                .on("mouseleave", function(d) {
+                    svg.selectAll('.label').filter(function(e) { return e.id == d.id }).classed('hidden', true);
+                })
+                .on("click", function(d) {
+                    console.log(d);
+                });
+
+            node.transition()
+                .duration(500)
+                .delay(function(d, i) { return i * 2 })
+                .attr('r', function(d) { return radius(d.capacity_group); })
+
+            // Apply the general update pattern to the label.
+            label = label.data(nodes, function(d) { return d.id; });
+            label.exit()
+                .remove();
+            label = label.enter()
+                .append("text")
+                .classed('label', true)
+                .classed('hidden', true)
+                .html(function(d) { return d.id })
+                .merge(label);
+
+            // Update and restart the simulation.
+            simulation.nodes(nodes);
+            simulation.force("collide", d3.forceCollide(function(d) { return radius(d.capacity_group) + 2 }).iterations(16))
+
+            let nodesGroups = d3.nest()
+                .key(function(d) { return d.group; })
+                .entries(nodes).map(function(d) {
+                    return d.key
+                })
+
+            simulation.force("x", d3.forceX(function(d) {
+                return width / (nodesGroups.length + 2) * (d.group + 1) - width / 2 - width / (nodesGroups.length + 2) * .3;
+            }).strength(0.2))
+
+            simulation.alpha(1)
+                .on("tick", ticked)
+                .restart();
+        }
+
+        function ticked() {
+            node.attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; });
+
+            label.attr("x", function(d) { return d.x; })
+                .attr("y", function(d) { return d.y; });
+        }
+
+        if (this.svg.select('.legend').empty()) {
+            // console.log('Drawing legend for bubblechart');
+            let legend = this.svg.append('g').attr('class', 'legend');
+
+            let sizes = legend.append('g').attr('class', 'sizes')
+            let itemSize = sizes.selectAll('.item')
+                .data(radius.domain())
+                .enter().append('g')
+                .classed('item', true)
+            itemSize.append('circle')
+                .attr('fill', function(d, i) {
+                    if (d == "not specified") {
+                        return '#fff';
+                    } else {
+                        return '#074050';
+                    }
+                })
+                .attr('r', function(d) { return radius(d) })
+                .attr('cx', function(d, i) { return 40 - radius(d) })
+                .attr('cy', function(d, i) {
+                    let thisY = 30;
+                    for (var e = 0; e < i; e++) {
+                        thisY += radius(radius.domain()[e])*2;
+                        thisY += 18;
+                    }
+                    return thisY;
+                })
+            itemSize.append('text')
+                .classed('label', true)
+                .attr('x', function(d, i) { return 45 })
+                .attr('y', function(d, i) {
+                    let thisY = 30;
+                    for (var e = 0; e < i; e++) {
+                        thisY += radius(radius.domain()[e])*2;
+                        thisY += 18;
+                    }
+                    thisY += 3;
+                    return thisY;
+                })
+                .text(function(d) { return d })
+
+            let colors = legend.append('g').attr('class', 'colors')
+            let colorItem = colors.selectAll('.item')
+                .data(color.domain())
+                .enter().append('g')
+                .classed('item', true)
+                .attr('transform', function(d, i) { return 'translate(' + 25 + ',' + (i * 20 + 300) + ')' })
+            colorItem.append('rect')
+                .attr('fill', function(d) { return color(d) })
+                .attr('x', 0)
+                .attr('y', -8)
+                .attr('width', 15)
+                .attr('height', 15)
+            colorItem.append('text')
+                .classed('label', true)
+                .attr('x', 20)
+                .attr('y', 3)
+                .text(function(d) {
+                    if (d == 1) {
+                        return d + ' typologies'
+                    } else if (d == 2) {
+                        return d + ' typologies'
+                    } else if (d == 3) {
+                        return d + ' typologies'
+                    } else if (d == 4) {
+                        return d + ' typologies'
+                    }
+                })
+
+
+
+        } //update
+
+    } //draw
 
 }
