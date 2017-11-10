@@ -9,16 +9,18 @@ node_xj({
     if (err) {
         console.error(err);
     } else {
+        // console.log(result);
         result = result.map(function(d) {
             return {
                 'id': d.id,
                 'survey_year': d.survey_year,
                 'lon': d.longitude,
-                'lat': d.latitude
+                'lat': d.latitude,
+                'accepted_gender': d.accepted_gender
             }
         })
         // console.log(result);
-        fs.writeFile("./data/map_total.json", JSON.stringify(result), function(err) {
+        fs.writeFile("./data/map_genders.json", JSON.stringify(result), function(err) {
             if (err) {
                 return console.log(err);
             }

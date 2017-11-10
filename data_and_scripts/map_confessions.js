@@ -14,11 +14,12 @@ node_xj({
                 'id': d.id,
                 'survey_year': d.survey_year,
                 'lon': d.longitude,
-                'lat': d.latitude
+                'lat': d.latitude,
+                'confession': d.confession
             }
         })
         // console.log(result);
-        fs.writeFile("./data/map_total.json", JSON.stringify(result), function(err) {
+        fs.writeFile("./data/map_confessions.json", JSON.stringify(result), function(err) {
             if (err) {
                 return console.log(err);
             }
