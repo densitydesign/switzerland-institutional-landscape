@@ -17,7 +17,7 @@ node_xj({
                 'group': d.typologies.split(';').length
             }
         })
-        fs.writeFile("./data/timeline.json", JSON.stringify(result, null, null), function(err) {
+        fs.writeFile("./data/map-total.json", JSON.stringify(result, null, null), function(err) {
             if (err) {
                 return console.log(err);
             }
