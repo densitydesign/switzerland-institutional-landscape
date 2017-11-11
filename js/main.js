@@ -125,7 +125,7 @@ $(document).on('setWaypoints', function() {
             return viewportHeight - mapHeight;
         }
     });
-    // waypoint for confession map. call function to draw the confession if going down, to draw capacities if going up
+    // waypoint for gender map. call function to draw the gender if going down, to draw confession if going up
     let fifth_waypoint = new Waypoint({
         element: document.getElementById('map-gender-text'),
         handler: function(direction) {
