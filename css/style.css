@@ -4,3 +4,27 @@
 	/*fill: white;*/
 	/*stroke: grey;*/
 }
+
+/* style chapter 2 */
+#institutions-maps {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.step {
+    width: 22vw;
+    margin-right: 2vw;
+    margin-bottom: 200px;
+}
+.step:last-of-type {
+    height: 84vh;
+    margin-bottom: 0;
+}
+#maps {
+    width: 100%;
+    height: 84vh;
+    background-color: #ddd;
+}
+.fixed {
+    position: fixed;
+}
