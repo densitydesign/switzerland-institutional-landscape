@@ -1,4 +1,4 @@
-function MapTotal(id, swiss, data) {
+function MapAll(id, swiss, data) {
 
     this.id = id;
 

@@ -1,6 +1,6 @@
 let timeline,
     bubblechart,
-    map_total;
+    map_all_institutions;
 
 $(document).ready(function() {
 
@@ -24,6 +24,7 @@ $(document).ready(function() {
         bubblechart = new Bubblechart('#bubblechart', datasets[1]);
         bubblechart.draw();
         
+        // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
         $(document).trigger('setWaypoints');
 
 
@@ -52,8 +53,8 @@ $(document).ready(function() {
         .await(function(error, swiss, data) {
             if (error) throw error;
 
-            map_total = new MapTotal('#maps', swiss, data);
-            map_total.draw(1954);
+            map_all_institutions = new MapAll('#maps', swiss, data);
+            map_all_institutions.draw(1954);
         });
 
 });

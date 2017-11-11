@@ -10,27 +10,25 @@ node_xj({
         console.error(err);
     } else {
         let finalArray = [];
-
-        //split each institution with more than one typology so they can then be filtered in the viz
+        
+        //filter only the institutions for 1954, 1965, 1980 
         result.forEach(function(el){
             if (el.survey_year === '1954' || el.survey_year === '1965' || el.survey_year === '1980') {
-                let typologyArray = el.typologies.split(';');
-
-                for (let i = 0; i < typologyArray.length; i++) {
-                    let institution = {
-                        'id': el.id,
-                        'survey_year': el.survey_year,
-                        'lon': el.longitude,
-                        'lat': el.latitude,
-                        'typology': typologyArray[i]
-                    };
-
-                    finalArray.push(institution);
+                let institution = {
+                    'id': el.id,
+                    'survey_year': el.survey_year,
+                    'lon': el.longitude,
+                    'lat': el.latitude,
+                    'capacity_group': el.capacity_group,
+                    'confession': el.confession,
+                    'accepted_gender': el.accepted_gender
                 }
+                finalArray.push(institution);
             }
         });
+        
         // console.log(finalArray);
-        fs.writeFile("./data/map_typologies.json", JSON.stringify(finalArray), function(err) {
+        fs.writeFile("./data/map_cap-con-gen.json", JSON.stringify(finalArray), function(err) {
             if (err) {
                 return console.log(err);
             }
