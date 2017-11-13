@@ -1,6 +1,7 @@
 const fs = require('fs');
 const _ = require('lodash');
 const node_xj = require("xls-to-json");
+const d3 = require('d3');
 
 node_xj({
     input: "data/master-dataset-13-nov.xlsx", // input xls
@@ -10,81 +11,100 @@ node_xj({
     if (err) {
         console.error(err);
     } else {
-        let repeatedNodes = [],
-            nodes = [],
-            repeatedEdges = [],
-            edges = [];
 
-        result.forEach(d => {
-            d.typologies = d.typologies.split(';');
-            repeatedNodes = _.concat(repeatedNodes, d.typologies);
-
-            if (d.typologies.length > 1) {
-                repeatedEdges = _.concat(repeatedEdges, k_combinations(d.typologies, 2))
-            }
-        })
-
-        let obj = _.countBy(repeatedNodes, _.identity);
-
-        Object.keys( obj ).forEach(function(key,i) {
-
-            let id;
-            if (key == 'forced labour institution (restricted)') {
-                id = 1;
-            } else if (key == 'forced labour institution (semi-open)') {
-                id = 2;
-            } else if (key == 'educational institution)') {
-                id = 3;
-            } else if (key == 'asylum for alcoholics') {
-                id = 4;
-            } else if (key == 'prison') {
-                id = 5;
-            } else if (key == 'psychiatric facility') {
-                id = 6;
-            } else if (key == 'poor house') {
-                id = 7;
-            } else if (key == 'institution for people with special needs') {
-                id = 8;
-            }
-
-            let t = {
-                'id': id,
-                'label': key,
-                'count': obj[key]
-            }
-
-            nodes.push(t);
-
-        });
-
-
-        obj = _.countBy(repeatedEdges, _.identity);
-
-        Object.keys( obj ).forEach(function(key,i) {
-
-            let e = {
-                'source': key.split(',')[0],
-                'target': key.split(',')[1],
-                'weight': obj[key]
-            }
-
-            nodes.forEach(function(f){
-                e.source = e.source.replace(f.label,f.id);
-                e.target = e.target.replace(f.label,f.id);
-            })
-
-            edges.push(e);
-
-        });
-
-        let graph = {
-            'nodes': nodes,
-            'edges': edges
+        let data = {
+            1933: {},
+            1940: {},
+            1954: {},
+            1965: {},
+            1980: {},
         }
 
+        let yearlyResult = d3.nest()
+            .key(function(d) { return d.survey_year })
+            .entries(result);
 
+        yearlyResult.forEach(function(y) {
 
-        fs.writeFile("./data/typologies-graph.json", JSON.stringify(graph, null, null), function(err) {
+            let repeatedNodes = [],
+                nodes = [],
+                repeatedEdges = [],
+                edges = [];
+
+            y.values.forEach(d => {
+                d.typologies = d.typologies.split(';');
+                repeatedNodes = _.concat(repeatedNodes, d.typologies);
+
+                if (d.typologies.length > 1) {
+                    repeatedEdges = _.concat(repeatedEdges, k_combinations(d.typologies, 2))
+                }
+            })
+
+            let obj = _.countBy(repeatedNodes, _.identity);
+
+            Object.keys(obj).forEach(function(key, i) {
+
+                let id;
+                if (key == 'forced labour institution (restricted)') {
+                    id = 1;
+                } else if (key == 'forced labour institution (semi-open)') {
+                    id = 2;
+                } else if (key == 'educational institution') {
+                    id = 3;
+                } else if (key == 'asylum for alcoholics') {
+                    id = 4;
+                } else if (key == 'prison') {
+                    id = 5;
+                } else if (key == 'psychiatric facility') {
+                    id = 6;
+                } else if (key == 'poor house') {
+                    id = 7;
+                } else if (key == 'institution for people with special needs') {
+                    id = 8;
+                }
+
+                let t = {
+                    'id': id+'',
+                    'label': key,
+                    'count': obj[key]
+                }
+
+                nodes.push(t);
+
+            });
+
+            obj = _.countBy(repeatedEdges, _.identity);
+
+            Object.keys(obj).forEach(function(key, i) {
+
+                let e = {
+                    'source': key.split(',')[0],
+                    'target': key.split(',')[1],
+                    'weight': obj[key]
+                }
+
+                nodes.forEach(function(f) {
+                    e.source = e.source.replace(f.label, f.id);
+                    e.target = e.target.replace(f.label, f.id);
+                    // e.id = e.source + '-' + e.target;
+                })
+
+                e.source = parseInt(e.source)-1;
+                e.target = parseInt(e.target)-1;
+
+                edges.push(e);
+                // console.log(edges.length)
+
+            });
+
+            data[y.key] = {
+                'nodes': nodes,
+                'edges': edges
+            }
+
+        })
+
+        fs.writeFile("./data/typologies-graph.json", JSON.stringify(data, null, null), function(err) {
             if (err) {
                 return console.log(err);
             }

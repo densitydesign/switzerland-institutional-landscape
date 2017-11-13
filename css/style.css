@@ -15,7 +15,7 @@
 #bubblechart svg {
 }
 
-circle.node {
+#bubblechart circle.node {
 	stroke: #074050;
 	stroke-width: .5px;
 	cursor: pointer;

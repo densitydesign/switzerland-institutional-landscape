@@ -25,7 +25,7 @@ $(document).ready(function() {
         bubblechart = new Bubblechart('#bubblechart', datasets[1]);
         bubblechart.draw();
 
-        typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[1]);
+        typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
         typologiesGraph.draw();
 
 
@@ -77,9 +77,9 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-typology-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                console.log('call map_typologies 1954');
+                // console.log('call map_typologies 1954');
             } else {
-                console.log('call map_all_institutions 1954');
+                // console.log('call map_all_institutions 1954');
             }
         },
         offset: '40%'
@@ -89,9 +89,9 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-capacity-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                console.log('call map_capacities 1954');
+                // console.log('call map_capacities 1954');
             } else {
-                console.log('call map_typologies 1954');
+                // console.log('call map_typologies 1954');
             }
         },
         offset: '40%'
@@ -101,9 +101,9 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-confession-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                console.log('call map_confession 1954');
+                // console.log('call map_confession 1954');
             } else {
-                console.log('call map_capacities 1954');
+                // console.log('call map_capacities 1954');
             }
         },
         offset: '40%'
@@ -113,9 +113,9 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-gender-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                console.log('call map_gender 1954');
+                // console.log('call map_gender 1954');
             } else {
-                console.log('call map_confession 1954');
+                // console.log('call map_confession 1954');
             }
         },
         offset: '40%'

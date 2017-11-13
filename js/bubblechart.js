@@ -183,6 +183,13 @@ function Bubblechart(id, data) {
                         return '#074050';
                     }
                 })
+                .attr('stroke', function(d, i) {
+                    if (d == "not specified") {
+                        return '#074050';
+                    } else {
+                        return '';
+                    }
+                })
                 .attr('r', function(d) { return radius(d) })
                 .attr('cx', function(d, i) { return 40 - radius(d) })
                 .attr('cy', function(d, i) {
@@ -225,7 +232,7 @@ function Bubblechart(id, data) {
                 .attr('y', 3)
                 .text(function(d) {
                     if (d == 1) {
-                        return d + ' typologies'
+                        return d + ' typology'
                     } else if (d == 2) {
                         return d + ' typologies'
                     } else if (d == 3) {
