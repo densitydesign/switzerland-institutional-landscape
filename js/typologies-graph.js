@@ -2,7 +2,23 @@ function TypologiesGraph(id, data) {
 
     this.id = id;
 
-    let svg, width, height;
+    if (data) {
+        data = d3.nest()
+            .key(function(d) { return d.survey_year; })
+            .entries(data);
+        console.log(data)
+    }
+
+    let svg,
+        width,
+        height,
+        nodes,
+        links,
+        simulation,
+        g,
+        link,
+        node,
+        label;
 
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
@@ -22,8 +38,8 @@ function TypologiesGraph(id, data) {
         this.svg.attr('width', width)
             .attr('height', height);
 
-        if(year) {
-        	console.log(year)
+        if (year) {
+            console.log(year)
         }
 
     }
