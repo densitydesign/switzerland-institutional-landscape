@@ -2,10 +2,6 @@ function TypologiesGraph(id, data) {
 
     this.id = id;
 
-    // if (data) {
-    //     console.log(data);
-    // }
-
     let svg,
         width,
         height,
@@ -20,7 +16,6 @@ function TypologiesGraph(id, data) {
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
         svg = this.svg = d3.select(this.id).append('svg');
-        svg.style('border', '1px solid blue');
     }
 
     // intialise containers of the graph
