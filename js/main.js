@@ -33,8 +33,6 @@ $(document).ready(function() {
 
         bubblechart = new Bubblechart('#bubblechart', datasets[1]);
         bubblechart.draw();
-        
-        
 
         typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[1]);
         typologiesGraph.draw();
@@ -59,12 +57,12 @@ $(document).ready(function() {
             }
 
         });
-        
+
         // To be called after all the charts have been initialized
         // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
         $(document).trigger('setWaypoints');
     });
-    
+
     // load asynchronously the datasets for chapter 2
     d3.queue()
         .defer(d3.json, './data_and_scripts/data/ch.json')
@@ -82,7 +80,7 @@ $(document).on('setWaypoints', function() {
     //get position of map viz in respect to viewport, it will be needed for fixing the map to the viewport
     let viewportHeight = $(window).height(),
         mapHeight = $('#maps').innerHeight();
-        
+
     // initiate waypoints
     // waypoint for total map. as soon as it's reached, fix the map to the viewport
     let starting_waypoint = new Waypoint({
