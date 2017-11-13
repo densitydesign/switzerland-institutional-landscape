@@ -99,14 +99,51 @@
                 </div>
             </div>
         </div>
-        <section id="institutions-total" class="sub-chapter container">
+        <section id="institutions-maps" class="sub-chapter container">
+            <div class="visualisation-text">
+                <div id="map-total-text" class="step">
+                    <h3>2.1 - All the institutions</h3>
+                    <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                </div>
+                <div id="map-typology-text" class="step">
+                    <h3>2.2 - Distribution of institutions by tipologies</h3>
+                    <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                </div>
+                <div id="map-capacity-text" class="step">
+                    <h3>2.3 - Capacity of institutions</h3>
+                    <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                </div>
+                <div id="map-confession-text" class="step">
+                    <h3>2.4 - Distribution of institutions by confession</h3>
+                    <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                </div>
+                <div id="map-gender-text" class="step">
+                    <h3>2.5 - Distribution of institutions by accepted gender</h3>
+                    <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                </div>
+            </div>
+            <div id="maps" class="">
+                <!-- to be filled with d3 -->
+            </div>
+        </section>
+    </section>
+    
+    <section id="correlations" class="chapter container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h3>2.1 - All the institutions</h3>
+                    <h2>3 - Correlations</h2>
+                </div>
+            </div>
+        </div>
+        <section id="sub-correlations" class="sub-chapter container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>3.1 - Correlations of institutions properties</h3>
                 </div>
             </div>
             <div class="row visualisation">
-                <div id="map-total" class=" col-8">
+                <div id="matrix" class=" col-8">
                     <!-- to be filled with d3 -->
                 </div>
                 <div class="col-4">
@@ -120,10 +157,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/topojson.v3.min.js" charset="utf-8"></script>
+    <script src="./js/noframework.waypoints.min.js"></script>
+
+    <!-- Visualizations -->
     <script src="./js/timeline.js"></script>
     <script src="./js/bubblechart.js"></script>
     <script src="./js/typologies-graph.js"></script>
-    <script src="./js/map_total.js"></script>
+    <script src="./js/map_all_institutions.js"></script>
     <!-- Keep at the end of everything -->
     <script src="./js/main.js"></script>
 </body>
