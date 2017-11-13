@@ -34,10 +34,6 @@ circle.node {
     height: 84vh;
     margin-bottom: 0;
 }
-.visualization-map {
-	position: relative;
-	width: 100%;
-}
 #maps {
 	position: -webkit-sticky;
 	position: sticky;

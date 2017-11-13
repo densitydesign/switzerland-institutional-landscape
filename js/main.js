@@ -86,9 +86,9 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-typology-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                $map.css('background-color', 'red');
+                console.log('call map_typologies 1954');
             } else {
-                $map.css('background-color', '#ddd');
+                console.log('call map_all_institutions 1954');
             }
         },
         offset: '40%'
@@ -98,9 +98,9 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-capacity-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                $map.css('background-color', 'green');
+                console.log('call map_capacities 1954');
             } else {
-                $map.css('background-color', 'red');
+                console.log('call map_typologies 1954');
             }
         },
         offset: '40%'
@@ -110,9 +110,9 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-confession-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                $map.css('background-color', 'blue');
+                console.log('call map_confession 1954');
             } else {
-                $map.css('background-color', 'green');
+                console.log('call map_capacities 1954');
             }
         },
         offset: '40%'
@@ -122,9 +122,9 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-gender-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                $map.css('background-color', 'yellow');
+                console.log('call map_gender 1954');
             } else {
-                $map.css('background-color', 'blue');
+                console.log('call map_confession 1954');
             }
         },
         offset: '40%'

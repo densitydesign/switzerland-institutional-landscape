@@ -4,17 +4,15 @@ function TypologiesGraph(id, data) {
 
     let svg, width, height;
 
-    this.init = function() {
+    if (!this.svg) {
+        // check if svg has been craeted, if not runs init()
         this.svg = d3.select(this.id).append('svg');
         svg = this.svg;
+        svg.style('border', '1px solid blue');
     }
 
     this.draw = function(year) {
-        // check if svg has been craeted, if not runs init()
-        if (!this.svg) {
-            this.init();
-        }
-        this.svg.style('border', '1px solid blue');
+
         width = d3.select(this.id)
             .node()
             .offsetWidth - 30;
