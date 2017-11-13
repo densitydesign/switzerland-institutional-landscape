@@ -27,20 +27,25 @@ circle.node {
     display: -ms-flexbox;
     display: flex;
 }
+.visualization-text {
+	padding-left: 0;
+}
 .step {
-    width: 22vw;
-    margin-right: 2vw;
     margin-bottom: 200px;
 }
 .step:last-of-type {
     height: 84vh;
     margin-bottom: 0;
 }
+.visualization-map {
+	position: relative;
+	width: 100%;
+}
 #maps {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 100px;
     width: 100%;
     height: 84vh;
     background-color: #ddd;
-}
-.fixed {
-    position: fixed;
 }

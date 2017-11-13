@@ -77,115 +77,56 @@ $(document).ready(function() {
 });
 
 $(document).on('setWaypoints', function() {
-    //get position of map viz in respect to viewport, it will be needed for fixing the map to the viewport
-    let viewportHeight = $(window).height(),
-        mapHeight = $('#maps').innerHeight();
+    //save the selection to a variable to improve performance
+    let $map = $('#maps');
 
     // initiate waypoints
-    // waypoint for total map. as soon as it's reached, fix the map to the viewport
-    let starting_waypoint = new Waypoint({
-        element: document.getElementById('map-total-text'),
-        handler: function(direction) {
-            if(direction == 'down'){
-                let $map = $('#maps'),
-                    dimensions = getDimensions('#maps'),
-                    leftBound = dimensions.left,
-                    width = dimensions.width;
-                $map.css({'width': width + 'px', 'left': leftBound, 'bottom': 0})
-                $map.addClass('fixed');
-            } else {
-                $('#maps').removeClass('fixed');
-            }
-        },
-        offset: function() {
-            return viewportHeight - mapHeight;
-        }
-    });
     // waypoint for typology map. call function to draw the typologies if going down, to draw total map if going up
     let second_waypoint = new Waypoint({
         element: document.getElementById('map-typology-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                $('#maps').css('background-color', 'red');
+                $map.css('background-color', 'red');
             } else {
-                $('#maps').css('background-color', '#ddd');
+                $map.css('background-color', '#ddd');
             }
         },
-        offset: function() {
-            return viewportHeight - mapHeight;
-        }
+        offset: '40%'
     });
     // waypoint for capacity map. call function to draw the capacities if going down, to draw typologies if going up
     let third_waypoint = new Waypoint({
         element: document.getElementById('map-capacity-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                $('#maps').css('background-color', 'green');
+                $map.css('background-color', 'green');
             } else {
-                $('#maps').css('background-color', 'red');
+                $map.css('background-color', 'red');
             }
         },
-        offset: function() {
-            return viewportHeight - mapHeight;
-        }
+        offset: '40%'
     });
     // waypoint for confession map. call function to draw the confession if going down, to draw capacities if going up
     let fourth_waypoint = new Waypoint({
         element: document.getElementById('map-confession-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                $('#maps').css('background-color', 'blue');
+                $map.css('background-color', 'blue');
             } else {
-                $('#maps').css('background-color', 'green');
+                $map.css('background-color', 'green');
             }
         },
-        offset: function() {
-            return viewportHeight - mapHeight;
-        }
+        offset: '40%'
     });
     // waypoint for gender map. call function to draw the gender if going down, to draw confession if going up
     let fifth_waypoint = new Waypoint({
         element: document.getElementById('map-gender-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                $('#maps').css('background-color', 'yellow');
+                $map.css('background-color', 'yellow');
             } else {
-                $('#maps').css('background-color', 'blue');
+                $map.css('background-color', 'blue');
             }
         },
-        offset: function() {
-            return viewportHeight - mapHeight;
-        }
-    });
-    // closing waypoint. Put the map back in to the flow of the document
-    let ending_waypoint = new Waypoint({
-        element: document.getElementById('map-gender-text'),
-        handler: function(direction) {
-            if(direction == 'down'){
-                let $map = $('#maps');
-                $map.css({'align-self': 'flex-end'})
-                $map.removeClass('fixed');
-            } else {
-                let $map = $('#maps'),
-                    dimensions = getDimensions('#maps'),
-                    leftBound = dimensions.left,
-                    width = dimensions.width;
-                $map.addClass('fixed');
-                $map.css({'width': width + 'px', 'align-self': 'flex-start', 'left': leftBound, 'bottom': 0})
-            }
-        },
-        offset: 'bottom-in-view'
+        offset: '40%'
     });
 });
-
-function getDimensions(selector) {
-    let $element = $(selector),
-        width = $element.innerWidth(),
-        height = $element.innerHeight(),
-        leftBound = $element.offset().left;
-    return {
-        'width': width,
-        'height': height,
-        'left': leftBound
-    }
-}
