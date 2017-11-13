@@ -34,8 +34,7 @@ $(document).ready(function() {
         bubblechart = new Bubblechart('#bubblechart', datasets[1]);
         bubblechart.draw();
         
-        // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
-        $(document).trigger('setWaypoints');
+        
 
         typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[1]);
         typologiesGraph.draw();
@@ -60,12 +59,16 @@ $(document).ready(function() {
             }
 
         });
+        
+        // To be called after all the charts have been initialized
+        // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
+        $(document).trigger('setWaypoints');
     });
     
     // load asynchronously the datasets for chapter 2
     d3.queue()
         .defer(d3.json, './data_and_scripts/data/ch.json')
-        .defer(d3.json, './data_and_scripts/data/map_total.json')
+        .defer(d3.json, './data_and_scripts/data/map_all_institutions.json')
         .await(function(error, swiss, data) {
             if (error) throw error;
 
