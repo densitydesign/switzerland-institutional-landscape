@@ -21,7 +21,10 @@ circle.node {
 	cursor: pointer;
 }
 
-/* style chapter 2 */
+
+/* STYLES CHAPTER 2 */
+
+/* container styles */
 #institutions-maps {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -40,5 +43,25 @@ circle.node {
 	top: 100px;
     width: 100%;
     height: 84vh;
-    background-color: #ddd;
+}
+/* swiss map styles */
+.swiss-contour {
+    fill: none;
+    stroke: #999999;
+    stroke-width: .5px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+.canton-contour {
+    fill: none;
+    stroke: #999999;
+    stroke-width: .5px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+/* all_institutions styles */
+.dot {
+	fill: black;
+	stroke-width: 0.5px;
+	stroke: #ffffff;
 }

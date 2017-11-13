@@ -1,6 +1,5 @@
 let timeline,
     bubblechart,
-// <<<<<<< HEAD
     typologiesGraph,
     map_all_institutions;
 
@@ -8,14 +7,6 @@ $(document).ready(function() {
 
     // load asynchronously the datasets
     var dataFiles = ['./data_and_scripts/data/master.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
-// =======
-//     map_all_institutions;
-
-// $(document).ready(function() {
-
-//     // load asynchronously the datasets for chapter 1
-//     var dataFiles = ['./data_and_scripts/data/master.json', './data_and_scripts/data/timeline.json'],
-// >>>>>>> origin/master
         queue = d3.queue();
 
     dataFiles.forEach(function(filename) {
@@ -70,7 +61,7 @@ $(document).ready(function() {
         .await(function(error, swiss, data) {
             if (error) throw error;
 
-            map_all_institutions = new MapAll('#maps', swiss, data);
+            map_all_institutions = new MapAll('#maps-visualization', swiss, data);
             map_all_institutions.draw(1954);
         });
 
