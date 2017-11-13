@@ -15,10 +15,29 @@
 #bubblechart svg {
 }
 
-circle.node {
+#bubblechart circle.node {
 	stroke: #074050;
 	stroke-width: .5px;
 	cursor: pointer;
+}
+
+/* 1.4 typologies network of correlations */
+
+#typologies-graph circle.node {
+	stroke-width: .5px;
+	cursor: pointer;
+	fill: #105965;
+	/*opacity: .2;*/
+}
+
+line.link {
+	stroke: #4c9b82;
+	stroke-width: 1px;
+	opacity: .5
+}
+
+#typologies-graph .label {
+	text-anchor: middle;
 }
 
 /* style chapter 2 */

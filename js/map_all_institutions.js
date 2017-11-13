@@ -6,8 +6,8 @@ function MapAll(id, swiss, data) {
         this.data = d3.nest()
             .key(function(d) { return d.survey_year; })
             .entries(data);
-        console.log(this.data);
-        console.log(swiss);
+        // console.log(this.data);
+        // console.log(swiss);
     }
 
     this.init = function() {

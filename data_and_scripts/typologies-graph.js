@@ -86,10 +86,14 @@ node_xj({
                 nodes.forEach(function(f) {
                     e.source = e.source.replace(f.label, f.id);
                     e.target = e.target.replace(f.label, f.id);
-                    e.id = e.source + '-' + e.target;
+                    // e.id = e.source + '-' + e.target;
                 })
 
+                e.source = parseInt(e.source)-1;
+                e.target = parseInt(e.target)-1;
+
                 edges.push(e);
+                // console.log(edges.length)
 
             });
 
@@ -100,7 +104,7 @@ node_xj({
 
         })
 
-        fs.writeFile("./data/typologies-graph.json", JSON.stringify(data, null, 2), function(err) {
+        fs.writeFile("./data/typologies-graph.json", JSON.stringify(data, null, null), function(err) {
             if (err) {
                 return console.log(err);
             }
