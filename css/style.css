@@ -27,9 +27,6 @@ circle.node {
     display: -ms-flexbox;
     display: flex;
 }
-.visualization-text {
-	padding-left: 0;
-}
 .step {
     margin-bottom: 200px;
 }
