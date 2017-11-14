@@ -48,7 +48,7 @@ line.link {
     display: flex;
 }
 .step {
-    margin-bottom: 500px;
+    margin-bottom: 700px;
 }
 .step:last-of-type {
     height: 84vh;
@@ -74,9 +74,22 @@ line.link {
     stroke-width: .5px;
     pointer-events: none;
 }
-/* all_institutions styles */
+/* map_all_institutions styles */
 .dot {
 	fill: black;
 	stroke-width: 0.5px;
 	stroke: #ffffff;
+	cursor: pointer;
+}
+/* map_typologies styles */
+.maps-container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	  -ms-flex-pack: distribute;
+	justify-content: space-around;
+	position: absolute;
+	pointer-events: none;
 }

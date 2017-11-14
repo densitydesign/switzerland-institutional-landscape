@@ -22,8 +22,6 @@ function MapAll(id, swiss, data) {
         height,
         radius;
 
-    let institutions = [];
-
     // define projection and path-generator variables
     let projection = d3.geoMercator(),
         path = d3.geoPath().projection(projection);
@@ -33,30 +31,41 @@ function MapAll(id, swiss, data) {
         cantons = topojson.feature(swiss, swiss.objects.cantons);
 
     // define forces
-    let simulation = d3.forceSimulation(institutions)
+    let simulation = d3.forceSimulation()
         .on("tick", ticked);
 
     // check if svg has already been created and if not, creates it
-    if (!this.svg) {
-        this.svg = d3.select(this.id)
+    if (!this.svg_all) {
+        this.svg_all = d3.select(this.id)
             .append('svg')
             .classed('map-container', true);
-        svg = this.svg;
+        svg = this.svg_all;
         mapGroup = svg.append('g').classed('map-swiss', true);
         swissBorderContainer = mapGroup.append('g').classed('map-country', true);
         cantonsBorderContainer = mapGroup.append('g').classed('map-cantons', true);
-        dotGroup = svg.append('g').classed('dots', true);
+        dotGroup = svg.append('g').classed('map-dots', true);
     }
 
     this.draw = function(year) {
+        //remove precedent map with a transition
+        d3.selectAll('#maps-visualization .maps-swiss path')
+            .transition()
+            .duration(400)
+            .style('opacity', 1e-6)
+            .remove();
+        d3.selectAll('#maps-visualization .maps-dots circle')
+            .transition()
+            .duration(400)
+            .attr('r', 1e-6)
+            .remove();
+
         //calculate width and height of the viz container and set them as svg dimensions
         width = $('#maps-visualization').width();
         height = width * .7;
         radius = 3;
         svg.attr('width', width)
-            .attr('height', height);
-
-        // svg.selectAll('.map-swiss *').remove();
+            .attr('height', height)
+            .style('position', 'absolute');
 
         // adapt map to viewport
         projection.fitSize([width, height], cantons);
@@ -78,7 +87,7 @@ function MapAll(id, swiss, data) {
             .merge(swissBorder)
             .attr("d", path)
             .transition()
-            .duration(300)
+            .duration(500)
             .style('opacity', 0.5);
 
         let cantonsBorder = cantonsBorderContainer.selectAll('path')
@@ -97,12 +106,12 @@ function MapAll(id, swiss, data) {
             .merge(cantonsBorder)
             .attr('d', path)
             .transition()
-            .duration(300)
+            .duration(500)
             .style('opacity', 0.5);
 
         //filter the data for the correct year
         let selectedYear = this.data.filter(function(el){return el.key == year;});
-        institutions = selectedYear[0].values.map(function(d){
+        let institutions = selectedYear[0].values.map(function(d){
             return {
                 'x' : getCoordinates(d, 'lon'),
                 'y' : getCoordinates(d, 'lat'),
@@ -135,7 +144,7 @@ function MapAll(id, swiss, data) {
         node.transition()
             .duration(500)
             .delay(function(d, i) { return i * 2 })
-            .attr('r', radius)
+            .attr('r', radius);
 
         simulation.alpha(1)
             .nodes(institutions)
