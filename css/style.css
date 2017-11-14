@@ -48,7 +48,7 @@ line.link {
     display: flex;
 }
 .step {
-    margin-bottom: 200px;
+    margin-bottom: 500px;
 }
 .step:last-of-type {
     height: 84vh;
@@ -67,14 +67,12 @@ line.link {
     stroke: #999999;
     stroke-width: .5px;
     pointer-events: none;
-    opacity: 0.5;
 }
 .canton-contour {
     fill: none;
     stroke: #999999;
     stroke-width: .5px;
     pointer-events: none;
-    opacity: 0.5;
 }
 /* all_institutions styles */
 .dot {

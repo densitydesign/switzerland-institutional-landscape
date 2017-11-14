@@ -1,7 +1,8 @@
 let timeline,
     bubblechart,
     typologiesGraph,
-    map_all_institutions;
+    map_all_institutions,
+    map_typologies;
 
 $(document).ready(function() {
 
@@ -58,64 +59,76 @@ $(document).ready(function() {
     d3.queue()
         .defer(d3.json, './data_and_scripts/data/ch.json')
         .defer(d3.json, './data_and_scripts/data/map_all_institutions.json')
-        .await(function(error, swiss, data) {
+        .defer(d3.json, './data_and_scripts/data/map_typologies.json')
+        .await(function(error, swiss, data_all, data_typologies) {
             if (error) throw error;
 
-            map_all_institutions = new MapAll('#maps-visualization', swiss, data);
+            map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
             map_all_institutions.draw(1954);
+
+            map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
         });
 
 });
 
 $(document).on('setWaypoints', function() {
     //save the selection to a variable to improve performance
-    let $map = $('#maps');
+    let $buttons = $('#maps .btn-group').children(),
+        years = [1954, 1965, 1980];
 
     // initiate waypoints
     // waypoint for typology map. call function to draw the typologies if going down, to draw total map if going up
-    let second_waypoint = new Waypoint({
+    let typologies_waypoint = new Waypoint({
         element: document.getElementById('map-typology-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                // console.log('call map_typologies 1954');
+                console.log('call map_typologies 1954');
+                $buttons.each(function(i){;
+                    $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ')');
+                });
+                map_typologies.draw(1954);
             } else {
-                // console.log('call map_all_institutions 1954');
+                console.log('call map_all_institutions 1954');
+                $buttons.each(function(i, btn){
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ')');
+                });
+                map_all_institutions.draw(1954);
             }
         },
         offset: '40%'
     });
     // waypoint for capacity map. call function to draw the capacities if going down, to draw typologies if going up
-    let third_waypoint = new Waypoint({
+    let capacity_waypoint = new Waypoint({
         element: document.getElementById('map-capacity-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                // console.log('call map_capacities 1954');
+                console.log('call map_capacities 1954');
             } else {
-                // console.log('call map_typologies 1954');
+                console.log('call map_typologies 1954');
             }
         },
         offset: '40%'
     });
     // waypoint for confession map. call function to draw the confession if going down, to draw capacities if going up
-    let fourth_waypoint = new Waypoint({
+    let confession_waypoint = new Waypoint({
         element: document.getElementById('map-confession-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                // console.log('call map_confession 1954');
+                console.log('call map_confession 1954');
             } else {
-                // console.log('call map_capacities 1954');
+                console.log('call map_capacities 1954');
             }
         },
         offset: '40%'
     });
     // waypoint for gender map. call function to draw the gender if going down, to draw confession if going up
-    let fifth_waypoint = new Waypoint({
+    let gender_waypoint = new Waypoint({
         element: document.getElementById('map-gender-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                // console.log('call map_gender 1954');
+                console.log('call map_gender 1954');
             } else {
-                // console.log('call map_confession 1954');
+                console.log('call map_confession 1954');
             }
         },
         offset: '40%'

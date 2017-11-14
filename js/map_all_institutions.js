@@ -9,12 +9,15 @@ function MapAll(id, swiss, data) {
         // console.log(this.data);
         // console.log(swiss);
     }
-
+    //define elements that will be present in the visualization
     let svg,
         mapGroup,
+        swissBorderContainer,
+        cantonsBorderContainer,
         dotGroup,
         node;
 
+    //define dimensions of the container
     let width,
         height,
         radius;
@@ -26,10 +29,12 @@ function MapAll(id, swiss, data) {
         path = d3.geoPath().projection(projection);
 
     // transform topojson to geojson
-    let cantons = topojson.feature(swiss, swiss.objects.cantons);
+    let swissOutline = topojson.feature(swiss, swiss.objects.country),
+        cantons = topojson.feature(swiss, swiss.objects.cantons);
 
     // define forces
-    let simulation = d3.forceSimulation(institutions);
+    let simulation = d3.forceSimulation(institutions)
+        .on("tick", ticked);
 
     // check if svg has already been created and if not, creates it
     if (!this.svg) {
@@ -38,8 +43,9 @@ function MapAll(id, swiss, data) {
             .classed('map-container', true);
         svg = this.svg;
         mapGroup = svg.append('g').classed('map-swiss', true);
+        swissBorderContainer = mapGroup.append('g').classed('map-country', true);
+        cantonsBorderContainer = mapGroup.append('g').classed('map-cantons', true);
         dotGroup = svg.append('g').classed('dots', true);
-        node = dotGroup.selectAll('circle');
     }
 
     this.draw = function(year) {
@@ -50,25 +56,49 @@ function MapAll(id, swiss, data) {
         svg.attr('width', width)
             .attr('height', height);
 
-        svg.selectAll('.map-swiss *').remove();
+        // svg.selectAll('.map-swiss *').remove();
 
         // adapt map to viewport
         projection.fitSize([width, height], cantons);
 
         // project map
-        mapGroup.append('g').classed('map-country', true)
-            .append('path')
-            .datum(topojson.feature(swiss, swiss.objects.country))
-            .classed('swiss-contour', true)
-            .attr("d", path);
+        let swissBorder = swissBorderContainer.selectAll('path')
+            .data(swissOutline.features);
 
-        mapGroup.append('g').classed('map-cantons', true)
-            .selectAll('path')
-            .data(cantons.features)
-            .enter()
+        swissBorder.exit()
+            .transition()
+            .duration(500)
+            .style('opacity', 1e-6)
+            .remove();
+
+        swissBorder.enter()
+            .append('path')
+            .classed('swiss-contour', true)
+            .style('opacity', 1e-6)
+            .merge(swissBorder)
+            .attr("d", path)
+            .transition()
+            .duration(300)
+            .style('opacity', 0.5);
+
+        let cantonsBorder = cantonsBorderContainer.selectAll('path')
+            .data(cantons.features);
+
+        cantonsBorder.exit()
+            .transition()
+            .duration(500)
+            .style('opacity', 1e-6)
+            .remove();
+
+        cantonsBorder.enter()
             .append('path')
             .classed('canton-contour', true)
-            .attr('d', path);
+            .style('opacity', 1e-6)
+            .merge(cantonsBorder)
+            .attr('d', path)
+            .transition()
+            .duration(300)
+            .style('opacity', 0.5);
 
         //filter the data for the correct year
         let selectedYear = this.data.filter(function(el){return el.key == year;});
@@ -82,43 +112,42 @@ function MapAll(id, swiss, data) {
         // console.log(institutions);
 
         //draw institutions
-        node = node.data(institutions, function(d){
+        node = dotGroup.selectAll('circle')
+            .data(institutions, function(d){
                 return d.id;
             });
 
         node.exit()
             .transition()
             .duration(500)
-            .attr('r', 0)
+            .attr('r', 1e-6)
             .remove();
 
         node = node.enter()
             .append('circle')
             .classed('dot', true)
-            .attr('r', 0)
-            .on('click', function(d){
-                console.table(d);
+            .attr('r', 1e-6)
+            .on("click", function(d) {
+                console.log(d.id);
             })
             .merge(node);
 
         node.transition()
             .duration(500)
             .delay(function(d, i) { return i * 2 })
-            .attr('r', radius);
+            .attr('r', radius)
 
         simulation.nodes(institutions)
             .force('x', d3.forceX().x(function(d) {
                 return d.x;
-            }))
+            }).strength(0.2))
             .force('y', d3.forceY().y(function(d) {
                 return d.y;
-            }))
+            }).strength(0.2))
             .force('collision', d3.forceCollide().radius(function(d) {
                 return radius + 0.5;
             }))
-            .alpha(1)
-            .on('tick', ticked)
-            .restart();
+            .alpha(1);
     }
 
     function getCoordinates(d, i) {
