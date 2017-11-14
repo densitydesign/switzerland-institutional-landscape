@@ -137,7 +137,8 @@ function MapAll(id, swiss, data) {
             .delay(function(d, i) { return i * 2 })
             .attr('r', radius)
 
-        simulation.nodes(institutions)
+        simulation.alpha(1)
+            .nodes(institutions)
             .force('x', d3.forceX().x(function(d) {
                 return d.x;
             }).strength(0.2))
@@ -147,7 +148,7 @@ function MapAll(id, swiss, data) {
             .force('collision', d3.forceCollide().radius(function(d) {
                 return radius + 0.5;
             }))
-            .alpha(1);
+            .restart();
     }
 
     function getCoordinates(d, i) {

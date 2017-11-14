@@ -106,6 +106,8 @@ function Bubblechart(id, data) {
                 .classed('node', true)
                 .attr("r", 0)
                 .merge(node)
+                .attr("cx", 0)
+                .attr("cy", 0)
                 .attr("fill", function(d) {
                     if (d.capacity_group == "not specified") {
                         return '#fff'
@@ -140,7 +142,6 @@ function Bubblechart(id, data) {
                 .merge(label);
 
             // Update and restart the simulation.
-            simulation.nodes(nodes);
             simulation.force("collide", d3.forceCollide(function(d) { return radius(d.capacity_group) + 2 }).iterations(16))
 
             let nodesGroups = d3.nest()
@@ -149,11 +150,10 @@ function Bubblechart(id, data) {
                     return d.key
                 })
 
-            simulation.force("x", d3.forceX(function(d) {
-                return width / (nodesGroups.length + 2) * (d.group + 1) - width / 2 - width / (nodesGroups.length + 2) * .3;
-            }).strength(0.2))
-
-            simulation.alpha(1)
+            simulation.alpha(1).nodes(nodes)
+                .force("x", d3.forceX(function(d) {
+                    return width / (nodesGroups.length + 2) * (d.group + 1) - width / 2 - width / (nodesGroups.length + 2) * .3;
+                }).strength(0.2))
                 .on("tick", ticked)
                 .restart();
         }
