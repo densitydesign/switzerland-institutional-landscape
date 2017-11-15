@@ -2,7 +2,8 @@ let timeline,
     bubblechart,
     typologiesGraph,
     map_all_institutions,
-    map_typologies;
+    map_typologies,
+    matrix;
 
 $(document).ready(function() {
 
@@ -67,8 +68,17 @@ $(document).ready(function() {
             map_all_institutions.draw(1954);
 
             map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
+        });
+        
+    // load asynchronously the datasets for chapter 3
+    d3.queue()
+        .defer(d3.json, './data_and_scripts/data/matrix.json')
+        .defer(d3.json, './data_and_scripts/data/matrix-categories.json')
+        .await(function(error, data_matrix, categories) {
+            if (error) throw error;
 
-            // map_all_institutions = new MapCategories('#maps-visualization', swiss, data_categories);
+            matrix = new Matrix('#matrix-visualization', data_matrix, categories);
+            // matrix.draw(1954);
         });
 
 });
