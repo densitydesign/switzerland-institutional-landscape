@@ -51,6 +51,7 @@ function MapAll(id, swiss, data) {
     let genderScale = d3.scaleOrdinal()
         .domain(categoriesList['accepted_gender'])
         .range(['#a7d46f', '#ffed8f', '#e3f8ff', '#333333']);
+    let currentCategory;
 
     // check if svg has already been created and if not, creates it
     if (!this.svg) {
@@ -186,60 +187,69 @@ function MapAll(id, swiss, data) {
                     }
                 })
                 .attr('r', radius);
+            
+            if (currentCategory != category) {
+                // add legend
+                item = legendGroup.selectAll('.item')
+                    .data(categoriesList[category]);
 
-            // add legend
-            item = legendGroup.selectAll('.item')
-                .data(categoriesList[category]);
+                item.exit()
+                    .transition()
+                    .duration(500)
+                    .style('opacity', 1e-6)
+                    .remove();
 
-            item.exit()
-                .transition()
-                .duration(500)
-                .style('opacity', 1e-6)
-                .remove();
-
-            item.enter()
-                .append('g')
-                .classed('item', true)
-                .merge(item);
-
-            // item.append('rect')
-            //     .classed('item-color', true)
-            //     .style('opacity', 1e-6)
-            //     .attr('width', 15)
-            //     .attr('height', 15)
-            //     .attr('x', 15)
-            //     .attr('y', function(d, i){
-            //         return i * 20;
-            //     })
-            //     .transition()
-            //     .duration(500)
-            //     .delay(function(d, i) { return i * 2 })
-            //     .style('fill', function(d){
-            //         if (category === 'capacity_group') {
-            //             return capacityScale(d);
-            //         } else if (category === 'confession') {
-            //             return confessionScale(d);
-            //         } else {
-            //             return genderScale(d);
-            //         }
-            //     })
-            //     .style('opacity', 1);
-            //
-            // item.append('text')
-            //     .classed('item-text', true)
-            //     .style('opacity', 1e-6)
-            //     .attr('x', 45)
-            //     .attr('y', function(d, i){
-            //         return i * 20;
-            //     })
-            //     .text(function(d){
-            //         return d;
-            //     })
-            //     .transition()
-            //     .duration(500)
-            //     .delay(function(d, i) { return i * 2 })
-            //     .style('opacity', 1);
-
+                item = item.enter()
+                    .append('g')
+                    .classed('item', true)
+                    .merge(item);
+                
+                item.selectAll('*')
+                    .transition()
+                    .duration(500)
+                    .style('opacity', 1e-6)
+                    .remove();
+                    
+                item.append('rect')
+                    .classed('item-color', true)
+                    .style('opacity', 1e-6)
+                    .attr('width', 15)
+                    .attr('height', 15)
+                    .attr('x', 15)
+                    .attr('y', function(d, i){
+                        return i * 20;
+                    })
+                    .transition()
+                    .duration(500)
+                    .delay(function(d, i) { return i * 2 })
+                    .style('fill', function(d){
+                        if (category === 'capacity_group') {
+                            return capacityScale(d);
+                        } else if (category === 'confession') {
+                            return confessionScale(d);
+                        } else {
+                            return genderScale(d);
+                        }
+                    })
+                    .style('opacity', 1);
+                
+                item.append('text')
+                    .classed('item-text', true)
+                    .style('opacity', 1e-6)
+                    .attr('x', 40)
+                    .attr('y', function(d, i){
+                        return i * 20 + 12;
+                    })
+                    .text(function(d){
+                        return d;
+                    })
+                    .transition()
+                    .duration(500)
+                    .delay(function(d, i) { return i * 2 })
+                    .style('opacity', 1);
+                    
+                currentCategory = category;
+            }
         } else {
             node = node.enter()
                 .append('circle')
