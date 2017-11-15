@@ -23,6 +23,9 @@ $(document).ready(function() {
         timeline = new Timeline('#timeline');
         timeline.draw();
 
+        surviesSankey = new SurviesSankey('#sankey', {});
+        surviesSankey.draw();
+
         bubblechart = new Bubblechart('#bubblechart', datasets[1]);
         bubblechart.draw();
 
