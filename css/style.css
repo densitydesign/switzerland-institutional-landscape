@@ -87,6 +87,9 @@ line.link {
 	stroke: #ffffff;
 	cursor: pointer;
 }
+.item-text {
+	font-size: .65rem;
+}
 /* map_typologies styles */
 .maps-container {
 	display: -webkit-box;

@@ -15,7 +15,9 @@ function MapAll(id, swiss, data) {
         swissBorderContainer,
         cantonsBorderContainer,
         dotGroup,
-        node;
+        legendGroup,
+        node,
+        item;
 
     //define dimensions of the container
     let width,
@@ -35,14 +37,19 @@ function MapAll(id, swiss, data) {
         .on("tick", ticked);
 
     // define color scales, with ranges and domains
+    let categoriesList = {
+        'capacity_group': ["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over", "not specified"],
+        'confession': ["protestants", "catholics", "interdenominational", "not specified"],
+        'accepted_gender': ["males", "females", "both genders", "not specified"]
+    }
     let capacityScale = d3.scaleOrdinal()
-        .domain(["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over", "not specified"])
+        .domain(categoriesList['capacity_group'])
         .range(['#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a', '#333333']);
     let confessionScale = d3.scaleOrdinal()
-        .domain(["protestants", "catholics", "interdenominational", "not specified"])
+        .domain(categoriesList['confession'])
         .range(['#50e3c2', '#ff7a5a', '#fcf4d9', '#333333']);
     let genderScale = d3.scaleOrdinal()
-        .domain(["males", "females", "both genders", "not specified"])
+        .domain(categoriesList['accepted_gender'])
         .range(['#a7d46f', '#ffed8f', '#e3f8ff', '#333333']);
 
     // check if svg has already been created and if not, creates it
@@ -55,6 +62,7 @@ function MapAll(id, swiss, data) {
         swissBorderContainer = mapGroup.append('g').classed('map-country', true);
         cantonsBorderContainer = mapGroup.append('g').classed('map-cantons', true);
         dotGroup = svg.append('g').classed('map-dots', true);
+        legendGroup = svg.append('g').classed('map-legend', true);
     }
 
     this.draw = function(year, category) {
@@ -72,7 +80,7 @@ function MapAll(id, swiss, data) {
         d3.selectAll('#maps-visualization .maps-label text')
             .transition()
             .duration(300)
-            .attr('r', 1e-6)
+            .style('opacity', 1e-6)
             .remove();
         d3.select('#maps-visualization .maps-container')
             .style('pointer-events', 'none');
@@ -178,6 +186,60 @@ function MapAll(id, swiss, data) {
                     }
                 })
                 .attr('r', radius);
+
+            // add legend
+            item = legendGroup.selectAll('.item')
+                .data(categoriesList[category]);
+
+            item.exit()
+                .transition()
+                .duration(500)
+                .style('opacity', 1e-6)
+                .remove();
+
+            item.enter()
+                .append('g')
+                .classed('item', true)
+                .merge(item);
+
+            // item.append('rect')
+            //     .classed('item-color', true)
+            //     .style('opacity', 1e-6)
+            //     .attr('width', 15)
+            //     .attr('height', 15)
+            //     .attr('x', 15)
+            //     .attr('y', function(d, i){
+            //         return i * 20;
+            //     })
+            //     .transition()
+            //     .duration(500)
+            //     .delay(function(d, i) { return i * 2 })
+            //     .style('fill', function(d){
+            //         if (category === 'capacity_group') {
+            //             return capacityScale(d);
+            //         } else if (category === 'confession') {
+            //             return confessionScale(d);
+            //         } else {
+            //             return genderScale(d);
+            //         }
+            //     })
+            //     .style('opacity', 1);
+            //
+            // item.append('text')
+            //     .classed('item-text', true)
+            //     .style('opacity', 1e-6)
+            //     .attr('x', 45)
+            //     .attr('y', function(d, i){
+            //         return i * 20;
+            //     })
+            //     .text(function(d){
+            //         return d;
+            //     })
+            //     .transition()
+            //     .duration(500)
+            //     .delay(function(d, i) { return i * 2 })
+            //     .style('opacity', 1);
+
         } else {
             node = node.enter()
                 .append('circle')
