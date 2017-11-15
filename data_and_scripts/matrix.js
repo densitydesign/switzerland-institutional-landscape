@@ -17,44 +17,46 @@ node_xj({
         // transform every category to an array and then map each to a numeric value
         result.forEach(function(el){
             // console.log(el);
-            let capacityArray = el.capacity_group.split(';'),
-                committingAgencyArray = el.committing_agencies.split(';'),
-                confessionArray = el.confession.split(';'),
-                fundingAgencyArray = el.funding_agency.split(';'),
-                genderArray = el.accepted_gender.split(';'),
-                typologyArray = el.typologies.split(';');
+            if (el.survey_year === '1954' || el.survey_year === '1965' || el.survey_year === '1980') {
+                let capacityArray = el.capacity_group.split(';'),
+                    committingAgencyArray = el.committing_agencies.split(';'),
+                    confessionArray = el.confession.split(';'),
+                    fundingAgencyArray = el.funding_agency.split(';'),
+                    genderArray = el.accepted_gender.split(';'),
+                    typologyArray = el.typologies.split(';');
 
-            capacityArray = capacityArray.map(function(i){
-                return categories.capacity[i];
-            });
-            committingAgencyArray = committingAgencyArray.map(function(i){
-                return categories.committingAgency[i];
-            });
-            confessionArray = confessionArray.map(function(i){
-                return categories.confession[i];
-            });
-            fundingAgencyArray = fundingAgencyArray.map(function(i){
-                return categories.fundingAgency[i];
-            });
-            genderArray = genderArray.map(function(i){
-                return categories.gender[i];
-            });
-            typologyArray = typologyArray.map(function(i){
-                return categories.typology[i];
-            });
+                capacityArray = capacityArray.map(function(i){
+                    return categories.capacity[i];
+                });
+                committingAgencyArray = committingAgencyArray.map(function(i){
+                    return categories.committingAgency[i];
+                });
+                confessionArray = confessionArray.map(function(i){
+                    return categories.confession[i];
+                });
+                fundingAgencyArray = fundingAgencyArray.map(function(i){
+                    return categories.fundingAgency[i];
+                });
+                genderArray = genderArray.map(function(i){
+                    return categories.gender[i];
+                });
+                typologyArray = typologyArray.map(function(i){
+                    return categories.typology[i];
+                });
 
-            let institution = {
-                'id': el.id,
-                'survey_year': el.survey_year,
-                'capacity_group': capacityArray,
-                'committing_agencies': committingAgencyArray,
-                'confession': confessionArray,
-                'funding_agency': fundingAgencyArray,
-                'accepted_gender': genderArray,
-                'typology': typologyArray
-            };
+                let institution = {
+                    'id': el.id,
+                    'survey_year': el.survey_year,
+                    'capacity_group': capacityArray,
+                    'committing_agencies': committingAgencyArray,
+                    'confession': confessionArray,
+                    'funding_agency': fundingAgencyArray,
+                    'accepted_gender': genderArray,
+                    'typology': typologyArray
+                };
 
-            finalArray.push(institution);
+                finalArray.push(institution);
+            }
         });
         // console.log(finalArray);
         fs.writeFile("./data/matrix.json", JSON.stringify(finalArray), function(err) {

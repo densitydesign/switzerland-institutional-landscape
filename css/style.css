@@ -11,6 +11,10 @@
 	opacity: 0;
 }
 
+.btn-secondary {
+	cursor: pointer;
+}
+
 /* 1.3 bubblechart - purpose of institutions */
 #bubblechart svg {
 }
