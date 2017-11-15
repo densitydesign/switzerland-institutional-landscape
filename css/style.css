@@ -64,19 +64,21 @@ line.link {
 /* swiss map styles */
 .swiss-contour {
     fill: none;
+	shape-rendering: geometricPrecision;
     stroke: #999999;
     stroke-width: .5px;
     pointer-events: none;
 }
 .canton-contour {
     fill: none;
+	shape-rendering: geometricPrecision;
     stroke: #999999;
     stroke-width: .5px;
     pointer-events: none;
 }
 /* map_all_institutions styles */
 .dot {
-	fill: black;
+	fill: #105965;
 	stroke-width: 0.5px;
 	stroke: #ffffff;
 	cursor: pointer;
@@ -91,7 +93,6 @@ line.link {
 	  -ms-flex-pack: distribute;
 	justify-content: space-around;
 	position: absolute;
-	pointer-events: none;
 }
 .maps-label {
 	font-size: .65rem;

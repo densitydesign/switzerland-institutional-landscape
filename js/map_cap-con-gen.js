@@ -1,4 +1,4 @@
-function MapAll(id, swiss, data) {
+function MapCategories(id, swiss, data) {
 
     this.id = id;
 
@@ -9,6 +9,7 @@ function MapAll(id, swiss, data) {
         // console.log(this.data);
         // console.log(swiss);
     }
+
     //define elements that will be present in the visualization
     let svg,
         mapGroup,
@@ -30,9 +31,19 @@ function MapAll(id, swiss, data) {
     let swissOutline = topojson.feature(swiss, swiss.objects.country),
         cantons = topojson.feature(swiss, swiss.objects.cantons);
 
-    // define forces
-    let simulation = d3.forceSimulation()
-        .on("tick", ticked);
+    // cache year
+    let currentYear;
+
+    // define color scales, with ranges and domains
+    let capacityScale = d3.scaleOrdinal()
+        .domain(["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over", "not specified"])
+        .range(['#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a', '#333333']);
+    let confessionScale = d3.scaleOrdinal()
+        .domain(["protestants", "catholics", "interdenominational", "not specified"])
+        .range(['#50e3c2', '#ff7a5a', '#fcf4d9', '#333333']);
+    let genderScale = d3.scaleOrdinal()
+        .domain(["males", "females", "both genders", "not specified"])
+        .range(['#a7d46f', '#ffed8f', '#e3f8ff', '#333333']);
 
     // check if svg has already been created and if not, creates it
     if (!this.svg) {
@@ -46,7 +57,7 @@ function MapAll(id, swiss, data) {
         dotGroup = svg.append('g').classed('map-dots', true);
     }
 
-    this.draw = function(year) {
+    this.draw = function(year, category) {
         //remove precedent map with a transition
         d3.selectAll('#maps-visualization .maps-swiss path')
             .transition()
@@ -122,7 +133,10 @@ function MapAll(id, swiss, data) {
             return {
                 'x' : getCoordinates(d, 'lon'),
                 'y' : getCoordinates(d, 'lat'),
-                'id': d.id
+                'id': d.id,
+                'capacity_group': d.capacity_group,
+                'confession': d.confession,
+                'accepted_gender': d.accepted_gender
             };
         });
         // console.log(institutions);
@@ -143,17 +157,27 @@ function MapAll(id, swiss, data) {
             .append('circle')
             .classed('dot', true)
             .attr('r', 1e-6)
+            .style('stroke', '#333333')
             .on("click", function(d) {
-                console.log(d.id);
+                console.table(d);
             })
             .merge(node);
 
         node.transition()
             .duration(500)
             .delay(function(d, i) { return i * 2 })
+            .style('fill', function(d){
+                if (category === 'capacity_group') {
+                    return capacityScale(d[category]);
+                } else if (category === 'confession') {
+                    return confessionScale(d[category]);
+                } else {
+                    return genderScale(d[category]);
+                }
+            })
             .attr('r', radius);
 
-        simulation.alpha(1)
+        d3.forceSimulation().alpha(1)
             .nodes(institutions)
             .force('x', d3.forceX().x(function(d) {
                 return d.x;
@@ -164,23 +188,24 @@ function MapAll(id, swiss, data) {
             .force('collision', d3.forceCollide().radius(function(d) {
                 return radius + 0.5;
             }))
+            .on('tick', ticked)
             .restart();
-    }
 
-    function getCoordinates(d, i) {
-        var projectedCoords = projection([d.lon, d.lat]);
-        // console.log(projectedCoords);
-        if (i === 'lon') {
-            return projectedCoords[0];
-        } else if (i === 'lat') {
-            return projectedCoords[1];
-        } else {
-            return projectedCoords;
+        function getCoordinates(d, i) {
+            var projectedCoords = projection([d.lon, d.lat]);
+            // console.log(projectedCoords);
+            if (i === 'lon') {
+                return projectedCoords[0];
+            } else if (i === 'lat') {
+                return projectedCoords[1];
+            } else {
+                return projectedCoords;
+            }
         }
-    }
 
-    function ticked() {
-        node.attr('cx', function(d){return d.x;})
-            .attr('cy', function(d){return d.y;});
-    }
+        function ticked() {
+            node.attr('cx', function(d){return d.x;})
+                .attr('cy', function(d){return d.y;});
+        }
+}
 }
