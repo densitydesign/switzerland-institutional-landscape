@@ -62,11 +62,13 @@ function MapTypologies(id, swiss, data) {
             .duration(400)
             .attr('r', 1e-6)
             .remove();
+        d3.select('#maps-visualization .maps-container')
+            .style('pointer-events', 'auto');
 
         //calculate width and height for each small map
         width = $('#maps-visualization').width() / 3 - 30;
         height = width * .9;
-        radius = 1.5;
+        radius = 2;
         mapsSvg.attr('width', width)
             .attr('height', height);
 
