@@ -15,7 +15,8 @@ function MapTypologies(id, swiss, data) {
         mapGroups,
         swissBorderContainer,
         cantonsBorderContainer,
-        dotsGroup;
+        dotsGroup,
+        labelsGroup;
 
     //define dimensions of the container
     let width,
@@ -38,14 +39,15 @@ function MapTypologies(id, swiss, data) {
             .classed('maps-container', true);
         div = this.div_typology;
         mapsSvg = div.selectAll('.maps-svg')
-            .data([0,1,2,3,4,5,6,7])
+            .data(["forced labour institution (restricted)", "forced labour institution (semi-open)", "educational institution", "asylum for alcoholics", "prison", "psychiatric facility", "poor house", "institution for people with special needs"])
             .enter()
             .append('svg')
             .classed('maps-svg', true);
         mapGroups = mapsSvg.append('g').classed('maps-swiss', true);
         swissBorderContainer = mapGroups.append('g').classed('maps-country', true);
         cantonsBorderContainer = mapGroups.append('g').classed('maps-cantons', true);
-        dotGroup = mapsSvg.append('g').classed('maps-dots', true);
+        dotGroups = mapsSvg.append('g').classed('maps-dots', true);
+        labelsGroup = mapsSvg.append('g').classed('maps-label', true);
     }
 
     this.draw = function(year) {
@@ -110,66 +112,104 @@ function MapTypologies(id, swiss, data) {
             .duration(500)
             .style('opacity', 0.5);
 
+        // add labels to maps
+        let label = labelsGroup.selectAll('.maps-label')
+            .data(function(d) { return [d]; });
+
+        label.exit()
+            .transition()
+            .duration(500)
+            .style('opacity', 1e-6)
+            .remove();
+
+        label.enter()
+            .append('text')
+            .classed('maps-label', true)
+            .style('opacity', 1e-6)
+            .attr('text-anchor', 'middle')
+            .attr('x', width / 2)
+            .attr('y', height - 10)
+            .merge(label)
+            .text(function(d){return d;})
+            .transition()
+            .duration(500)
+            .style('opacity', 1);
+
         // filter the data for the correct year
         let selectedYear = this.data.filter(function(el){return el.key == year;});
         let typologies = d3.nest()
             .key(function(d) { return d.typology; })
             .entries(selectedYear[0].values);
-        console.log(typologies);
+        // console.log(typologies);
 
-        dotGroup.each(function(el){
-            // define data for each category
-            let institutions = typologies[el].values.map(function(d){
-                return {
-                    'x' : getCoordinates(d, 'lon'),
-                    'y' : getCoordinates(d, 'lat'),
-                    'id': d.id
-                };
-            });
-
-            //draw institutions
-            let node = d3.select(this).selectAll('circle')
-                .data(institutions, function(d){
-                    return d.id;
+        dotGroups.each(function(d){
+            // check if a typology is present a certain year
+            let svgIndex = typologies.findIndex(isPresent);
+            // if there is, update the svg
+            if (svgIndex != -1) {
+                // define data for each category
+                let institutions = typologies[svgIndex].values.map(function(d){
+                    return {
+                        'x' : getCoordinates(d, 'lon'),
+                        'y' : getCoordinates(d, 'lat'),
+                        'id': d.id
+                    };
                 });
 
-            node.exit()
-                .transition()
-                .duration(500)
-                .attr('r', 1e-6)
-                .remove();
+                //draw institutions
+                let node = d3.select(this).selectAll('circle')
+                    .data(institutions, function(d){
+                        return d.id;
+                    });
 
-            node = node.enter()
-                .append('circle')
-                .classed('dot', true)
-                .attr('r', 1e-6)
-                .on("click", function(d) {
-                    console.log(d.id);
-                })
-                .merge(node);
+                node.exit()
+                    .transition()
+                    .duration(500)
+                    .attr('r', 1e-6)
+                    .remove();
 
-            node.transition()
-                .duration(500)
-                .delay(function(d, i) { return i * 2 })
-                .attr('r', radius);
+                node = node.enter()
+                    .append('circle')
+                    .classed('dot', true)
+                    .attr('r', 1e-6)
+                    .on("click", function(d) {
+                        console.log(d.id);
+                    })
+                    .merge(node);
 
-            d3.forceSimulation().alpha(1)
-                .nodes(institutions)
-                .force('x', d3.forceX().x(function(d) {
-                    return d.x;
-                }).strength(0.1))
-                .force('y', d3.forceY().y(function(d) {
-                    return d.y;
-                }).strength(0.1))
-                .force('collision', d3.forceCollide().radius(function(d) {
-                    return radius + 0.5;
-                }))
-                .on("tick", ticked)
-                .restart();
+                node.transition()
+                    .duration(500)
+                    .delay(function(d, i) { return i * 2 })
+                    .attr('r', radius);
 
-            function ticked() {
-                node.attr('cx', function(d){return d.x;})
-                    .attr('cy', function(d){return d.y;});
+                d3.forceSimulation().alpha(1)
+                    .nodes(institutions)
+                    .force('x', d3.forceX().x(function(d) {
+                        return d.x;
+                    }).strength(0.1))
+                    .force('y', d3.forceY().y(function(d) {
+                        return d.y;
+                    }).strength(0.1))
+                    .force('collision', d3.forceCollide().radius(function(d) {
+                        return radius + 0.5;
+                    }))
+                    .on("tick", ticked)
+                    .restart();
+
+                function ticked() {
+                    node.attr('cx', function(d){return d.x;})
+                        .attr('cy', function(d){return d.y;});
+                }
+            } else {
+                // if there isn't, clear the svg
+                d3.select(this).selectAll('circle')
+                    .transition()
+                    .duration(500)
+                    .attr('r', 1e-6)
+                    .remove();
+            }
+            function isPresent(el) {
+                return el.key === d;
             }
         });
 

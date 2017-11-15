@@ -93,3 +93,6 @@ line.link {
 	position: absolute;
 	pointer-events: none;
 }
+.maps-label {
+	font-size: .65rem;
+}
