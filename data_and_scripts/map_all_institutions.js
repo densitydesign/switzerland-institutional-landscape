@@ -18,7 +18,10 @@ node_xj({
                     'id': el.id,
                     'survey_year': el.survey_year,
                     'lon': el.longitude,
-                    'lat': el.latitude
+                    'lat': el.latitude,
+                    'capacity_group': el.capacity_group,
+                    'confession': el.confession,
+                    'accepted_gender': el.accepted_gender
                 }
                 finalArray.push(institution);
             }

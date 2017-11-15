@@ -2,8 +2,7 @@ let timeline,
     bubblechart,
     typologiesGraph,
     map_all_institutions,
-    map_typologies,
-    map_categories;
+    map_typologies;
 
 $(document).ready(function() {
 
@@ -61,8 +60,7 @@ $(document).ready(function() {
         .defer(d3.json, './data_and_scripts/data/ch.json')
         .defer(d3.json, './data_and_scripts/data/map_all_institutions.json')
         .defer(d3.json, './data_and_scripts/data/map_typologies.json')
-        .defer(d3.json, './data_and_scripts/data/map_cap-con-gen.json')
-        .await(function(error, swiss, data_all, data_typologies, data_categories) {
+        .await(function(error, swiss, data_all, data_typologies) {
             if (error) throw error;
 
             map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
@@ -70,7 +68,7 @@ $(document).ready(function() {
 
             map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
 
-            map_categories = new MapCategories('#maps-visualization', swiss, data_categories);
+            // map_all_institutions = new MapCategories('#maps-visualization', swiss, data_categories);
         });
 
 });
@@ -86,13 +84,13 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-typology-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                console.log('call map_typologies 1954');
+                // console.log('call map_typologies 1954');
                 $buttons.each(function(i){;
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ')');
                 });
                 map_typologies.draw(1954);
             } else {
-                console.log('call map_all_institutions 1954');
+                // console.log('call map_all_institutions 1954');
                 $buttons.each(function(i, btn){
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ')');
                 });
@@ -106,13 +104,13 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-capacity-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                console.log('call map_capacities 1954');
+                // console.log('call map_capacities 1954');
                 $buttons.each(function(i, btn){
-                    $(this).attr('onclick', 'map_categories.draw(' + years[i] + ', "capacity_group")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group")');
                 });
-                map_categories.draw(1954, 'capacity_group');
+                map_all_institutions.draw(1954, 'capacity_group');
             } else {
-                console.log('call map_typologies 1954');
+                // console.log('call map_typologies 1954');
                 $buttons.each(function(i){;
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ')');
                 });
@@ -126,17 +124,17 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-confession-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                console.log('call map_confession 1954');
+                // console.log('call map_confession 1954');
                 $buttons.each(function(i, btn){
-                    $(this).attr('onclick', 'map_categories.draw(' + years[i] + ', "confession")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession")');
                 });
-                map_categories.draw(1954, 'confession');
+                map_all_institutions.draw(1954, 'confession');
             } else {
-                console.log('call map_capacities 1954');
+                // console.log('call map_capacities 1954');
                 $buttons.each(function(i, btn){
-                    $(this).attr('onclick', 'map_categories.draw(' + years[i] + ', "capacity_group")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group")');
                 });
-                map_categories.draw(1954, 'capacity_group');
+                map_all_institutions.draw(1954, 'capacity_group');
             }
         },
         offset: '40%'
@@ -146,17 +144,17 @@ $(document).on('setWaypoints', function() {
         element: document.getElementById('map-gender-text'),
         handler: function(direction) {
             if(direction == 'down'){
-                console.log('call map_gender 1954');
+                // console.log('call map_gender 1954');
                 $buttons.each(function(i, btn){
-                    $(this).attr('onclick', 'map_categories.draw(' + years[i] + ', "accepted_gender")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender")');
                 });
-                map_categories.draw(1954, 'accepted_gender');
+                map_all_institutions.draw(1954, 'accepted_gender');
             } else {
-                console.log('call map_confession 1954');
+                // console.log('call map_confession 1954');
                 $buttons.each(function(i, btn){
-                    $(this).attr('onclick', 'map_categories.draw(' + years[i] + ', "confession")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession")');
                 });
-                map_categories.draw(1954, 'confession');
+                map_all_institutions.draw(1954, 'confession');
             }
         },
         offset: '40%'

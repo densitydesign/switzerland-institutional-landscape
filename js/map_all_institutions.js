@@ -34,6 +34,17 @@ function MapAll(id, swiss, data) {
     let simulation = d3.forceSimulation()
         .on("tick", ticked);
 
+    // define color scales, with ranges and domains
+    let capacityScale = d3.scaleOrdinal()
+        .domain(["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over", "not specified"])
+        .range(['#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a', '#333333']);
+    let confessionScale = d3.scaleOrdinal()
+        .domain(["protestants", "catholics", "interdenominational", "not specified"])
+        .range(['#50e3c2', '#ff7a5a', '#fcf4d9', '#333333']);
+    let genderScale = d3.scaleOrdinal()
+        .domain(["males", "females", "both genders", "not specified"])
+        .range(['#a7d46f', '#ffed8f', '#e3f8ff', '#333333']);
+
     // check if svg has already been created and if not, creates it
     if (!this.svg) {
         this.svg = d3.select(this.id)
@@ -46,7 +57,7 @@ function MapAll(id, swiss, data) {
         dotGroup = svg.append('g').classed('map-dots', true);
     }
 
-    this.draw = function(year) {
+    this.draw = function(year, category) {
         //remove precedent map with a transition
         d3.selectAll('#maps-visualization .maps-swiss path')
             .transition()
@@ -122,7 +133,10 @@ function MapAll(id, swiss, data) {
             return {
                 'x' : getCoordinates(d, 'lon'),
                 'y' : getCoordinates(d, 'lat'),
-                'id': d.id
+                'id': d.id,
+                'capacity_group': d.capacity_group,
+                'confession': d.confession,
+                'accepted_gender': d.accepted_gender
             };
         });
         // console.log(institutions);
@@ -139,19 +153,46 @@ function MapAll(id, swiss, data) {
             .attr('r', 1e-6)
             .remove();
 
-        node = node.enter()
-            .append('circle')
-            .classed('dot', true)
-            .attr('r', 1e-6)
-            .on("click", function(d) {
-                console.log(d.id);
-            })
-            .merge(node);
+        if (category !== undefined) {
 
-        node.transition()
-            .duration(500)
-            .delay(function(d, i) { return i * 2 })
-            .attr('r', radius);
+            node = node.enter()
+                .append('circle')
+                .classed('dot', true)
+                .attr('r', 1e-6)
+                .style('stroke', '#333333')
+                .on("click", function(d) {
+                    console.table(d);
+                })
+                .merge(node);
+
+            node.transition()
+                .duration(500)
+                .delay(function(d, i) { return i * 2 })
+                .style('fill', function(d){
+                    if (category === 'capacity_group') {
+                        return capacityScale(d[category]);
+                    } else if (category === 'confession') {
+                        return confessionScale(d[category]);
+                    } else {
+                        return genderScale(d[category]);
+                    }
+                })
+                .attr('r', radius);
+        } else {
+            node = node.enter()
+                .append('circle')
+                .classed('dot', true)
+                .attr('r', 1e-6)
+                .on("click", function(d) {
+                    console.table(d);
+                })
+                .merge(node);
+
+            node.transition()
+                .duration(500)
+                .delay(function(d, i) { return i * 2 })
+                .attr('r', radius);
+        }
 
         simulation.alpha(1)
             .nodes(institutions)

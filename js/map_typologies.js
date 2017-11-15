@@ -175,7 +175,7 @@ function MapTypologies(id, swiss, data) {
                     .classed('dot', true)
                     .attr('r', 1e-6)
                     .on("click", function(d) {
-                        console.log(d.id);
+                        console.table(d);
                     })
                     .merge(node);
 
