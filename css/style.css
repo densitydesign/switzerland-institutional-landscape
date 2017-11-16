@@ -17,6 +17,21 @@
 
 .chapter {margin-bottom: 60px;}
 
+/* 1.2 mosaic plot and sankey */
+
+#sankey .nodes rect {
+    stroke: none;
+}
+#sankey .nodes text {
+
+}
+
+#sankey .links path{
+    fill: none;
+    opacity: .2
+}
+
+
 /* 1.3 bubblechart - purpose of institutions */
 
 #bubblechart svg {}
