@@ -1,99 +1,119 @@
 /* General for all viz */
 
 .label {
-	font-size: .65rem;
-	pointer-events: none;
-	opacity: 1;
-	fill: #333;
+    font-size: .65rem;
+    pointer-events: none;
+    opacity: 1;
+    fill: #333;
 }
 
 .label.hidden {
-	opacity: 0;
+    opacity: 0;
 }
+
 
 /* 1.3 bubblechart - purpose of institutions */
-#bubblechart svg {
-}
+
+#bubblechart svg {}
 
 #bubblechart circle.node {
-	stroke: #074050;
-	stroke-width: .5px;
-	cursor: pointer;
+    stroke: #074050;
+    stroke-width: .5px;
+    cursor: pointer;
 }
+
+
 /* 1.4 typologies network of correlations */
 
 #typologies-graph circle.node {
-	stroke-width: .5px;
-	cursor: pointer;
-	fill: #105965;
-	/*opacity: .2;*/
+    stroke-width: .5px;
+    cursor: pointer;
+    fill: #105965;
+    /*opacity: .2;*/
 }
 
 line.link {
-	stroke: #4c9b82;
-	stroke-width: 1px;
-	opacity: .5
+    stroke: #4c9b82;
+    stroke-width: 1px;
+    opacity: .5
 }
 
 #typologies-graph .label {
-	text-anchor: middle;
+    text-anchor: middle;
 }
+
 
 /* STYLES CHAPTER 2 */
 
+
 /* container styles */
+
 #institutions-maps {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
 }
+
 .step {
     margin-bottom: 700px;
 }
+
 .step:last-of-type {
     height: 84vh;
     margin-bottom: 0;
 }
+
 #maps {
-	position: -webkit-sticky;
-	position: sticky;
-	top: 100px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
     width: 100%;
     height: 84vh;
 }
+
+
 /* swiss map styles */
+
 .swiss-contour {
     fill: none;
-	shape-rendering: geometricPrecision;
+    shape-rendering: geometricPrecision;
     stroke: #999999;
     stroke-width: .5px;
     pointer-events: none;
 }
+
 .canton-contour {
     fill: none;
-	shape-rendering: geometricPrecision;
+    shape-rendering: geometricPrecision;
     stroke: #999999;
     stroke-width: .5px;
     pointer-events: none;
 }
+
+
 /* map_all_institutions styles */
+
 .dot {
-	fill: #105965;
-	stroke-width: 0.5px;
-	stroke: #ffffff;
-	cursor: pointer;
+    fill: #105965;
+    stroke-width: 0.5px;
+    stroke: #ffffff;
+    cursor: pointer;
 }
+
+
 /* map_typologies styles */
+
 .maps-container {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	    flex-wrap: wrap;
-	  -ms-flex-pack: distribute;
-	justify-content: space-around;
-	position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    position: absolute;
 }
+
 .maps-label {
-	font-size: .65rem;
+    font-size: .65rem;
 }
