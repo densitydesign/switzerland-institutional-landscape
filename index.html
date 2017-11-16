@@ -34,6 +34,7 @@
                 </div>
             </div>
         </section>
+        <hr class="mb-5" />
         <section id="surveyed-institutions" class="sub-chapter container">
             <div class="row">
                 <div class="col-12">
@@ -42,13 +43,18 @@
             </div>
             <div class="row visualisation">
                 <div id="sankey" class="col-12">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary" onclick="surveySankeyMode = 'mosaic'; surviesSankey.draw(surveySankeyMode);">Mosaic</button>
+                        <button type="button" class="btn btn-secondary" onclick="surveySankeyMode = 'sankey'; surviesSankey.draw(surveySankeyMode);">Sankey</button>
+                    </div>
                     <!-- to be filled with D3 -->
                 </div>
-                <div class="col-8 mx-auto mb-5">
-                    <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                <div class="col-8">
+                    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur.</p>
                 </div>
             </div>
         </section>
+        <hr class="mb-5" />
         <section id="multipurpose" class="sub-chapter container">
             <div class="row">
                 <div class="col-12">
@@ -57,6 +63,7 @@
             </div>
             <div class="row visualisation">
                 <div class="col-12 text-left">
+                    <h4>How many institutions served multiple purposes? In which year?</h4>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1933)">1933</button>
                         <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1940)">1940</button>
@@ -72,8 +79,10 @@
                     <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
                 </div>
             </div>
+            <hr class="mb-5"/>
             <div class="row visualisation">
                 <div class="col-12 text-left">
+                    <h4>Which typologies were more likely to appear together? In which year?</h4>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1933)">1933</button>
                         <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1940)">1940</button>
@@ -91,6 +100,7 @@
             </div>
         </section>
     </section>
+    <hr class="mb-5" />
     <section id="geographies">
         <div class="container">
             <div class="row">
@@ -127,7 +137,7 @@
                     <div id="maps" class="visualization">
                         <div class="row">
                             <div class="col-12 text-right">
-                                <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons" >
+                                <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons">
                                     <label type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1933)" data-id="1933">
                                         <input type="radio" name="options" autocomplete="off"> 1933
                                     </label>
@@ -154,7 +164,6 @@
             </div>
         </section>
     </section>
-
     <section id="correlations" class="chapter container-fluid">
         <div class="container">
             <div class="row">
@@ -176,28 +185,28 @@
                             <div class='select-container'>
                                 <label>Y Axis:</label>
                                 <select id='scatterplot-y' onchange="">
-                                <option value='capacity'>Capacity</option>
-                                <option value='committingAgency'>Committing Agency</option>
-                                <option value='confession'>Confession</option>
-                                <option value='fundingAgency'>Funding Body</option>
-                                <option value='gender' selected>Gender</option>
-                                <option value='typology'>Typology</option>
-                              </select>
+                                    <option value='capacity'>Capacity</option>
+                                    <option value='committingAgency'>Committing Agency</option>
+                                    <option value='confession'>Confession</option>
+                                    <option value='fundingAgency'>Funding Body</option>
+                                    <option value='gender' selected>Gender</option>
+                                    <option value='typology'>Typology</option>
+                                </select>
                             </div>
                             <div class='select-container'>
                                 <label>X Axis:</label>
                                 <select id='scatterplot-x' onchange="">
-                                <option value='capacity'>Capacity</option>
-                                <option value='committingAgency'>Committing Agency</option>
-                                <option value='confession'>Confession</option>
-                                <option value='fundingAgency'>Funding Body</option>
-                                <option value='gender'>Gender</option>
-                                <option value='typology' selected>Typology</option>
-                              </select>
+                                    <option value='capacity'>Capacity</option>
+                                    <option value='committingAgency'>Committing Agency</option>
+                                    <option value='confession'>Confession</option>
+                                    <option value='fundingAgency'>Funding Body</option>
+                                    <option value='gender'>Gender</option>
+                                    <option value='typology' selected>Typology</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-6 text-right">
-                            <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons" >
+                            <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons">
                                 <label type="button" class="btn btn-secondary active" onclick="map_all_institutions.draw(1954)" data-id="1954">
                                     <input type="radio" name="options" autocomplete="off" checked> 1954
                                 </label>
@@ -209,7 +218,6 @@
                                 </label>
                             </div>
                         </div>
-
                         <div id="matrix-visualization" class="col-12">
                             <!-- to be filled with d3 -->
                         </div>
@@ -228,7 +236,6 @@
     <script src="https://unpkg.com/d3-sankey@0"></script>
     <script src="https://d3js.org/topojson.v3.min.js" charset="utf-8"></script>
     <script src="./js/noframework.waypoints.min.js"></script>
-
     <!-- Visualizations -->
     <script src="./js/timeline.js"></script>
     <script src="./js/sankey-della-morte.js"></script>

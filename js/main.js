@@ -1,4 +1,6 @@
 let timeline,
+    surviesSankey,
+    surveySankeyMode = 'mosaic',
     bubblechart,
     typologiesGraph,
     map_all_institutions,
@@ -27,7 +29,7 @@ $(document).ready(function() {
         // console.log(dataset)
 
         surviesSankey = new SurviesSankey('#sankey', datasets[0]);
-        surviesSankey.draw();
+        surviesSankey.draw(surveySankeyMode);
 
         bubblechart = new Bubblechart('#bubblechart', datasets[1]);
         bubblechart.draw();
@@ -46,7 +48,7 @@ $(document).ready(function() {
 
             // handle sankey/mosaic resizing
             if (d3.select(surviesSankey.id).node().offsetWidth - 30 != surviesSankey.width) {
-                surviesSankey.draw();
+                surviesSankey.draw(surveySankeyMode);
             }
 
             // handle bubblechart resizing

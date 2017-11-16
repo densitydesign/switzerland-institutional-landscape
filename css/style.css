@@ -4,7 +4,7 @@
     font-size: .65rem;
     pointer-events: none;
     opacity: 1;
-    fill: #333;
+    /*fill: #333;*/
 }
 
 .label.hidden {
@@ -17,6 +17,14 @@
 
 /* 1.2 mosaic plot and sankey */
 
+#sankey {
+
+}
+
+#sankey svg{
+    /*background-color: #ccc*/
+}
+
 #sankey .nodes rect {
     stroke: none;
 }
@@ -26,7 +34,12 @@
 
 #sankey .links path{
     fill: none;
-    opacity: .2
+    opacity: .3;
+    /*cursor: pointer;*/
+}
+
+#sankey .links path:hover{
+    opacity: .6 !important;
 }
 
 /* 1.3 bubblechart - purpose of institutions */
@@ -80,7 +93,6 @@ line.link {
 }
 
 #maps {
-
 	position: -webkit-sticky;
 	position: sticky;
 	top: 80px;
