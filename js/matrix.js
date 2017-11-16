@@ -106,9 +106,9 @@ function Matrix(id, data, categories) {
             .range([margin, width])
             .padding(0.5);
         let rScale = d3.scaleSqrt()
-            .domain([0, d3.max(finalList, function(d){return d.value.amount})])
+            // .domain([0, d3.max(finalList, function(d){return d.value.amount})])
+            .domain([0, 226])
             .range([0, 40]);
-        console.log(d3.max(finalList, function(d){return d.value.amount}));
 
         let yAxis = d3.axisLeft(yScale)
             .tickSize(0)
