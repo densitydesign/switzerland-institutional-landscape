@@ -62,6 +62,11 @@ function MapTypologies(id, swiss, data) {
             .duration(400)
             .attr('r', 1e-6)
             .remove();
+        d3.selectAll('#maps-visualization .map-legend .item')
+            .transition()
+            .duration(400)
+            .style('opacity', 1e-6)
+            .remove();
         d3.select('#maps-visualization .maps-container')
             .style('pointer-events', 'auto');
 
@@ -175,7 +180,7 @@ function MapTypologies(id, swiss, data) {
                     .classed('dot', true)
                     .attr('r', 1e-6)
                     .on("click", function(d) {
-                        console.log(d.id);
+                        console.table(d);
                     })
                     .merge(node);
 

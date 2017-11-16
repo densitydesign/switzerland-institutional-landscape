@@ -127,10 +127,22 @@
                     <div id="maps" class="visualization">
                         <div class="row">
                             <div class="col-12 text-right">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1954)">1954</button>
-                                    <button type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1965)">1965</button>
-                                    <button type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1980)">1980</button>
+                                <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons" >
+                                    <label type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1933)" data-id="1933">
+                                        <input type="radio" name="options" autocomplete="off"> 1933
+                                    </label>
+                                    <label type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1940)" data-id="1940">
+                                        <input type="radio" name="options" autocomplete="off"> 1940
+                                    </label>
+                                    <label type="button" class="btn btn-secondary active" onclick="map_all_institutions.draw(1954)" data-id="1954">
+                                        <input type="radio" name="options" autocomplete="off" checked> 1954
+                                    </label>
+                                    <label type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1965)" data-id="1965">
+                                        <input type="radio" name="options" autocomplete="off"> 1965
+                                    </label>
+                                    <label type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1980)" data-id="1980">
+                                        <input type="radio" name="options" autocomplete="off"> 1980
+                                    </label>
                                 </div>
                             </div>
                             <div id="maps-visualization" class="col-12">
@@ -158,8 +170,50 @@
                 </div>
             </div>
             <div class="row visualisation">
-                <div id="matrix" class=" col-8">
-                    <!-- to be filled with d3 -->
+                <div id="matrix" class="visualization col-8">
+                    <div class="row">
+                        <div class='dropdown-container col-6'>
+                            <div class='select-container'>
+                                <label>Y Axis:</label>
+                                <select id='scatterplot-y' onchange="">
+                                <option value='capacity'>Capacity</option>
+                                <option value='committingAgency'>Committing Agency</option>
+                                <option value='confession'>Confession</option>
+                                <option value='fundingAgency'>Funding Body</option>
+                                <option value='gender' selected>Gender</option>
+                                <option value='typology'>Typology</option>
+                              </select>
+                            </div>
+                            <div class='select-container'>
+                                <label>X Axis:</label>
+                                <select id='scatterplot-x' onchange="">
+                                <option value='capacity'>Capacity</option>
+                                <option value='committingAgency'>Committing Agency</option>
+                                <option value='confession'>Confession</option>
+                                <option value='fundingAgency'>Funding Body</option>
+                                <option value='gender'>Gender</option>
+                                <option value='typology' selected>Typology</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-6 text-right">
+                            <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons" >
+                                <label type="button" class="btn btn-secondary active" onclick="map_all_institutions.draw(1954)" data-id="1954">
+                                    <input type="radio" name="options" autocomplete="off" checked> 1954
+                                </label>
+                                <label type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1965)" data-id="1965">
+                                    <input type="radio" name="options" autocomplete="off"> 1965
+                                </label>
+                                <label type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1980)" data-id="1980">
+                                    <input type="radio" name="options" autocomplete="off"> 1980
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="matrix-visualization" class="col-12">
+                            <!-- to be filled with d3 -->
+                        </div>
+                    </div>
                 </div>
                 <div class="col-4">
                     <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
@@ -181,7 +235,8 @@
     <script src="./js/typologies-graph.js"></script>
     <script src="./js/map_all_institutions.js"></script>
     <script src="./js/map_typologies.js"></script>
-    <script src="./js/map_cap-con-gen.js"></script>
+    <script src="./js/matrix.js"></script>
+    <!-- <script src="./js/map_cap-con-gen.js"></script> -->
     <!-- Keep at the end of everything -->
     <script src="./js/main.js"></script>
 </body>

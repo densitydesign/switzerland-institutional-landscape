@@ -15,7 +15,9 @@ function MapAll(id, swiss, data) {
         swissBorderContainer,
         cantonsBorderContainer,
         dotGroup,
-        node;
+        legendGroup,
+        node,
+        item;
 
     //define dimensions of the container
     let width,
@@ -34,6 +36,23 @@ function MapAll(id, swiss, data) {
     let simulation = d3.forceSimulation()
         .on("tick", ticked);
 
+    // define color scales, with ranges and domains
+    let categoriesList = {
+        'capacity_group': ["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over", "not specified"],
+        'confession': ["protestants", "catholics", "interdenominational", "not specified"],
+        'accepted_gender': ["males", "females", "both genders", "not specified"]
+    }
+    let capacityScale = d3.scaleOrdinal()
+        .domain(categoriesList['capacity_group'])
+        .range(['#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a', '#333333']);
+    let confessionScale = d3.scaleOrdinal()
+        .domain(categoriesList['confession'])
+        .range(['#50e3c2', '#ff7a5a', '#fcf4d9', '#333333']);
+    let genderScale = d3.scaleOrdinal()
+        .domain(categoriesList['accepted_gender'])
+        .range(['#a7d46f', '#ffed8f', '#e3f8ff', '#333333']);
+    let currentCategory;
+
     // check if svg has already been created and if not, creates it
     if (!this.svg) {
         this.svg = d3.select(this.id)
@@ -44,9 +63,10 @@ function MapAll(id, swiss, data) {
         swissBorderContainer = mapGroup.append('g').classed('map-country', true);
         cantonsBorderContainer = mapGroup.append('g').classed('map-cantons', true);
         dotGroup = svg.append('g').classed('map-dots', true);
+        legendGroup = svg.append('g').classed('map-legend', true);
     }
 
-    this.draw = function(year) {
+    this.draw = function(year, category) {
         //remove precedent map with a transition
         d3.selectAll('#maps-visualization .maps-swiss path')
             .transition()
@@ -61,7 +81,7 @@ function MapAll(id, swiss, data) {
         d3.selectAll('#maps-visualization .maps-label text')
             .transition()
             .duration(300)
-            .attr('r', 1e-6)
+            .style('opacity', 1e-6)
             .remove();
         d3.select('#maps-visualization .maps-container')
             .style('pointer-events', 'none');
@@ -122,7 +142,10 @@ function MapAll(id, swiss, data) {
             return {
                 'x' : getCoordinates(d, 'lon'),
                 'y' : getCoordinates(d, 'lat'),
-                'id': d.id
+                'id': d.id,
+                'capacity_group': d.capacity_group,
+                'confession': d.confession,
+                'accepted_gender': d.accepted_gender
             };
         });
         // console.log(institutions);
@@ -139,19 +162,109 @@ function MapAll(id, swiss, data) {
             .attr('r', 1e-6)
             .remove();
 
-        node = node.enter()
-            .append('circle')
-            .classed('dot', true)
-            .attr('r', 1e-6)
-            .on("click", function(d) {
-                console.log(d.id);
-            })
-            .merge(node);
+        if (category !== undefined) {
 
-        node.transition()
-            .duration(500)
-            .delay(function(d, i) { return i * 2 })
-            .attr('r', radius);
+            node = node.enter()
+                .append('circle')
+                .classed('dot', true)
+                .attr('r', 1e-6)
+                .style('stroke', '#333333')
+                .on("click", function(d) {
+                    console.table(d);
+                })
+                .merge(node);
+
+            node.transition()
+                .duration(500)
+                .delay(function(d, i) { return i * 2 })
+                .style('fill', function(d){
+                    if (category === 'capacity_group') {
+                        return capacityScale(d[category]);
+                    } else if (category === 'confession') {
+                        return confessionScale(d[category]);
+                    } else {
+                        return genderScale(d[category]);
+                    }
+                })
+                .attr('r', radius);
+            
+            if (currentCategory != category) {
+                // add legend
+                item = legendGroup.selectAll('.item')
+                    .data(categoriesList[category]);
+
+                item.exit()
+                    .transition()
+                    .duration(500)
+                    .style('opacity', 1e-6)
+                    .remove();
+
+                item = item.enter()
+                    .append('g')
+                    .classed('item', true)
+                    .merge(item);
+                
+                item.selectAll('*')
+                    .transition()
+                    .duration(500)
+                    .style('opacity', 1e-6)
+                    .remove();
+                    
+                item.append('rect')
+                    .classed('item-color', true)
+                    .style('opacity', 1e-6)
+                    .attr('width', 15)
+                    .attr('height', 15)
+                    .attr('x', 15)
+                    .attr('y', function(d, i){
+                        return i * 20;
+                    })
+                    .transition()
+                    .duration(500)
+                    .delay(function(d, i) { return i * 2 })
+                    .style('fill', function(d){
+                        if (category === 'capacity_group') {
+                            return capacityScale(d);
+                        } else if (category === 'confession') {
+                            return confessionScale(d);
+                        } else {
+                            return genderScale(d);
+                        }
+                    })
+                    .style('opacity', 1);
+                
+                item.append('text')
+                    .classed('item-text', true)
+                    .style('opacity', 1e-6)
+                    .attr('x', 40)
+                    .attr('y', function(d, i){
+                        return i * 20 + 12;
+                    })
+                    .text(function(d){
+                        return d;
+                    })
+                    .transition()
+                    .duration(500)
+                    .delay(function(d, i) { return i * 2 })
+                    .style('opacity', 1);
+                    
+                currentCategory = category;
+            }
+        } else {
+            node = node.enter()
+                .append('circle')
+                .classed('dot', true)
+                .attr('r', 1e-6)
+                .on("click", function(d) {
+                    console.table(d);
+                })
+                .merge(node);
+
+            node.transition()
+                .duration(500)
+                .delay(function(d, i) { return i * 2 })
+                .attr('r', radius);
+        }
 
         simulation.alpha(1)
             .nodes(institutions)
