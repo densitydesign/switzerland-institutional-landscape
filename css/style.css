@@ -15,6 +15,8 @@
 	cursor: pointer;
 }
 
+.chapter {margin-bottom: 60px;}
+
 /* 1.2 mosaic plot and sankey */
 
 #sankey {
@@ -29,7 +31,7 @@
     stroke: none;
 }
 #sankey .nodes text {
-    
+
 }
 
 #sankey .links path{
@@ -41,6 +43,7 @@
 #sankey .links path:hover{
     opacity: .6 !important;
 }
+
 
 /* 1.3 bubblechart - purpose of institutions */
 
@@ -148,4 +151,45 @@ line.link {
 
 .maps-label {
     font-size: .65rem;
+}
+
+/* STYLES CHAPTER 3 */
+
+/* matrix */
+.dropdown-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.select-container {
+    margin: 10px 10px 10px 0;
+}
+.select-container select{
+    cursor: pointer;
+}
+
+#matrix text {
+    font-size: .65rem;
+}
+
+.axis-x text {
+    text-anchor: end;
+    -webkit-transform: rotate(-40deg);
+            transform: rotate(-40deg);
+}
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 8;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+.bubble {
+    stroke: #000;
+    stroke-width: 1px;
+    fill: #007bff;
 }

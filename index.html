@@ -184,36 +184,36 @@
                         <div class='dropdown-container col-6'>
                             <div class='select-container'>
                                 <label>Y Axis:</label>
-                                <select id='scatterplot-y' onchange="">
-                                    <option value='capacity'>Capacity</option>
-                                    <option value='committingAgency'>Committing Agency</option>
+                                <select id='scatterplot-y' onchange="matrix.draw(1954)">
+                                    <option value='capacity_group'>Capacity</option>
+                                    <option value='committing_agencies'>Committing Agency</option>
                                     <option value='confession'>Confession</option>
-                                    <option value='fundingAgency'>Funding Body</option>
-                                    <option value='gender' selected>Gender</option>
+                                    <option value='funding_agency'>Funding Body</option>
+                                    <option value='accepted_gender' selected>Gender</option>
                                     <option value='typology'>Typology</option>
                                 </select>
                             </div>
                             <div class='select-container'>
                                 <label>X Axis:</label>
-                                <select id='scatterplot-x' onchange="">
-                                    <option value='capacity'>Capacity</option>
-                                    <option value='committingAgency'>Committing Agency</option>
+                                <select id='scatterplot-x' onchange="matrix.draw(1954)">
+                                    <option value='capacity_group'>Capacity</option>
+                                    <option value='committing_agencies'>Committing Agency</option>
                                     <option value='confession'>Confession</option>
-                                    <option value='fundingAgency'>Funding Body</option>
-                                    <option value='gender'>Gender</option>
+                                    <option value='funding_agency'>Funding Body</option>
+                                    <option value='accepted_gender'>Gender</option>
                                     <option value='typology' selected>Typology</option>
-                                </select>
+                              </select>
                             </div>
                         </div>
                         <div class="col-6 text-right">
-                            <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons">
-                                <label type="button" class="btn btn-secondary active" onclick="map_all_institutions.draw(1954)" data-id="1954">
+                            <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons" >
+                                <label type="button" class="btn btn-secondary active" onclick="matrix.draw(1954)" data-id="1954">
                                     <input type="radio" name="options" autocomplete="off" checked> 1954
                                 </label>
-                                <label type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1965)" data-id="1965">
+                                <label type="button" class="btn btn-secondary" onclick="matrix.draw(1965)" data-id="1965">
                                     <input type="radio" name="options" autocomplete="off"> 1965
                                 </label>
-                                <label type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1980)" data-id="1980">
+                                <label type="button" class="btn btn-secondary" onclick="matrix.draw(1980)" data-id="1980">
                                     <input type="radio" name="options" autocomplete="off"> 1980
                                 </label>
                             </div>

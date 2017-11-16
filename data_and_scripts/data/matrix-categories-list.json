@@ -1,0 +1,57 @@
+{
+    "typology": {
+        "forced labour institution (restricted)": 1,
+        "forced labour institution (semi-open)": 2,
+        "educational institution": 3,
+        "asylum for alcoholics": 4,
+        "prison": 5,
+        "psychiatric facility": 6,
+        "poor house": 7,
+        "institution for people with special needs": 8,
+        "not specified": 9
+    },
+    "gender": {
+        "males": 1,
+        "females": 2,
+        "both genders": 3,
+        "not specified": 4
+    },
+    "capacity": {
+        "0 - 19": 1,
+        "20 - 49": 2,
+        "50 - 99": 3,
+        "100 - 149": 4,
+        "150 - 199": 5,
+        "200 - over": 6,
+        "not specified": 7
+    },
+    "confession": {
+        "protestants": 1,
+        "catholics": 2,
+        "interdenominational": 3,
+        "not specified": 4
+    },
+    "fundingAgency": {
+        "governmental funded": 1,
+        "privately funded": 2,
+        "public-private mix": 3,
+        "not specified": 4
+    },
+    "committingAgency": {
+        "courts of justice": 1,
+        "coroner": 2,
+        "prosecutor": 3,
+        "youth advocacy": 4,
+        "senior civil servants": 5,
+        "administrative agency": 6,
+        "legal authority": 7,
+        "police authority": 8,
+        "social authority": 9,
+        "guardianship authority": 10,
+        "district authorities": 11,
+        "legal guardians": 12,
+        "youth welfare services": 13,
+        "associations": 14,
+        "not specified": 15
+    }
+}

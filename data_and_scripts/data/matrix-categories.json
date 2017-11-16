@@ -1,57 +1,186 @@
 {
-    "typology": {
-        "forced labour institution (restricted)": 1,
-        "forced labour institution (semi-open)": 2,
-        "educational institution": 3,
-        "asylum for alcoholics": 4,
-        "prison": 5,
-        "psychiatric facility": 6,
-        "poor house": 7,
-        "institution for people with special needs": 8,
-        "not specified": 9
-    },
-    "gender": {
-        "males": 1,
-        "females": 2,
-        "both genders": 3,
-        "not specified": 4
-    },
-    "capacity": {
-        "0 - 19": 1,
-        "20 - 49": 2,
-        "50 - 99": 3,
-        "100 - 149": 4,
-        "150 - 199": 5,
-        "200 - over": 6,
-        "not specified": 7
-    },
-    "confession": {
-        "protestants": 1,
-        "catholics": 2,
-        "interdenominational": 3,
-        "not specified": 4
-    },
-    "fundingAgency": {
-        "governmental funded": 1,
-        "privately funded": 2,
-        "public-private mix": 3,
-        "not specified": 4
-    },
-    "committingAgency": {
-        "courts of justice": 1,
-        "coroner": 2,
-        "prosecutor": 3,
-        "youth advocacy": 4,
-        "senior civil servants": 5,
-        "administrative agency": 6,
-        "legal authority": 7,
-        "police authority": 8,
-        "social authority": 9,
-        "guardianship authority": 10,
-        "district authorities": 11,
-        "legal guardians": 12,
-        "youth welfare services": 13,
-        "associations": 14,
-        "not specified": 15
-    }
+    "typology": [
+        {
+            "code": 1,
+            "label": "forced labour institution (restricted)"
+        },
+        {
+            "code": 2,
+            "label": "forced labour institution (semi-open)"
+        },
+        {
+            "code": 3,
+            "label": "educational institution"
+        },
+        {
+            "code": 4,
+            "label": "asylum for alcoholics"
+        },
+        {
+            "code": 5,
+            "label": "prison"
+        },
+        {
+            "code": 6,
+            "label": "psychiatric facility"
+        },
+        {
+            "code": 7,
+            "label": "poor house"
+        },
+        {
+            "code": 8,
+            "label": "institution for people with special needs"
+        },
+        {
+            "code": 9,
+            "label": "not specified"
+        }
+    ],
+    "accepted_gender": [
+        {
+            "code": 1,
+            "label": "males"
+        },
+        {
+            "code": 2,
+            "label": "females"
+        },
+        {
+            "code": 3,
+            "label": "both genders"
+        },
+        {
+            "code": 4,
+            "label": "not specified"
+        }
+    ],
+    "capacity_group": [
+        {
+            "code": 1,
+            "label": "0 - 19"
+        },
+        {
+            "code": 2,
+            "label": "20 - 49"
+        },
+        {
+            "code": 3,
+            "label": "50 - 99"
+        },
+        {
+            "code": 4,
+            "label": "100 - 149"
+        },
+        {
+            "code": 5,
+            "label": "150 - 199"
+        },
+        {
+            "code": 6,
+            "label": "200 - over"
+        },
+        {
+            "code": 7,
+            "label": "not specified"
+        }
+    ],
+    "confession": [
+        {
+            "code": 1,
+            "label": "protestants"
+        },
+        {
+            "code": 2,
+            "label": "catholics"
+        },
+        {
+            "code": 3,
+            "label": "interdenominational"
+        },
+        {
+            "code": 4,
+            "label": "not specified"
+        }
+    ],
+    "funding_agency": [
+        {
+            "code": 1,
+            "label": "governmental funded"
+        },
+        {
+            "code": 2,
+            "label": "privately funded"
+        },
+        {
+            "code": 3,
+            "label": "public-private mix"
+        },
+        {
+            "code": 4,
+            "label": "not specified"
+        }
+    ],
+    "committing_agencies": [
+        {
+            "code": 1,
+            "label": "courts of justice"
+        },
+        {
+            "code": 2,
+            "label": "coroner"
+        },
+        {
+            "code": 3,
+            "label": "prosecutor"
+        },
+        {
+            "code": 4,
+            "label": "youth advocacy"
+        },
+        {
+            "code": 5,
+            "label": "senior civil servants"
+        },
+        {
+            "code": 6,
+            "label": "administrative agency"
+        },
+        {
+            "code": 7,
+            "label": "legal authority"
+        },
+        {
+            "code": 8,
+            "label": "police authority"
+        },
+        {
+            "code": 9,
+            "label": "social authority"
+        },
+        {
+            "code": 10,
+            "label": "guardianship authority"
+        },
+        {
+            "code": 11,
+            "label": "district authorities"
+        },
+        {
+            "code": 12,
+            "label": "legal guardians"
+        },
+        {
+            "code": 13,
+            "label": "youth welfare services"
+        },
+        {
+            "code": 14,
+            "label": "associations"
+        },
+        {
+            "code": 15,
+            "label": "not specified"
+        }
+    ]
 }
