@@ -11,6 +11,8 @@ function SurviesSankey(id, data) {
         svg = this.svg = d3.select(this.id).append('svg');
     }
 
+    console.log(data)
+
     this.draw = function(year) {
 
         let thisData;
