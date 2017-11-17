@@ -143,7 +143,9 @@ function Matrix(id, data, categories) {
 
         //draw bubbles on matrix
         bubbles = bubblesArea.selectAll('.bubble')
-            .data(finalList);
+            .data(finalList, function(d){
+                return d.key;
+            });
 
         bubbles.exit()
             .transition()
@@ -155,16 +157,16 @@ function Matrix(id, data, categories) {
             .append('circle')
             .classed('bubble', true)
             .attr('r', 1e-6)
-            .merge(bubbles);
-
-        bubbles.transition()
-            .duration(300)
+            .merge(bubbles)
             .attr('cx', function(d) {
                 return xScale(d.value.x);
             })
             .attr('cy', function(d) {
                 return yScale(d.value.y);
-            })
+            });
+
+        bubbles.transition()
+            .duration(300)
             .attr('r', function(d) {
                 return rScale(d.value.amount);
             });
