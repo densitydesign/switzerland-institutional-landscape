@@ -2,10 +2,13 @@ let timeline,
     surviesSankey,
     surveySankeyMode = 'mosaic',
     bubblechart,
-    typologiesGraph,
-    map_all_institutions,
+    typologiesGraph;
+
+let map_all_institutions,
     map_typologies,
     matrix;
+
+let circularNetwork;
 
 $(document).ready(function() {
 
@@ -36,6 +39,9 @@ $(document).ready(function() {
 
         typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
         typologiesGraph.draw();
+
+        circularNetwork = new CircularNetwork('#circular-network', {});
+        circularNetwork.draw();
 
 
         // Add listener for window resize event, which triggers actions such as the resize of visualizations.
