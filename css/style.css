@@ -17,6 +17,60 @@
 
 .chapter {margin-bottom: 60px;}
 
+/* Cover */
+.cover {
+    height: 100vh;
+}
+.report-title {
+    font-size: 3rem;
+}
+
+/* 1.1 timeline */
+.timeline-viz {
+    width: 100%;
+    height: auto;
+}
+.timeline-viz text {
+	font-size: 10px;
+}
+.baseline {
+	fill: none;
+	stroke: #000000;
+	stroke-width: 0.5px;
+	stroke-miterlimit: 10px;
+}
+.baseline-dashed {
+	fill: none;
+	stroke: #000000;
+	stroke-width: 0.5px;
+	stroke-miterlimit: 10px;
+	stroke-dasharray: 4.6,4.6;
+}
+.baseline-dot {
+	fill: #FFFFFF;
+	stroke: #000000;
+	stroke-width: 0.5px;
+	stroke-miterlimit: 10px;
+}
+.events-dot {
+	fill: #FF8E66;
+	stroke: #000000;
+	stroke-width: 0.5px;
+	stroke-miterlimit: 10px;
+}
+.laws-dot {
+	fill: #6699FF;
+	stroke: #000000;
+	stroke-width: 0.5px;
+	stroke-miterlimit: 10px;
+}
+.survey-dot {
+	fill: #B6EA78;
+	stroke: #000000;
+	stroke-width: 0.5px;
+	stroke-miterlimit: 10px;
+}
+
 /* 1.2 mosaic plot and sankey */
 
 #sankey {

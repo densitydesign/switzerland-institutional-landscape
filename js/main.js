@@ -26,8 +26,8 @@ $(document).ready(function() {
         }
         // console.log('loaded datasets:', datasets);
 
-        timeline = new Timeline('#timeline');
-        timeline.draw();
+        // timeline = new Timeline('#timeline');
+        // timeline.draw();
 
         // console.log(dataset)
 
@@ -48,9 +48,9 @@ $(document).ready(function() {
         function doneResizing() {
 
             // handle timeline resizing
-            if (d3.select(timeline.id).node().offsetWidth - 30 != timeline.width) {
-                timeline.draw();
-            }
+            // if (d3.select(timeline.id).node().offsetWidth - 30 != timeline.width) {
+            //     timeline.draw();
+            // }
 
             // handle sankey/mosaic resizing
             if (d3.select(surviesSankey.id).node().offsetWidth - 30 != surviesSankey.width) {
