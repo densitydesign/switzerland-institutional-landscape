@@ -40,41 +40,6 @@ $(document).ready(function() {
         typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
         typologiesGraph.draw();
 
-        circularNetwork = new CircularNetwork('#circular-network', {});
-        circularNetwork.draw();
-
-
-        // Add listener for window resize event, which triggers actions such as the resize of visualizations.
-        function doneResizing() {
-
-            // handle timeline resizing
-            // if (d3.select(timeline.id).node().offsetWidth - 30 != timeline.width) {
-            //     timeline.draw();
-            // }
-
-            // handle sankey/mosaic resizing
-            if (d3.select(surviesSankey.id).node().offsetWidth - 30 != surviesSankey.width) {
-                surviesSankey.draw(surveySankeyMode);
-            }
-
-            // handle bubblechart resizing
-            if (d3.select(bubblechart.id).node().offsetWidth - 30 != bubblechart.width) {
-                bubblechart.draw();
-            }
-
-            // handle typologies graph resizing
-            if (d3.select(typologiesGraph.id).node().offsetWidth - 30 != typologiesGraph.width) {
-                typologiesGraph.draw();
-            }
-
-        }
-
-        let resizeId;
-        window.addEventListener("resize", function() {
-            clearTimeout(resizeId);
-            resizeId = setTimeout(doneResizing, 500);
-        });
-
         // To be called after all the charts have been initialized
         // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
         $(document).trigger('setWaypoints');
@@ -111,10 +76,56 @@ $(document).ready(function() {
     $('#matrix label.btn-secondary').on('click', function() {
         let newYear = $(this).attr('data-id');
 
-        $matrixSelects.each(function(){
+        $matrixSelects.each(function() {
             $(this).children('select').attr('onchange', 'matrix.draw(' + newYear + ')');
         })
     })
+
+    // load asynchronously the datasets for chapter 4
+    d3.queue()
+        .defer(d3.json, './data_and_scripts/data/cantons-network.json')
+        .await(function(error, cantonsNetwork) {
+            if (error) throw error;
+
+            circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
+            circularNetwork.draw();
+        });
+
+    // Add listener for window resize event, which triggers actions such as the resize of visualizations.
+    function doneResizing() {
+
+        // handle timeline resizing
+        // if (d3.select(timeline.id).node().offsetWidth - 30 != timeline.width) {
+        //     timeline.draw();
+        // }
+
+        // handle sankey/mosaic resizing
+        if (d3.select(surviesSankey.id).node().offsetWidth - 30 != surviesSankey.width) {
+            surviesSankey.draw(surveySankeyMode);
+        }
+
+        // handle bubblechart resizing
+        if (d3.select(bubblechart.id).node().offsetWidth - 30 != bubblechart.width) {
+            bubblechart.draw();
+        }
+
+        // handle typologies graph resizing
+        if (d3.select(typologiesGraph.id).node().offsetWidth - 30 != typologiesGraph.width) {
+            typologiesGraph.draw();
+        }
+
+        // handle typologies graph resizing
+        if (d3.select(circularNetwork.id).node().offsetWidth - 30 != circularNetwork.width) {
+            circularNetwork.draw();
+        }
+
+    }
+
+    let resizeId;
+    window.addEventListener("resize", function() {
+        clearTimeout(resizeId);
+        resizeId = setTimeout(doneResizing, 500);
+    });
 
 });
 

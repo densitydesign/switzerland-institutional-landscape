@@ -1,5 +1,4 @@
 function TypologiesGraph(id, data) {
-
     this.id = id;
 
     let svg,

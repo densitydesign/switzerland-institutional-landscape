@@ -119,7 +119,7 @@
     /*opacity: .2;*/
 }
 
-line.link {
+#typologies-graph line.link {
     stroke: #4c9b82;
     stroke-width: 1px;
     opacity: .5
@@ -246,4 +246,26 @@ line.link {
     stroke: #000;
     stroke-width: 1px;
     fill: #007bff;
+}
+
+/* STYLES CHAPTER 4 */
+
+/* 1.4 typologies network of correlations */
+
+#circular-network circle.node {
+    stroke-width: .5px;
+    cursor: pointer;
+    /*opacity: .2;*/
+}
+
+#circular-network line.link {
+    stroke: #666;
+    stroke-width: 1px;
+    opacity: .5;
+    /*display: none;*/
+}
+
+#circular-network .label {
+    text-anchor: middle;
+    /*display: none;*/
 }
