@@ -35,6 +35,22 @@ function CircularNetwork(id, data) {
         svg = this.svg = d3.select(this.id).append('svg')
     }
 
+    svg.append('defs').append('marker')
+        .attrs({
+            'id': 'arrowhead',
+            'viewBox': '-0 -5 10 10',
+            'refX': 13,
+            'refY': 0,
+            'orient': 'auto',
+            'markerWidth': 13,
+            'markerHeight': 13,
+            'xoverflow': 'visible'
+        })
+        .append('svg:path')
+        .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+        .attr('fill', '#999')
+        .style('stroke', 'none');
+
     // intialise containers of the graph
     g = svg.append("g");
     link = g.append("g")
@@ -86,9 +102,9 @@ function CircularNetwork(id, data) {
         nodes = thisData.nodes;
         links = thisData.edges;
 
-        let theMax = d3.max(nodes, function(d) {return d.count})
+        let theMax = d3.max(nodes, function(d) { return d.count })
 
-        console.log(thisData);
+        // console.log(thisData);
 
         let sumChords = 0;
         nodes.forEach(function(d) {
@@ -97,17 +113,17 @@ function CircularNetwork(id, data) {
             sumChords += thisRadius * 2;
         });
 
-        let cRadius = sumChords/(Math.PI*2)
-        let scaleFactor = (height*.45)/cRadius
+        let cRadius = sumChords / (Math.PI * 2)
+        let scaleFactor = (height * .45) / cRadius
 
-        nodes.forEach(function(d,i){
+        nodes.forEach(function(d, i) {
             let thisRadius = Math.sqrt(d.count / Math.PI);
             thisRadius = Math.sqrt(theMax / Math.PI);
-            let sinAdiv2 = (thisRadius*2)/(cRadius*2);
-            let angle = Math.asin(sinAdiv2)*2;
+            let sinAdiv2 = (thisRadius * 2) / (cRadius * 2);
+            let angle = Math.asin(sinAdiv2) * 2;
             d.angle = angle;
-            if(i>0){
-                d.angle += nodes[i-1].angle;
+            if (i > 0) {
+                d.angle += nodes[i - 1].angle;
             }
             d.fx = cRadius * Math.cos(d.angle) * scaleFactor;
             d.fy = cRadius * Math.sin(d.angle) * scaleFactor;
@@ -115,10 +131,10 @@ function CircularNetwork(id, data) {
 
         g.append('circle')
             .attr('cx', 0)
-            .attr('cy',0)
+            .attr('cy', 0)
             .attr('r', cRadius * Math.PI * scaleFactor)
-            .attr('fill','none')
-            .attr('stroke','orange')
+            .attr('fill', 'none')
+            .attr('stroke', 'orange')
 
 
 
@@ -130,7 +146,7 @@ function CircularNetwork(id, data) {
             .classed('node', true)
             .attr('stroke', function(d) { return d3.color(color(d.concordat)).darker() })
             .attr('fill', function(d) { return color(d.concordat) })
-            .attr("r", function(d) { return Math.sqrt(d.count*scaleFactor*10 / Math.PI); })
+            .attr("r", function(d) { return Math.sqrt(d.count * scaleFactor * 10 / Math.PI); })
             .on('click', function(d) {
                 console.log(d);
             })
@@ -143,6 +159,7 @@ function CircularNetwork(id, data) {
             .append("line")
             .style('stroke-width', function(d) { return 2 })
             .classed('link', true)
+            .attr('marker-end', 'url(#arrowhead)')
             .on('click', function(d) {
                 console.log(d);
             })
