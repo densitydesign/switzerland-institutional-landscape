@@ -9,6 +9,7 @@ function CircularNetwork(id, data) {
         links,
         simulation,
         g,
+        resetRect,
         link,
         node,
         label;
@@ -21,13 +22,24 @@ function CircularNetwork(id, data) {
         .range(['#999', '#F24440', '#1785FB', '#73C86B'])
         .domain(['not defined', 'c1', 'c2', 'c3'])
 
-    // let areaScale = d3.scaleLinear()
-    //     .range([1 * 50, 20 * 50])
-    //     .domain([1, 20])
+    let areaScale = d3.scaleLinear()
+        .range([1 * 50, 20 * 50])
+        .domain([1, 20])
 
-    let tickness = d3.scaleLinear()
-        .range([1, 9])
-        .domain([1, 9])
+    // let tickness = d3.scaleLinear()
+    //     .range([1, 9])
+    //     .domain([1, 9])
+
+    let maxWeight = 0;
+    Object.keys(data).forEach(function(y) {
+        // console.log(data[y])
+        let thisMax = d3.max(data[y].edges, function(d) { return d.weight; })
+        if (thisMax > maxWeight) { maxWeight = thisMax; }
+    })
+
+    let edgeWeight = d3.scaleLinear()
+        .range([1, 10])
+        .domain([1, maxWeight])
 
 
     if (!this.svg) {
@@ -53,6 +65,7 @@ function CircularNetwork(id, data) {
 
     // intialise containers of the graph
     g = svg.append("g");
+    resetRect = g.append('rect');
     link = g.append("g")
         .selectAll(".link");
 
@@ -68,9 +81,9 @@ function CircularNetwork(id, data) {
 
     simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links))
-        .force("charge", d3.forceManyBody().strength(-200))
-        .force("x", d3.forceX())
-        .force("y", d3.forceY())
+        // .force("charge", d3.forceManyBody().strength(-200))
+        // .force("x", d3.forceX())
+        // .force("y", d3.forceY())
         // .force("collision", null)
         .force("center", d3.forceCenter())
         // .force("r", d3.forceRadial(100))
@@ -88,9 +101,21 @@ function CircularNetwork(id, data) {
         svg.attr('width', width)
             .attr('height', height);
 
-        svg.style('border', '1px solid blue');
+        // svg.style('border', '1px solid blue');
 
         g.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        
+        resetRect
+            .attr('x', -width/2)
+            .attr('y', -height/2)
+            .attr('width', width)
+            .attr('height',height)
+            .attr('fill','transparent')
+            .on('click', function(){
+                d3.selectAll(id+' .node').style('opacity',1);
+                d3.selectAll(id+' .link').style('opacity',.5);
+            })
 
         let thisData;
         if (year) {
@@ -129,14 +154,12 @@ function CircularNetwork(id, data) {
             d.fy = cRadius * Math.sin(d.angle) * scaleFactor;
         })
 
-        g.append('circle')
-            .attr('cx', 0)
-            .attr('cy', 0)
-            .attr('r', cRadius * Math.PI * scaleFactor)
-            .attr('fill', 'none')
-            .attr('stroke', 'orange')
-
-
+        // g.append('circle')
+        //     .attr('cx', 0)
+        //     .attr('cy', 0)
+        //     .attr('r', cRadius * Math.PI * scaleFactor)
+        //     .attr('fill', 'none')
+        //     .attr('stroke', 'orange')
 
         // Apply general update pattern to nodes
         node = node.data(nodes, function(d) { return d.id; });
@@ -148,18 +171,29 @@ function CircularNetwork(id, data) {
             .attr('fill', function(d) { return color(d.concordat) })
             .attr("r", function(d) { return Math.sqrt(d.count * scaleFactor * 10 / Math.PI); })
             .on('click', function(d) {
-                console.log(d);
+                // console.log(d.id);
+                d3.selectAll(id+' .node').style('opacity',.2);
+                d3.select(this).style('opacity',1);
+
+                d3.selectAll(id+' .link').each(function(l){
+                    // console.log(l);
+                    if(l.source.id == d.id || l.target.id == d.id) {
+                        d3.select(this).style('opacity',1)
+                    } else {
+                        d3.select(this).style('opacity',.2)
+                    }
+                })
+
             })
             .merge(node);
 
         // Apply the general update pattern to the links.
         link = link.data(links, function(d) { return d.source.id + "-" + d.target.id; });
         link.exit().remove();
-        link = link.enter()
-            .append("line")
-            .style('stroke-width', function(d) { return 2 })
+        link = link.enter().append("path")
             .classed('link', true)
-            .attr('marker-end', 'url(#arrowhead)')
+            .style('stroke-width', function(d) { return edgeWeight(d.weight) })
+            // .attr('marker-end', 'url(#arrowhead)')
             .on('click', function(d) {
                 console.log(d);
             })
@@ -189,14 +223,29 @@ function CircularNetwork(id, data) {
             node.attr("cx", function(d) { return d.x; })
                 .attr("cy", function(d) { return d.y; });
 
-            link.attr("x1", function(d) { return d.source.x; })
-                .attr("y1", function(d) { return d.source.y; })
-                .attr("x2", function(d) { return d.target.x; })
-                .attr("y2", function(d) { return d.target.y; });
+            link.attr('stroke', function(d) {
+                if( d.source.concordat == d.target.concordat) {
+                    return '#ccc';
+                } else {
+                    return color(d.source.concordat);
+                }                
+            })
+                .attr("d", function(d) {
+                return linkArc(d);
+            })
 
             label.attr("x", function(d) { return d.x; })
                 .attr("y", function(d) { return d.y; });
         }
+
+        // Draw curved edges, create d-value for link path
+        function linkArc(d) {
+            var dx = d.target.x - d.source.x,
+                dy = d.target.y - d.source.y,
+                dr = Math.sqrt(dx * dx + dy * dy); //Pythagoras!
+            return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+        }
+
     } // draw
 
 } // all

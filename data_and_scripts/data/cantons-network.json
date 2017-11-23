@@ -5,157 +5,209 @@
         "id": "VS",
         "label": "Wallis",
         "concordat": "c1",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "FR",
         "label": "Freiburg",
         "concordat": "c1",
-        "count": 8
+        "count": 8,
+        "inDegree": 7,
+        "outDegree": 3
       },
       {
         "id": "NE",
         "label": "Neuenburg",
         "concordat": "c1",
-        "count": 5
+        "count": 5,
+        "inDegree": 4,
+        "outDegree": 3
       },
       {
         "id": "TI",
         "label": "Tessin",
         "concordat": "c1",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "VD",
         "label": "Waadt",
         "concordat": "c1",
-        "count": 3
+        "count": 3,
+        "inDegree": 2,
+        "outDegree": 1
       },
       {
         "id": "GE",
         "label": "Genf",
         "concordat": "c1",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 5
       },
       {
         "id": "BS",
         "label": "Basel-Stadt",
         "concordat": "c2",
-        "count": 3
+        "count": 3,
+        "inDegree": 2,
+        "outDegree": 7
       },
       {
         "id": "ZG",
         "label": "Zug",
         "concordat": "c2",
-        "count": 2
+        "count": 2,
+        "inDegree": 1,
+        "outDegree": 4
       },
       {
         "id": "UR",
         "label": "Uri",
         "concordat": "c2",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 8
       },
       {
         "id": "BE",
         "label": "Bern",
         "concordat": "c2",
-        "count": 11
+        "count": 11,
+        "inDegree": 10,
+        "outDegree": 2
       },
       {
         "id": "SZ",
         "label": "Schwyz",
         "concordat": "c2",
-        "count": 2
+        "count": 2,
+        "inDegree": 1,
+        "outDegree": 6
       },
       {
         "id": "OW",
         "label": "Obwalden",
         "concordat": "c2",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "NW",
         "label": "Nidwalden",
         "concordat": "c2",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "BL",
         "label": "Basel-Landschaft",
         "concordat": "c2",
-        "count": 4
+        "count": 4,
+        "inDegree": 3,
+        "outDegree": 4
       },
       {
         "id": "AG",
         "label": "Aargau",
         "concordat": "c2",
-        "count": 8
+        "count": 8,
+        "inDegree": 7,
+        "outDegree": 10
       },
       {
         "id": "LU",
         "label": "Luzern",
         "concordat": "c2",
-        "count": 6
+        "count": 6,
+        "inDegree": 5,
+        "outDegree": 1
       },
       {
         "id": "SO",
         "label": "Solothurn",
         "concordat": "c2",
-        "count": 3
+        "count": 3,
+        "inDegree": 2,
+        "outDegree": 9
       },
       {
         "id": "GL",
         "label": "Glarus",
         "concordat": "c3",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 2
       },
       {
         "id": "GR",
         "label": "Graubünden",
         "concordat": "c3",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "AI",
         "label": "Appenzell-Innerrhoden",
         "concordat": "c3",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "SH",
         "label": "Schaffhausen",
         "concordat": "c3",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 6
       },
       {
         "id": "AR",
         "label": "Appenzell-Ausserrhoden",
         "concordat": "c3",
-        "count": 3
+        "count": 3,
+        "inDegree": 2,
+        "outDegree": 3
       },
       {
         "id": "ZH",
         "label": "Zürich",
         "concordat": "c3",
-        "count": 9
+        "count": 9,
+        "inDegree": 8,
+        "outDegree": 1
       },
       {
         "id": "TG",
         "label": "Thurgau",
         "concordat": "c3",
-        "count": 6
+        "count": 6,
+        "inDegree": 5,
+        "outDegree": 1
       },
       {
         "id": "SG",
         "label": "StGallen",
         "concordat": "c3",
-        "count": 8
+        "count": 8,
+        "inDegree": 7,
+        "outDegree": 1
       },
       {
         "id": "XX1",
         "label": "Other",
         "concordat": "not defined",
-        "count": 12
+        "count": 12,
+        "inDegree": 12,
+        "outDegree": 0
       }
     ],
     "edges": [
@@ -1030,169 +1082,225 @@
         "id": "GE",
         "label": "Genf",
         "concordat": "c1",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 5
       },
       {
         "id": "VS",
         "label": "Wallis",
         "concordat": "c1",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "TI",
         "label": "Tessin",
         "concordat": "c1",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "VD",
         "label": "Waadt",
         "concordat": "c1",
-        "count": 3
+        "count": 3,
+        "inDegree": 2,
+        "outDegree": 1
       },
       {
         "id": "NE",
         "label": "Neuenburg",
         "concordat": "c1",
-        "count": 5
+        "count": 5,
+        "inDegree": 4,
+        "outDegree": 3
       },
       {
         "id": "FR",
         "label": "Freiburg",
         "concordat": "c1",
-        "count": 8
+        "count": 8,
+        "inDegree": 7,
+        "outDegree": 3
       },
       {
         "id": "LU",
         "label": "Luzern",
         "concordat": "c2",
-        "count": 6
+        "count": 6,
+        "inDegree": 5,
+        "outDegree": 1
       },
       {
         "id": "AG",
         "label": "Aargau",
         "concordat": "c2",
-        "count": 8
+        "count": 8,
+        "inDegree": 7,
+        "outDegree": 10
       },
       {
         "id": "BL",
         "label": "Basel-Landschaft",
         "concordat": "c2",
-        "count": 4
+        "count": 4,
+        "inDegree": 3,
+        "outDegree": 4
       },
       {
         "id": "OW",
         "label": "Obwalden",
         "concordat": "c2",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "NW",
         "label": "Nidwalden",
         "concordat": "c2",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "UR",
         "label": "Uri",
         "concordat": "c2",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 8
       },
       {
         "id": "ZG",
         "label": "Zug",
         "concordat": "c2",
-        "count": 2
+        "count": 2,
+        "inDegree": 1,
+        "outDegree": 4
       },
       {
         "id": "SZ",
         "label": "Schwyz",
         "concordat": "c2",
-        "count": 2
+        "count": 2,
+        "inDegree": 1,
+        "outDegree": 6
       },
       {
         "id": "BE",
         "label": "Bern",
         "concordat": "c2",
-        "count": 11
+        "count": 11,
+        "inDegree": 10,
+        "outDegree": 2
       },
       {
         "id": "BS",
         "label": "Basel-Stadt",
         "concordat": "c2",
-        "count": 3
+        "count": 3,
+        "inDegree": 2,
+        "outDegree": 7
       },
       {
         "id": "SO",
         "label": "Solothurn",
         "concordat": "c2",
-        "count": 3
+        "count": 3,
+        "inDegree": 2,
+        "outDegree": 9
       },
       {
         "id": "GR",
         "label": "Graubünden",
         "concordat": "c3",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 1
       },
       {
         "id": "AR",
         "label": "Appenzell-Ausserrhoden",
         "concordat": "c3",
-        "count": 3
+        "count": 3,
+        "inDegree": 2,
+        "outDegree": 3
       },
       {
         "id": "SG",
         "label": "StGallen",
         "concordat": "c3",
-        "count": 8
+        "count": 8,
+        "inDegree": 7,
+        "outDegree": 1
       },
       {
         "id": "SH",
         "label": "Schaffhausen",
         "concordat": "c3",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 6
       },
       {
         "id": "TG",
         "label": "Thurgau",
         "concordat": "c3",
-        "count": 6
+        "count": 6,
+        "inDegree": 5,
+        "outDegree": 1
       },
       {
         "id": "GL",
         "label": "Glarus",
         "concordat": "c3",
-        "count": 1
+        "count": 1,
+        "inDegree": 0,
+        "outDegree": 2
       },
       {
         "id": "ZH",
         "label": "Zürich",
         "concordat": "c3",
-        "count": 9
+        "count": 9,
+        "inDegree": 8,
+        "outDegree": 1
       },
       {
         "id": "XX3",
         "label": "Region-Ostschweiz",
         "concordat": "not defined",
-        "count": 1
+        "count": 1,
+        "inDegree": 1,
+        "outDegree": 0
       },
       {
         "id": "XX1",
         "label": "Other",
         "concordat": "not defined",
-        "count": 12
+        "count": 12,
+        "inDegree": 12,
+        "outDegree": 0
       },
       {
         "id": "XX2",
         "label": "Region-Nordwest-Innerschweiz",
         "concordat": "not defined",
-        "count": 2
+        "count": 2,
+        "inDegree": 2,
+        "outDegree": 0
       },
       {
         "id": "XX4",
         "label": "Choix-de-l'établissement-ou-de-l'home-selon-le-cas",
         "concordat": "not defined",
-        "count": 1
+        "count": 1,
+        "inDegree": 1,
+        "outDegree": 0
       }
     ],
     "edges": [

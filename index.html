@@ -257,6 +257,7 @@
             </div>
         </section>
     </section>
+    <hr class="mb-5" />
     <section id="correlations" class="chapter container-fluid">
         <div class="container">
             <div class="row">
@@ -322,6 +323,7 @@
             </div>
         </section>
     </section>
+    <hr class="mb-5" />
     <section id="entering-exiting" class="chapter container-fluid">
         <div class="container">
             <div class="row">
@@ -344,26 +346,50 @@
                     <p>Diagram of "entering th institutions".</p>
                 </div>
             </div>
+            <hr class="mb-5" />
         </section>
+        
         <section id="network" class="sub-chapter container">
             <div class="row">
                 <div class="col-12">
-                    <h3>4.2 - Network between cantons</h3>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick="circularNetwork.draw(1954)">1954</button>
-                        <button type="button" class="btn btn-secondary" onclick="circularNetwork.draw(1965)">1965</button>
-                    </div>
+                    <h3>4.2 - Cantons exchanges</h3>
+                    
                 </div>
             </div>
             <div class="row visualisation">
                 <div id="circular-network" class="col-12">
-                    <!-- To be filled with diagram -->
+                    <h4>Network between cantons</h4>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary" onclick="circularNetwork.draw(1954)">1954</button>
+                        <button type="button" class="btn btn-secondary" onclick="circularNetwork.draw(1965)">1965</button>
+                    </div>
+                    <!-- To be filled with D3 -->
                 </div>
                 <div class="col-8 mx-auto">
-                    <p>Network of cantons exchange in a circular layout.</p>
+                    <img class="img-fluid" style="width: 778px;" src="./assets-provvisori/legend-network-cantons.png" />
                 </div>
             </div>
+            <hr class="mb-5" />
+            <div class="row visualisation">
+                <div id="accepting-institutions" class="col-12">
+                    <h4>Accepting institutions</h4>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary" onclick="acceptingInstitutions.draw(1954,aiDirection)">1954</button>
+                        <button type="button" class="btn btn-secondary" onclick="acceptingInstitutions.draw(1965,aiDirection)">1965</button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary" onclick=" aiDirection = 'from' ">From canton</button>
+                        <button type="button" class="btn btn-secondary" onclick=" aiDirection = 'into' ">Into canton</button>
+                    </div>
+                    <!-- To be filled with D3 -->
+                </div>
+                <div class="col-8 mx-auto">
+                    <!-- asdasdasd -->
+                </div>
+            </div>
+            <hr class="mb-5" />
         </section>
+
         <section id="exiting" class="sub-chapter container">
             <div class="row">
                 <div class="col-12">
@@ -385,6 +411,7 @@
     <script src="http://d3js.org/d3-selection-multi.v1.js"></script>
     <script src="https://unpkg.com/d3-sankey@0"></script>
     <script src="https://d3js.org/topojson.v3.min.js" charset="utf-8"></script>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="./js/noframework.waypoints.min.js"></script>
     <!-- Visualizations -->
     <script src="./js/timeline.js"></script>
@@ -395,6 +422,7 @@
     <script src="./js/map_typologies.js"></script>
     <script src="./js/matrix.js"></script>
     <script src="./js/circular-network.js"></script>
+    <script src="./js/accepting-institutions.js"></script>
     <!-- <script src="./js/map_cap-con-gen.js"></script> -->
     <!-- Keep at the end of everything -->
     <script src="./js/main.js"></script>

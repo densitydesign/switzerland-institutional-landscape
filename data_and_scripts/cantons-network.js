@@ -31,6 +31,7 @@ node_xj({
                     .entries(originalEdges);
 
                 yearlyData.forEach(function(y) {
+                    console.log(y.key)
                     let repeated_nodes = [];
                     graph[y.key] = {
                         'nodes': [],
@@ -41,8 +42,11 @@ node_xj({
                         .key(function(d) { return d.target })
                         .entries(y.values)
 
+                    // console.log(JSON.stringify(nestedEdges,null,4))
+
                     nestedEdges.forEach(function(e) {
                         let thisSource = e.key;
+
                         repeated_nodes.push(thisSource);
 
                         e.values.forEach(function(f) {
@@ -67,11 +71,41 @@ node_xj({
 
                     let nodesCount = _.countBy(repeated_nodes, _.identity);
 
+                    // prepare data for out degrees
+                    let edgesNestedOnSources = d3.nest()
+                        .key(function(d){ return d.source })
+                        .rollup(function(d){ return d.length })
+                        .entries(graph[y.key].edges);
+
+                    // prepare data for in degrees
+                    let edgesNestedOnTargets = d3.nest()
+                        .key(function(d){ return d.target })
+                        .rollup(function(d){ return d.length })
+                        .entries(graph[y.key].edges);
+
                     Object.keys(nodesCount).forEach(function(d) {
                         let thisNode = originalNodes.filter(function(e) {
                             return e.id == d
                         })[0];
                         thisNode.count = nodesCount[d];
+
+                        // Get in degree
+                        thisNode.inDegree = 0;
+                        let thisInDegree = edgesNestedOnTargets.filter(function(f) { 
+                            return f.key == d;
+                        })
+                        if (thisInDegree.length > 0) {
+                           thisNode.inDegree = thisInDegree[0].value;
+                        }
+
+                        // Get out degree
+                        thisNode.outDegree = 0;
+                        let thisOutDegree = edgesNestedOnSources.filter(function(f) { 
+                            return f.key == d;
+                        })
+                        if (thisOutDegree.length > 0) {
+                           thisNode.outDegree = thisOutDegree[0].value;
+                        }
                         graph[y.key].nodes.push(thisNode);
                     })
 

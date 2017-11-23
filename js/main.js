@@ -8,7 +8,9 @@ let map_all_institutions,
     map_typologies,
     matrix;
 
-let circularNetwork;
+let circularNetwork,
+    acceptingInstitutions,
+    aiDirection = 'into';
 
 $(document).ready(function() {
 
@@ -24,12 +26,9 @@ $(document).ready(function() {
         if (err) {
             console.error(err);
         }
-        // console.log('loaded datasets:', datasets);
-
+        
         // timeline = new Timeline('#timeline');
         // timeline.draw();
-
-        // console.log(dataset)
 
         surviesSankey = new SurviesSankey('#sankey', datasets[0]);
         surviesSankey.draw(surveySankeyMode);
@@ -45,18 +44,25 @@ $(document).ready(function() {
         $(document).trigger('setWaypoints');
     });
 
-    // load asynchronously the datasets for chapter 2
+    // load asynchronously the datasets for chapter 2 and for chapter 4 (need map)
     d3.queue()
         .defer(d3.json, './data_and_scripts/data/ch.json')
         .defer(d3.json, './data_and_scripts/data/map_all_institutions.json')
         .defer(d3.json, './data_and_scripts/data/map_typologies.json')
-        .await(function(error, swiss, data_all, data_typologies) {
+        .defer(d3.json, './data_and_scripts/data/cantons-network.json')
+        .await(function(error, swiss, data_all, data_typologies, cantonsNetwork) {
             if (error) throw error;
 
             map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
             map_all_institutions.draw(1954);
 
             map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
+
+            circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
+            circularNetwork.draw();
+
+            acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, aiDirection);
+            acceptingInstitutions.draw(null,aiDirection);
         });
 
     // load asynchronously the datasets for chapter 3
@@ -65,7 +71,6 @@ $(document).ready(function() {
         .defer(d3.json, './data_and_scripts/data/matrix-categories.json')
         .await(function(error, data_matrix, categories) {
             if (error) throw error;
-
             matrix = new Matrix('#matrix-visualization', data_matrix, categories);
             matrix.draw(1954);
         });
@@ -81,42 +86,31 @@ $(document).ready(function() {
         })
     })
 
-    // load asynchronously the datasets for chapter 4
-    d3.queue()
-        .defer(d3.json, './data_and_scripts/data/cantons-network.json')
-        .await(function(error, cantonsNetwork) {
-            if (error) throw error;
-
-            circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
-            circularNetwork.draw();
-        });
-
     // Add listener for window resize event, which triggers actions such as the resize of visualizations.
     function doneResizing() {
 
-        // handle timeline resizing
         // if (d3.select(timeline.id).node().offsetWidth - 30 != timeline.width) {
         //     timeline.draw();
         // }
 
-        // handle sankey/mosaic resizing
         if (d3.select(surviesSankey.id).node().offsetWidth - 30 != surviesSankey.width) {
             surviesSankey.draw(surveySankeyMode);
         }
 
-        // handle bubblechart resizing
         if (d3.select(bubblechart.id).node().offsetWidth - 30 != bubblechart.width) {
             bubblechart.draw();
         }
 
-        // handle typologies graph resizing
         if (d3.select(typologiesGraph.id).node().offsetWidth - 30 != typologiesGraph.width) {
             typologiesGraph.draw();
         }
 
-        // handle typologies graph resizing
         if (d3.select(circularNetwork.id).node().offsetWidth - 30 != circularNetwork.width) {
             circularNetwork.draw();
+        }
+
+        if (d3.select(acceptingInstitutions.id).node().offsetWidth - 30 != acceptingInstitutions.width) {
+            acceptingInstitutions.draw();
         }
 
     }

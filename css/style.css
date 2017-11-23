@@ -250,22 +250,28 @@
 
 /* STYLES CHAPTER 4 */
 
-/* 1.4 typologies network of correlations */
+/* typologies network of correlations */
 
-#circular-network circle.node {
+#circular-network .node {
     stroke-width: .5px;
     cursor: pointer;
-    /*opacity: .2;*/
 }
 
-#circular-network line.link {
-    stroke: #666;
-    stroke-width: 1px;
+#circular-network .link {
+    fill: none;
     opacity: .5;
-    /*display: none;*/
 }
 
 #circular-network .label {
     text-anchor: middle;
-    /*display: none;*/
+}
+
+
+#accepting-institutions .canton-contour {
+    /*fill: #eee;*/
+    shape-rendering: geometricPrecision;
+    stroke: #333;
+    stroke-width: .5px;
+    pointer-events: auto;
+    opacity: .8;
 }
