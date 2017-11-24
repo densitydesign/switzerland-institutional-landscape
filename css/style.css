@@ -1,5 +1,19 @@
 /* General for all viz */
 
+html {
+    background-color: #B0C5CE;
+}
+
+body {
+    position: relative;
+    transition: right 0.5s ease;
+    right: 0;
+}
+
+body.sidebar-open {
+    right: 25%;
+}
+
 .label {
     font-size: .65rem;
     pointer-events: none;
@@ -20,6 +34,7 @@
 /* Cover */
 .cover {
     height: 100vh;
+    background-color: #81AA91;
 }
 .report-title {
     font-size: 3rem;
@@ -115,14 +130,15 @@
 #typologies-graph circle.node {
     stroke-width: .5px;
     cursor: pointer;
-    fill: #105965;
+    /*fill: #105965;*/
     /*opacity: .2;*/
 }
 
 #typologies-graph line.link {
-    stroke: #4c9b82;
-    stroke-width: 1px;
-    opacity: .5
+    stroke: #ccc;
+    /*stroke-width: 1px;*/
+    opacity: .5;
+    cursor: pointer;
 }
 
 #typologies-graph .label {
@@ -255,15 +271,18 @@
 #circular-network .node {
     stroke-width: .5px;
     cursor: pointer;
+    transition: opacity 0.5s ease;
 }
 
 #circular-network .link {
     fill: none;
     opacity: .5;
+    transition: opacity 0.5s ease;
 }
 
 #circular-network .label {
     text-anchor: middle;
+    transition: opacity 0.5s ease;
 }
 
 

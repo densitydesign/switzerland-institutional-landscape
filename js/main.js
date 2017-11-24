@@ -1,3 +1,5 @@
+let masterData;
+
 let timeline,
     surviesSankey,
     surveySankeyMode = 'mosaic',
@@ -9,71 +11,85 @@ let map_all_institutions,
     matrix;
 
 let circularNetwork,
+    ciDirection = 'all', // could be all, into, from
     acceptingInstitutions,
+    acceptingInstitutionsConfig = {
+        'direction': 'from',
+        'year': 1954
+    }
     aiDirection = 'into';
 
 $(document).ready(function() {
 
-    // load asynchronously the datasets
-    var dataFiles = ['./data_and_scripts/data/data-sankey-from-raw.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
-        queue = d3.queue();
-
-    dataFiles.forEach(function(filename) {
-        queue.defer(d3.json, filename);
-    });
-
-    queue.awaitAll(function(err, datasets) {
-        if (err) {
-            console.error(err);
-        }
-        
-        // timeline = new Timeline('#timeline');
-        // timeline.draw();
-
-        surviesSankey = new SurviesSankey('#sankey', datasets[0]);
-        surviesSankey.draw(surveySankeyMode);
-
-        bubblechart = new Bubblechart('#bubblechart', datasets[1]);
-        bubblechart.draw();
-
-        typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
-        typologiesGraph.draw();
-
-        // To be called after all the charts have been initialized
-        // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
-        $(document).trigger('setWaypoints');
-    });
-
-    // load asynchronously the datasets for chapter 2 and for chapter 4 (need map)
     d3.queue()
-        .defer(d3.json, './data_and_scripts/data/ch.json')
-        .defer(d3.json, './data_and_scripts/data/map_all_institutions.json')
-        .defer(d3.json, './data_and_scripts/data/map_typologies.json')
-        .defer(d3.json, './data_and_scripts/data/cantons-network.json')
-        .await(function(error, swiss, data_all, data_typologies, cantonsNetwork) {
+        .defer(d3.json, './data_and_scripts/data/master.json')
+        .await(function(error, data) {
             if (error) throw error;
+            masterData = data;
 
-            map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
-            map_all_institutions.draw(1954);
+            // load asynchronously the datasets
+            var dataFiles = ['./data_and_scripts/data/data-sankey-from-raw.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
+                queue = d3.queue();
 
-            map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
+            dataFiles.forEach(function(filename) {
+                queue.defer(d3.json, filename);
+            });
 
-            circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
-            circularNetwork.draw();
+            queue.awaitAll(function(err, datasets) {
+                if (err) {
+                    console.error(err);
+                }
 
-            acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, aiDirection);
-            acceptingInstitutions.draw(null,aiDirection);
+                // timeline = new Timeline('#timeline');
+                // timeline.draw();
+
+                surviesSankey = new SurviesSankey('#sankey', datasets[0]);
+                surviesSankey.draw(surveySankeyMode);
+
+                bubblechart = new Bubblechart('#bubblechart', datasets[1]);
+                bubblechart.draw();
+
+                typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
+                typologiesGraph.draw();
+
+                // To be called after all the charts have been initialized
+                // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
+                $(document).trigger('setWaypoints');
+            });
+
+            // load asynchronously the datasets for chapter 2 and for chapter 4 (need map)
+            d3.queue()
+                .defer(d3.json, './data_and_scripts/data/ch.json')
+                .defer(d3.json, './data_and_scripts/data/map_all_institutions.json')
+                .defer(d3.json, './data_and_scripts/data/map_typologies.json')
+                .defer(d3.json, './data_and_scripts/data/cantons-network.json')
+                .await(function(error, swiss, data_all, data_typologies, cantonsNetwork) {
+                    if (error) throw error;
+
+                    map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
+                    map_all_institutions.draw(1954);
+
+                    map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
+
+                    circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
+                    circularNetwork.draw();
+
+                    acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, acceptingInstitutionsConfig);
+                    acceptingInstitutions.draw(acceptingInstitutionsConfig);
+                });
+
+            // load asynchronously the datasets for chapter 3
+            d3.queue()
+                .defer(d3.json, './data_and_scripts/data/matrix.json')
+                .defer(d3.json, './data_and_scripts/data/matrix-categories.json')
+                .await(function(error, data_matrix, categories) {
+                    if (error) throw error;
+                    matrix = new Matrix('#matrix-visualization', data_matrix, categories);
+                    matrix.draw(1954);
+                });
         });
 
-    // load asynchronously the datasets for chapter 3
-    d3.queue()
-        .defer(d3.json, './data_and_scripts/data/matrix.json')
-        .defer(d3.json, './data_and_scripts/data/matrix-categories.json')
-        .await(function(error, data_matrix, categories) {
-            if (error) throw error;
-            matrix = new Matrix('#matrix-visualization', data_matrix, categories);
-            matrix.draw(1954);
-        });
+
 
     // change matrix selects when changing years
     let $matrixSelects = $('#matrix .select-container');
@@ -107,10 +123,6 @@ $(document).ready(function() {
 
         if (d3.select(circularNetwork.id).node().offsetWidth - 30 != circularNetwork.width) {
             circularNetwork.draw();
-        }
-
-        if (d3.select(acceptingInstitutions.id).node().offsetWidth - 30 != acceptingInstitutions.width) {
-            acceptingInstitutions.draw();
         }
 
     }

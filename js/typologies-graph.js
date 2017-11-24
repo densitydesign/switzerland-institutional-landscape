@@ -8,6 +8,7 @@ function TypologiesGraph(id, data) {
         links,
         simulation,
         g,
+        resetRect,
         link,
         node,
         label;
@@ -19,9 +20,13 @@ function TypologiesGraph(id, data) {
 
     // intialise containers of the graph
     g = svg.append("g");
+
+    resetRect = g.append('rect')
+
+
     link = g.append("g")
         .selectAll(".link");
-    
+
     node = g.append("g")
         .selectAll(".node");
 
@@ -42,17 +47,19 @@ function TypologiesGraph(id, data) {
         .alphaDecay(.02)
         .on("tick", null);
 
-    let radius = d3.scaleLinear()
-        .range([5, 40])
+    // #e4f1e1,#b4d9cc,#89c0b6,#63a6a0,#448c8a,#287274,#0d585f
+
+    let occurrence = d3.scaleLinear()
+        .range(['#e4f1e1', '#0d585f'])
         .domain([1, 306]);
 
     let weight = d3.scaleLinear()
-        .range([0,.25])
-        .domain([0,9])
+        .range([0, .25])
+        .domain([0, 9])
 
     let tickness = d3.scaleLinear()
-        .range([1,9])
-        .domain([1,9])
+        .range([1, 9])
+        .domain([1, 9])
 
     this.draw = function(year) {
 
@@ -64,6 +71,17 @@ function TypologiesGraph(id, data) {
         if (height > window.innerHeight) { height = window.innerHeight * .8 }
         svg.attr('width', width)
             .attr('height', height);
+
+        resetRect.attr('x', -width / 2)
+            .attr('y', -height / 2)
+            .attr('width', width)
+            .attr('height', height)
+            .attr('fill', 'transparent')
+            .on('click', function() {
+                nodes.forEach(function(n) {
+                    n.fx = n.fy = null;
+                })
+            });
 
         g.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
@@ -83,9 +101,19 @@ function TypologiesGraph(id, data) {
         node = node.enter()
             .append("circle")
             .classed('node', true)
-            .attr("r", function(d) { return radius(d.count) })
-            .on('click', function(d){
+            .attr("r", 10)
+            .style('fill', function(d) { return occurrence(d.count) })
+            .on('click', function(d) {
                 console.log(d);
+                nodes.forEach(function(n) {
+                    n.fx = n.fy = null;
+                })
+                d.fx = 0;
+                // d3.select(this)
+                d.fy = 0;
+                simulation
+                    .alpha(1)
+                    .restart();
             })
             .merge(node);
 
@@ -94,8 +122,11 @@ function TypologiesGraph(id, data) {
         link.exit().remove();
         link = link.enter()
             .append("line")
-            .style('stroke-width', function(d){ return tickness(d.weight); })
-            .classed('link', true)
+            .style('stroke-width', function(d) { return tickness(d.weight); })
+            .classed('link', true).
+            on('click', function(d){
+                console.log(d);
+            })
             .merge(link);
 
         // Apply general update pattern to labels
@@ -104,13 +135,12 @@ function TypologiesGraph(id, data) {
         label = label.enter()
             .append("text")
             .classed('label', true)
-            .text(function(d){ return d.label; })
+            .text(function(d) { return d.label; })
             .merge(label);
 
         // Update and restart the simulation.
         simulation.nodes(nodes);
-        simulation.force("link").links(links).strength(function(d){ return weight(d.weight); });
-        // simulation.force("collision").radius(function(d){ return radius(d.count) + 1 });
+        simulation.force("link").links(links).strength(function(d) { return weight(d.weight); });
 
         simulation
             .alpha(1)

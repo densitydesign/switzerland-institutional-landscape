@@ -26,10 +26,6 @@ function CircularNetwork(id, data) {
         .range([1 * 50, 20 * 50])
         .domain([1, 20])
 
-    // let tickness = d3.scaleLinear()
-    //     .range([1, 9])
-    //     .domain([1, 9])
-
     let maxWeight = 0;
     Object.keys(data).forEach(function(y) {
         // console.log(data[y])
@@ -38,7 +34,7 @@ function CircularNetwork(id, data) {
     })
 
     let edgeWeight = d3.scaleLinear()
-        .range([1, 10])
+        .range([1, 8])
         .domain([1, maxWeight])
 
 
@@ -105,16 +101,16 @@ function CircularNetwork(id, data) {
 
         g.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-        
+
         resetRect
-            .attr('x', -width/2)
-            .attr('y', -height/2)
+            .attr('x', -width / 2)
+            .attr('y', -height / 2)
             .attr('width', width)
-            .attr('height',height)
-            .attr('fill','transparent')
-            .on('click', function(){
-                d3.selectAll(id+' .node').style('opacity',1);
-                d3.selectAll(id+' .link').style('opacity',.5);
+            .attr('height', height)
+            .attr('fill', 'transparent')
+            .on('click', function() {
+                d3.selectAll(id + ' .node').style('opacity', 1);
+                d3.selectAll(id + ' .link').style('opacity', .5);
             })
 
         let thisData;
@@ -172,17 +168,24 @@ function CircularNetwork(id, data) {
             .attr("r", function(d) { return Math.sqrt(d.count * scaleFactor * 10 / Math.PI); })
             .on('click', function(d) {
                 // console.log(d.id);
-                d3.selectAll(id+' .node').style('opacity',.2);
-                d3.select(this).style('opacity',1);
+                d3.selectAll(id + ' .node').style('opacity',0.1);
 
-                d3.selectAll(id+' .link').each(function(l){
+                d3.selectAll(id + ' .link').each(function(l) {
                     // console.log(l);
-                    if(l.source.id == d.id || l.target.id == d.id) {
-                        d3.select(this).style('opacity',1)
+                    if (l.source.id == d.id || l.target.id == d.id) {
+                        d3.select(this).style('opacity', 1);
+                        d3.selectAll(id + ' .node').each(function(n) {
+                            if ( n.id == l.target.id || n.id == l.source.id) {
+                                if (n.id != d.id) {
+                                    d3.select(this).style('opacity', 1);
+                                }    
+                            }
+                        });
                     } else {
-                        d3.select(this).style('opacity',.2)
+                        d3.select(this).style('opacity', 0.05);
                     }
-                })
+                });
+                d3.select(this).style('opacity', 1);
 
             })
             .merge(node);
@@ -224,15 +227,15 @@ function CircularNetwork(id, data) {
                 .attr("cy", function(d) { return d.y; });
 
             link.attr('stroke', function(d) {
-                if( d.source.concordat == d.target.concordat) {
-                    return '#ccc';
-                } else {
-                    return color(d.source.concordat);
-                }                
-            })
+                    if (d.source.concordat == d.target.concordat) {
+                        return '#ccc';
+                    } else {
+                        return color(d.source.concordat);
+                    }
+                })
                 .attr("d", function(d) {
-                return linkArc(d);
-            })
+                    return linkArc(d);
+                })
 
             label.attr("x", function(d) { return d.x; })
                 .attr("y", function(d) { return d.y; });

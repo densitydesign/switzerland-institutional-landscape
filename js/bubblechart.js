@@ -122,7 +122,7 @@ function Bubblechart(id, data) {
                     svg.selectAll('.label').filter(function(e) { return e.id == d.id }).classed('hidden', true);
                 })
                 .on("click", function(d) {
-                    console.log(d);
+                    console.log( masterData.filter(function(e){ return d.id == e.id }) );
                 });
 
             node.transition()
@@ -138,7 +138,8 @@ function Bubblechart(id, data) {
                 .append("text")
                 .classed('label', true)
                 .classed('hidden', true)
-                .html(function(d) { return d.id })
+                .style('text-anchor', 'middle')
+                .html(function(d) { return masterData.filter(function(e){ return d.id == e.id })[0].name_landmark })
                 .merge(label);
 
             // Update and restart the simulation.

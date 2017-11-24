@@ -1,14 +1,14 @@
-function AcceptingInstitutions(id, data, swiss, direction) {
+function AcceptingInstitutions(id, data, swiss) {
 
-    console.log('accepting institutions');
-    console.log(data);
+    // console.log('accepting institutions');
+    // console.log(data);
 
     this.id = id;
 
     let svg,
         nodes = [],
         mapData,
-        fixedRadius = 2;
+        fixedRadius = 2.5;
 
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
@@ -24,23 +24,27 @@ function AcceptingInstitutions(id, data, swiss, direction) {
     let cantonsLabels = d3.select('.cantons-map').selectAll('text')
 
     let simulation = d3.forceSimulation(nodes)
-        .force("x", d3.forceX(function(d) { return d[0] }))
-        .force("y", d3.forceY(function(d) { return d[1] }))
+        .force("x", d3.forceX(function(d) { return d.centerX }))
+        .force("y", d3.forceY(function(d) { return d.centerY }))
+        // .force("x", d3.forceX())
+        // .force("y", d3.forceY())
         .force("collide", d3.forceCollide(function(d) { return fixedRadius + 0.5 }))
         // general force settings
         .alpha(1)
         .alphaDecay(0.01)
         .on("tick", null)
 
-    this.draw = function(year, direction) {
+    this.draw = function(config) {
 
         let thisData;
-        if (year) {
-            thisData = data[year];
+
+        if (config.year) {
+            thisData = data[config.year];
         } else {
             thisData = data[1954];
         }
-        console.log(direction, thisData)
+
+        // console.log(config, thisData);
 
         width = d3.select(this.id)
             .node()
@@ -67,7 +71,7 @@ function AcceptingInstitutions(id, data, swiss, direction) {
             .classed('canton-contour', true)
             .style('fill', '#eee')
             .on("mouseenter", function(d) {
-                // console.log(d.properties.abbr);
+                // Manage hightlitment of cantons areas on mouseover
                 d3.selectAll(id + ' .canton-contour').each(function(e) {
                     if (e.properties.abbr == d.properties.abbr) {
                         d3.select(this).style('opacity', .8).style('fill', '#ccc');
@@ -84,24 +88,36 @@ function AcceptingInstitutions(id, data, swiss, direction) {
                 })
             })
             .on("mouseout", function(d) {
-                // console.log(d.properties.abbr);
+                // Manage hightlitment of cantons areas on mouseover
                 d3.selectAll(id + ' .canton-contour').style('opacity', .8).style('fill', '#eee')
                 d3.selectAll(id + ' .label').style('opacity', 1)
             })
             .on("click", function(d) {
-                console.log(direction, d.properties.abbr);
+                // Gather data for intitutions
 
                 let relatedInstitutions = [];
-                if ( direction == 'from' ){
-                    thisData.edges.filter(function(e){ return e.source.id == d.properties.abbr }).forEach(function(e){
+                if (config.direction == 'from') {
+                    thisData.edges.filter(function(e) { return e.source.id == d.properties.abbr }).forEach(function(e) {
                         relatedInstitutions = relatedInstitutions.concat(e.target_institutions);
                     })
                 } else {
-                    thisData.edges.filter(function(e){ return e.target.id == d.properties.abbr }).forEach(function(e){
+                    thisData.edges.filter(function(e) { return e.target.id == d.properties.abbr }).forEach(function(e) {
                         relatedInstitutions = relatedInstitutions.concat(e.target_institutions);
                     })
                 }
-                console.log('from this canton', relatedInstitutions);
+
+                // filter institutions from masterData
+                let filteredMD = [];
+                relatedInstitutions.forEach(function(e) {
+                    let myItem = masterData.filter(function(f) { return e == f.id })[0];
+                    filteredMD.push(myItem);
+                })
+                filteredMD.forEach(function(e) {
+                    e.centerX = e.x = projection([e.longitude, e.latitude])[0]
+                    e.centerY = e.y = projection([e.longitude, e.latitude])[1]
+                })
+                nodes = filteredMD;
+                update();
             })
             .merge(cantonsBorders)
             .attr('d', path);
@@ -123,6 +139,50 @@ function AcceptingInstitutions(id, data, swiss, direction) {
                 return projection(d.labelPosition.geometry.coordinates)[1];
             })
             .merge(cantonsLabels);
+
+
+        function update() {
+
+            // Apply general update pattern to nodes
+            node = node.data(nodes, function(d) { return d.id; });
+            node.exit().transition()
+                .duration(500)
+                .attr('r', 0)
+                .remove();
+
+            node = node.enter()
+                .append("circle")
+                .classed('node', true)
+                .attr("r", 0)
+                .style('fill', 'black')
+                .on('click', function(d) {
+                    console.log(d);
+                })
+                .merge(node);
+
+            node.transition()
+                .duration(500)
+                .attr('r', fixedRadius)
+
+            simulation
+                .nodes(nodes)
+                .alpha(1)
+                .on("tick", ticked)
+                .restart();
+
+            function ticked() {
+                node.attr("cx", function(d) { return d.x; })
+                    .attr("cy", function(d) { return d.y; });
+
+                // link.attr("x1", function(d) { return d.source.x; })
+                //     .attr("y1", function(d) { return d.source.y; })
+                //     .attr("x2", function(d) { return d.target.x; })
+                //     .attr("y2", function(d) { return d.target.y; });
+
+                // label.attr("x", function(d) { return d.x; })
+                //     .attr("y", function(d) { return d.y; });
+            }
+        }
 
     } // draw
 

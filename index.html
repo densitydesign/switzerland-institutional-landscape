@@ -12,7 +12,7 @@
 
 <body>
     <section class="cover container-fluid d-flex align-items-center justify-content-center">
-        <h1 class="text-center text-uppercase report-title">Administrative Detention Data Report<br/>(work in progress)</h1>
+        <h1 class="text-center report-title">Topography of institutions</h1>
     </section>
     <section id="introduction" class="chapter container-fluid">
         <div class="container">
@@ -363,6 +363,10 @@
                         <button type="button" class="btn btn-secondary" onclick="circularNetwork.draw(1954)">1954</button>
                         <button type="button" class="btn btn-secondary" onclick="circularNetwork.draw(1965)">1965</button>
                     </div>
+                    <!-- <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary" onclick=" ciDirection = 'from' ">From selected</button>
+                        <button type="button" class="btn btn-secondary" onclick=" ciDirection = 'into' ">Into selected</button>
+                    </div> -->
                     <!-- To be filled with D3 -->
                 </div>
                 <div class="col-8 mx-auto">
@@ -374,12 +378,12 @@
                 <div id="accepting-institutions" class="col-12">
                     <h4>Accepting institutions</h4>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick="acceptingInstitutions.draw(1954,aiDirection)">1954</button>
-                        <button type="button" class="btn btn-secondary" onclick="acceptingInstitutions.draw(1965,aiDirection)">1965</button>
+                        <button type="button" class="btn btn-secondary" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig)">1954</button>
+                        <button type="button" class="btn btn-secondary" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig)">1965</button>
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick=" aiDirection = 'from' ">From canton</button>
-                        <button type="button" class="btn btn-secondary" onclick=" aiDirection = 'into' ">Into canton</button>
+                        <button type="button" class="btn btn-secondary" onclick=" acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">From canton</button>
+                        <button type="button" class="btn btn-secondary" onclick=" acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">Into canton</button>
                     </div>
                     <!-- To be filled with D3 -->
                 </div>
