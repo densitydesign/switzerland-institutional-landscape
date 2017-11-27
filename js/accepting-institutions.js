@@ -8,7 +8,7 @@ function AcceptingInstitutions(id, data, swiss) {
     let svg,
         nodes = [],
         mapData,
-        fixedRadius = 2.5;
+        fixedRadius = 3.5;
 
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
@@ -18,7 +18,8 @@ function AcceptingInstitutions(id, data, swiss) {
     let projection = d3.geoMercator(),
         path = d3.geoPath().projection(projection);
 
-    let cantonsBorders = svg.append('g').classed('cantons-map', true).selectAll('path'),
+    let resetRect = svg.append('rect'),
+        cantonsBorders = svg.append('g').classed('cantons-map', true).selectAll('path'),
         node = svg.append("g").selectAll(".node");
 
     let cantonsLabels = d3.select('.cantons-map').selectAll('text')
@@ -55,6 +56,33 @@ function AcceptingInstitutions(id, data, swiss) {
         svg.attr('width', width)
             .attr('height', height);
 
+        resetRect
+            .attr('x', 0)
+            .attr('y', 0)
+            .attr('width', width)
+            .attr('height', height)
+            .attr('fill', 'white')
+            .on('click', function() {
+                d3.selectAll(id + ' .canton-contour')
+                    .styles({
+                        "fill": "#EEE5CA",
+                        "stroke": "#666666",
+                        "opacity": "1"
+                    });
+
+                d3.selectAll(id + ' .label')
+                    .styles({
+                        "opacity": "1"
+                    });
+
+                node = node.data([], function(d) { return d.id; });
+                node.exit().transition()
+                    .duration(500)
+                    .attr('r', 0)
+                    .remove();
+
+            })
+
         // svg.style('border', '1px solid red')
 
         // transform topojson to geojson
@@ -65,44 +93,68 @@ function AcceptingInstitutions(id, data, swiss) {
 
         // project map, responsive
         cantonsBorders = cantonsBorders.data(cantons.features);
+
         cantonsBorders.exit().remove();
+
         cantonsBorders = cantonsBorders.enter()
             .append('path')
             .classed('canton-contour', true)
-            .style('fill', '#eee')
-            .on("mouseenter", function(d) {
-                // Manage hightlitment of cantons areas on mouseover
-                d3.selectAll(id + ' .canton-contour').each(function(e) {
-                    if (e.properties.abbr == d.properties.abbr) {
-                        d3.select(this).style('opacity', .8).style('fill', '#ccc');
-                    } else {
-                        d3.select(this).style('opacity', .4)
-                    }
-                })
-                d3.selectAll(id + ' .label').each(function(e) {
-                    if (e.properties.abbr == d.properties.abbr) {
-                        d3.select(this).style('opacity', 1);
-                    } else {
-                        d3.select(this).style('opacity', 0)
-                    }
-                })
-            })
-            .on("mouseout", function(d) {
-                // Manage hightlitment of cantons areas on mouseover
-                d3.selectAll(id + ' .canton-contour').style('opacity', .8).style('fill', '#eee')
-                d3.selectAll(id + ' .label').style('opacity', 1)
-            })
+            // .style('fill', '#eee')
+            // .on("mouseenter", function(d) {
+            //     // Manage hightlitment of cantons areas on mouseover
+            //     d3.selectAll(id + ' .canton-contour').each(function(e) {
+            //         if (e.properties.abbr == d.properties.abbr) {
+            //             d3.select(this).style('opacity', .8).style('fill', '#ccc');
+            //         } else {
+            //             d3.select(this).style('opacity', .4)
+            //         }
+            //     })
+            //     d3.selectAll(id + ' .label').each(function(e) {
+            //         if (e.properties.abbr == d.properties.abbr) {
+            //             d3.select(this).style('opacity', 1);
+            //         } else {
+            //             d3.select(this).style('opacity', 0)
+            //         }
+            //     })
+            // })
+            // .on("mouseout", function(d) {
+            //     // Manage hightlitment of cantons areas on mouseover
+            //     d3.selectAll(id + ' .canton-contour').style('opacity', .8).style('fill', '#eee')
+            //     d3.selectAll(id + ' .label').style('opacity', 1)
+            // })
             .on("click", function(d) {
-                // Gather data for intitutions
+                console.log(d)
 
+                d3.selectAll(id + ' .canton-contour')
+                    .styles({
+                        "fill": "#E2D4A7",
+                        "stroke": "none",
+                        "opacity": ".5"
+                    });
+
+                d3.selectAll(id + ' .label')
+                    .styles({
+                        "opacity": "0.3"
+                    });
+
+                // Gather data for intitutions
                 let relatedInstitutions = [];
+                let sendingCantons = [];
                 if (config.direction == 'from') {
                     thisData.edges.filter(function(e) { return e.source.id == d.properties.abbr }).forEach(function(e) {
                         relatedInstitutions = relatedInstitutions.concat(e.target_institutions);
                     })
+                    // d3.select(this)
+                    //     .styles({
+                    //         "fill": "#FF7070",
+                    //         "stroke": '#802626',
+                    //         "opacity": "1"
+                    //     })
+                    sendingCantons.push(d.properties.abbr);
                 } else {
                     thisData.edges.filter(function(e) { return e.target.id == d.properties.abbr }).forEach(function(e) {
                         relatedInstitutions = relatedInstitutions.concat(e.target_institutions);
+                        sendingCantons.push(e.source.id)
                     })
                 }
 
@@ -112,12 +164,57 @@ function AcceptingInstitutions(id, data, swiss) {
                     let myItem = masterData.filter(function(f) { return e == f.id })[0];
                     filteredMD.push(myItem);
                 })
-                filteredMD.forEach(function(e) {
-                    e.centerX = e.x = projection([e.longitude, e.latitude])[0]
-                    e.centerY = e.y = projection([e.longitude, e.latitude])[1]
-                })
+
+                if (relatedInstitutions.length > 0) {
+                    filteredMD.forEach(function(e) {
+                        e.centerX = e.x = projection([e.longitude, e.latitude])[0]
+                        e.centerY = e.y = projection([e.longitude, e.latitude])[1]
+                    })
+
+                    // highlights receiving cantons (multiple ones when direction is from, single one when direction is into)
+                    d3.nest().key(function(e) { return e.canton_code }).rollup(function(e) { return e.value }).entries(filteredMD).forEach(function(e) {
+
+                        d3.selectAll(id + ' .canton-contour')
+                            .filter(function(f) { return f.properties.abbr == e.key })
+                            .styles({
+                                "opacity": "1",
+                                "stroke": '#666',
+                            })
+
+                        d3.selectAll(id + ' .label')
+                            .filter(function(f) { return f.properties.abbr == e.key })
+                            .styles({
+                                "opacity": "1"
+                            })
+                    })
+
+                    sendingCantons.forEach(function(e) {
+                        d3.selectAll(id + ' .canton-contour')
+                            .filter(function(f) { return f.properties.abbr == e })
+                            .styles({
+                                "fill": "#FF7070",
+                                "stroke": '#802626',
+                                "opacity": "1"
+                            })
+
+                        d3.selectAll(id + ' .label')
+                            .filter(function(f) { return f.properties.abbr == e })
+                            .styles({
+                                "opacity": "1"
+                            })
+                    })
+                } else {
+                    console.log('no receiving institutions')
+                }
                 nodes = filteredMD;
                 update();
+
+                d3.selectAll(id + ' .label')
+                    .filter(function(f) { return f.properties.abbr == d.properties.abbr })
+                    .styles({
+                        "opacity": "1"
+                    })
+
             })
             .merge(cantonsBorders)
             .attr('d', path);
@@ -131,14 +228,14 @@ function AcceptingInstitutions(id, data, swiss) {
             .text(function(d) {
                 return d.properties.name
             })
+            .merge(cantonsLabels)
             .attr('x', function(d) {
                 d.labelPosition = turf.centerOfMass(d);
                 return projection(d.labelPosition.geometry.coordinates)[0];
             })
             .attr('y', function(d) {
                 return projection(d.labelPosition.geometry.coordinates)[1];
-            })
-            .merge(cantonsLabels);
+            });
 
 
         function update() {
@@ -154,9 +251,23 @@ function AcceptingInstitutions(id, data, swiss) {
                 .append("circle")
                 .classed('node', true)
                 .attr("r", 0)
-                .style('fill', 'black')
+                .styles({
+                    'fill': '#ff4c4c',
+                    'stroke': '#333333',
+                    'stroke-width': '0.5px'
+                })
                 .on('click', function(d) {
                     console.log(d);
+                })
+                .on('mouseenter', function(d) {
+                    d3.select(this).transition()
+                        .duration(300)
+                        .attr('r', fixedRadius * 1.5)
+                })
+                .on('mouseout', function(d) {
+                    d3.select(this).transition()
+                        .duration(300)
+                        .attr('r', fixedRadius)
                 })
                 .merge(node);
 

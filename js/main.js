@@ -125,6 +125,11 @@ $(document).ready(function() {
             circularNetwork.draw();
         }
 
+        if (d3.select(acceptingInstitutions.id).node().offsetWidth - 30 != acceptingInstitutions.width) {
+            acceptingInstitutions.draw(acceptingInstitutionsConfig);
+        }
+
+
     }
 
     let resizeId;

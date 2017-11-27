@@ -8,6 +8,7 @@ body {
     position: relative;
     transition: right 0.5s ease;
     right: 0;
+    font-family: 'Brandon Grotesque'
 }
 
 body.sidebar-open {
@@ -18,6 +19,7 @@ body.sidebar-open {
     font-size: .65rem;
     pointer-events: none;
     opacity: 1;
+    text-transform: uppercase;
     /*fill: #333;*/
 }
 
@@ -274,6 +276,7 @@ body.sidebar-open {
     transition: opacity 0.5s ease;
 }
 
+
 #circular-network .link {
     fill: none;
     opacity: .5;
@@ -287,10 +290,15 @@ body.sidebar-open {
 
 
 #accepting-institutions .canton-contour {
-    /*fill: #eee;*/
+    fill: #EEE5CA;
     shape-rendering: geometricPrecision;
-    stroke: #333;
-    stroke-width: .5px;
+    stroke: #666666;
     pointer-events: auto;
-    opacity: .8;
+    /*opacity: .8;*/
+    cursor: pointer;
+    transition: fill 0.5s ease;
 }
+
+/*#accepting-institutions .canton-contour:hover {
+    fill: #E2D4A7 !important;
+}*/
