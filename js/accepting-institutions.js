@@ -1,7 +1,7 @@
 function AcceptingInstitutions(id, data, swiss) {
 
     // console.log('accepting institutions');
-    // console.log(data);
+    console.log(data);
 
     this.id = id;
 
@@ -63,24 +63,7 @@ function AcceptingInstitutions(id, data, swiss) {
             .attr('height', height)
             .attr('fill', 'white')
             .on('click', function() {
-                d3.selectAll(id + ' .canton-contour')
-                    .styles({
-                        "fill": "#EEE5CA",
-                        "stroke": "#666666",
-                        "opacity": "1"
-                    });
-
-                d3.selectAll(id + ' .label')
-                    .styles({
-                        "opacity": "1"
-                    });
-
-                node = node.data([], function(d) { return d.id; });
-                node.exit().transition()
-                    .duration(500)
-                    .attr('r', 0)
-                    .remove();
-
+                reset();
             })
 
         // svg.style('border', '1px solid red')
@@ -294,6 +277,27 @@ function AcceptingInstitutions(id, data, swiss) {
                 //     .attr("y", function(d) { return d.y; });
             }
         }
+        reset();
+        function reset() {
+            d3.selectAll(id + ' .canton-contour')
+                .styles({
+                    "fill": "#EEE5CA",
+                    "stroke": "#666666",
+                    "opacity": "1"
+                });
+
+            d3.selectAll(id + ' .label')
+                .styles({
+                    "opacity": "1"
+                });
+
+            node = node.data([], function(d) { return d.id; });
+            node.exit().transition()
+                .duration(500)
+                .attr('r', 0)
+                .remove();
+        }
+
 
     } // draw
 
