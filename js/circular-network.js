@@ -20,7 +20,8 @@ function CircularNetwork(id, data) {
 
     let color = d3.scaleOrdinal()
         .range(['#999', '#F24440', '#1785FB', '#73C86B'])
-        .domain(['not defined', 'c1', 'c2', 'c3'])
+        .range(['#ca5268', '#85c4c9', '#97e196', '#888888'])
+        .domain(['c1', 'c2', 'c3', 'not defined'])
 
     let areaScale = d3.scaleLinear()
         .range([1 * 50, 20 * 50])
@@ -163,7 +164,7 @@ function CircularNetwork(id, data) {
         node = node.enter()
             .append("circle")
             .classed('node', true)
-            .attr('stroke', function(d) { return d3.color(color(d.concordat)).darker() })
+            .attr('stroke', function(d) { return d3.color(color(d.concordat)).darker(.75) })
             .attr('fill', function(d) { return color(d.concordat) })
             .attr("r", function(d) { return Math.sqrt(d.count * scaleFactor * 10 / Math.PI); })
             .on('click', function(d) {

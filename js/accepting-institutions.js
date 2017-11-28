@@ -1,14 +1,14 @@
 function AcceptingInstitutions(id, data, swiss) {
 
     // console.log('accepting institutions');
-    console.log(data);
+    // console.log(data);
 
     this.id = id;
 
     let svg,
         nodes = [],
         mapData,
-        fixedRadius = 3.5;
+        fixedRadius = 4;
 
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
@@ -20,30 +20,40 @@ function AcceptingInstitutions(id, data, swiss) {
 
     let resetRect = svg.append('rect'),
         cantonsBorders = svg.append('g').classed('cantons-map', true).selectAll('path'),
-        node = svg.append("g").selectAll(".node");
+        node = svg.append("g").selectAll(".node"),
+        nodeLabel = svg.append("g").selectAll(".nodeLabel");
 
     let cantonsLabels = d3.select('.cantons-map').selectAll('text')
 
     let simulation = d3.forceSimulation(nodes)
         .force("x", d3.forceX(function(d) { return d.centerX }))
         .force("y", d3.forceY(function(d) { return d.centerY }))
-        // .force("x", d3.forceX())
-        // .force("y", d3.forceY())
         .force("collide", d3.forceCollide(function(d) { return fixedRadius + 0.5 }))
         // general force settings
         .alpha(1)
         .alphaDecay(0.01)
         .on("tick", null)
 
+    let concordatColors = d3.scaleOrdinal()
+        .range(['#ca5268', '#85c4c9', '#97e196', '#888888'])
+        .domain(['c1', 'c2', 'c3', 'not specified'])
+
+    let notSpecifiedLabels = d3.scaleOrdinal()
+        .domain(['XX1', 'XX2', 'XX3', 'XX4'])
+        .range(['Other', 'Region-Nordwest-Innerschweiz', 'Region-Ostschweiz', "Choix-de-l'établissement-ou-de-l'home-selon-le-cas"])
+
     this.draw = function(config) {
 
-        let thisData;
+        let thisData = null;
 
         if (config.year) {
+            // console.log(config)
             thisData = data[config.year];
         } else {
             thisData = data[1954];
         }
+
+        // console.log(thisData)
 
         // console.log(config, thisData);
 
@@ -66,13 +76,11 @@ function AcceptingInstitutions(id, data, swiss) {
                 reset();
             })
 
-        // svg.style('border', '1px solid red')
-
         // transform topojson to geojson
         let cantons = topojson.feature(swiss, swiss.objects.cantons);
 
         // adapt map to viewport
-        projection.fitSize([width, height], cantons);
+        projection.fitSize([width, height - 10], cantons);
 
         // project map, responsive
         cantonsBorders = cantonsBorders.data(cantons.features);
@@ -82,124 +90,214 @@ function AcceptingInstitutions(id, data, swiss) {
         cantonsBorders = cantonsBorders.enter()
             .append('path')
             .classed('canton-contour', true)
-            // .style('fill', '#eee')
-            // .on("mouseenter", function(d) {
-            //     // Manage hightlitment of cantons areas on mouseover
-            //     d3.selectAll(id + ' .canton-contour').each(function(e) {
-            //         if (e.properties.abbr == d.properties.abbr) {
-            //             d3.select(this).style('opacity', .8).style('fill', '#ccc');
-            //         } else {
-            //             d3.select(this).style('opacity', .4)
-            //         }
-            //     })
-            //     d3.selectAll(id + ' .label').each(function(e) {
-            //         if (e.properties.abbr == d.properties.abbr) {
-            //             d3.select(this).style('opacity', 1);
-            //         } else {
-            //             d3.select(this).style('opacity', 0)
-            //         }
-            //     })
-            // })
-            // .on("mouseout", function(d) {
-            //     // Manage hightlitment of cantons areas on mouseover
-            //     d3.selectAll(id + ' .canton-contour').style('opacity', .8).style('fill', '#eee')
-            //     d3.selectAll(id + ' .label').style('opacity', 1)
-            // })
-            .on("click", function(d) {
-                console.log(d)
-
-                d3.selectAll(id + ' .canton-contour')
-                    .styles({
-                        "fill": "#E2D4A7",
-                        "stroke": "none",
-                        "opacity": ".5"
-                    });
-
-                d3.selectAll(id + ' .label')
-                    .styles({
-                        "opacity": "0.3"
-                    });
-
-                // Gather data for intitutions
-                let relatedInstitutions = [];
-                let sendingCantons = [];
-                if (config.direction == 'from') {
-                    thisData.edges.filter(function(e) { return e.source.id == d.properties.abbr }).forEach(function(e) {
-                        relatedInstitutions = relatedInstitutions.concat(e.target_institutions);
-                    })
-                    // d3.select(this)
-                    //     .styles({
-                    //         "fill": "#FF7070",
-                    //         "stroke": '#802626',
-                    //         "opacity": "1"
-                    //     })
-                    sendingCantons.push(d.properties.abbr);
-                } else {
-                    thisData.edges.filter(function(e) { return e.target.id == d.properties.abbr }).forEach(function(e) {
-                        relatedInstitutions = relatedInstitutions.concat(e.target_institutions);
-                        sendingCantons.push(e.source.id)
-                    })
-                }
-
-                // filter institutions from masterData
-                let filteredMD = [];
-                relatedInstitutions.forEach(function(e) {
-                    let myItem = masterData.filter(function(f) { return e == f.id })[0];
-                    filteredMD.push(myItem);
+            .style('fill', function(d) {
+                // console.log(d.properties.abbr)
+                let thisConcordat = thisData.nodes.filter(function(e) {
+                    return e.id == d.properties.abbr
                 })
-
-                if (relatedInstitutions.length > 0) {
-                    filteredMD.forEach(function(e) {
-                        e.centerX = e.x = projection([e.longitude, e.latitude])[0]
-                        e.centerY = e.y = projection([e.longitude, e.latitude])[1]
-                    })
-
-                    // highlights receiving cantons (multiple ones when direction is from, single one when direction is into)
-                    d3.nest().key(function(e) { return e.canton_code }).rollup(function(e) { return e.value }).entries(filteredMD).forEach(function(e) {
-
-                        d3.selectAll(id + ' .canton-contour')
-                            .filter(function(f) { return f.properties.abbr == e.key })
-                            .styles({
-                                "opacity": "1",
-                                "stroke": '#666',
-                            })
-
-                        d3.selectAll(id + ' .label')
-                            .filter(function(f) { return f.properties.abbr == e.key })
-                            .styles({
-                                "opacity": "1"
-                            })
-                    })
-
-                    sendingCantons.forEach(function(e) {
-                        d3.selectAll(id + ' .canton-contour')
-                            .filter(function(f) { return f.properties.abbr == e })
-                            .styles({
-                                "fill": "#FF7070",
-                                "stroke": '#802626',
-                                "opacity": "1"
-                            })
-
-                        d3.selectAll(id + ' .label')
-                            .filter(function(f) { return f.properties.abbr == e })
-                            .styles({
-                                "opacity": "1"
-                            })
-                    })
+                if (thisConcordat.length > 0) {
+                    thisConcordat = thisConcordat[0].concordat
                 } else {
-                    console.log('no receiving institutions')
+                    thisConcordat = 'not specified';
                 }
-                nodes = filteredMD;
-                update();
-
-                d3.selectAll(id + ' .label')
-                    .filter(function(f) { return f.properties.abbr == d.properties.abbr })
-                    .styles({
-                        "opacity": "1"
-                    })
-
+                // console.log(thisConcordat)
+                d.properties.concordat = thisConcordat;
+                return d3.color(concordatColors(d.properties.concordat))
+            })
+            .style('stroke', function(d) {
+                return d3.color(concordatColors(d.properties.concordat)).darker(.75);
             })
             .merge(cantonsBorders)
+            .on("click", function(d) {
+
+                let sending = [];
+                let receiving = [];
+                let exchanges = [];
+                let viz_message;
+
+                if (config.direction == 'from') {
+                    // console.log(config.year, config.direction, d.properties.abbr, d.properties);
+
+                    sending.push(d.properties.abbr);
+
+                    let dataSelection = d3.nest()
+                        .key(function(e) { return e.sourceName })
+                        .entries(thisData.edges);
+
+                    dataSelection = dataSelection.filter(function(e) {
+                        return e.key == d.properties.abbr;
+                    })
+
+                    if (dataSelection.length > 0) {
+                        dataSelection = dataSelection[0].values;
+
+                        receiving = dataSelection.map(function(e) {
+                            return e.targetName;
+                        })
+
+                        exchanges = dataSelection.map(function(e) {
+                            return {
+                                'source': e.sourceName,
+                                'target': e.targetName,
+                                'target_institutions': e.target_institutions
+                            }
+                        })
+                        // console.log('sending', sending);
+                        // console.log('receiving', receiving);
+                        // console.log('exchanges', exchanges);
+                    } else {
+                        // console.log('no cantons receiving from', d.properties.abbr);
+                        viz_message = d.properties.name + ' did not send detainees to other cantons in ' + config.year + '.';
+                    }
+
+                } else {
+
+                    console.log(config.year, config.direction, d.properties.abbr);
+                    receiving.push(d.properties.abbr);
+
+                    let dataSelection = d3.nest()
+                        .key(function(e) { return e.targetName })
+                        .entries(thisData.edges);
+
+                    dataSelection = dataSelection.filter(function(e) {
+                        return e.key == d.properties.abbr;
+                    })
+
+                    if (dataSelection.length > 0) {
+                        dataSelection = dataSelection[0].values;
+
+                        sending = dataSelection.map(function(e) {
+                            return e.sourceName;
+                        })
+
+                        exchanges = dataSelection.map(function(e) {
+                            return {
+                                'source': e.sourceName,
+                                'target': e.targetName,
+                                'target_institutions': e.target_institutions
+                            }
+                        })
+                        // console.log('sending', sending);
+                        // console.log('receiving', receiving);
+                        console.log('exchanges', exchanges);
+                    } else {
+                        // console.log('no cantons sending to', d.properties.abbr);
+                        viz_message = d.properties.name + ' did not received detainees from other cantons in ' + config.year + '.';
+                    }
+
+                }
+
+                let target_institutions_ids = [];
+                exchanges.forEach(function(e) {
+                    target_institutions_ids = target_institutions_ids.concat(e.target_institutions);
+                })
+
+                target_institutions_ids = _.uniq(target_institutions_ids);
+
+                let target_institutions = [];
+                target_institutions_ids.forEach(function(e) {
+                    let correspondingId = masterData.filter(function(f) {
+                        return e == f.id;
+                    })
+                    target_institutions.push(correspondingId[0]);
+                })
+
+                target_institutions.forEach(function(e) {
+                    e.centerX = projection([e.longitude, e.latitude])[0];
+                    e.centerY = projection([e.longitude, e.latitude])[1];
+                    e.x = e.centerX;
+                    e.y = e.centerY;
+                })
+
+                let receivingNotPlottable = exchanges.filter(function(e) {
+                    return e.target == 'XX1' || e.target == 'XX2' || e.target == 'XX3' || e.target == 'XX4';
+                })
+
+                if (receivingNotPlottable.length > 0) {
+                    // console.log(receivingNotPlottable);
+                    receivingNotPlottable.forEach(function(f) {
+                        // console.log(f.target, notSpecifiedLabels(f.target))
+                        target_institutions.push({
+                            "accepted_gender": "not specified",
+                            "canton": "not specified",
+                            "canton_code": "SG",
+                            "capacity": "",
+                            "capacity_group": "not specified",
+                            "centerX": width - 100,
+                            "centerY": 100,
+                            "city": "not specified",
+                            "closed": "not specified",
+                            "committing_agencies": "not specified",
+                            "confession": "not specified",
+                            "funding_agency": "not specified",
+                            "id": f.target,
+                            "index": null,
+                            "institution": "not specified",
+                            "name_landmark": notSpecifiedLabels(f.target),
+                            "opened": "not specified",
+                            "typologies": "not specified",
+                            "x": width - (width / 5),
+                            "y": height / 5
+                        })
+                    })
+                }
+
+                reset();
+
+                d3.selectAll(id + ' .canton-contour').each(function(e) {
+                    d3.select(this).classed('faded', true)
+                    let matchSending = sending.filter(function(f) {
+                        return f == e.properties.abbr
+                    })
+                    if (matchSending.length > 0) {
+                        d3.select(this).classed('sending', true).classed('faded', false);
+                    }
+
+                    let matchReceiving = receiving.filter(function(f) {
+                        return f == e.properties.abbr
+                    })
+                    if (matchReceiving.length > 0) {
+                        d3.select(this).classed('receiving', true).classed('faded', false);
+                    }
+                })
+
+                d3.selectAll(id + ' .label').each(function(e) {
+                    d3.select(this).classed('faded', true)
+                    let matchSending = sending.filter(function(f) {
+                        return f == e.properties.abbr
+                    })
+                    if (matchSending.length > 0) {
+                        d3.select(this).classed('sending', true).classed('faded', false);
+                    }
+
+                    let matchReceiving = receiving.filter(function(f) {
+                        return f == e.properties.abbr
+                    })
+                    if (matchReceiving.length > 0) {
+                        d3.select(this).classed('receiving', true).classed('faded', false);
+                    }
+                })
+
+                d3.select(this)
+                    .styles({
+                        'stroke': d3.color(concordatColors(d.properties.concordat)).darker(1),
+                        'fill': d3.color(concordatColors(d.properties.concordat)).brighter(.2)
+                    })
+
+                svg.append('text')
+                    .attr('id', 'viz-message')
+                    .styles({
+                        'text-anchor': 'middle'
+                    })
+                    .attr('x', width / 2)
+                    .attr('y', height - 5)
+                    .text(viz_message)
+
+                nodes = target_institutions;
+                update();
+
+            })
+
             .attr('d', path);
 
         cantonsLabels = cantonsLabels.data(cantons.features);
@@ -234,68 +332,107 @@ function AcceptingInstitutions(id, data, swiss) {
                 .append("circle")
                 .classed('node', true)
                 .attr("r", 0)
-                .styles({
-                    'fill': '#ff4c4c',
-                    'stroke': '#333333',
-                    'stroke-width': '0.5px'
-                })
+                .merge(node)
                 .on('click', function(d) {
                     console.log(d);
                 })
                 .on('mouseenter', function(d) {
-                    d3.select(this).transition()
+                    d3.selectAll(id + ' .node')
+                        .style('opacity', .4)
+
+                    d3.select(this)
+                        .style('opacity', 1)
+                        .transition()
                         .duration(300)
                         .attr('r', fixedRadius * 1.5)
+
+                    d3.selectAll(id + ' .nodeLabel')
+                        .filter(function(e) { return e.id == d.id })
+                        .transition()
+                        .duration(500)
+                        .style('opacity', 1)
                 })
                 .on('mouseout', function(d) {
+                    d3.selectAll(id + ' .node')
+                        .style('opacity', 1)
+
                     d3.select(this).transition()
                         .duration(300)
                         .attr('r', fixedRadius)
+
+                    d3.selectAll(id + ' .nodeLabel')
+                        .filter(function(e) { return e.id == d.id })
+                        .transition()
+                        .duration(500)
+                        .style('opacity', 0)
                 })
-                .merge(node);
+
 
             node.transition()
                 .duration(500)
                 .attr('r', fixedRadius)
 
+
+
+            nodeLabel = nodeLabel.data(nodes, function(d) { return d.id; });
+            nodeLabel.exit().remove();
+
+            nodeLabel = nodeLabel.enter()
+                .merge(nodeLabel)
+                .append("text")
+                .classed('nodeLabel', true)
+                .text(function(d) { return d.name_landmark })
+
+
             simulation
                 .nodes(nodes)
                 .alpha(1)
                 .on("tick", ticked)
-                .restart();
+                .restart()
 
             function ticked() {
                 node.attr("cx", function(d) { return d.x; })
-                    .attr("cy", function(d) { return d.y; });
+                    .attr("cy", function(d) { return d.y; })
 
-                // link.attr("x1", function(d) { return d.source.x; })
-                //     .attr("y1", function(d) { return d.source.y; })
-                //     .attr("x2", function(d) { return d.target.x; })
-                //     .attr("y2", function(d) { return d.target.y; });
-
-                // label.attr("x", function(d) { return d.x; })
-                //     .attr("y", function(d) { return d.y; });
+                nodeLabel.attr("x", function(d) { return d.x; })
+                    .attr("y", function(d) { return d.y - fixedRadius - 3; })
             }
         }
         reset();
+
         function reset() {
+
             d3.selectAll(id + ' .canton-contour')
+                .classed('sending', false)
+                .classed('receiving', false)
+                .classed('faded', false)
                 .styles({
-                    "fill": "#EEE5CA",
-                    "stroke": "#666666",
-                    "opacity": "1"
+                    'stroke': function(d) {
+                        return d3.color(concordatColors(d.properties.concordat)).darker(.75)
+                    },
+                    'stroke-width': '.5px',
+                    'fill': function(d) { return d3.color(concordatColors(d.properties.concordat)) }
                 });
+            d3.selectAll(id + ' .label').classed('faded', false);
 
-            d3.selectAll(id + ' .label')
-                .styles({
-                    "opacity": "1"
-                });
+            d3.selectAll('#viz-message').remove();
 
-            node = node.data([], function(d) { return d.id; });
+            node = node.data([], function(d) { return d.id; })
+
             node.exit().transition()
                 .duration(500)
                 .attr('r', 0)
-                .remove();
+                .filter(function(d) { return d.canton == 'not specified'; })
+                .duration(1000)
+                .attr('cx', width)
+                .remove()
+
+            nodeLabel = nodeLabel.data([], function(d) { return d.id; })
+
+            nodeLabel.exit().transition()
+                .duration(500)
+                .style('opacity', 0)
+                .remove()
         }
 
 

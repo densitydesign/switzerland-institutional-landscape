@@ -288,17 +288,46 @@ body.sidebar-open {
     transition: opacity 0.5s ease;
 }
 
-
 #accepting-institutions .canton-contour {
-    fill: #EEE5CA;
+    /*fill: #EEE5CA;*/
     shape-rendering: geometricPrecision;
-    stroke: #666666;
+    /*stroke: #fff;*/
     pointer-events: auto;
-    /*opacity: .8;*/
+    opacity: 1;
     cursor: pointer;
-    transition: fill 0.5s ease;
+    transition: fill 0.5s ease, opacity 0.5s ease;
 }
 
 /*#accepting-institutions .canton-contour:hover {
-    fill: #E2D4A7 !important;
+    opacity: 1;
 }*/
+
+/*#accepting-institutions .canton-contour.sending {
+    fill: green;
+}
+
+#accepting-institutions .canton-contour.receiving {
+    fill: red;
+}*/
+
+#accepting-institutions .canton-contour.faded {
+    opacity: .5;
+}
+
+#accepting-institutions .label.faded {
+    opacity: .35
+}
+
+#accepting-institutions .node {
+    /*stroke: #666;*/
+    fill: #333;
+}
+
+#accepting-institutions .nodeLabel {
+    text-anchor: middle;
+    opacity: 0;
+    pointer-events: none;
+    text-transform: uppercase;
+    font-size: .65rem;
+    font-weight: bold;
+}

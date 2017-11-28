@@ -359,14 +359,14 @@
             <div class="row visualisation">
                 <div id="circular-network" class="col-12">
                     <h4>Network between cantons</h4>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick="circularNetwork.draw(1954)">1954</button>
-                        <button type="button" class="btn btn-secondary" onclick="circularNetwork.draw(1965)">1965</button>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-secondary active" onclick="circularNetwork.draw(1954)">
+                            <input type="radio" name="options" id="ai1954" autocomplete="off" checked> 1954
+                        </label>
+                        <label class="btn btn-secondary" onclick="circularNetwork.draw(1965)">
+                            <input type="radio" name="options" id="ai1965" autocomplete="off"> 1965
+                        </label>
                     </div>
-                    <!-- <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick=" ciDirection = 'from' ">From selected</button>
-                        <button type="button" class="btn btn-secondary" onclick=" ciDirection = 'into' ">Into selected</button>
-                    </div> -->
                     <!-- To be filled with D3 -->
                 </div>
                 <div class="col-8 mx-auto">
@@ -377,13 +377,21 @@
             <div class="row visualisation">
                 <div id="accepting-institutions" class="col-12">
                     <h4>Accepting institutions</h4>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig)">1954</button>
-                        <button type="button" class="btn btn-secondary" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig)">1965</button>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-secondary active" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig)">
+                            <input type="radio" name="options" id="ai1954" autocomplete="off" checked> 1954
+                        </label>
+                        <label class="btn btn-secondary" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig)">
+                            <input type="radio" name="options" id="ai1965" autocomplete="off"> 1965
+                        </label>
                     </div>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick=" acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">From canton</button>
-                        <button type="button" class="btn btn-secondary" onclick=" acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">Into canton</button>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-secondary active" onclick=" acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
+                            <input type="radio" name="options" id="aiFrom" autocomplete="off" checked> From
+                        </label>
+                        <label class="btn btn-secondary" onclick=" acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
+                            <input type="radio" name="options" id="aiInto" autocomplete="off"> Into
+                        </label>
                     </div>
                     <p>Click on a canton to see related institutions if any.</p>
                     <!-- To be filled with D3 -->
@@ -416,6 +424,7 @@
     <script src="https://d3js.org/d3-selection-multi.v1.js"></script>
     <script src="https://unpkg.com/d3-sankey@0"></script>
     <script src="https://d3js.org/topojson.v3.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="./js/noframework.waypoints.min.js"></script>
     <!-- Visualizations -->
