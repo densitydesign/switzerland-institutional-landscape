@@ -2,6 +2,8 @@
 
 html {
     background-color: #B0C5CE;
+    font-size: 18px;
+    line-height: 1.55rem;
 }
 
 body {
@@ -13,6 +15,73 @@ body {
 
 body.sidebar-open {
     right: 25%;
+}
+
+h1 {}
+
+h2 {
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    font-weight: bold;
+    margin-bottom: 1.3rem;
+    margin-top: 12rem;
+}
+
+h3 {
+    font-size: 1.33rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.90);
+    letter-spacing: 0;
+    line-height: 1.55rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+p {
+    margin-bottom: 2rem;
+}
+
+p.caption {
+    font-size: 0.62rem;
+    margin-bottom: 0.62rem;
+    color: #4a4a4a;
+}
+
+p.caption:first-child {
+    margin-top: 0.37rem;
+    color: #333333;
+}
+
+.open-in-external-window {
+    display: none;
+}
+
+.legend {
+    font-size: 0.62rem;
+    margin-bottom: 0.62rem;
+    margin-top: 0.37rem;
+    color: #333333;
+    position: relative;
+}
+
+.legend > span {
+    text-transform: capitalize;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 0.62rem;
+}
+
+.legend .color-square {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    position: absolute;
+    left: 0px;
+}
+.legend > span:first-child >.color-square {
+    border: 1px solid #999;
 }
 
 .label {
@@ -28,103 +97,150 @@ body.sidebar-open {
 }
 
 .btn-secondary {
-	cursor: pointer;
+    cursor: pointer;
 }
 
-.chapter {margin-bottom: 60px;}
+.chapter {
+    margin-bottom: 60px;
+}
+
+
+
+
 
 /* Cover */
+
 .cover {
     height: 100vh;
     background-color: #81AA91;
 }
+
 .report-title {
     font-size: 3rem;
 }
 
+
+
+
+
 /* 1.1 timeline */
+
+#timeline {
+    background: rgba(176, 197, 206, 0.07);
+    border-top: 1px solid #B0C5CE;
+    border-bottom: 1px solid #B0C5CE;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+}
+
 .timeline-viz {
     width: 100%;
     height: auto;
 }
+
 .timeline-viz text {
-	font-size: 10px;
+    font-size: 10px;
 }
+
 .baseline {
-	fill: none;
-	stroke: #000000;
-	stroke-width: 0.5px;
-	stroke-miterlimit: 10px;
+    fill: none;
+    stroke: #000000;
+    stroke-width: 0.5px;
+    stroke-miterlimit: 10px;
 }
+
 .baseline-dashed {
-	fill: none;
-	stroke: #000000;
-	stroke-width: 0.5px;
-	stroke-miterlimit: 10px;
-	stroke-dasharray: 4.6,4.6;
+    fill: none;
+    stroke: #000000;
+    stroke-width: 0.5px;
+    stroke-miterlimit: 10px;
+    stroke-dasharray: 4.6, 4.6;
 }
+
 .baseline-dot {
-	fill: #FFFFFF;
-	stroke: #000000;
-	stroke-width: 0.5px;
-	stroke-miterlimit: 10px;
+    fill: #FFFFFF;
+    stroke: #000000;
+    stroke-width: 0.5px;
+    stroke-miterlimit: 10px;
 }
+
 .events-dot {
-	fill: #FF8E66;
-	stroke: #000000;
-	stroke-width: 0.5px;
-	stroke-miterlimit: 10px;
+    fill: #FF8E66;
+    stroke: #000000;
+    stroke-width: 0.5px;
+    stroke-miterlimit: 10px;
 }
+
 .laws-dot {
-	fill: #6699FF;
-	stroke: #000000;
-	stroke-width: 0.5px;
-	stroke-miterlimit: 10px;
+    fill: #6699FF;
+    stroke: #000000;
+    stroke-width: 0.5px;
+    stroke-miterlimit: 10px;
 }
+
 .survey-dot {
-	fill: #B6EA78;
-	stroke: #000000;
-	stroke-width: 0.5px;
-	stroke-miterlimit: 10px;
+    fill: #B6EA78;
+    stroke: #000000;
+    stroke-width: 0.5px;
+    stroke-miterlimit: 10px;
 }
+
+
+
+
 
 /* 1.2 mosaic plot and sankey */
 
 #sankey {
-
+    padding: 4rem 0 6rem;
 }
 
-#sankey svg{
-    /*background-color: #ccc*/
+#sankey svg {
+    /*background-color: #fafafa;*/
 }
 
 #sankey .nodes rect {
     stroke: none;
 }
-#sankey .nodes text {
 
-}
+#sankey .nodes text {}
 
-#sankey .links path{
+#sankey .links path {
     fill: none;
     opacity: .3;
     /*cursor: pointer;*/
 }
 
-#sankey .links path:hover{
+#sankey .links path:hover {
     opacity: .6 !important;
 }
 
 
+
+
+
+
 /* 1.3 bubblechart - purpose of institutions */
 
-#bubblechart svg {}
+#bubblechart {}
+
+#bubblechart svg {
+    background: rgba(207, 183, 109, 0.05);
+    border-top: 1px solid #CFB76D;
+    border-bottom: 1px solid #CFB76D;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+}
 
 #bubblechart circle.node {
     stroke: #074050;
     stroke-width: .5px;
     cursor: pointer;
 }
+
+
+
+
 
 
 /* 1.4 typologies network of correlations */
@@ -147,6 +263,10 @@ body.sidebar-open {
     text-anchor: middle;
 }
 
+
+
+
+
 /* STYLES CHAPTER 2 */
 
 
@@ -168,12 +288,16 @@ body.sidebar-open {
 }
 
 #maps {
-	position: -webkit-sticky;
-	position: sticky;
-	top: 80px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
     width: 100%;
     height: 84vh;
 }
+
+
+
+
 
 
 /* swiss map styles */
@@ -195,6 +319,10 @@ body.sidebar-open {
 }
 
 
+
+
+
+
 /* map_all_institutions styles */
 
 .dot {
@@ -205,8 +333,12 @@ body.sidebar-open {
 }
 
 .item-text {
-	font-size: .65rem;
+    font-size: .65rem;
 }
+
+
+
+
 
 /* map_typologies styles */
 
@@ -225,18 +357,26 @@ body.sidebar-open {
     font-size: .65rem;
 }
 
+
+
+
+
 /* STYLES CHAPTER 3 */
 
+
 /* matrix */
+
 .dropdown-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
 }
+
 .select-container {
     margin: 10px 10px 10px 0;
 }
-.select-container select{
+
+.select-container select {
     cursor: pointer;
 }
 
@@ -247,17 +387,17 @@ body.sidebar-open {
 .axis-x text {
     text-anchor: end;
     -webkit-transform: rotate(-40deg);
-            transform: rotate(-40deg);
+    transform: rotate(-40deg);
 }
 
 .grid line {
-  stroke: lightgrey;
-  stroke-opacity: 0.7;
-  stroke-dasharray: 8;
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+    stroke-dasharray: 8;
 }
 
 .grid path {
-  stroke-width: 0;
+    stroke-width: 0;
 }
 
 .bubble {
@@ -266,7 +406,12 @@ body.sidebar-open {
     fill: #007bff;
 }
 
+
+
+
+
 /* STYLES CHAPTER 4 */
+
 
 /* typologies network of correlations */
 
@@ -298,9 +443,14 @@ body.sidebar-open {
     transition: fill 0.5s ease, opacity 0.5s ease;
 }
 
+
+
+
+
 /*#accepting-institutions .canton-contour:hover {
     opacity: 1;
 }*/
+
 
 /*#accepting-institutions .canton-contour.sending {
     fill: green;

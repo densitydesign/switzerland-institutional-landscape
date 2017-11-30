@@ -5,29 +5,31 @@ function SurviesSankey(id, data) {
     let svg,
         width,
         height,
-        margin = {left:5,right:5},
+        margin = {left:5,right:5,top:0,bottom: 0},
         nodesWidth = 15,
         nodesPadding,
         transitionDuration = 0;
 
-    if (!this.svg) {
+    if (d3.select(id + ' svg').empty()) {
         // check if svg has been craeted, if not runs init()
         svg = this.svg = d3.select(this.id).append('svg');
+    } else {
+        svg = this.svg = d3.select(id + ' svg')
     }
 
     // console.log(data)
 
     this.draw = function(model) {
 
-        width = d3.select(this.id).node().offsetWidth - 30;
+        width = d3.select(this.id).node().offsetWidth - 0;
 
         if (model == 'mosaic') {
             nodesPadding = 5;
         } else {
-            nodesPadding = width * 0.03;
+            nodesPadding = width * 0.05;
         }        
 
-        height = width * .3;
+        height = width * .5;
         if (height > window.innerHeight) { height = window.innerHeight * .8 }
 
         svg.attr('width', width)
@@ -56,12 +58,32 @@ function SurviesSankey(id, data) {
 
         let mosaicPosition = d3.scaleBand()
             .rangeRound([width / 5, width])
+            .rangeRound([0, width])
             .paddingInner(.07)
             .domain(years)
 
         let nodesColor = d3.scaleOrdinal()
-            .range(['#999', '#F89C74', '#F6CF71', '#66C5CC'])
+            .range(['#E7EDEF', '#F89C74', '#F6CF71', '#89C2DA'])
+            // .range(['#E7EDEF', '#EF9D79', '#E9C670', '#89C2DA']), '#66C5CC'
             .domain(categories);
+
+        let legendItems = d3.select(id + ' .legend').selectAll('span');
+
+        legendItems = legendItems.data(nodesColor.domain(), function(d) { return d })
+
+        legendItems.exit().remove();
+
+        legendItems = legendItems.enter()
+            .append('span')
+            .merge(legendItems)
+            .html(function(d){
+                let innerHtml = '<span class="color-square" style="background-color: '+ nodesColor(d) +';"></span> '+ d.replace('1_','').replace('2_','').replace('3_','').replace('4_','');
+                return innerHtml;
+            })
+            
+
+        .enter()
+            .append()
 
         // Gradients
         let gradients = []
@@ -149,7 +171,7 @@ function SurviesSankey(id, data) {
             .nodePadding(nodesPadding)
             .extent([
                 [margin.left, 30],
-                [width-margin.right, height]
+                [width-margin.right, height-margin.bottom]
             ])
             .iterations(0); // this forces the layout to keep the original nodes order in the dataset
 
@@ -176,23 +198,46 @@ function SurviesSankey(id, data) {
         })
 
         node = node
-            .data(data.nodes)
-            .enter().append("g");
+                .data(data.nodes)
+            .enter()
+                .append("g")
+                .on('click',function(d){
+                    console.log(d);
+                    console.log(masterData)
+                });
 
         node.append("rect")
             .attr("x", function(d) { return d.x0; })
             .attr("y", function(d) { return d.y0; })
             .attr("height", function(d) { return d.y1 - d.y0; })
             .attr("width", function(d) { return d.x1 - d.x0; })
-            .attr("fill", function(d) { return nodesColor(d.name); });
+            .style("fill", function(d) { return nodesColor(d.name); })
+            .style("stroke", function(d) {
+                // console.log(d)
+                if (d.name == "1_uncertain") {
+                    return d3.color(nodesColor(d.name)).darker(1);
+                } else {
+                    return 'none';
+                }
+            });
 
         node.append("text")
             .classed('label', true)
+            // .style('opacity', function(d,i){
+            //     if (i < 4) {
+            //         return 1;
+            //     } else {
+            //         return 0;
+            //     }
+            // })
             .attr("x", function(d) { return d.x0 - 6; })
             .attr("y", function(d) { return (d.y1 + d.y0) / 2; })
             .attr("dy", "0.35em")
             .attr("text-anchor", "end")
-            .text(function(d) { return d.name; })
+            .text(function(d) {
+                // console.log(d);
+                return d.value;
+            })
             .filter(function(d) { return d.x0 < width / 2; })
             .attr("x", function(d) { return d.x1 + 6; })
             .attr("text-anchor", "start");
@@ -238,7 +283,7 @@ function SurviesSankey(id, data) {
                 .attr('width', mosaicPosition.bandwidth())
 
             d3.selectAll('.nodes text')
-                .filter(function(d, i) { return i > 3 })
+                // .filter(function(d, i) { return i > 3 })
                 .style('opacity', 1)
                 .transition()
                 .delay(0)
@@ -270,7 +315,7 @@ function SurviesSankey(id, data) {
                 .attr('width', function(d) { return d.x1 - d.x0; });
 
             d3.selectAll('.nodes text')
-                .filter(function(d, i) { return i > 3 })
+                // .filter(function(d, i) { return i > 3 })
                 .style('opacity', 0)
                 .transition()
                 .delay(transitionDuration * 0.5)

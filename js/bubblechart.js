@@ -11,7 +11,8 @@ function Bubblechart(id, data) {
         node,
         label,
         color,
-        radius;
+        radius,
+        fixedRadius = 5;
 
     // #d3f2a3,#97e196,#6cc08b,#4c9b82,#217a79,#105965,#074050
 
@@ -19,9 +20,21 @@ function Bubblechart(id, data) {
         .range(['#d3f2a3', '#6cc08b', '#217a79', '#074050'])
         .domain([1, 2, 3, 4])
 
+    let areas = [5,10,20,50,100,150,200]
+    let radiusses = [];
+    areas.forEach(function(d){
+        d*=5;
+        let thisRadius = Math.sqrt( d/(Math.PI*2) );
+        radiusses.push(thisRadius);
+    })
+
     radius = d3.scaleOrdinal()
-        .range([2, 4, 6, 8, 10, 12, 14])
+        .range(radiusses)
         .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over"])
+
+    let capacityColor = d3.scaleOrdinal()
+        .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over"])
+        .range(['#ffffff', '#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a']);
 
     this.id = id;
 
@@ -53,7 +66,7 @@ function Bubblechart(id, data) {
     links = [];
 
     simulation = d3.forceSimulation(nodes)
-        .force("charge", d3.forceManyBody().strength(-8))
+        .force("charge", d3.forceManyBody().strength(-5))
         .force("y", d3.forceY().strength(0.2))
         .alphaDecay(.01)
         .on("tick", null);
@@ -65,14 +78,19 @@ function Bubblechart(id, data) {
             this.init();
         }
         // this.svg.style('border', '1px solid blue');
-        width = d3.select(this.id)
+        let partentWidth = d3.select(this.id)
             .node()
             .offsetWidth - 30;
 
-        height = width * .6;
+        width = partentWidth;
+        // let marginLeft = (window.innerWidth - partentWidth)/-2 - 15
+
+        height = width * .25;
+        if (height < 400) { height = 400 }
         if (height > window.innerHeight) { height = window.innerHeight * .8 }
         this.svg.attr('width', width)
-            .attr('height', height);
+            .attr('height', height)
+            // .style('margin-left', marginLeft);
 
         g.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
@@ -109,10 +127,12 @@ function Bubblechart(id, data) {
                 .attr("cx", 0)
                 .attr("cy", 0)
                 .attr("fill", function(d) {
+                    // console.log(d)
                     if (d.capacity_group == "not specified") {
                         return '#fff'
                     } else {
-                        return color(d.group);
+                        // return capacityColor(d.group);
+                        return capacityColor(d.capacity_group);
                     }
                 })
                 .on('mouseenter', function(d) {
@@ -128,7 +148,10 @@ function Bubblechart(id, data) {
             node.transition()
                 .duration(500)
                 .delay(function(d, i) { return i * 2 })
-                .attr('r', function(d) { return radius(d.capacity_group); })
+                .attr('r', function(d) {
+                    // return fixedRadius;
+                    return radius(d.capacity_group);
+                })
 
             // Apply the general update pattern to the label.
             label = label.data(nodes, function(d) { return d.id; });
@@ -143,7 +166,10 @@ function Bubblechart(id, data) {
                 .merge(label);
 
             // Update and restart the simulation.
-            simulation.force("collide", d3.forceCollide(function(d) { return radius(d.capacity_group) + 2 }).iterations(16))
+            simulation.force("collide", d3.forceCollide(function(d) {
+                // return fixedRadius;
+                return radius(d.capacity_group) + 2
+            }).iterations(16))
 
             let nodesGroups = d3.nest()
                 .key(function(d) { return d.group; })
@@ -178,11 +204,12 @@ function Bubblechart(id, data) {
                 .classed('item', true)
             itemSize.append('circle')
                 .attr('fill', function(d, i) {
-                    if (d == "not specified") {
-                        return '#fff';
-                    } else {
-                        return '#074050';
-                    }
+                    // if (d == "not specified") {
+                    //     return '#fff';
+                    // } else {
+                    //     return '#074050';
+                    // }
+                    return capacityColor(d);
                 })
                 .attr('stroke', function(d, i) {
                     if (d == "not specified") {
@@ -215,33 +242,33 @@ function Bubblechart(id, data) {
                 })
                 .text(function(d) { return d })
 
-            let colors = legend.append('g').attr('class', 'colors')
-            let colorItem = colors.selectAll('.item')
-                .data(color.domain())
-                .enter().append('g')
-                .classed('item', true)
-                .attr('transform', function(d, i) { return 'translate(' + 25 + ',' + (i * 20 + 300) + ')' })
-            colorItem.append('rect')
-                .attr('fill', function(d) { return color(d) })
-                .attr('x', 0)
-                .attr('y', -8)
-                .attr('width', 15)
-                .attr('height', 15)
-            colorItem.append('text')
-                .classed('label', true)
-                .attr('x', 20)
-                .attr('y', 3)
-                .text(function(d) {
-                    if (d == 1) {
-                        return d + ' typology'
-                    } else if (d == 2) {
-                        return d + ' typologies'
-                    } else if (d == 3) {
-                        return d + ' typologies'
-                    } else if (d == 4) {
-                        return d + ' typologies'
-                    }
-                })
+            // let colors = legend.append('g').attr('class', 'colors')
+            // let colorItem = colors.selectAll('.item')
+            //     .data(color.domain())
+            //     .enter().append('g')
+            //     .classed('item', true)
+            //     .attr('transform', function(d, i) { return 'translate(' + 25 + ',' + (i * 20 + 300) + ')' })
+            // colorItem.append('rect')
+            //     .attr('fill', function(d) { return color(d) })
+            //     .attr('x', 0)
+            //     .attr('y', -8)
+            //     .attr('width', 15)
+            //     .attr('height', 15)
+            // colorItem.append('text')
+            //     .classed('label', true)
+            //     .attr('x', 20)
+            //     .attr('y', 3)
+            //     .text(function(d) {
+            //         if (d == 1) {
+            //             return d + ' typology'
+            //         } else if (d == 2) {
+            //             return d + ' typologies'
+            //         } else if (d == 3) {
+            //             return d + ' typologies'
+            //         } else if (d == 4) {
+            //             return d + ' typologies'
+            //         }
+            //     })
 
 
 
