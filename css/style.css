@@ -1,3 +1,15 @@
+/* Import Fonts */
+
+@import '../fonts/Brandon_reg-export/Brandon_reg.css';
+@import '../fonts/Brandon_reg_it-export/Brandon_reg_it.css';
+
+/*@import '../fonts/Brandon_med-export/Brandon_med.css';
+@import '../fonts/Brandon_med_it-export/Brandon_med_it.css';*/
+
+@import '../fonts/Brandon_bld-export/Brandon_bld.css';
+@import '../fonts/Brandon_bld_it-export/Brandon_bld_it.css';
+
+
 /* General for all viz */
 
 html {
@@ -88,7 +100,7 @@ p.caption:first-child {
     font-size: .65rem;
     pointer-events: none;
     opacity: 1;
-    text-transform: uppercase;
+    text-transform: capitalize;
     /*fill: #333;*/
 }
 
@@ -222,26 +234,46 @@ p.caption:first-child {
 
 /* 1.3 bubblechart - purpose of institutions */
 
-#bubblechart {}
-
-#bubblechart svg {
-    background: rgba(207, 183, 109, 0.05);
+#bubblechart {
     border-top: 1px solid #CFB76D;
     border-bottom: 1px solid #CFB76D;
-    padding: 2rem 0;
+    background: rgba(207, 183, 109, 0.05);
     margin-bottom: 1rem;
+}
+
+#bubblechart svg {
+    /*background-color: #eee;*/
+    /*padding: 2rem 0;*/
 }
 
 #bubblechart circle.node {
     stroke: #074050;
     stroke-width: .5px;
     cursor: pointer;
+    /*display: none;*/
 }
 
+#bubblechart .legend g {
+    cursor: pointer;
+}
 
+#bubblechart .legend g:first-child {
+    font-weight: 600;
+}
 
+#bubblechart .legend g .label {
+    pointer-events: all;
+}
 
+#bubblechart .year.selected {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none !important;
+}
 
+#bubblechart .legend g:first-child circle {
+    display: none;
+}
 
 /* 1.4 typologies network of correlations */
 
