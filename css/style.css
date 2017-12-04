@@ -20,9 +20,10 @@ html {
 
 body {
     position: relative;
+    -webkit-transition: right 0.5s ease;
     transition: right 0.5s ease;
     right: 0;
-    font-family: 'Brandon Grotesque'
+    font-family: 'Brandon Grotesque', sans-serif;
 }
 
 body.sidebar-open {
@@ -413,6 +414,7 @@ p.caption:first-child {
 }
 
 #matrix text {
+    font-family: 'Brandon Grotesque', sans-serif;
     font-size: .65rem;
 }
 
@@ -450,6 +452,7 @@ p.caption:first-child {
 #circular-network .node {
     stroke-width: .5px;
     cursor: pointer;
+    -webkit-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
 }
 
@@ -457,11 +460,13 @@ p.caption:first-child {
 #circular-network .link {
     fill: none;
     opacity: .5;
+    -webkit-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
 }
 
 #circular-network .label {
     text-anchor: middle;
+    -webkit-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
 }
 
@@ -472,6 +477,7 @@ p.caption:first-child {
     pointer-events: auto;
     opacity: 1;
     cursor: pointer;
+    -webkit-transition: fill 0.5s ease, opacity 0.5s ease;
     transition: fill 0.5s ease, opacity 0.5s ease;
 }
 

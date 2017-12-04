@@ -142,7 +142,7 @@ $(document).ready(function() {
 
 $(document).on('setWaypoints', function() {
     // save the selection to a variable to improve performance
-    let $mapButtons = $('#maps .btn-group').children(),
+    let $mapButtons = $('#maps button'),
         years = [1933, 1940, 1954, 1965, 1980];
 
     // initiate waypoints
@@ -234,11 +234,16 @@ $(document).on('setWaypoints', function() {
         },
         offset: '40%'
     });
+    
+    $mapButtons.on('click', function(){
+        $mapButtons.removeClass('active');
+        $mapButtons.blur();
+        $(this).addClass('active');
+    })
 
     function switchButton(year) {
-        $('#maps input:checked').prop('checked', false);
-        $('#maps label[data-id=' + year + '] input').prop('checked', true);
-        $('#maps .active').removeClass('active focus');
-        $('#maps label[data-id=' + year + ']').addClass('active');
+        $mapButtons.removeClass('active');
+        $mapButtons.blur();
+        $('#maps button[data-id=' + year + ']').addClass('active');
     }
 });
