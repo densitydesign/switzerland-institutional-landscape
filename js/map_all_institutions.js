@@ -85,6 +85,8 @@ function MapAll(id, swiss, data) {
             .remove();
         d3.select('#maps-visualization .maps-container')
             .style('pointer-events', 'none');
+        d3.select('#maps-visualization .maps-container rect')
+            .style('pointer-events', 'none');
 
         //calculate width and height of the viz container and set them as svg dimensions
         width = $('#maps-visualization').width();

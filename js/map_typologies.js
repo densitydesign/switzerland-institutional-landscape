@@ -109,6 +109,8 @@ function MapTypologies(id, swiss, data) {
             .remove();
         d3.select('#maps-visualization .maps-container')
             .style('pointer-events', 'auto');
+        d3.select('#maps-visualization .maps-container rect')
+            .style('pointer-events', 'all');
 
         //calculate width and height for each small map
         width = $('#maps-visualization').width();

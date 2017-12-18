@@ -426,7 +426,6 @@ p.caption:first-child {
 
 .map-background {
     fill: none;
-    pointer-events: all;
 }
 
 
