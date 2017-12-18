@@ -384,11 +384,10 @@ p.caption:first-child {
 }
 
 .canton-contour {
-    fill: none;
+    fill: #ffffff;
     shape-rendering: geometricPrecision;
     stroke: #999999;
     stroke-width: .5px;
-    pointer-events: none;
 }
 
 
@@ -422,9 +421,13 @@ p.caption:first-child {
 
 .maps-label {
     font-size: .65rem;
+    cursor: pointer;
 }
 
-
+.map-background {
+    fill: none;
+    pointer-events: all;
+}
 
 
 
