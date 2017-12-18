@@ -1,0 +1,74 @@
+:root {
+    --uek-blue: #B0C5CE;
+    --uek-middle-light-blue: #E7EDEF;
+    --uek-light-blue-bg: #FCFDFD;
+    --uek-dark-blue: #799BAA;
+}
+
+
+html {
+    /*backgrsound-color: white;*/
+}
+
+body {
+    padding-top: 72px;
+}
+
+nav.navbar {
+    background-color: var(--uek-light-blue-bg);
+    border-bottom: 1px solid var(--uek-blue);
+    height: 72px;
+}
+
+.list-container {
+    border-right: 1px solid var(--uek-blue);
+}
+
+.item {
+    border-bottom: 1px solid var(--uek-blue);
+}
+
+.item:hover {
+    border-bottom: 1px solid var(--uek-blue);
+    background-color: var(--uek-middle-light-blue);
+}
+
+.item.active {
+    border-left: 1rem solid var(--uek-blue);
+}
+
+.field {
+    display: flex;
+}
+
+.label {
+    flex-basis: 0.25%;
+    flex-grow: 1;
+    text-align: right;
+    padding-right: 1rem;
+    font-size: 8px;
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    line-height: 2rem;
+}
+
+.value {
+    flex-basis: 0.75%;
+    flex-grow: 3;
+    font-size: 0.83rem;
+    line-height: 2rem;
+}
+
+.surveyes .value span {
+    background-color: var(--uek-middle-light-blue);
+    margin-right: 0.5rem;
+    border-radius: 3px;
+    padding: 0.1rem 0.4rem;
+    color: var(--uek-dark-blue);
+    font-weight: bold;
+}
+
+
+/*.value > span {
+	line-height: 1rem;
+}*/
