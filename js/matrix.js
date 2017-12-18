@@ -63,9 +63,11 @@ function Matrix(id, data, categories) {
         //calculate correlations
         let correlationList = [];
         institutions.forEach(function(institute){
+            // console.log(institute);
             for (let y = 0; y < institute[state.y].length; y++){
                 for (let x = 0; x < institute[state.x].length; x++) {
                     let relationObject = {};
+                    relationObject.id = institute.id;
                     relationObject.relation = institute[state.y][y] + '|' + institute[state.x][x];
                     correlationList.push(relationObject);
                 }
@@ -81,7 +83,7 @@ function Matrix(id, data, categories) {
                     yCoordinate = categories[state.y][(+code[0] - 1)].label;
                     xCoordinate = categories[state.x][(+code[1] - 1)].label;
 
-                return {'y': yCoordinate, 'x': xCoordinate, 'amount': leaves.length};
+                return {'y': yCoordinate, 'x': xCoordinate, 'amount': leaves.length, 'list': leaves};
             })
             .entries(correlationList);
         // console.log(finalList);
@@ -157,6 +159,13 @@ function Matrix(id, data, categories) {
             .append('circle')
             .classed('bubble', true)
             .attr('r', 1e-6)
+            .on("click", function(d) {
+                let newList = d.value.list.map(function(el){
+                    return el.id;
+                });
+                let activeYear = $('#matrix .btn-group .active').attr('data-id');
+                buildSidepanelList(newList, activeYear);
+            })
             .merge(bubbles)
             .attr('cx', function(d) {
                 return xScale(d.value.x);
