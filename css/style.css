@@ -13,7 +13,7 @@
 /* General for all viz */
 
 html {
-    background-color: #B0C5CE;
+    background-color: rgba(176, 197, 206, 0.07);
     font-size: 18px;
     line-height: 1.55rem;
 }
@@ -24,6 +24,8 @@ body {
     transition: right 0.5s ease;
     right: 0;
     font-family: 'Brandon Grotesque', sans-serif;
+    -webkit-box-shadow: 0px 0px 5px #B0C5CE;
+            box-shadow: 0px 0px 5px #B0C5CE;
 }
 
 body.sidebar-open {
@@ -132,7 +134,45 @@ p.caption:first-child {
     font-size: 3rem;
 }
 
-
+/* Sidepanel */
+.sidepanel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100vh;
+    overflow-x: hidden;
+    pointer-events: none;
+    -webkit-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+}
+.sidepanel-open {
+    width: 25vw;
+    pointer-events: auto;
+}
+.sidepanel .close {
+    margin-right: 12px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+.sidepanel-container {
+    width: 25vw;
+    padding: 1.2em;
+    opacity: 0;
+}
+.sidepanel-data {
+    color: #B0C5CE;
+    font-size: 0.65em;
+    text-transform: uppercase;
+}
+.sidepanel-name {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.sidepanel p {
+    font-size: 0.9em;
+    margin-bottom: 12px;
+}
 
 
 
@@ -344,11 +384,10 @@ p.caption:first-child {
 }
 
 .canton-contour {
-    fill: none;
+    fill: #ffffff;
     shape-rendering: geometricPrecision;
     stroke: #999999;
     stroke-width: .5px;
-    pointer-events: none;
 }
 
 
@@ -376,21 +415,18 @@ p.caption:first-child {
 /* map_typologies styles */
 
 .maps-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
     position: absolute;
+    pointer-events: none;
 }
 
 .maps-label {
     font-size: .65rem;
+    cursor: pointer;
 }
 
-
+.map-background {
+    fill: none;
+}
 
 
 

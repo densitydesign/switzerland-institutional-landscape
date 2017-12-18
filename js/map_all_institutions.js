@@ -85,6 +85,8 @@ function MapAll(id, swiss, data) {
             .remove();
         d3.select('#maps-visualization .maps-container')
             .style('pointer-events', 'none');
+        d3.select('#maps-visualization .maps-container rect')
+            .style('pointer-events', 'none');
 
         //calculate width and height of the viz container and set them as svg dimensions
         width = $('#maps-visualization').width();
@@ -170,7 +172,8 @@ function MapAll(id, swiss, data) {
                 .attr('r', 1e-6)
                 .style('stroke', '#333333')
                 .on("click", function(d) {
-                    console.table(d);
+                    let activeYear = $('#maps .btn-group .active').attr('data-id');
+                    buildSidepanel(d.id, activeYear);
                 })
                 .merge(node);
 
@@ -187,7 +190,7 @@ function MapAll(id, swiss, data) {
                     }
                 })
                 .attr('r', radius);
-            
+
             if (currentCategory != category) {
                 // add legend
                 item = legendGroup.selectAll('.item')
@@ -203,13 +206,13 @@ function MapAll(id, swiss, data) {
                     .append('g')
                     .classed('item', true)
                     .merge(item);
-                
+
                 item.selectAll('*')
                     .transition()
                     .duration(500)
                     .style('opacity', 1e-6)
                     .remove();
-                    
+
                 item.append('rect')
                     .classed('item-color', true)
                     .style('opacity', 1e-6)
@@ -232,7 +235,7 @@ function MapAll(id, swiss, data) {
                         }
                     })
                     .style('opacity', 1);
-                
+
                 item.append('text')
                     .classed('item-text', true)
                     .style('opacity', 1e-6)
@@ -247,7 +250,7 @@ function MapAll(id, swiss, data) {
                     .duration(500)
                     .delay(function(d, i) { return i * 2 })
                     .style('opacity', 1);
-                    
+
                 currentCategory = category;
             }
         } else {
@@ -256,7 +259,8 @@ function MapAll(id, swiss, data) {
                 .classed('dot', true)
                 .attr('r', 1e-6)
                 .on("click", function(d) {
-                    console.table(d);
+                    let activeYear = $('#maps .btn-group .active').attr('data-id');
+                    buildSidepanel(d.id, activeYear);
                 })
                 .merge(node);
 

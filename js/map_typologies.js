@@ -13,9 +13,7 @@ function MapTypologies(id, swiss, data) {
     let categories = ["forced labour institution (restricted)", "forced labour institution (semi-open)", "educational institution", "asylum for alcoholics", "prison", "psychiatric facility", "poor house", "institution for people with special needs"];
 
     //define elements that will be present in the visualization
-    let container,
-        div,
-        mapsSvg,
+    let mapsSvg,
         mapGroups,
         swissBorderContainer,
         cantonsBorderContainer,
@@ -69,12 +67,16 @@ function MapTypologies(id, swiss, data) {
         .translate(0,0)
         .scale(1);
 
+    let active = d3.select(null);
+
     // check if svg has already been created and if not, creates it
     if (!this.div_typology) {
         this.div_typology = d3.select(this.id)
             .append('svg')
             .classed('maps-container', true);
         svg = this.div_typology;
+        mapRect = svg.append('rect')
+            .classed('map-background', true);
         g = svg.append('g');
         mapsSvg = g.selectAll('.maps-svg')
             .data(categories)
@@ -107,10 +109,12 @@ function MapTypologies(id, swiss, data) {
             .remove();
         d3.select('#maps-visualization .maps-container')
             .style('pointer-events', 'auto');
+        d3.select('#maps-visualization .maps-container rect')
+            .style('pointer-events', 'all');
 
         //calculate width and height for each small map
         width = $('#maps-visualization').width();
-        height = width * .9;
+        height = width * .8;
         radius = 2;
         mapsWidth = width / 3 - 30;
         mapsHeight = mapsWidth * 0.9;
@@ -128,6 +132,10 @@ function MapTypologies(id, swiss, data) {
         svg.attr('width', width)
             .attr('height', height);
 
+        mapRect.attr('width', width)
+            .attr('height', height)
+            .on("click", reset);
+
         // adapt map to viewport
         projection0.fitExtent([[0, 0],[mapsWidth, mapsHeight]], cantons);
         projection1.fitExtent([[secondColumn, 0],[mapsWidth + secondColumn, mapsHeight]], cantons);
@@ -138,10 +146,10 @@ function MapTypologies(id, swiss, data) {
         projection6.fitExtent([[horizontalSpacerAlternative, thirdRow],[mapsWidth + horizontalSpacerAlternative, mapsHeight + thirdRow]], cantons);
         projection7.fitExtent([[secondColumnAlternative, thirdRow],[mapsWidth + secondColumnAlternative, mapsHeight + thirdRow]], cantons);
 
-        svg.call(zoom)
-            .call(zoom.transform, initialTransform);
+        // svg.call(zoom)
+            svg.call(zoom.transform, initialTransform);
 
-        d3.select('#maps .text-right').on("click", reset);
+        // d3.select('#maps .text-right').on("click", reset);
 
         // project map
         let swissBorder = swissBorderContainer.selectAll('path')
@@ -242,6 +250,7 @@ function MapTypologies(id, swiss, data) {
                         return path0(d.shape);
                 }
             })
+            .on("click", clicked)
             .transition()
             .duration(500)
             .style('opacity', 0.5);
@@ -318,7 +327,8 @@ function MapTypologies(id, swiss, data) {
                     .classed('dot', true)
                     .attr('r', 1e-6)
                     .on("click", function(d) {
-                        console.table(d);
+                        let activeYear = $('#maps .btn-group .active').attr('data-id');
+                        buildSidepanel(d.id, activeYear);
                     })
                     .merge(node);
 
@@ -357,6 +367,10 @@ function MapTypologies(id, swiss, data) {
                 return el.key === d;
             }
         });
+
+        $('#maps .btn-secondary').click(function(){
+            reset();
+        })
 
     }
 
@@ -404,8 +418,8 @@ function MapTypologies(id, swiss, data) {
     }
 
     function reset() {
-      // active.classed("active", false);
-      // active = d3.select(null);
+      active.classed("zoom-active", false);
+      active = d3.select(null);
 
       g.transition()
           .duration(750)
@@ -413,10 +427,19 @@ function MapTypologies(id, swiss, data) {
     }
 
     function clicked(d) {
-        let mapData = d3.select(this.parentNode.parentNode).data();
-        // if (active.node() === this) return reset();
-        // active.classed("active", false);
-        // active = d3.select(this).classed("active", true);
+        let mapData;
+
+        if (this.className.baseVal == 'maps-label') {
+            mapData = d3.select(this.parentNode.parentNode).data();
+            if (active.node() === this.parentNode.parentNode) return reset();
+            active.classed("active", false);
+            active = d3.select(this.parentNode.parentNode).classed("zoom-active", true);
+        } else {
+            mapData = d3.select(this.parentNode.parentNode.parentNode).data();
+            if (active.node() === this.parentNode.parentNode.parentNode) return reset();
+            active.classed("active", false);
+            active = d3.select(this.parentNode.parentNode.parentNode).classed("zoom-active", true);
+        }
 
         let mapIndex = categories.findIndex(function(d){
             return mapData[0] == d;
@@ -453,7 +476,7 @@ function MapTypologies(id, swiss, data) {
             dy = bounds[1][1] - bounds[0][1],
             x = (bounds[0][0] + bounds[1][0]) / 2,
             y = (bounds[0][1] + bounds[1][1]) / 2,
-            scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))),
+            scale = Math.max(1, Math.min(8, 0.6 / Math.max(dx / width, dy / height))),
             translate = [width / 2 - scale * x, height / 2 - scale * y];
 
 

@@ -153,14 +153,14 @@ $(document).on('setWaypoints', function() {
             if (direction == 'down') {
                 // console.log('call map_typologies 1954');
                 $mapButtons.each(function(i) {;
-                    $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ')');
+                    $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1954);
                 switchButton(1954);
             } else {
                 // console.log('call map_all_institutions 1954');
                 $mapButtons.each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ')');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_all_institutions.draw(1954);
                 switchButton(1954);
@@ -175,14 +175,14 @@ $(document).on('setWaypoints', function() {
             if (direction == 'down') {
                 // console.log('call map_capacities 1954');
                 $mapButtons.each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
                 switchButton(1954);
             } else {
                 // console.log('call map_typologies 1954');
                 $mapButtons.each(function(i) {;
-                    $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ')');
+                    $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1954);
                 switchButton(1954);
@@ -197,14 +197,14 @@ $(document).on('setWaypoints', function() {
             if (direction == 'down') {
                 // console.log('call map_confession 1954');
                 $mapButtons.each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'confession');
                 switchButton(1954);
             } else {
                 // console.log('call map_capacities 1954');
                 $mapButtons.each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
                 switchButton(1954);
@@ -219,14 +219,14 @@ $(document).on('setWaypoints', function() {
             if (direction == 'down') {
                 // console.log('call map_gender 1954');
                 $mapButtons.each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'accepted_gender');
                 switchButton(1954);
             } else {
                 // console.log('call map_confession 1954');
                 $mapButtons.each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession")');
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'confession');
                 switchButton(1954);
@@ -234,7 +234,7 @@ $(document).on('setWaypoints', function() {
         },
         offset: '40%'
     });
-    
+
     $mapButtons.on('click', function(){
         $mapButtons.removeClass('active');
         $mapButtons.blur();
@@ -247,3 +247,84 @@ $(document).on('setWaypoints', function() {
         $('#maps button[data-id=' + year + ']').addClass('active');
     }
 });
+
+function buildSidepanel(id, year) {
+    let filters = {
+        id: [id],
+        survey_year: [year]
+    }
+    let filtered_institution = multiFilter(masterData, filters);
+
+    d3.select('.sidepanel-container')
+        .transition()
+        .duration(300)
+        .style('opacity', 1e-6)
+        .remove();
+
+    let panel = d3.select('.sidepanel')
+        .append('div')
+        .classed('sidepanel-container', true);
+
+    panel.transition()
+        .delay(300)
+        .duration(300)
+        .style('opacity', 1);
+
+    panel.append('h6')
+        .classed('sidepanel-data', true)
+        .text(function(d){
+            if (year != 1940) {
+                return 'Survey of ' + year;
+            } else {
+                return 'Data from the 1940s';
+            }
+        });
+
+    panel.append('h5')
+        .classed('sidepanel-name', true)
+        .text(filtered_institution[0].institution);
+
+    panel.append('p')
+        .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
+
+    panel.append('p')
+        .html('<strong>opened: </strong>' + filtered_institution[0].opened);
+
+    panel.append('p')
+        .html('<strong>closed: </strong>' + filtered_institution[0].closed);
+
+    panel.append('p')
+        .html('<strong>capacity: </strong>' + filtered_institution[0].capacity_group);
+
+    panel.append('p')
+        .html('<strong>accepted gender: </strong>' + filtered_institution[0].accepted_gender);
+
+    panel.append('p')
+        .html('<strong>confession: </strong>' + filtered_institution[0].confession);
+
+    panel.append('p')
+        .html('<strong>typology: </strong>' + filtered_institution[0].typologies);
+
+    $('body').addClass('sidebar-open modal-open');
+    $('.sidepanel').addClass('sidepanel-open');
+}
+
+function closeSidepanel() {
+    d3.select('.sidepanel-container')
+        .transition()
+        .duration(300)
+        .style('opacity', 1e-6)
+        .remove();
+
+    $('body').removeClass('sidebar-open modal-open');
+    $('.sidepanel').removeClass('sidepanel-open');
+}
+
+function multiFilter(array, filters) {
+  const filterKeys = Object.keys(filters);
+  // filters all elements passing the criteria
+  return array.filter((item) => {
+    // dynamically validate all filter criteria
+    return filterKeys.every(key => !!~filters[key].indexOf(item[key]));
+  });
+}
