@@ -138,8 +138,8 @@ function MapTypologies(id, swiss, data) {
         projection6.fitExtent([[horizontalSpacerAlternative, thirdRow],[mapsWidth + horizontalSpacerAlternative, mapsHeight + thirdRow]], cantons);
         projection7.fitExtent([[secondColumnAlternative, thirdRow],[mapsWidth + secondColumnAlternative, mapsHeight + thirdRow]], cantons);
 
-        svg.call(zoom)
-            .call(zoom.transform, initialTransform);
+        // svg.call(zoom)
+            svg.call(zoom.transform, initialTransform);
 
         d3.select('#maps .text-right').on("click", reset);
 
@@ -318,7 +318,8 @@ function MapTypologies(id, swiss, data) {
                     .classed('dot', true)
                     .attr('r', 1e-6)
                     .on("click", function(d) {
-                        console.table(d);
+                        let activeYear = $('#maps .btn-group .active').attr('data-id');
+                        buildSidepanel(d.id, activeYear);
                     })
                     .merge(node);
 
