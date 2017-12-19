@@ -68,6 +68,7 @@ nav.navbar {
 
 .item.active {
     border-left: 1rem solid var(--uek-blue);
+    background-color: #F3F7F8;
 }
 
 .field {

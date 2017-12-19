@@ -363,13 +363,17 @@ d3.json('./data_and_scripts/data/master.json', function(err, data) {
                     swissbbox[3]
                 ]
             ]);
-            
+
             if (location.hash && location.hash != '#no-selection') {
                 console.log('there is something preselected:', location.hash.substring(10));
 
                 let thisSelection = data.filter(function(d) { return d.key == location.hash.substring(10) });
                 thisSelection = thisSelection[0]
                 handleSelection(thisSelection);
+                
+                $('.list-container').animate({
+                    scrollTop: $(`#${location.hash.substring(10)}`).offset().top - 72
+                }, 2000);
 
             }
         })
