@@ -9,17 +9,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/glossary.css">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body>
     <nav class="navbar navbar-light fixed-top bg-lightX" style="">
         <a class="navbar-brand h-100" href="#"><img src="./assets/logo-uek.png" class="d-inline-block align-top h-100" alt=""></a>
         <form class="search-institution form-inline my-2 my-lg-0 w-50">
-            <input id="mySearchList" onkeyup="searchList()" class="form-control mr-sm-2 w-100 text-center" type="search" placeholder="Search here or click on a facility to show further details" aria-label="Search">
+            <input id="mySearchList" onkeyup="searchList()" class="form-control mr-sm-2 w-100 text-center" Xtype="search" placeholder="Search here or click on an institution to show further details" Xaria-label="Search">
             <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
         </form>
         <span class="selected-institution navbar-text">
-			    <span>Selected: </span><span class="selected-name"> ID - Name</span><span class="ml-2" onclick="reset();"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+			    <span>Selected: </span><span class="selected-name"> ID - Name</span><span class="ml-2" onclick="reset(true);"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
         </span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,7 +42,7 @@
     </nav>
     <section class="container-fluid">
         <div class="main row">
-            <div class="list-container col-7 px-0">
+            <div class="list-container col-6 px-0">
                 <!-- <div class="item py-3">
 			    				<div class="id field">
 			    					<div class="label">Id</div>
@@ -73,11 +74,11 @@
 			    				</div>
 			    			</div> -->
             </div>
-            <div class="details-container col-5 px-0">
-                <div class="map sticky-top">
+            <div class="details-container col-6 px-0">
+                <div id="map" class="map sticky-top">
                 </div>
                 <div class="further-info pr-3">
-                		
+
                     <!-- <div class="row section-title">
                         <div class="col-3">
                         </div>
@@ -137,10 +138,11 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <!-- <script src="https://d3js.org/d3-selection-multi.v1.js"></script> -->
     <!-- <script src="https://unpkg.com/d3-sankey@0"></script> -->
-    <!-- <script src="https://d3js.org/topojson.v3.min.js" charset="utf-8"></script> -->
+    <script src="https://d3js.org/topojson.v3.min.js" charset="utf-8"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script> -->
-    <!-- <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> -->
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <!-- <script src="./js/noframework.waypoints.min.js"></script> -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
     <script src="./js/glossary.js"></script>
 </body>
 

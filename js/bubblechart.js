@@ -225,7 +225,10 @@ function Bubblechart(id, data) {
                 })
                 .on("mouseleave", function(d) {
                     svg.selectAll('.label')
-                        .filter(function(e) { return e.id == d.id })
+                        .filter(function(e) {
+                            console.log(e);
+                            console.log(d);
+                            return e.id == d.id })
                         .classed('hidden', true);
                 })
                 .on("click", function(d) {
@@ -394,7 +397,6 @@ function Bubblechart(id, data) {
                 } else {
                     if (i < index) {
                         return width / 6 + 15 + 40 * i;
-
                     } else {
                         return (width - width / 6) - 15 - 40 * (years_list.length - i + 1);
                     }
