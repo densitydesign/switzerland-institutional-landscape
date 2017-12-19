@@ -309,6 +309,55 @@ function buildSidepanel(id, year) {
     $('.sidepanel').addClass('sidepanel-open');
 }
 
+function buildSidepanelList(list, year) {
+    let filters = {
+        id: list,
+        survey_year: [year]
+    }
+    let filtered_institution = multiFilter(masterData, filters);
+
+    d3.select('.sidepanel-container')
+        .transition()
+        .duration(300)
+        .style('opacity', 1e-6)
+        .remove();
+
+    let panel = d3.select('.sidepanel')
+        .append('div')
+        .classed('sidepanel-container', true);
+
+    panel.transition()
+        .delay(300)
+        .duration(300)
+        .style('opacity', 1);
+
+    let institutionList = panel.selectAll('.institution-list')
+        .data(filtered_institution, function(d){
+            return d.id;
+        });
+
+    institutionList.exit()
+        .transition()
+        .duration(300)
+        .style('opacity', 1e-6)
+        .remove();
+
+    institutionList.enter()
+        .append('p')
+        .classed('sidepanel-list-item', true)
+        .style('opacity', 1e-6)
+        .merge(institutionList)
+        .text(function(d){
+            return d.id + ' - ' + d.institution;
+        })
+        .transition()
+        .duration(500)
+        .style('opacity', 1);
+
+    $('body').addClass('sidebar-open modal-open');
+    $('.sidepanel').addClass('sidepanel-open');
+}
+
 function closeSidepanel() {
     d3.select('.sidepanel-container')
         .transition()
