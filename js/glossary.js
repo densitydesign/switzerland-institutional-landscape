@@ -6,93 +6,16 @@ let circularArea = {
     'options': { steps: 32, units: 'kilometers', properties: { foo: 'bar' } }
 };
 
-d3.json('./data_and_scripts/data/master.json', function(err, data) {
-    if (err) throw error;
-    console.log(data);
-
-    data = d3.nest()
-        .key(function(d) { return d.id })
-        .key(function(d) { return d.survey_year })
-        .entries(data);
-
-    console.log(data);
-
-    let item = d3.select('.list-container').selectAll('.item')
-
-
-    item = item.data(data, function(d) { return d.id; });
-
-    item.exit().remove();
-
-    item = item.enter()
-        .append('div')
-        .classed('item py-3', true)
-        .attr('id', function(d) { return d.key; })
-        .html(function(d) {
-
-            function fn(year) {
-                let thisYear = d.values.filter(function(e) {
-                    return e.key == year;
-                })
-                if (thisYear.length > 0)  {
-                    return "";
-                } else {
-                    return "off";
-                }
-            }
-
-            let thisHtml = `
-					<div class="id field">
-    					<div class="label">Id</div>
-    					<div class="value">${d.values[0].values[0].id}</div>
-    				</div>
-    				<div class="canton field">
-    					<div class="label">Canton</div>
-    					<div class="value">${d.values[0].values[0].canton}</div>
-    				</div>
-    				<div class="city field">
-    					<div class="label">City</div>
-    					<div class="value">${d.values[0].values[0].city}</div>
-    				</div>
-    				<div class="institution field">
-    					<div class="label">Landmark name</div>
-    					<div class="value">${d.values[0].values[0].name_landmark}</div>
-    				</div>
-    				<div class="opening field">
-    					<div class="label">Opened in (alternative)</div>
-    					<div class="value">${d.values[0].values[0].opened} (${d.values[0].values[0].opened_alternative})</div>
-    				</div>
-    				<div class="closing field">
-    					<div class="label">Closed in (Alternative)</div>
-    					<div class="value">${d.values[0].values[0].closed} (${d.values[0].values[0].closed_alternative})</div>
-    				</div>
-    				<div class="surveyes field">
-    					<div class="label">Surveyes</div>
-    					<div class="value"><span class="${fn(1933)}">1933</span><span class="${fn(1940)}">1940's</span><span class="${fn(1954)}">1954</span><span class="${fn(1965)}">1965</span><span class="${fn(1980)}">1980</span></div>
-    				</div>
-			`;
-            return thisHtml;
-        })
-        .on('click', function(d) {
-        		handleSelection(d);
-        		location.replace(`#selected-${d.key}`)
-        })
-        .merge(item);
-
-    reset();
-
-})
-
 function handleSelection(d) {
-		// console.log(d)
+    // console.log(d)
     d3.selectAll('.item.active')
-    	.classed('active', false)
+        .classed('active', false)
 
     d3.selectAll('.item')
-   		.filter(function(e){
-    		return e.key == d.key;
-    	})
-    	.classed('active', true);
+        .filter(function(e) {
+            return e.key == d.key;
+        })
+        .classed('active', true);
 
     let selectionName = `${d.key} - name`;
     d3.select('.selected-institution .selected-name')
@@ -299,7 +222,7 @@ function populateSidebar(data) {
     d3.select('.further-info').html(furtherInformations);
 }
 
-function reset() {
+function reset(url) {
     // console.log('reset');
     d3.select('.selected-institution')
         .style('display', 'none')
@@ -328,15 +251,89 @@ function reset() {
             map.setLayoutProperty("circular-area-stroke", 'visibility', 'none');
         }
     }
+
+    if (url) {
+        location.replace('#no-selection');
+        // d3.event.preventDefault();
+    }
 }
 
-$(document).keyup(function(e) {
-    if (e.keyCode == 27) { // escape key maps to keycode `27`
-        reset();
-    }
-});
+d3.json('./data_and_scripts/data/master.json', function(err, data) {
+    if (err) throw error;
+    // console.log(data);
 
-$(document).ready(function() {
+    data = d3.nest()
+        .key(function(d) { return d.id })
+        .key(function(d) { return d.survey_year })
+        .entries(data);
+
+    // console.log(data);
+
+    let item = d3.select('.list-container').selectAll('.item')
+
+
+    item = item.data(data, function(d) { return d.id; });
+
+    item.exit().remove();
+
+    item = item.enter()
+        .append('div')
+        .classed('item py-3', true)
+        .attr('id', function(d) { return d.key; })
+        .html(function(d) {
+
+            function fn(year) {
+                let thisYear = d.values.filter(function(e) {
+                    return e.key == year;
+                })
+                if (thisYear.length > 0)  {
+                    return "";
+                } else {
+                    return "off";
+                }
+            }
+
+            let thisHtml = `
+					<div class="id field">
+    					<div class="label">Id</div>
+    					<div class="value">${d.values[0].values[0].id}</div>
+    				</div>
+    				<div class="canton field">
+    					<div class="label">Canton</div>
+    					<div class="value">${d.values[0].values[0].canton}</div>
+    				</div>
+    				<div class="city field">
+    					<div class="label">City</div>
+    					<div class="value">${d.values[0].values[0].city}</div>
+    				</div>
+    				<div class="institution field">
+    					<div class="label">Landmark name</div>
+    					<div class="value">${d.values[0].values[0].name_landmark}</div>
+    				</div>
+    				<div class="opening field">
+    					<div class="label">Opened in (alternative)</div>
+    					<div class="value">${d.values[0].values[0].opened} (${d.values[0].values[0].opened_alternative})</div>
+    				</div>
+    				<div class="closing field">
+    					<div class="label">Closed in (Alternative)</div>
+    					<div class="value">${d.values[0].values[0].closed} (${d.values[0].values[0].closed_alternative})</div>
+    				</div>
+    				<div class="surveyes field">
+    					<div class="label">Surveyes</div>
+    					<div class="value"><span class="${fn(1933)}">1933</span><span class="${fn(1940)}">1940's</span><span class="${fn(1954)}">1954</span><span class="${fn(1965)}">1965</span><span class="${fn(1980)}">1980</span></div>
+    				</div>
+			`;
+            return thisHtml;
+        })
+        .on('click', function(d) {
+            handleSelection(d);
+            location.replace(`#selected-${encodeURIComponent(d.key)}`);
+            d3.event.preventDefault();
+        })
+        .merge(item);
+
+    reset();
+
     d3.json('./data_and_scripts/data/ch.json', function(err, ch) {
         if (err) throw err;
         // console.log(ch);
@@ -348,21 +345,53 @@ $(document).ready(function() {
             zoom: 1 // starting zoom
         });
 
-        let swiss = topojson.feature(ch, ch.objects.country);
-        swissbbox = topojson.bbox(ch, ch.objects.country);
 
-        map.fitBounds([
-            [
-                swissbbox[0],
-                swissbbox[1]
-            ],
-            [
-                swissbbox[2],
-                swissbbox[3]
-            ]
-        ]);
 
         console.log('read url data');
 
+        map.on('load', function() {
+            let swiss = topojson.feature(ch, ch.objects.country);
+            swissbbox = topojson.bbox(ch, ch.objects.country);
+
+            map.fitBounds([
+                [
+                    swissbbox[0],
+                    swissbbox[1]
+                ],
+                [
+                    swissbbox[2],
+                    swissbbox[3]
+                ]
+            ]);
+            
+            if (location.hash && location.hash != '#no-selection') {
+                console.log('there is something preselected:', location.hash.substring(10));
+
+                let thisSelection = data.filter(function(d) { return d.key == location.hash.substring(10) });
+                thisSelection = thisSelection[0]
+                handleSelection(thisSelection);
+
+            }
+        })
+
+
+
+
+
+
+
     })
+
+})
+
+
+
+$(document).keyup(function(e) {
+    if (e.keyCode == 27) { // escape key maps to keycode `27`
+        reset(true);
+    }
+});
+
+$(document).ready(function() {
+
 });
