@@ -213,11 +213,11 @@
             <div class="row visualisation">
                 <div class="col-8">
                     <div id="sankey" class="sticky-top">
-                        <div class="btn-group" role="group" aria-label="Basic example">
+                        <!-- <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" class="btn btn-secondary" onclick="surveySankeyMode = 'mosaic'; surviesSankey.draw(surveySankeyMode);">Mosaic</button>
                             <button type="button" class="btn btn-secondary" onclick="surveySankeyMode = 'sankey'; surviesSankey.draw(surveySankeyMode);">Sankey</button>
                         </div>
-                        <div class="clearfix"></div>
+                        <div class="clearfix"></div> -->
                         <svg>
                             <!-- to be filled with D3 -->
                         </svg>
@@ -237,7 +237,7 @@
                 <div class="col-4">
                     <p>The information on which the charts are based was gathered from five directories containing lists of the facilities and institutions that were used for correctional purposes and the execution of administrative detention orders. Those directories were compiles at different times and by different authors. They vary widely in the perspectives from which they were prepared, and thus also in their usefulness as sources. Three of the directories contain all of the data we needed for preparing the charts (1954, 1965, 1980). For the other two, it was necessary for us to consult additional sources as well, in order to gather the complete information. Poorhouses are mentioned only in the source from 1930. This also illustrates one of the weaknesses of these sources, since this type of institution played a decisive role in dealing with poverty among the elderly and for the internment of persons of advanced age.</p>
                     <p>Common to all of the directories is that they cover the whole of Switzerland. In addition, at the time when they were compiled, they all served as guides (reference works) and are comparable in the amount of detail they include.</p>
-                    <p>Using the information contained in these four directories, we have prepared a complete directory of all of the detention facilities ever mentioned. A total of 650 institutions are named in the directories, though not all of them necessarily appear in each individual survey (directory). The 1933 source is the most representative, as we find there all of the categories of facilities (poorhouses, juvenile correction facilities, labour colonies, prisons, correctional labour facilities, institutions for persons with special needs, psychiatric facilities, alcoholic asylums) that are of interest to us in connection with the use of administrative detention. The category of “poorhouses” was left out in the other sources; the focus of those sources is more on correctional labour and prison facilities. In addition, some of the facilities were closed over the years, while new ones were opened.</p>
+                    <p id="sankey-text">Using the information contained in these four directories, we have prepared a complete directory of all of the detention facilities ever mentioned. A total of 650 institutions are named in the directories, though not all of them necessarily appear in each individual survey (directory). The 1933 source is the most representative, as we find there all of the categories of facilities (poorhouses, juvenile correction facilities, labour colonies, prisons, correctional labour facilities, institutions for persons with special needs, psychiatric facilities, alcoholic asylums) that are of interest to us in connection with the use of administrative detention. The category of “poorhouses” was left out in the other sources; the focus of those sources is more on correctional labour and prison facilities. In addition, some of the facilities were closed over the years, while new ones were opened.</p>
                 </div>
             </div>
         </section>
@@ -334,11 +334,11 @@
                                 <span>Selected Year</span>
                             </div>
                             <div class="col-12 btn-container">
-                                <span class="btn-year" onclick="map_all_institutions.draw(1933);closeSidepanel()" data-id="1933">1933</span>
-                                <span class="btn-year" onclick="map_all_institutions.draw(1940);closeSidepanel()" data-id="1940">1940's</span>
-                                <span class="btn-year" onclick="map_all_institutions.draw(1954);closeSidepanel()" data-id="1954">1954</span>
-                                <span class="btn-year" onclick="map_all_institutions.draw(1965);closeSidepanel()" data-id="1965">1965</span>
-                                <span class="btn-year" onclick="map_all_institutions.draw(1980);closeSidepanel()" data-id="1980">1980</span>
+                                <span class="btn-year btn-maps-year" onclick="map_all_institutions.draw(1933);closeSidepanel()" data-id="1933">1933</span>
+                                <span class="btn-year btn-maps-year" onclick="map_all_institutions.draw(1940);closeSidepanel()" data-id="1940">1940's</span>
+                                <span class="btn-year btn-maps-year" onclick="map_all_institutions.draw(1954);closeSidepanel()" data-id="1954">1954</span>
+                                <span class="btn-year btn-maps-year" onclick="map_all_institutions.draw(1965);closeSidepanel()" data-id="1965">1965</span>
+                                <span class="btn-year btn-maps-year" onclick="map_all_institutions.draw(1980);closeSidepanel()" data-id="1980">1980</span>
                             </div>
                             <div id="maps-visualization" class="col-12">
                                 <!-- to be filled with d3 -->
@@ -391,8 +391,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-6 text-right">
-                            <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons">
+                        <div class="col-6 matrix-buttons">
+                            <!-- <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons">
                                 <label type="button" class="btn btn-secondary active" onclick="matrix.draw(1954)" data-id="1954">
                                     <input type="radio" name="options" autocomplete="off" checked> 1954
                                 </label>
@@ -402,6 +402,14 @@
                                 <label type="button" class="btn btn-secondary" onclick="matrix.draw(1980)" data-id="1980">
                                     <input type="radio" name="options" autocomplete="off"> 1980
                                 </label>
+                            </div> -->
+                            <div class="col-12 text-center year-title">
+                                <span>Selected Year</span>
+                            </div>
+                            <div class="col-12 btn-container">
+                                <span class="btn-year btn-matrix-year" onclick="matrix.draw(1954);closeSidepanel()" data-id="1954">1954</span>
+                                <span class="btn-year btn-matrix-year" onclick="matrix.draw(1965);closeSidepanel()" data-id="1965">1965</span>
+                                <span class="btn-year btn-matrix-year" onclick="matrix.draw(1980);closeSidepanel()" data-id="1980">1980</span>
                             </div>
                         </div>
                         <div id="matrix-visualization" class="col-12">

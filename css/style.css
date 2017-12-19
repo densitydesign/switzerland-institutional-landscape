@@ -471,14 +471,19 @@ p.caption:first-child {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 .select-container {
-    margin: 10px 10px 10px 0;
+    margin: 0;
 }
 
 .select-container select {
     cursor: pointer;
+    margin-left: 10px;
+    padding-right: 34px;
 }
 
 #matrix text {

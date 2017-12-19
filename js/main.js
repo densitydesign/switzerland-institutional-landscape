@@ -6,7 +6,9 @@ let timeline,
     bubblechart,
     typologiesGraph;
 
-let containerWidth,
+let years = [1933, 1940, 1954, 1965, 1980],
+    containerMapsWidth,
+    containerMatrixWidth,
     buttonWidth,
     map_all_institutions,
     map_typologies,
@@ -92,16 +94,24 @@ $(document).ready(function() {
         });
 
 
+    // change matrix selects when changing years, setup matrix buttons
+    let $matrixButtons = $('#matrix .btn-matrix-year'),
+        $matrixSelects = $('#matrix .select-container');
+    
+    containerMatrixWidth = $('.matrix-buttons').width();
+    buttonWidth = $('.btn-matrix-year').width();
+    
+    //set up initial active matrix button
+    changeButton(1954, containerMatrixWidth, '.btn-matrix-year');
 
-    // change matrix selects when changing years
-    let $matrixSelects = $('#matrix .select-container');
-
-    $('#matrix label.btn-secondary').on('click', function() {
+    $matrixButtons.on('click', function() {
         let newYear = $(this).attr('data-id');
 
         $matrixSelects.each(function() {
             $(this).children('select').attr('onchange', 'matrix.draw(' + newYear + ')');
-        })
+        });
+        
+        changeButton(newYear, containerMatrixWidth, '.btn-matrix-year');
     })
 
     // Add listener for window resize event, which triggers actions such as the resize of visualizations.
@@ -144,17 +154,30 @@ $(document).ready(function() {
 
 $(document).on('setWaypoints', function() {
     //calculate container and button width
-    containerWidth = $('.btn-container').width();
-    buttonWidth = $('.btn-year[data-id=1940]').width();
+    containerMapsWidth = $('.btn-container').width();
+    buttonWidth = $('.btn-maps-year[data-id=1940]').width();
 
     // save the selection to a variable to improve performance
-    let $mapButtons = $('#maps .btn-year'),
-        years = [1933, 1940, 1954, 1965, 1980];
+    let $mapButtons = $('#maps .btn-maps-year');
 
-    //set up initial active button
-    changeButton(1954);
+    //set up initial active map button
+    changeButton(1954, containerMapsWidth, '.btn-maps-year');
 
     // initiate waypoints
+    // waypoint for sankey/mosaic. call function sankey if going down, mosaic if going up
+    let sankey_waypoint = new Waypoint({
+        element: document.getElementById('sankey-text'),
+        handler: function(direction) {
+            if (direction == 'down') {
+                surveySankeyMode = 'sankey';
+                surviesSankey.draw(surveySankeyMode);
+            } else {
+                surveySankeyMode = 'mosaic';
+                surviesSankey.draw(surveySankeyMode);
+            }
+        },
+        offset: '40%'
+    });
     // waypoint for typology map. call function to draw the typologies if going down, to draw total map if going up
     let typologies_waypoint = new Waypoint({
         element: document.getElementById('map-typology-text'),
@@ -165,14 +188,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1954);
-                changeButton(1954);
+                changeButton(1954, containerMapsWidth, '.btn-maps-year');
             } else {
                 // console.log('call map_all_institutions 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_all_institutions.draw(1954);
-                changeButton(1954);
+                changeButton(1954, containerMapsWidth, '.btn-maps-year');
             }
         },
         offset: '40%'
@@ -187,14 +210,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
-                changeButton(1954);
+                changeButton(1954, containerMapsWidth, '.btn-maps-year');
             } else {
                 // console.log('call map_typologies 1954');
                 $mapButtons.each(function(i) {;
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1954);
-                changeButton(1954);
+                changeButton(1954, containerMapsWidth, '.btn-maps-year');
             }
         },
         offset: '40%'
@@ -209,14 +232,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'confession');
-                changeButton(1954);
+                changeButton(1954, containerMapsWidth, '.btn-maps-year');
             } else {
                 // console.log('call map_capacities 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
-                changeButton(1954);
+                changeButton(1954, containerMapsWidth, '.btn-maps-year');
             }
         },
         offset: '40%'
@@ -231,14 +254,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'accepted_gender');
-                changeButton(1954);
+                changeButton(1954, containerMapsWidth, '.btn-maps-year');
             } else {
                 // console.log('call map_confession 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'confession');
-                changeButton(1954);
+                changeButton(1954, containerMapsWidth, '.btn-maps-year');
             }
         },
         offset: '40%'
@@ -246,24 +269,25 @@ $(document).on('setWaypoints', function() {
 
     $mapButtons.on('click', function(){
         let newYear = $(this).attr('data-id');
-        changeButton(newYear);
+        changeButton(newYear, containerMapsWidth, '.btn-maps-year');
     })
 
-    function changeButton(year) {
-        $('.btn-year').removeClass('active-year');
-        $('.btn-year[data-id='+ year +']').addClass('active-year');
-        let indexButton = $('.btn-year').index($('.btn-year.active-year'));
-        $('.btn-year').each(function(i){
-            if (i == indexButton) {
-                $(this).css('left', containerWidth / 2);
-            } else if (i < indexButton) {
-                $(this).css('left', 15 + (15 + buttonWidth) * i + containerWidth / 7);
-            } else {
-                $(this).css('left', containerWidth - 15 - (15 + buttonWidth) * (years.length - i - 1) - containerWidth / 7);
-            }
-        })
-    }
 });
+
+function changeButton(year, width, buttons) {
+    $(buttons).removeClass('active-year');
+    $(buttons + '[data-id='+ year +']').addClass('active-year');
+    let indexButton = $(buttons).index($(buttons + '.active-year'));
+    $(buttons).each(function(i){
+        if (i == indexButton) {
+            $(this).css('left', width / 2);
+        } else if (i < indexButton) {
+            $(this).css('left', 15 + (15 + buttonWidth) * i + width / 7);
+        } else {
+            $(this).css('left', width - 15 - (15 + buttonWidth) * ($(buttons).length - i - 1) - width / 7);
+        }
+    })
+}
 
 function buildSidepanel(id, year) {
     let filters = {
