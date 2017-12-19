@@ -6,7 +6,9 @@ let timeline,
     bubblechart,
     typologiesGraph;
 
-let map_all_institutions,
+let containerWidth,
+    buttonWidth,
+    map_all_institutions,
     map_typologies,
     matrix;
 
@@ -141,9 +143,16 @@ $(document).ready(function() {
 });
 
 $(document).on('setWaypoints', function() {
+    //calculate container and button width
+    containerWidth = $('.btn-container').width();
+    buttonWidth = $('.btn-year[data-id=1940]').width();
+
     // save the selection to a variable to improve performance
-    let $mapButtons = $('#maps button'),
+    let $mapButtons = $('#maps .btn-year'),
         years = [1933, 1940, 1954, 1965, 1980];
+
+    //set up initial active button
+    changeButton(1954);
 
     // initiate waypoints
     // waypoint for typology map. call function to draw the typologies if going down, to draw total map if going up
@@ -156,14 +165,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1954);
-                switchButton(1954);
+                changeButton(1954);
             } else {
                 // console.log('call map_all_institutions 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_all_institutions.draw(1954);
-                switchButton(1954);
+                changeButton(1954);
             }
         },
         offset: '40%'
@@ -178,14 +187,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
-                switchButton(1954);
+                changeButton(1954);
             } else {
                 // console.log('call map_typologies 1954');
                 $mapButtons.each(function(i) {;
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1954);
-                switchButton(1954);
+                changeButton(1954);
             }
         },
         offset: '40%'
@@ -200,14 +209,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'confession');
-                switchButton(1954);
+                changeButton(1954);
             } else {
                 // console.log('call map_capacities 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
-                switchButton(1954);
+                changeButton(1954);
             }
         },
         offset: '40%'
@@ -222,29 +231,37 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'accepted_gender');
-                switchButton(1954);
+                changeButton(1954);
             } else {
                 // console.log('call map_confession 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'confession');
-                switchButton(1954);
+                changeButton(1954);
             }
         },
         offset: '40%'
     });
 
     $mapButtons.on('click', function(){
-        $mapButtons.removeClass('active');
-        $mapButtons.blur();
-        $(this).addClass('active');
+        let newYear = $(this).attr('data-id');
+        changeButton(newYear);
     })
 
-    function switchButton(year) {
-        $mapButtons.removeClass('active');
-        $mapButtons.blur();
-        $('#maps button[data-id=' + year + ']').addClass('active');
+    function changeButton(year) {
+        $('.btn-year').removeClass('active-year');
+        $('.btn-year[data-id='+ year +']').addClass('active-year');
+        let indexButton = $('.btn-year').index($('.btn-year.active-year'));
+        $('.btn-year').each(function(i){
+            if (i == indexButton) {
+                $(this).css('left', containerWidth / 2);
+            } else if (i < indexButton) {
+                $(this).css('left', 15 + (15 + buttonWidth) * i + containerWidth / 7);
+            } else {
+                $(this).css('left', containerWidth - 15 - (15 + buttonWidth) * (years.length - i - 1) - containerWidth / 7);
+            }
+        })
     }
 });
 

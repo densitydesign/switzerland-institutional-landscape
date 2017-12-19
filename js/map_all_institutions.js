@@ -172,7 +172,7 @@ function MapAll(id, swiss, data) {
                 .attr('r', 1e-6)
                 .style('stroke', '#333333')
                 .on("click", function(d) {
-                    let activeYear = $('#maps .btn-group .active').attr('data-id');
+                    let activeYear = $('#maps .active-year').attr('data-id');
                     buildSidepanel(d.id, activeYear);
                 })
                 .merge(node);
@@ -259,7 +259,7 @@ function MapAll(id, swiss, data) {
                 .classed('dot', true)
                 .attr('r', 1e-6)
                 .on("click", function(d) {
-                    let activeYear = $('#maps .btn-group .active').attr('data-id');
+                    let activeYear = $('#maps .active-year').attr('data-id');
                     buildSidepanel(d.id, activeYear);
                 })
                 .merge(node);

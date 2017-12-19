@@ -368,8 +368,40 @@ p.caption:first-child {
     height: 84vh;
 }
 
-
-
+.btn-container {
+    position: relative;
+    height: 22px;
+    margin-bottom: 34px;
+}
+.year-title {
+    font-size: .75rem;
+}
+.btn-year {
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    font-size: .75rem;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.btn-year::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    left: 0;
+    border-bottom: 1px solid #000000;
+    bottom: 3px;
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+}
+.active-year {
+    font-size: .85rem;
+    font-weight: bold;
+}
+.active-year::after {
+    opacity: 0;
+}
 
 
 

@@ -178,7 +178,7 @@
                         </li>
                         <li>
                             <p>
-                                Level 2, Legislation: This level shows the federal and cantonal laws that were of relevance to administrative detention measures. It makes clear the extent to which the use of administrative detention was influenced by cantonal structures. At the same time, a study of the wording of the laws reveals that the term “administrative detention” was only rarely employed; very often character descriptions are used for purposes of categorisation (e.g., indolent, dissolute, drunkard). This made it possible to take such social “abnormalities” and morally tinged categorisations as a basis for ordering administrative detention. 
+                                Level 2, Legislation: This level shows the federal and cantonal laws that were of relevance to administrative detention measures. It makes clear the extent to which the use of administrative detention was influenced by cantonal structures. At the same time, a study of the wording of the laws reveals that the term “administrative detention” was only rarely employed; very often character descriptions are used for purposes of categorisation (e.g., indolent, dissolute, drunkard). This made it possible to take such social “abnormalities” and morally tinged categorisations as a basis for ordering administrative detention.
                             </p>
                         </li>
                         <li>
@@ -330,14 +330,15 @@
                 <div class="visualization-map col-8">
                     <div id="maps" class="visualization">
                         <div class="row">
-                            <div class="col-12 text-right">
-                                <div class="btn-group" role="group" aria-label="Year filter">
-                                    <button type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1933);closeSidepanel()" data-id="1933">1933</button>
-                                    <button type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1940);closeSidepanel()" data-id="1940">1940</button>
-                                    <button type="button" class="btn btn-secondary active" onclick="map_all_institutions.draw(1954);closeSidepanel()" data-id="1954">1954</button>
-                                    <button type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1965);closeSidepanel()" data-id="1965">1965</button>
-                                    <button type="button" class="btn btn-secondary" onclick="map_all_institutions.draw(1980);closeSidepanel()" data-id="1980">1980</button>
-                                </div>
+                            <div class="col-12 text-center year-title">
+                                <span>Selected Year</span>
+                            </div>
+                            <div class="col-12 btn-container">
+                                <span class="btn-year" onclick="map_all_institutions.draw(1933);closeSidepanel()" data-id="1933">1933</span>
+                                <span class="btn-year" onclick="map_all_institutions.draw(1940);closeSidepanel()" data-id="1940">1940's</span>
+                                <span class="btn-year" onclick="map_all_institutions.draw(1954);closeSidepanel()" data-id="1954">1954</span>
+                                <span class="btn-year" onclick="map_all_institutions.draw(1965);closeSidepanel()" data-id="1965">1965</span>
+                                <span class="btn-year" onclick="map_all_institutions.draw(1980);closeSidepanel()" data-id="1980">1980</span>
                             </div>
                             <div id="maps-visualization" class="col-12">
                                 <!-- to be filled with d3 -->
