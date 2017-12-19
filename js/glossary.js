@@ -2,7 +2,7 @@ let map, swissbbox;
 
 let circularArea = {
     'center': [5.9814056, 46.7912769],
-    'radius': 3,
+    'radius': .5,
     'options': { steps: 32, units: 'kilometers', properties: { foo: 'bar' } }
 };
 
@@ -74,64 +74,91 @@ d3.json('./data_and_scripts/data/master.json', function(err, data) {
             return thisHtml;
         })
         .on('click', function(d) {
-            d3.selectAll('.item.active').classed('active', false);
-            d3.select(this).classed('active', true);
-
-            let selectionName = `${d.key} - name`;
-            d3.select('.selected-institution .selected-name')
-                .html(selectionName);
-
-            d3.select('.selected-institution')
-                .style('display', 'block');
-
-            d3.select('.search-institution')
-                .style('display', 'none');
-
-            populateSidebar(d);
-            console.log(d)
-            console.log(d.values[0].values[0].longitude, d.values[0].values[0].latitude);
-
-            map.flyTo({
-                center: [d.values[0].values[0].longitude,
-                    d.values[0].values[0].latitude
-                ],
-                zoom: 12,
-            });
-
-            console.log(map.getLayer('circular-area'))
-            circularArea = {
-                'center': [d.values[0].values[0].longitude, d.values[0].values[0].latitude],
-                'radius': 5,
-                'options': { steps: 32, units: 'kilometers', properties: { foo: 'bar' } }
-            };
-
-            if (map.getLayer('circular-area')) {
-                map.getLayer('circular-area').setData(turf.circle(circularArea.center, circularArea.radius, circularArea.options))
-            } else {
-            		map.addSource("circular-area-source", turf.circle(circularArea.center, circularArea.radius, circularArea.options));
-                map.addLayer({
-                    'id': 'circular-area',
-                    'type': 'fill',
-                    'source': "circular-area-source",
-                    'layout': {},
-                    'paint': {
-                        'fill-color': '#088',
-                        'fill-opacity': 0.8
-                    }
-                });
-            }
-            // map.getLayer('circular-area').setData()
-
-
-
-
-
+        		handleSelection(d);
+        		location.replace(`#selected-${d.key}`)
         })
         .merge(item);
 
     reset();
 
 })
+
+function handleSelection(d) {
+		// console.log(d)
+    d3.selectAll('.item.active')
+    	.classed('active', false)
+
+    d3.selectAll('.item')
+   		.filter(function(e){
+    		return e.key == d.key;
+    	})
+    	.classed('active', true);
+
+    let selectionName = `${d.key} - name`;
+    d3.select('.selected-institution .selected-name')
+        .html(selectionName);
+
+    d3.select('.selected-institution')
+        .style('display', 'block');
+
+    d3.select('.search-institution')
+        .style('display', 'none');
+
+    populateSidebar(d);
+
+    map.flyTo({
+        center: [d.values[0].values[0].longitude,
+            d.values[0].values[0].latitude
+        ],
+        zoom: 11,
+    });
+
+    circularArea = {
+        'center': [d.values[0].values[0].longitude, d.values[0].values[0].latitude],
+        'radius': 5,
+        'options': { steps: 16, units: 'kilometers', properties: { foo: 'bar' } }
+    };
+
+    if (!map.getSource("circular-area")) {
+
+        map.addSource("circular-area", {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": [turf.circle(circularArea.center, circularArea.radius, circularArea.options)]
+            }
+        });
+
+        map.addLayer({
+            'id': 'circular-area',
+            'type': 'fill',
+            'source': "circular-area",
+            'layout': {},
+            'paint': {
+                'fill-color': '#B0C5CE',
+                'fill-opacity': 0.2
+            }
+        });
+        map.addLayer({
+            'id': 'circular-area-stroke',
+            'type': 'line',
+            'source': "circular-area",
+            'layout': {},
+            'paint': {
+                'line-color': '#B0C5CE',
+                'line-width': 2
+            }
+        });
+    } else {
+        let newDataSource = {
+            "type": "FeatureCollection",
+            "features": [turf.circle(circularArea.center, circularArea.radius, circularArea.options)]
+        }
+        map.getSource("circular-area").setData(newDataSource)
+    }
+    map.setLayoutProperty("circular-area", 'visibility', 'visible');
+    map.setLayoutProperty("circular-area-stroke", 'visibility', 'visible');
+}
 
 function searchList(value) {
     // Declare variables
@@ -296,6 +323,10 @@ function reset() {
                 swissbbox[3]
             ]
         ]);
+        if (map.getLayer("circular-area")) {
+            map.setLayoutProperty("circular-area", 'visibility', 'none');
+            map.setLayoutProperty("circular-area-stroke", 'visibility', 'none');
+        }
     }
 }
 
@@ -304,46 +335,6 @@ $(document).keyup(function(e) {
         reset();
     }
 });
-
-var createGeoJSONCircle = function(center, radiusInKm, points) {
-    if (!points) points = 64;
-
-    var coords = {
-        latitude: center[1],
-        longitude: center[0]
-    };
-
-    var km = radiusInKm;
-
-    var ret = [];
-    var distanceX = km / (111.320 * Math.cos(coords.latitude * Math.PI / 180));
-    var distanceY = km / 110.574;
-
-    var theta, x, y;
-    for (var i = 0; i < points; i++) {
-        theta = (i / points) * (2 * Math.PI);
-        x = distanceX * Math.cos(theta);
-        y = distanceY * Math.sin(theta);
-
-        ret.push([coords.longitude + x, coords.latitude + y]);
-    }
-    ret.push(ret[0]);
-
-    return {
-        "type": "geojson",
-        "data": {
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "geometry": {
-                    "type": "Polygon",
-                    "coordinates": [ret]
-                }
-            }]
-        }
-    };
-};
-
 
 $(document).ready(function() {
     d3.json('./data_and_scripts/data/ch.json', function(err, ch) {
@@ -360,13 +351,6 @@ $(document).ready(function() {
         let swiss = topojson.feature(ch, ch.objects.country);
         swissbbox = topojson.bbox(ch, ch.objects.country);
 
-        console.log(swiss)
-
-        // let chbbox = turf.bboxPolygon(swiss);
-
-
-        // console.log(chbbox)
-
         map.fitBounds([
             [
                 swissbbox[0],
@@ -378,30 +362,7 @@ $(document).ready(function() {
             ]
         ]);
 
-        map.on('load', function() {
-
-            // var circle = turf.circle(circularArea.center, circularArea.radius, circularArea.options);
-
-            // console.log(circle)
-
-            // map.addLayer({
-            //     'id': 'circular-area',
-            //     'type': 'fill',
-            //     'source': {
-            //         'type': 'geojson',
-            //         'data': turf.circle(circularArea.center, circularArea.radius, circularArea.options)
-            //     },
-            //     'layout': {},
-            //     'paint': {
-            //         'fill-color': '#088',
-            //         'fill-opacity': 0.8
-            //     }
-            // });
-
-
-
-        });
-
+        console.log('read url data');
 
     })
 });

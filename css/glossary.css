@@ -122,7 +122,7 @@ nav.navbar {
 .map {
     width: 100%;
     /*background-color: LEMONCHIFFON;*/
-    height: 35vh;
+    height: 40vh;
     border-bottom: 1px solid var(--uek-blue);
 }
 
