@@ -2,8 +2,8 @@ let map, swissbbox;
 
 let circularArea = {
     'center': [5.9814056, 46.7912769],
-    'radius': .5,
-    'options': { steps: 32, units: 'kilometers', properties: { foo: 'bar' } }
+    'radius': 5,
+    'options': { steps: 64, units: 'kilometers', properties: { foo: 'bar' } }
 };
 
 function handleSelection(d) {
@@ -36,11 +36,7 @@ function handleSelection(d) {
         zoom: 11,
     });
 
-    circularArea = {
-        'center': [d.values[0].values[0].longitude, d.values[0].values[0].latitude],
-        'radius': 5,
-        'options': { steps: 16, units: 'kilometers', properties: { foo: 'bar' } }
-    };
+    circularArea.center = [d.values[0].values[0].longitude, d.values[0].values[0].latitude]
 
     if (!map.getSource("circular-area")) {
 
@@ -258,7 +254,7 @@ function reset(url) {
     }
 }
 
-d3.json('./data_and_scripts/data/master.json', function(err, data) {
+d3.json('./../data_and_scripts/data/master.json', function(err, data) {
     if (err) throw error;
     // console.log(data);
 
@@ -292,6 +288,14 @@ d3.json('./data_and_scripts/data/master.json', function(err, data) {
                     return "off";
                 }
             }
+            if (d.values[0].values[0].opened_alternative) {
+            		d.values[0].values[0].opened_alternative = '('+d.values[0].values[0].opened_alternative+')'
+            }
+
+            if (d.values[0].values[0].closed_alternative) {
+            		d.values[0].values[0].closed_alternative = '('+d.values[0].values[0].closed_alternative+')'
+            }
+            
 
             let thisHtml = `
 					<div class="id field">
@@ -312,11 +316,11 @@ d3.json('./data_and_scripts/data/master.json', function(err, data) {
     				</div>
     				<div class="opening field">
     					<div class="label">Opened in (alternative)</div>
-    					<div class="value">${d.values[0].values[0].opened} (${d.values[0].values[0].opened_alternative})</div>
+    					<div class="value">${d.values[0].values[0].opened} ${d.values[0].values[0].opened_alternative}</div>
     				</div>
     				<div class="closing field">
     					<div class="label">Closed in (Alternative)</div>
-    					<div class="value">${d.values[0].values[0].closed} (${d.values[0].values[0].closed_alternative})</div>
+    					<div class="value">${d.values[0].values[0].closed} ${d.values[0].values[0].closed_alternative}</div>
     				</div>
     				<div class="surveyes field">
     					<div class="label">Surveyes</div>
@@ -334,7 +338,7 @@ d3.json('./data_and_scripts/data/master.json', function(err, data) {
 
     reset();
 
-    d3.json('./data_and_scripts/data/ch.json', function(err, ch) {
+    d3.json('./../data_and_scripts/data/ch.json', function(err, ch) {
         if (err) throw err;
         // console.log(ch);
         mapboxgl.accessToken = 'pk.eyJ1IjoiaW9zb25vc2VtcHJlaW8iLCJhIjoiOHpYSnpLQSJ9.2ZxP5dSbQhs-dH0PhXER9A';
@@ -370,19 +374,13 @@ d3.json('./data_and_scripts/data/master.json', function(err, data) {
                 let thisSelection = data.filter(function(d) { return d.key == location.hash.substring(10) });
                 thisSelection = thisSelection[0]
                 handleSelection(thisSelection);
-                
+
                 $('.list-container').animate({
                     scrollTop: $(`#${location.hash.substring(10)}`).offset().top - 72
                 }, 2000);
 
             }
         })
-
-
-
-
-
-
 
     })
 
