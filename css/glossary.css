@@ -17,11 +17,16 @@ body {
 nav.navbar {
     background-color: var(--uek-light-blue);
     border-bottom: 1px solid var(--uek-blue);
-    height: 72px;
+    /*height: 72px;*/
+}
+
+.navbar-brand {
+    height: 53px;
 }
 
 .search-institution {
     display: flex;
+    flex-grow: 10;
 }
 
 .selected-institution {
@@ -120,7 +125,7 @@ nav.navbar {
 	color: var(--uek-dark-blue); 
 }
 
-.map {
+.map > div {
     width: 100%;
     /*background-color: LEMONCHIFFON;*/
     height: 40vh;
