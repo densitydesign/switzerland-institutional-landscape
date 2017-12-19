@@ -1,19 +1,242 @@
-console.log('glossary');
+d3.json('./data_and_scripts/data/master.json', function(err, data) {
+    if (err) throw error;
+    console.log(data);
 
-d3.json('./data_and_scripts/data/master.json', function(err, data){
-	// if err throw error;
-	console.log(data);
+    data = d3.nest()
+        .key(function(d) { return d.id })
+        .key(function(d) { return d.survey_year })
+        .entries(data);
 
-	let item = d3.select('.list-container').selectAll('.item')
+    console.log(data);
+
+    let item = d3.select('.list-container').selectAll('.item')
 
 
-	item = item.data(data);
+    item = item.data(data, function(d) { return d.id; });
 
-	item.exit().remove();
+    item.exit().remove();
 
-	item = item.enter().append('div').classed('item', true);
+    item = item.enter()
+        .append('div')
+        .classed('item py-3', true)
+        .attr('id', function(d) { return d.key; })
+        .html(function(d) {
 
-	item.append('div').html(function(d){ return d.id });
+            function fn(year) {
+                let thisYear = d.values.filter(function(e) {
+                    return e.key == year;
+                })
+                if (thisYear.length > 0)  {
+                    return "";
+                } else {
+                	return "off";
+                }
+            }
+
+            let thisHtml = `
+					<div class="id field">
+    					<div class="label">Id</div>
+    					<div class="value">${d.values[0].values[0].id}</div>
+    				</div>
+    				<div class="canton field">
+    					<div class="label">Canton</div>
+    					<div class="value">${d.values[0].values[0].canton}</div>
+    				</div>
+    				<div class="city field">
+    					<div class="label">City</div>
+    					<div class="value">${d.values[0].values[0].city}</div>
+    				</div>
+    				<div class="institution field">
+    					<div class="label">Landmark name</div>
+    					<div class="value">${d.values[0].values[0].name_landmark}</div>
+    				</div>
+    				<div class="opening field">
+    					<div class="label">Opened in (alternative)</div>
+    					<div class="value">${d.values[0].values[0].opened} (${d.values[0].values[0].opened_alternative})</div>
+    				</div>
+    				<div class="closing field">
+    					<div class="label">Closed in (Alternative)</div>
+    					<div class="value">${d.values[0].values[0].closed} (${d.values[0].values[0].closed_alternative})</div>
+    				</div>
+    				<div class="surveyes field">
+    					<div class="label">Surveyes</div>
+    					<div class="value"><span class="${fn(1933)}">1933</span><span class="${fn(1940)}">1940's</span><span class="${fn(1954)}">1954</span><span class="${fn(1965)}">1965</span><span class="${fn(1980)}">1980</span></div>
+    				</div>
+			`;
+            return thisHtml;
+        })
+        .on('click', function(d) {
+            d3.selectAll('.item.active').classed('active', false);
+            d3.select(this).classed('active', true);
+
+            let selectionName = `${d.key} - name`;
+            d3.select('.selected-institution .selected-name')
+                .html(selectionName);
+
+            d3.select('.selected-institution')
+                .style('display', 'block');
+
+            d3.select('.search-institution')
+                .style('display', 'none');
+
+            populateSidebar(d);
+
+        })
+        .merge(item);
+
+        reset();
 
 })
 
+function searchList(value) {
+    // Declare variables
+    var input, filter, ul, li, a, i;
+
+    input = document.getElementById('mySearchList');
+    filter = input.value.toUpperCase();
+
+    ul = document.getElementsByClassName("list-container");
+    // console.log(ul)
+    li = ul[0].getElementsByClassName('item');
+    // console.log(li)
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+
+        li[i].style.display = "none";
+
+        value = li[i].getElementsByClassName("id")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        }
+
+        value = li[i].getElementsByClassName("canton")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        }
+
+        value = li[i].getElementsByClassName("city")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        }
+
+        value = li[i].getElementsByClassName("institution")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        }
+
+        value = li[i].getElementsByClassName("opening")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        }
+
+        value = li[i].getElementsByClassName("closing")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        }
+
+    }
+}
+
+function populateSidebar(data) {
+    // console.log(data);
+
+    function getValue(year,field) {
+    	// console.log(year, field, data)
+    	// console.log(data.values)
+    	let filtered = data.values.filter(function(e){
+    		return e.key == year;
+    	})
+    	let value = '–'
+    	if (filtered.length > 0){
+    		// console.log(filtered[0].values[0]);
+    		value = filtered[0].values[0][field];
+    	}
+    	return value;
+    }
+
+    
+    let furtherInformations = ``;
+
+    //Institution name
+		thisTitle = 'Institution name';
+		thisField = 'institution';
+    furtherInformations += `
+				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+        <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
+
+    //Typologies
+		thisTitle = 'Typologies';
+    thisField = 'typologies';
+    furtherInformations += `
+				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+        <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
+
+    //Confession
+		thisTitle = 'Confession';
+    thisField = 'confession';
+    furtherInformations += `
+				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+        <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
+
+    //Accepted gender
+		thisTitle = 'Accepted gender';
+    thisField = 'accepted_gender';
+    furtherInformations += `
+				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+        <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
+
+    //Funding agencies
+		thisTitle = 'Funding agencies';
+    thisField = 'funding_agency';
+    furtherInformations += `
+				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+        <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
+
+    //Committing agencies
+		thisTitle = 'Committing agencies';
+    thisField = 'committing_agencies';
+    furtherInformations += `
+				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+        <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
+
+    d3.select('.further-info').html(furtherInformations);
+}
+
+function reset() {
+    console.log('reset');
+    d3.select('.selected-institution')
+        .style('display', 'none')
+
+    d3.select('.search-institution')
+        .style('display', 'flex')
+
+    searchList('');
+
+    d3.selectAll('.item.active').classed('active', false);
+    d3.select('.further-info').html('<p class="how-to text-center mt-5">Click on a facility in the list<br/>to show further details.</p>');
+}

@@ -1,7 +1,7 @@
 :root {
     --uek-blue: #B0C5CE;
     --uek-middle-light-blue: #E7EDEF;
-    --uek-light-blue-bg: #FCFDFD;
+    --uek-light-blue: #FCFDFD;
     --uek-dark-blue: #799BAA;
 }
 
@@ -15,22 +15,55 @@ body {
 }
 
 nav.navbar {
-    background-color: var(--uek-light-blue-bg);
+    background-color: var(--uek-light-blue);
     border-bottom: 1px solid var(--uek-blue);
     height: 72px;
 }
 
+.search-institution {
+    display: flex;
+}
+
+.selected-institution {
+    display: none;
+}
+
+.selected-institution span {
+    color: var(--uek-dark-blue);
+}
+
+.selected-institution span:nth-child(2) {
+    font-weight: bold;
+}
+
+.selected-institution span:last-child {
+    color: #EF9D79;
+    cursor: pointer;
+}
+
+.main {}
+
 .list-container {
     border-right: 1px solid var(--uek-blue);
+    height: calc(100vh - 72px);
+    overflow: scroll;
+}
+
+.details-container {
+    height: calc(100vh - 72px);
+    overflow: scroll;
 }
 
 .item {
     border-bottom: 1px solid var(--uek-blue);
+    border-left: 0 solid var(--uek-blue);
+    transition: border-left .5s ease;
+    cursor: pointer;
 }
 
 .item:hover {
     border-bottom: 1px solid var(--uek-blue);
-    background-color: var(--uek-middle-light-blue);
+    background-color: var(--uek-light-blue);
 }
 
 .item.active {
@@ -60,7 +93,6 @@ nav.navbar {
 }
 
 .surveyes .value span {
-    background-color: var(--uek-middle-light-blue);
     margin-right: 0.5rem;
     border-radius: 3px;
     padding: 0.1rem 0.4rem;
@@ -68,7 +100,43 @@ nav.navbar {
     font-weight: bold;
 }
 
+.surveyes .value span.off {
+    opacity: .3;
+    cursor: not-allowed;
+}
 
-/*.value > span {
-	line-height: 1rem;
-}*/
+.how-to {
+	color: var(--uek-dark-blue); 
+}
+
+.map {
+    width: 100%;
+    background-color: LEMONCHIFFON;
+    height: 35vh;
+    border-bottom: 1px solid var(--uek-blue);
+}
+
+.section-title {
+    font-size: 0.5rem;
+    color: var(--uek-dark-blue);
+    line-height: 1rem;
+    text-transform: uppercase;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+}
+
+.values {
+	padding-bottom: 0.5rem;
+}
+
+.values div:first-child {
+    font-size: 0.5rem;
+    line-height: 1.3rem;
+    text-align: right;
+}
+
+.values div:last-child {
+    font-size: 0.83rem;
+    line-height: 1rem;
+    text-align: left;
+}
