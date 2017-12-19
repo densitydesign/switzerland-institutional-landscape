@@ -103,6 +103,16 @@ nav.navbar {
 .surveyes .value span.off {
     opacity: .3;
     cursor: not-allowed;
+    position: relative;
+}
+
+.surveyes .value span.off::after {
+    position: absolute;
+    content: '';
+    border-top: 2px solid var(--uek-dark-blue);
+    width: 90%;
+    left: 5%;
+    top: 12px;
 }
 
 .how-to {
@@ -111,7 +121,7 @@ nav.navbar {
 
 .map {
     width: 100%;
-    background-color: LEMONCHIFFON;
+    /*background-color: LEMONCHIFFON;*/
     height: 35vh;
     border-bottom: 1px solid var(--uek-blue);
 }
