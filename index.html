@@ -392,17 +392,6 @@
                             </div>
                         </div>
                         <div class="col-6 matrix-buttons">
-                            <!-- <div class="btn-group" role="group" aria-label="Year filter" data-toggle="buttons">
-                                <label type="button" class="btn btn-secondary active" onclick="matrix.draw(1954)" data-id="1954">
-                                    <input type="radio" name="options" autocomplete="off" checked> 1954
-                                </label>
-                                <label type="button" class="btn btn-secondary" onclick="matrix.draw(1965)" data-id="1965">
-                                    <input type="radio" name="options" autocomplete="off"> 1965
-                                </label>
-                                <label type="button" class="btn btn-secondary" onclick="matrix.draw(1980)" data-id="1980">
-                                    <input type="radio" name="options" autocomplete="off"> 1980
-                                </label>
-                            </div> -->
                             <div class="col-12 text-center year-title">
                                 <span>Selected Year</span>
                             </div>
@@ -464,13 +453,22 @@
             </div>
             <div class="row visualisation">
                 <div id="circular-network" class="col-12">
-                    <div class="btn-group" data-toggle="buttons">
+                    <!-- <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-secondary active" onclick="circularNetwork.draw(1954)">
                             <input type="radio" name="options" id="ai1954" autocomplete="off" checked> 1954
                         </label>
                         <label class="btn btn-secondary" onclick="circularNetwork.draw(1965)">
                             <input type="radio" name="options" id="ai1965" autocomplete="off"> 1965
                         </label>
+                    </div> -->
+                    <div class="col-4 circular-buttons">
+                        <div class="col-12 text-center year-title">
+                            <span>Selected Year</span>
+                        </div>
+                        <div class="col-12 btn-container">
+                            <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1954)" data-id="1954">1954</span>
+                            <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1965)" data-id="1965">1965</span>
+                        </div>
                     </div>
                     <!-- To be filled with D3 -->
                 </div>
@@ -489,21 +487,32 @@
             </div>
             <div class="row visualisation">
                 <div id="accepting-institutions" class="col-12">
-                    <div class="btn-group" data-toggle="buttons">
+                    <!-- <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-secondary active" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig)">
                             <input type="radio" name="options" id="ai1954" autocomplete="off" checked> 1954
                         </label>
                         <label class="btn btn-secondary" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig)">
                             <input type="radio" name="options" id="ai1965" autocomplete="off"> 1965
                         </label>
-                    </div>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-secondary active" onclick=" acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
-                            <input type="radio" name="options" id="aiFrom" autocomplete="off" checked> From
-                        </label>
-                        <label class="btn btn-secondary" onclick=" acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
-                            <input type="radio" name="options" id="aiInto" autocomplete="off"> Into
-                        </label>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-4 accepting-buttons">
+                            <div class="col-12 text-center year-title">
+                                <span>Selected Year</span>
+                            </div>
+                            <div class="col-12 btn-container">
+                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig)" data-id="1954">1954</span>
+                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig)" data-id="1965">1965</span>
+                            </div>
+                        </div>
+                        <div class="btn-group col-8 align-self-center" data-toggle="buttons">
+                            <label class="btn btn-secondary active" onclick=" acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
+                                <input type="radio" name="options" id="aiFrom" autocomplete="off" checked> From
+                            </label>
+                            <label class="btn btn-secondary" onclick=" acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
+                                <input type="radio" name="options" id="aiInto" autocomplete="off"> Into
+                            </label>
+                        </div>
                     </div>
                     <!-- To be filled with D3 -->
                 </div>

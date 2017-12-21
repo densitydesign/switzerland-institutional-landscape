@@ -97,12 +97,16 @@ $(document).ready(function() {
     // change matrix selects when changing years, setup matrix buttons
     let $matrixButtons = $('#matrix .btn-matrix-year'),
         $matrixSelects = $('#matrix .select-container');
-    
-    containerMatrixWidth = $('.matrix-buttons').width();
+
+    containerMatrixWidth = $('#matrix .btn-container').width();
+    containerCircularWidth = $('#circular-network .btn-container').width();
+    containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
     buttonWidth = $('.btn-matrix-year').width();
-    
-    //set up initial active matrix button
-    changeButton(1954, containerMatrixWidth, '.btn-matrix-year');
+
+    //set up initial active buttons
+    changeButton(1954, containerMatrixWidth, '.btn-matrix-year', 8);
+    changeButton(1954, containerCircularWidth, '.btn-circular-year', 8);
+    changeButton(1954, containerAcceptingWidth, '.btn-accepting-year', 8);
 
     $matrixButtons.on('click', function() {
         let newYear = $(this).attr('data-id');
@@ -110,9 +114,21 @@ $(document).ready(function() {
         $matrixSelects.each(function() {
             $(this).children('select').attr('onchange', 'matrix.draw(' + newYear + ')');
         });
-        
-        changeButton(newYear, containerMatrixWidth, '.btn-matrix-year');
-    })
+
+        changeButton(newYear, containerMatrixWidth, '.btn-matrix-year', 8);
+    });
+
+    $('.btn-circular-year').on('click', function() {
+        let newYear = $(this).attr('data-id');
+
+        changeButton(newYear, containerCircularWidth, '.btn-circular-year', 8);
+    });
+
+    $('.btn-accepting-year').on('click', function() {
+        let newYear = $(this).attr('data-id');
+
+        changeButton(newYear, containerAcceptingWidth, '.btn-accepting-year', 8);
+    });
 
     // Add listener for window resize event, which triggers actions such as the resize of visualizations.
     function doneResizing() {
@@ -154,14 +170,14 @@ $(document).ready(function() {
 
 $(document).on('setWaypoints', function() {
     //calculate container and button width
-    containerMapsWidth = $('.btn-container').width();
+    containerMapsWidth = $('#maps .btn-container').width();
     buttonWidth = $('.btn-maps-year[data-id=1940]').width();
 
     // save the selection to a variable to improve performance
     let $mapButtons = $('#maps .btn-maps-year');
 
     //set up initial active map button
-    changeButton(1954, containerMapsWidth, '.btn-maps-year');
+    changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
 
     // initiate waypoints
     // waypoint for sankey/mosaic. call function sankey if going down, mosaic if going up
@@ -188,14 +204,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1954);
-                changeButton(1954, containerMapsWidth, '.btn-maps-year');
+                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_all_institutions 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_all_institutions.draw(1954);
-                changeButton(1954, containerMapsWidth, '.btn-maps-year');
+                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             }
         },
         offset: '40%'
@@ -210,14 +226,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year');
+                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_typologies 1954');
                 $mapButtons.each(function(i) {;
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1954);
-                changeButton(1954, containerMapsWidth, '.btn-maps-year');
+                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             }
         },
         offset: '40%'
@@ -232,14 +248,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'confession');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year');
+                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_capacities 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year');
+                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             }
         },
         offset: '40%'
@@ -254,14 +270,14 @@ $(document).on('setWaypoints', function() {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'accepted_gender');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year');
+                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_confession 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'confession');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year');
+                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             }
         },
         offset: '40%'
@@ -269,12 +285,12 @@ $(document).on('setWaypoints', function() {
 
     $mapButtons.on('click', function(){
         let newYear = $(this).attr('data-id');
-        changeButton(newYear, containerMapsWidth, '.btn-maps-year');
+        changeButton(newYear, containerMapsWidth, '.btn-maps-year', 7);
     })
 
 });
 
-function changeButton(year, width, buttons) {
+function changeButton(year, width, buttons, spacer) {
     $(buttons).removeClass('active-year');
     $(buttons + '[data-id='+ year +']').addClass('active-year');
     let indexButton = $(buttons).index($(buttons + '.active-year'));
@@ -282,9 +298,9 @@ function changeButton(year, width, buttons) {
         if (i == indexButton) {
             $(this).css('left', width / 2);
         } else if (i < indexButton) {
-            $(this).css('left', 15 + (15 + buttonWidth) * i + width / 7);
+            $(this).css('left', 15 + (15 + buttonWidth) * i + width / spacer);
         } else {
-            $(this).css('left', width - 15 - (15 + buttonWidth) * ($(buttons).length - i - 1) - width / 7);
+            $(this).css('left', width - 15 - (15 + buttonWidth) * ($(buttons).length - i - 1) - width / spacer);
         }
     })
 }
