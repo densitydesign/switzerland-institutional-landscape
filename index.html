@@ -260,6 +260,18 @@
                         <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1965)">1965</button>
                         <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1980)">1980</button>
                     </div> -->
+                    <div class="col-8 bubblechart-buttons mx-auto">
+                        <div class="col-12 text-center year-title">
+                            <span>Selected Year</span>
+                        </div>
+                        <div class="col-12 btn-container">
+                            <span class="btn-year btn-bubblechart-year" onclick="bubblechart.draw(1933)" data-id="1933">1933</span>
+                            <span class="btn-year btn-bubblechart-year" onclick="bubblechart.draw(1940)" data-id="1940">1940's</span>
+                            <span class="btn-year btn-bubblechart-year" onclick="bubblechart.draw(1954)" data-id="1954">1954</span>
+                            <span class="btn-year btn-bubblechart-year" onclick="bubblechart.draw(1965)" data-id="1965">1965</span>
+                            <span class="btn-year btn-bubblechart-year" onclick="bubblechart.draw(1980)" data-id="1980">1980</span>
+                        </div>
+                    </div>
                     <!-- to be filled with d3 -->
                 </div>
             </div>
@@ -275,7 +287,7 @@
             </div>
             <hr class="mb-5" />
             <div class="row visualisation">
-                <div class="col-12 text-left">
+                <!-- <div class="col-12 text-left">
                     <h4>Combinations of facility types</h4>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1933)">1933</button>
@@ -284,8 +296,20 @@
                         <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1965)">1965</button>
                         <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1980)">1980</button>
                     </div>
-                </div>
+                </div> -->
                 <div id="typologies-graph" class="col-12">
+                    <div class="col-8 typologies-buttons mx-auto">
+                        <div class="col-12 text-center year-title">
+                            <span>Selected Year</span>
+                        </div>
+                        <div class="col-12 btn-container">
+                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1933)" data-id="1933">1933</span>
+                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1940)" data-id="1940">1940's</span>
+                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1954)" data-id="1954">1954</span>
+                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1965)" data-id="1965">1965</span>
+                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1980)" data-id="1980">1980</span>
+                        </div>
+                    </div>
                     <!-- to be filled with d3 -->
                 </div>
                 <div class="col-8 mx-auto mb-5">
@@ -505,7 +529,7 @@
                                 <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig)" data-id="1965">1965</span>
                             </div>
                         </div>
-                        <div class="btn-group col-8 align-self-center" data-toggle="buttons">
+                        <div class="btn-group offset-5 col-3 align-self-center" data-toggle="buttons">
                             <label class="btn btn-secondary active" onclick=" acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
                                 <input type="radio" name="options" id="aiFrom" autocomplete="off" checked> From
                             </label>

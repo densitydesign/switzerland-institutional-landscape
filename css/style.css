@@ -112,7 +112,19 @@ p.caption:first-child {
 }
 
 .btn-secondary {
+    width: 100px;
+    background-color: rgba(176, 197, 206, 0.07);
+    border-radius: 28px;
+    color: #000000;
     cursor: pointer;
+}
+.btn-secondary:hover {
+    background-color: #B0C5CE;
+}
+.btn-secondary:not([disabled]):not(.disabled).active {
+    background-color: #B0C5CE;
+    -webkit-box-shadow: none;
+            box-shadow: none;
 }
 
 .chapter {

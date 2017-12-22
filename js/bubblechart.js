@@ -75,43 +75,43 @@ function Bubblechart(id, data) {
             .attr('class', 'legend')
             .selectAll('.item');
 
-        years = this.svg.append("g")
-            .attr('class', 'years-switcher')
-            .selectAll('.year');
-
-        years = years.data(years_list);
-
-        years.exit()
-            .remove();
-
-        years = years.enter()
-            .append('text')
-            .classed('label year', true)
-            .styles({
-                'pointer-events': 'all',
-                'text-anchor': 'middle',
-                'text-decoration': 'underline'
-            })
-            .attr('x', 0)
-            .attr('y', 500)
-            .text(function(d) {
-                if (d == '1940') {
-                    return "1940's";
-                } else {
-                    return d
-                }
-            })
-            .style('text-transform', function(d) {
-                if (d == '1940') {
-                    return 'none';
-                }
-            })
-            .on('click', function(d) {
-                index = years_list.indexOf(d);
-                return bubblechart.draw(d)
-
-            })
-            .merge(years);
+        // years = this.svg.append("g")
+        //     .attr('class', 'years-switcher')
+        //     .selectAll('.year');
+        //
+        // years = years.data(years_list);
+        //
+        // years.exit()
+        //     .remove();
+        //
+        // years = years.enter()
+        //     .append('text')
+        //     .classed('label year', true)
+        //     .styles({
+        //         'pointer-events': 'all',
+        //         'text-anchor': 'middle',
+        //         'text-decoration': 'underline'
+        //     })
+        //     .attr('x', 0)
+        //     .attr('y', 500)
+        //     .text(function(d) {
+        //         if (d == '1940') {
+        //             return "1940's";
+        //         } else {
+        //             return d
+        //         }
+        //     })
+        //     .style('text-transform', function(d) {
+        //         if (d == '1940') {
+        //             return 'none';
+        //         }
+        //     })
+        //     .on('click', function(d) {
+        //         index = years_list.indexOf(d);
+        //         return bubblechart.draw(d)
+        //
+        //     })
+        //     .merge(years);
 
         g = this.svg.append("g");
 
@@ -171,17 +171,17 @@ function Bubblechart(id, data) {
 
         g.attr("transform", "translate(" + width / 2 + "," + (height / 2 - 20) + ")");
 
-        d3.selectAll('.selected-year').remove();
-
-        this.svg.append('text')
-        .classed('label selected-year',true)
-        .styles({
-            'text-anchor': 'middle',
-            'color':'#4a4a4a'
-        })
-        .attr('x', width/2)
-        .attr('y',height)
-        .text('Selected year')
+        // d3.selectAll('.selected-year').remove();
+        //
+        // this.svg.append('text')
+        // .classed('label selected-year',true)
+        // .styles({
+        //     'text-anchor': 'middle',
+        //     'color':'#4a4a4a'
+        // })
+        // .attr('x', width/2)
+        // .attr('y',height)
+        // .text('Selected year')
 
         if (year) {
             // console.log(year)
@@ -270,6 +270,7 @@ function Bubblechart(id, data) {
             groupsNames = groupsNames.enter()
                 .append('text')
                 .classed('label', true)
+                .merge(groupsNames)
                 .attr('x', function(d) {
                     let thisx = -width * .5 + (width / (nodesGroups.length) * d);
                     thisx -= (width / (nodesGroups.length)) * .5;
@@ -307,7 +308,7 @@ function Bubblechart(id, data) {
                         let thisx = -width * .5 + (width / (nodesGroups.length) * d.group);
                         thisx -= (width / (nodesGroups.length)) * .5;
                         return thisx;
-                        return width / (nodesGroups.length + 2) * (d.group + 1) - width / 2 - width / (nodesGroups.length + 2) * .3;
+                        // return width / (nodesGroups.length + 2) * (d.group + 1) - width / 2 - width / (nodesGroups.length + 2) * .3;
                     })
                     .strength(0.2))
                 .on("tick", ticked)
@@ -384,24 +385,24 @@ function Bubblechart(id, data) {
             })
             .text(function(d) { return d })
 
-        d3.selectAll('.year')
-            .attr('y', height - 14)
-            .classed('selected', function(d, i) {
-                return i == index ? true : false;
-            })
-            .transition()
-            .duration(750)
-            .attr('x', function(d, i) {
-                if (i == index) {
-                    return width / 2;
-                } else {
-                    if (i < index) {
-                        return width / 6 + 15 + 40 * i;
-                    } else {
-                        return (width - width / 6) - 15 - 40 * (years_list.length - i + 1);
-                    }
-                }
-            });
+        // d3.selectAll('.year')
+        //     .attr('y', height - 14)
+        //     .classed('selected', function(d, i) {
+        //         return i == index ? true : false;
+        //     })
+        //     .transition()
+        //     .duration(750)
+        //     .attr('x', function(d, i) {
+        //         if (i == index) {
+        //             return width / 2;
+        //         } else {
+        //             if (i < index) {
+        //                 return width / 6 + 15 + 40 * i;
+        //             } else {
+        //                 return (width - width / 6) - 15 - 40 * (years_list.length - i + 1);
+        //             }
+        //         }
+        //     });
 
     } //draw
 

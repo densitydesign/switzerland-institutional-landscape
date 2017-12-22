@@ -8,7 +8,11 @@ let timeline,
 
 let years = [1933, 1940, 1954, 1965, 1980],
     containerMapsWidth,
+    containerBubblechartWidth,
+    containerTypologiesWidth,
     containerMatrixWidth,
+    containerCircularWidth,
+    containerAcceptingWidth,
     buttonWidth,
     map_all_institutions,
     map_typologies,
@@ -98,15 +102,31 @@ $(document).ready(function() {
     let $matrixButtons = $('#matrix .btn-matrix-year'),
         $matrixSelects = $('#matrix .select-container');
 
+    containerBubblechartWidth = $('#bubblechart .btn-container').width();
+    containerTypologiesWidth = $('#typologies-graph .btn-container').width();
     containerMatrixWidth = $('#matrix .btn-container').width();
     containerCircularWidth = $('#circular-network .btn-container').width();
     containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
-    buttonWidth = $('.btn-matrix-year').width();
+    buttonWidth = $('.btn-typologies-year').width();
 
     //set up initial active buttons
+    changeButton(1954, containerBubblechartWidth, '.btn-bubblechart-year', 7);
+    changeButton(1954, containerTypologiesWidth, '.btn-typologies-year', 7);
     changeButton(1954, containerMatrixWidth, '.btn-matrix-year', 8);
     changeButton(1954, containerCircularWidth, '.btn-circular-year', 8);
     changeButton(1954, containerAcceptingWidth, '.btn-accepting-year', 8);
+
+    $('.btn-bubblechart-year').on('click', function() {
+        let newYear = $(this).attr('data-id');
+
+        changeButton(newYear, containerBubblechartWidth, '.btn-bubblechart-year', 7);
+    });
+
+    $('.btn-typologies-year').on('click', function() {
+        let newYear = $(this).attr('data-id');
+
+        changeButton(newYear, containerTypologiesWidth, '.btn-typologies-year', 7);
+    });
 
     $matrixButtons.on('click', function() {
         let newYear = $(this).attr('data-id');
