@@ -22,7 +22,7 @@ let circularNetwork,
     ciDirection = 'all', // could be all, into, from
     acceptingInstitutions,
     acceptingInstitutionsConfig = {
-        'direction': 'from',
+        'direction': 'into',
         'year': 1954
     }
     aiDirection = 'into';
@@ -387,6 +387,15 @@ function buildSidepanel(id, year) {
     panel.append('p')
         .html('<strong>typology: </strong>' + filtered_institution[0].typologies);
 
+    panel.append('div')
+        .classed('sidepanel-button', true)
+        .append('a')
+        .attr('href', function(d){
+            return './glossary/#selected-' + filtered_institution[0].id;
+        })
+        .attr('target', '_blank')
+        .text('Get more details');
+
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
 }
@@ -413,6 +422,10 @@ function buildSidepanelList(list, year) {
         .duration(300)
         .style('opacity', 1);
 
+    panel.append('h5')
+        .classed('sidepanel-support-title', true)
+        .text('Click on an institution to get more details:');
+
     let institutionList = panel.selectAll('.institution-list')
         .data(filtered_institution, function(d){
             return d.id;
@@ -427,10 +440,15 @@ function buildSidepanelList(list, year) {
     institutionList.enter()
         .append('p')
         .classed('sidepanel-list-item', true)
+        .append('a')
         .style('opacity', 1e-6)
+        .attr('target', '_blank')
         .merge(institutionList)
         .text(function(d){
             return d.id + ' - ' + d.institution;
+        })
+        .attr('href',function(d){
+            return './glossary/#selected-' + d.id;
         })
         .transition()
         .duration(500)

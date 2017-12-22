@@ -172,23 +172,46 @@ p.caption:first-child {
 }
 .sidepanel-container {
     width: 25vw;
-    padding: 1.2em;
+    padding: 1.2rem;
     opacity: 0;
 }
 .sidepanel-data {
     color: #B0C5CE;
-    font-size: 0.65em;
+    font-size: 0.65rem;
     text-transform: uppercase;
 }
 .sidepanel-name {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     font-weight: bold;
+}
+.sidepanel-support-title {
+    margin-bottom: 20px;
+    color: #B0C5CE;
+    font-size: 0.75rem;
 }
 .sidepanel p {
     font-size: 0.9em;
     margin-bottom: 12px;
 }
-
+.sidepanel-list-item a {
+    color: #000000
+}
+.sidepanel-button {
+    width: 70%;
+    height: 45px;
+    margin: 26px auto;
+    text-align: center;
+    padding: 8px 0;
+    background-color: #B0C5CE;
+    border-radius: 22px;
+    cursor: pointer;
+}
+.sidepanel-button a,
+.sidepanel-button a:hover,
+.sidepanel-button a:focus {
+    color: #000000;
+    text-decoration: none;
+}
 
 
 /* 1.1 timeline */
@@ -367,7 +390,7 @@ p.caption:first-child {
 }
 
 .step {
-    margin-bottom: 700px;
+    margin-bottom: 300px;
 }
 
 .step:last-of-type {
