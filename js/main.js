@@ -223,8 +223,8 @@ $(document).on('setWaypoints', function() {
                 $mapButtons.each(function(i) {;
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
-                map_typologies.draw(1954);
-                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
+                map_typologies.draw(1965);
+                changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_all_institutions 1954');
                 $mapButtons.each(function(i, btn) {
@@ -252,8 +252,8 @@ $(document).on('setWaypoints', function() {
                 $mapButtons.each(function(i) {;
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
-                map_typologies.draw(1954);
-                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
+                map_typologies.draw(1965);
+                changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
             }
         },
         offset: '40%'
@@ -267,8 +267,8 @@ $(document).on('setWaypoints', function() {
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
-                map_all_institutions.draw(1954, 'confession');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
+                map_all_institutions.draw(1965, 'confession');
+                changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_capacities 1954');
                 $mapButtons.each(function(i, btn) {
@@ -289,21 +289,26 @@ $(document).on('setWaypoints', function() {
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender");closeSidepanel()');
                 });
-                map_all_institutions.draw(1954, 'accepted_gender');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
+                map_all_institutions.draw(1965, 'accepted_gender');
+                changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_confession 1954');
                 $mapButtons.each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
-                map_all_institutions.draw(1954, 'confession');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
+                map_all_institutions.draw(1965, 'confession');
+                changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
             }
         },
         offset: '40%'
     });
 
     $mapButtons.on('click', function(){
+        let newYear = $(this).attr('data-id');
+        changeButton(newYear, containerMapsWidth, '.btn-maps-year', 7);
+    });
+
+    $('.year-switch').on('click', function(){
         let newYear = $(this).attr('data-id');
         changeButton(newYear, containerMapsWidth, '.btn-maps-year', 7);
     })

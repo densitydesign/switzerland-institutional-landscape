@@ -131,6 +131,9 @@ p.caption:first-child {
     margin-bottom: 60px;
 }
 
+.underlined {
+    text-decoration: underline;
+}
 
 
 
@@ -415,7 +418,9 @@ p.caption:first-child {
     opacity: 0;
 }
 
-
+.year-switch {
+    cursor: pointer;
+}
 
 /* swiss map styles */
 

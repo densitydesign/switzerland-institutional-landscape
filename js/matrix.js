@@ -46,8 +46,8 @@ function Matrix(id, data, categories) {
 
         //calculate dimensions of the viz container, axis and grids
         width = $('#matrix-visualization').width();
-        height = width * .7;
-        margin = 120;
+        height = width * .8;
+        margin = 140;
         svg.attr('width', width)
             .attr('height', height);
         matrix_x_axis.attr('transform', 'translate(0,' + (height - margin) + ')');
@@ -163,7 +163,7 @@ function Matrix(id, data, categories) {
                 let newList = d.value.list.map(function(el){
                     return el.id;
                 });
-                let activeYear = $('#matrix .btn-group .active').attr('data-id');
+                let activeYear = $('#matrix .active-year').attr('data-id');
                 buildSidepanelList(newList, activeYear);
             })
             .merge(bubbles)
@@ -172,7 +172,8 @@ function Matrix(id, data, categories) {
             })
             .attr('cy', function(d) {
                 return yScale(d.value.y);
-            });
+            })
+            .style('cursor', 'pointer');
 
         bubbles.transition()
             .duration(300)
