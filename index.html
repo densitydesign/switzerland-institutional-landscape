@@ -14,6 +14,49 @@
     <!-- <section class="cover container-fluid d-flex align-items-center justify-content-center">
         <h1 class="text-center report-title">Topography of institutions</h1>
     </section> -->
+
+    <nav id="navigation-sidebar" class="nav">
+        <div class="nav-divider"></div>
+        <a href="#introduction" class="nav-link link-introduction">
+            <div class="link-introduction">
+                <h6>Introduction</h6>
+                <!-- <p><a href="#intro">Introduction</a></p> -->
+                <!-- <p>Introduction</p> -->
+                <!-- <p><a href="#temporal-framing">Timeline</a></p>
+                <p><a href="#surveyed-institutions">Sources</a></p>
+                <p><a href="#multipurpose">Facility purposes</a></p> -->
+            </div>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="#geographies" class="nav-link link-geographies">
+            <div class="link-geographies">
+                <h6>Geographic distribution</h6>
+                <!-- <p>Overview</p>
+                <p>Distribution by facility type</p>
+                <p>Institutional capacities</p>
+                <p>Distribution by denomination</p>
+                <p>Distribution by gender</p> -->
+            </div>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="#interconnections" class="nav-link link-interconnections">
+            <div class="link-interconnections">
+                <h6>Interconnections</h6>
+                <!-- <p>Correlations</p> -->
+            </div>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="#entering-exiting" class="nav-link link-entering-exiting">
+            <div class="link-entering-exiting">
+                <h6>Internment and release</h6>
+                <!-- <p>Placement in an institution</p>
+                <p>Intercantonal connections</p>
+                <p>Release</p> -->
+            </div>
+        </a>
+        <div class="nav-divider"></div>
+    </nav>
+
     <section id="introduction" class="chapter container-fluid">
         <div class="container">
             <div class="row">
@@ -23,7 +66,7 @@
             </div>
         </div>
         <section id="temporal-framing" class="sub-chapter container">
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-3 pr-0 d-flex justify-content-end align-items-center">
                     <h3><a href="#intro"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
                 </div>
@@ -62,7 +105,7 @@
                 <div class="col-12 offset-0">
                     <hr class="mb-5" />
                 </div>
-            </div> -->
+            </div>
 
             <div class="row">
                 <div class="col-3 pr-0 d-flex justify-content-end align-items-center">
@@ -74,9 +117,7 @@
             </div>
             <div class="row">
                 <div class="col-6 offset-2">
-                    <p>The timeline covers the period from 1930 to 1980. Our intent is to provide an overview of developments in the social history of Switzerland during that period. The timeline also charts the relevant legislative developments and, at
-                        the same time, indicates which detention facilities were opened or closed during those years. The simultaneous display of events at these three levels helps to situate the phenomenon of administrative detention in a larger historical
-                        context/scale.</p>
+                    <p>The timeline covers the period from 1930 to 1980. Our intent is to provide an overview of developments in the social history of Switzerland during that period. The timeline also charts the relevant legislative developments and, at the same time, indicates which detention facilities were opened or closed during those years. The simultaneous display of events at these three levels helps to situate the phenomenon of administrative detention in a larger historical context/scale.</p>
                 </div>
             </div>
 
@@ -195,11 +236,11 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-2 offset-2">
+                <!-- <div class="col-2 offset-2">
                     <p class="caption font-weight-bold">Viz. 1.1 – Temporal Framing</p>
                     <p class="caption open-in-external-window"><i class="fa fa-external-link" aria-hidden="true"></i> Open in a separate window</p>
                     <p class="caption"><a href="./data_and_scripts/data/timeline.json" download="1.1_temporal-framing.json"><i class="fa fa-download" aria-hidden="true"></i> Download the data</a></p>
-                </div>
+                </div> -->
             </div>
             <div class="row">
                 <div class="col-12 offset-0">
@@ -209,14 +250,6 @@
             </div>
         </section>
         <section id="surveyed-institutions" class="sub-chapter container pt-5">
-            <div class="row">
-                <div class="col-3 pr-0 d-flex justify-content-end align-items-center">
-                    <h3><a href="#surveyed-institutions"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
-                </div>
-                <div class="col-6">
-                    <h3>Sources</h3>
-                </div>
-            </div>
             <div class="row visualisation">
                 <div class="col-8">
                     <div id="sankey" class="sticky-top">
@@ -242,6 +275,14 @@
                     </div>
                 </div>
                 <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
+                            <h3><a href="#surveyed-institutions"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
+                        </div>
+                        <div class="col-10">
+                            <h3>Sources</h3>
+                        </div>
+                    </div>
                     <p>This segment is about the sources, their quality and validity. The information on which the charts are based was gathered from five sources respectively lists of the facilities and institutions that were used for correctional purposes
                         and the execution of administrative detention orders. Those directories were compiles at different times and by different authors. Common to all of the directories is that they cover the whole of Switzerland. In addition, at the
                         time when they were compiled, they all served as guides (reference works) for committing agencies and are comparable in the amount of detail they include.</p>
@@ -338,37 +379,13 @@
     <section id="geographies">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h2>2 - Geographic distribution of detention facilities</h2>
+                <div class="col-12 offset-1">
+                    <h2>Geographic distribution of detention facilities</h2>
                 </div>
             </div>
         </div>
         <section id="institutions-maps" class="sub-chapter container">
             <div class="row visualization">
-                <div class="visualization-text col-4">
-                    <div id="map-total-text" class="step">
-                        <h3>2.1 - Overview</h3>
-                        <p>This map provides a complete overview of the 648 facilities in operation in the years indicated. It is possible to identify areas of concentration and gaps in the geographic distribution. In <strong class="underlined year-switch" onclick="map_all_institutions.draw(1954);closeSidepanel()" data-id="1954">1954</strong> for example, most of the surveyed facilities were spread all over the Mittelland with certain concentrations. As shown in the year of <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965);closeSidepanel()" data-id="1965">1965</strong> lots of intistutions are gathered in urban centers like Zurich, Basel, Berne and Geneva, but also in a rural areas like the Seeland.</p>
-                    </div>
-                    <div id="map-typology-text" class="step">
-                        <h3>2.2 - Distribution by facility type</h3>
-                        <p>The following types of detention facilities existed: forced labour institutions, labour colonies, juvenile  reformatories, prisons, psychiatric institutions, municipal poorhouses (mentioned only in the <strong class="underlined year-switch" onclick="map_typologies.draw(1933);closeSidepanel()" data-id="1933">1933</strong> source) and facilities for persons with special needs. All of these facility types were used for the confinement of administrative detainees. Conditions varied widely from canton to canton. With a closer look on the year <strong class="underlined year-switch" onclick="map_typologies.draw(1965);closeSidepanel()" data-id="1965">1965</strong>, prisons were quite evenly spread all over Switzerland, because most districts had their own small prison. Furthermore, educational institutions were located in urban areas. Many forced labour institutions happened to be in previously drained rural and plain areas such as the Seeland (Etablissements Bellechasse, Anstalten Witzwil, St. Johannsen, Arbeiterheim Tannenhof) or the Orbebene (Etablissements de la Plaine de l'Orbe).</p>
-                    </div>
-                    <div id="map-capacity-text" class="step">
-                        <h3>2.3 - Institutional capacities</h3>
-                        <p>With the help of this map we would like to show how many places were available in each of the facilities. Here also, one can see how broad a range of facilities there was, from the smallest with a capacity of up to 19 places to the larger-sized ones with capacities of 150 or even 200 and more inmates.</p>
-                        <p>In <strong class="underlined year-switch" onclick="map_all_institutions.draw(1954, 'capacity_group');closeSidepanel()" data-id="1954">1954</strong>, considering forced labor institutions, labor colonies and juvenile reformatories only, almost one fifth of the available space for inmates in Switzerland was situated in just five facilities of the Seeland area: Etablissements de Bellechasse, Institutions of Witzwil, Arbeiterheim Tannenhof, St. Johannsen and Staatliche Erziehungsheim für Knaben. This is 1520 places of an estimated total of 9000. Many inmates of these institutions were meant to work on the plains and contribute to the income of the institution. Today, Witzwil and Bellechasse are two of the largest producers of agricultural goods in Switzerland.</p>
-                    </div>
-                    <div id="map-confession-text" class="step">
-                        <h3>2.4 - Distribution by denomination</h3>
-                        <p>Religious confession and gender were two of the main criteria for deciding on the placement of detainees within the facilities: we distinguish between interdenominational, Protestand and Catholic ones. In the case of the poor houses the denomination remained often unknown. Interdenominational institutions were most likely state run and rather of large size, whereas Catholic and Protestant affiliated facilities were rather privately funded. For example, in <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965, 'confession');closeSidepanel()" data-id="1965">1965</strong> a total of 84 percent of the institutions were interdenominational (the lion's share being district prisons), 11 percent Catholic and 5 percent Protestant. Facilities that were restricted to a single confession were in most cases educational ones. Amongst the Catholic ones are Schweizerisches Mädchenheim in Richterswil ZH, Kinderdörfli Rathausen LU and Institution Bon Pasteuer in Lully FR and amongst the Protestant ones are the Mütter- und Kinderheim in Lausen BL, Landheim Brüttisellen in Bassersdorf ZH and Gemeinnütziges Erziehungsheim Schloss Kasteln in Oberflachs AG.
-                        </p>
-                    </div>
-                    <div id="map-gender-text" class="step">
-                        <h3>2.5 - Distribution by gender</h3>
-                        <p>Gender was the second major criterion that was considered when choosing a facility . Sticking to the targeted year of <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965, 'accepted_gender');closeSidepanel()" data-id="1965">1965</strong>, the overall picture indicates, that 59 percent were foth both genders, 27 for male and 14 for female inmates only. A considerable amount of facilities with places for both men and women were district prisons. By leaving this type aside, the proportion would shift distinctively towards one half of the total for male inmates, and a quarter for female respectively for both gender each.</p>
-                    </div>
-                </div>
                 <div class="visualization-map col-8">
                     <div id="maps" class="visualization">
                         <div class="row">
@@ -388,24 +405,78 @@
                         </div>
                     </div>
                 </div>
+                <div class="visualization-text col-4">
+                    <div id="map-total-text" class="step">
+                        <div class="row">
+                            <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
+                                <h3><a href="#geography-overview"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
+                            </div>
+                            <div class="col-10">
+                                <h3>Overview</h3>
+                            </div>
+                        </div>
+                        <p>This map provides a complete overview of the 648 facilities in operation in the years indicated. It is possible to identify areas of concentration and gaps in the geographic distribution. In <strong class="underlined year-switch" onclick="map_all_institutions.draw(1954);closeSidepanel()" data-id="1954">1954</strong> for example, most of the surveyed facilities were spread all over the Mittelland with certain concentrations. As shown in the year of <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965);closeSidepanel()" data-id="1965">1965</strong> lots of intistutions are gathered in urban centers like Zurich, Basel, Berne and Geneva, but also in a rural areas like the Seeland.</p>
+                    </div>
+                    <div id="map-typology-text" class="step">
+                        <div class="row">
+                            <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
+                                <h3><a href="#geography-typology"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
+                            </div>
+                            <div class="col-10">
+                                <h3>Distribution by facility type</h3>
+                            </div>
+                        </div>
+                        <p>The following types of detention facilities existed: forced labour institutions, labour colonies, juvenile  reformatories, prisons, psychiatric institutions, municipal poorhouses (mentioned only in the <strong class="underlined year-switch" onclick="map_typologies.draw(1933);closeSidepanel()" data-id="1933">1933</strong> source) and facilities for persons with special needs. All of these facility types were used for the confinement of administrative detainees. Conditions varied widely from canton to canton. With a closer look on the year <strong class="underlined year-switch" onclick="map_typologies.draw(1965);closeSidepanel()" data-id="1965">1965</strong>, prisons were quite evenly spread all over Switzerland, because most districts had their own small prison. Furthermore, educational institutions were located in urban areas. Many forced labour institutions happened to be in previously drained rural and plain areas such as the Seeland (Etablissements Bellechasse, Anstalten Witzwil, St. Johannsen, Arbeiterheim Tannenhof) or the Orbebene (Etablissements de la Plaine de l'Orbe).</p>
+                    </div>
+                    <div id="map-capacity-text" class="step">
+                        <div class="row">
+                            <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
+                                <h3><a href="#geography-capacities"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
+                            </div>
+                            <div class="col-10">
+                                <h3>Institutional capacities</h3>
+                            </div>
+                        </div>
+                        <p>With the help of this map we would like to show how many places were available in each of the facilities. Here also, one can see how broad a range of facilities there was, from the smallest with a capacity of up to 19 places to the larger-sized ones with capacities of 150 or even 200 and more inmates.</p>
+                        <p>In <strong class="underlined year-switch" onclick="map_all_institutions.draw(1954, 'capacity_group');closeSidepanel()" data-id="1954">1954</strong>, considering forced labor institutions, labor colonies and juvenile reformatories only, almost one fifth of the available space for inmates in Switzerland was situated in just five facilities of the Seeland area: Etablissements de Bellechasse, Institutions of Witzwil, Arbeiterheim Tannenhof, St. Johannsen and Staatliche Erziehungsheim für Knaben. This is 1520 places of an estimated total of 9000. Many inmates of these institutions were meant to work on the plains and contribute to the income of the institution. Today, Witzwil and Bellechasse are two of the largest producers of agricultural goods in Switzerland.</p>
+                    </div>
+                    <div id="map-confession-text" class="step">
+                        <div class="row">
+                            <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
+                                <h3><a href="#geography-denominations"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
+                            </div>
+                            <div class="col-10">
+                                <h3>Distribution by denomination</h3>
+                            </div>
+                        </div>
+                        <p>Religious confession and gender were two of the main criteria for deciding on the placement of detainees within the facilities: we distinguish between interdenominational, Protestand and Catholic ones. In the case of the poor houses the denomination remained often unknown. Interdenominational institutions were most likely state run and rather of large size, whereas Catholic and Protestant affiliated facilities were rather privately funded. For example, in <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965, 'confession');closeSidepanel()" data-id="1965">1965</strong> a total of 84 percent of the institutions were interdenominational (the lion's share being district prisons), 11 percent Catholic and 5 percent Protestant. Facilities that were restricted to a single confession were in most cases educational ones. Amongst the Catholic ones are Schweizerisches Mädchenheim in Richterswil ZH, Kinderdörfli Rathausen LU and Institution Bon Pasteuer in Lully FR and amongst the Protestant ones are the Mütter- und Kinderheim in Lausen BL, Landheim Brüttisellen in Bassersdorf ZH and Gemeinnütziges Erziehungsheim Schloss Kasteln in Oberflachs AG.
+                        </p>
+                    </div>
+                    <div id="map-gender-text" class="step">
+                        <div class="row">
+                            <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
+                                <h3><a href="#geography-gender"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
+                            </div>
+                            <div class="col-10">
+                                <h3>Distribution by gender</h3>
+                            </div>
+                        </div>
+                        <p>Gender was the second major criterion that was considered when choosing a facility. Sticking to the targeted year of <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965, 'accepted_gender');closeSidepanel()" data-id="1965">1965</strong>, the overall picture indicates, that 59 percent were foth both genders, 27 for male and 14 for female inmates only. A considerable amount of facilities with places for both men and women were district prisons. By leaving this type aside, the proportion would shift distinctively towards one half of the total for male inmates, and a quarter for female respectively for both gender each.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </section>
     <hr class="mb-5" />
-    <section id="correlations" class="chapter container-fluid">
+    <section id="interconnections" class="chapter container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h2>3 - Interconnections</h2>
+                <div class="col-12 offset-1">
+                    <h2>Interconnections</h2>
                 </div>
             </div>
         </div>
         <section id="sub-correlations" class="sub-chapter container">
-            <div class="row">
-                <div class="col-12">
-                    <h3>3.1 - Correlations</h3>
-                </div>
-            </div>
             <div class="row visualisation">
                 <div id="matrix" class="visualization col-8">
                     <div class="row">
@@ -449,6 +520,14 @@
                     </div>
                 </div>
                 <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
+                            <h3><a href="#correlations"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
+                        </div>
+                        <div class="col-10">
+                            <h3>Correlations</h3>
+                        </div>
+                    </div>
                     <p>This graphic representation of the data shows how frequent the combinatin of two features occur. The bigger the dot, the more institutions of the sample share a certain combination. The above mentioned fact that district prisons are often used for both men and women can be observed by the size of the dot when comparing “gender” and “type”. In contrary, prisons for women only are a relatively seldom phenomenon. This possibility of freely combining the data collected allows for a more in-depth understanding of the  proportions and characteristics of the detention facilities.</p>
                     <p>By leaving this chapter the image on the side gives an impression of the decision-makers involved in the use of administrative detention, that is, of the bodies of authority which decided whether an administrative detention order would be issued. In addition, it shows the wide range of authorities that were involved: cantonal authorities, the police, guardianship offices, welfare authorities for the poor, etc. The bodies responsible for the internment of detainees differed from canton to canton, and from case to case. It also shows how diffuse the rules on the use of administrative detention in Switzerland actually were.</p>
                 </div>
@@ -607,8 +686,9 @@
                     <!-- TO be filled with diagram -->
                 </div>
                 <div class="col-7 offset-2">
-                    <p>Idea and development: DensityDesign, Ernst, Joséphine, Marco</p>
-                    <p>Texts: Ernst, Joséphine, Mirjam, Matthieu, Marco, Loretta, Nicole</p>
+                    <p><em>Idea and development:</em> Marco Dal Molin (IEC), Tommaso Elli (DD), Ernst Guggisberg (IEC), Michele Invernizzi (DD), Michele Mauri (DD), Joséphine Métraux (IEC)</p>
+                    <p><em>Data gathering and analyzing:</em> Marco Dal Molin, Ernst Guggisberg, Deborah Morat</p>
+                    <p><em>Texts:</em> Marco Dal Molin, Nicole Gönitzer, Ernst Guggisberg, Mirjam Häsler, Matthieu Lavoyer, Joséphine Métraux</p>
                 </div>
             </div>
         </section>

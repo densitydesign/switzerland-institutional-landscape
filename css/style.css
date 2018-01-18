@@ -35,12 +35,12 @@ body.sidebar-open {
 h1 {}
 
 h2 {
-    font-size: 4rem;
+    font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 0;
     font-weight: bold;
-    margin-bottom: 1.3rem;
-    margin-top: 12rem;
+    margin-bottom: 3rem;
+    margin-top: 6rem;
 }
 
 h3 {
@@ -50,11 +50,11 @@ h3 {
     letter-spacing: 0;
     line-height: 1.55rem;
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
 }
 
 p {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 p.caption {
@@ -135,6 +135,9 @@ p.caption:first-child {
     text-decoration: underline;
 }
 
+.link-spaced {
+    margin-right: 8px;
+}
 
 
 
@@ -148,6 +151,91 @@ p.caption:first-child {
 .report-title {
     font-size: 3rem;
 }
+
+/* Navigation */
+#navigation-sidebar {
+    position: fixed;
+    top: 60vh;
+    left: 0;
+    padding: 0.6rem;
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+}
+
+.nav-divider {
+    width: 7px;
+    height: 15px;
+    background-color: #333333;
+    border-radius: 2px;
+}
+
+.nav-link {
+    padding: 0 0.3rem;
+    height: 35px;
+    opacity: 1;
+    overflow-x: hidden;
+    -webkit-transition: width 0.5s ease, opacity 0.5s ease 0.2s;
+            transition: width 0.5s ease, opacity 0.5s ease 0.2s;
+}
+
+.nav-link div {
+    position: relative;
+}
+
+.link-introduction,
+.nav-link.link-introduction:hover,
+.link-introduction div {
+    width: calc(109px + 2 * 0.3rem);
+    opacity: 1;
+}
+.link-geographies,
+.nav-link.link-geographies:hover,
+.link-geographies div {
+    width: calc(194px + 2 * 0.3rem);
+    opacity: 1;
+}
+.link-interconnections,
+.nav-link.link-interconnections:hover,
+.link-interconnections div {
+    width: calc(145px + 2 * 0.3rem);
+    opacity: 1;
+}
+.link-entering-exiting,
+.nav-link.link-entering-exiting:hover,
+.link-entering-exiting div {
+    width: calc(188px + 2 * 0.3rem);
+    opacity: 1;
+}
+
+.nav-link:not(.active) {
+    width: 0;
+    opacity: 0;
+}
+
+#navigation-sidebar h6 {
+    margin: 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+#navigation-sidebar p {
+    position: absolute;
+    top: 12px;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+/* #navigation-sidebar p a:not(.active){
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease;
+}
+
+#navigation-sidebar p .active {
+    opacity: 1;
+} */
 
 /* Sidepanel */
 .sidepanel {
@@ -283,7 +371,7 @@ p.caption:first-child {
 /* 1.2 mosaic plot and sankey */
 
 #sankey {
-    padding: 4rem 0 6rem;
+    padding: 1.4rem 0 6rem;
 }
 
 #sankey svg {
@@ -390,7 +478,7 @@ p.caption:first-child {
 }
 
 .step {
-    margin-bottom: 300px;
+    margin-bottom: 160px;
 }
 
 .step:last-of-type {

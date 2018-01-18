@@ -84,6 +84,8 @@ $(document).ready(function() {
 
                     acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, acceptingInstitutionsConfig);
                     acceptingInstitutions.draw(acceptingInstitutionsConfig);
+
+                    $(document).trigger('setNavigation');
                 });
 
             // load asynchronously the datasets for chapter 3
@@ -313,6 +315,12 @@ $(document).on('setWaypoints', function() {
         changeButton(newYear, containerMapsWidth, '.btn-maps-year', 7);
     })
 
+});
+
+$(document).on('setNavigation', function() {
+    console.log('ready for navigation');
+
+    $('body').scrollspy({ target: '#navigation-sidebar' })
 });
 
 function changeButton(year, width, buttons, spacer) {
