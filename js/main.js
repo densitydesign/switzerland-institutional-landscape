@@ -320,7 +320,7 @@ $(document).on('setWaypoints', function() {
 $(document).on('setNavigation', function() {
     console.log('ready for navigation');
 
-    $('body').scrollspy({ target: '#navigation-sidebar' })
+    // $('body').scrollspy({ target: '#navigation-sidebar' })
 });
 
 function changeButton(year, width, buttons, spacer) {

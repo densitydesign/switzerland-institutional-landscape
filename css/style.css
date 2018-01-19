@@ -155,7 +155,7 @@ p.caption:first-child {
 /* Navigation */
 #navigation-sidebar {
     position: fixed;
-    top: 60vh;
+    top: 62vh;
     left: 0;
     padding: 0.6rem;
     -webkit-transform: rotate(-90deg);
@@ -173,38 +173,38 @@ p.caption:first-child {
 
 .nav-link {
     padding: 0 0.3rem;
-    height: 35px;
+    height: 20px;
     opacity: 1;
     overflow-x: hidden;
     -webkit-transition: width 0.5s ease, opacity 0.5s ease 0.2s;
             transition: width 0.5s ease, opacity 0.5s ease 0.2s;
 }
 
-.nav-link div {
+.link-container {
     position: relative;
 }
 
 .link-introduction,
 .nav-link.link-introduction:hover,
-.link-introduction div {
+.link-introduction h6 {
     width: calc(109px + 2 * 0.3rem);
     opacity: 1;
 }
 .link-geographies,
 .nav-link.link-geographies:hover,
-.link-geographies div {
+.link-geographies h6 {
     width: calc(194px + 2 * 0.3rem);
     opacity: 1;
 }
 .link-interconnections,
 .nav-link.link-interconnections:hover,
-.link-interconnections div {
+.link-interconnections h6 {
     width: calc(145px + 2 * 0.3rem);
     opacity: 1;
 }
 .link-entering-exiting,
 .nav-link.link-entering-exiting:hover,
-.link-entering-exiting div {
+.link-entering-exiting h6 {
     width: calc(188px + 2 * 0.3rem);
     opacity: 1;
 }
@@ -223,19 +223,29 @@ p.caption:first-child {
 #navigation-sidebar p {
     position: absolute;
     top: 12px;
+    left: 0.3rem;
+    width: 200px;
     margin: 0;
     font-size: 0.8rem;
 }
 
-/* #navigation-sidebar p a:not(.active){
-    opacity: 0;
-    -webkit-transition: opacity 0.5s ease;
-            transition: opacity 0.5s ease;
+#navigation-sidebar .nav {
+    display: block;
 }
 
-#navigation-sidebar p .active {
+#navigation-sidebar .subnav a{
+    pointer-events: none;
+}
+
+#navigation-sidebar .subnav a:not(.active){
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease;
+}
+
+#navigation-sidebar .subnav .active {
     opacity: 1;
-} */
+}
 
 /* Sidepanel */
 .sidepanel {

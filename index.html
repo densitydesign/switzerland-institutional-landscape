@@ -10,50 +10,57 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body>
+<body data-spy="scroll" data-target="#navigation-sidebar" data-offset="160">
     <!-- <section class="cover container-fluid d-flex align-items-center justify-content-center">
         <h1 class="text-center report-title">Topography of institutions</h1>
     </section> -->
 
     <nav id="navigation-sidebar" class="nav">
         <div class="nav-divider"></div>
-        <a href="#introduction" class="nav-link link-introduction">
-            <div class="link-introduction">
-                <h6>Introduction</h6>
-                <!-- <p><a href="#intro">Introduction</a></p> -->
-                <!-- <p>Introduction</p> -->
-                <!-- <p><a href="#temporal-framing">Timeline</a></p>
-                <p><a href="#surveyed-institutions">Sources</a></p>
-                <p><a href="#multipurpose">Facility purposes</a></p> -->
-            </div>
-        </a>
+
+            <nav class="link-container nav">
+                <a href="#introduction" class="nav-link link-introduction"><h6>Introduction</h6></a>
+                <nav class="nav subnav">
+                    <a href="#intro" class="nav-link"><p>Introduction</p></a>
+                    <a href="#temporal-framing" class="nav-link"><p>Timeline</p></a>
+                    <a href="#surveyed-institutions" class="nav-link"><p>Sources</p></a>
+                    <a href="#multipurpose" class="nav-link"><p>Facility purposes</p></a>
+                </nav>
+            </nav>
+
         <div class="nav-divider"></div>
-        <a href="#geographies" class="nav-link link-geographies">
-            <div class="link-geographies">
-                <h6>Geographic distribution</h6>
-                <!-- <p>Overview</p>
-                <p>Distribution by facility type</p>
-                <p>Institutional capacities</p>
-                <p>Distribution by denomination</p>
-                <p>Distribution by gender</p> -->
-            </div>
-        </a>
+
+            <nav class="link-container nav">
+                <a href="#geographies" class="nav-link link-geographies"><h6>Geographic distribution</h6></a>
+                <nav class="nav subnav">
+                    <a href="#map-total-text" class="nav-link"><p>Overview</p></a>
+                    <a href="#map-typology-text" class="nav-link"><p>Distribution by facility type</p></a>
+                    <a href="#map-capacity-text" class="nav-link"><p>Institutional capacities</p></a>
+                    <a href="#map-confession-text" class="nav-link"><p>Distribution by denomination</p></a>
+                    <a href="#map-gender-text" class="nav-link"><p>Distribution by gender</p></a>
+                </nav>
+            </nav>
+
         <div class="nav-divider"></div>
-        <a href="#interconnections" class="nav-link link-interconnections">
-            <div class="link-interconnections">
-                <h6>Interconnections</h6>
-                <!-- <p>Correlations</p> -->
-            </div>
-        </a>
+
+            <nav class="link-container nav">
+                <a href="#interconnections" class="nav-link link-interconnections"><h6>Interconnections</h6></a>
+                <nav class="nav subnav">
+                    <a href="#sub-correlations" class="nav-link"><p>Correlations</p></a>
+                </nav>
+            </nav>
+
         <div class="nav-divider"></div>
-        <a href="#entering-exiting" class="nav-link link-entering-exiting">
-            <div class="link-entering-exiting">
-                <h6>Internment and release</h6>
-                <!-- <p>Placement in an institution</p>
-                <p>Intercantonal connections</p>
-                <p>Release</p> -->
-            </div>
-        </a>
+
+            <nav class="link-container nav">
+                <a href="#entering-exiting" class="nav-link link-entering-exiting"><h6>Internment and release</h6></a>
+                <nav class="nav subnav">
+                    <a href="#entering" class="nav-link"><p>Placement in an institution</p></a>
+                    <a href="#network" class="nav-link"><p>Intercantonal connections</p></a>
+                    <a href="#exiting" class="nav-link"><p>Release</p></a>
+                </nav>
+            </nav>
+
         <div class="nav-divider"></div>
     </nav>
 
@@ -65,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <section id="temporal-framing" class="sub-chapter container">
+        <section id="intro" class="sub-chapter container">
             <div class="row">
                 <div class="col-3 pr-0 d-flex justify-content-end align-items-center">
                     <h3><a href="#intro"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
@@ -106,7 +113,9 @@
                     <hr class="mb-5" />
                 </div>
             </div>
+        </section>
 
+        <section id="temporal-framing" class="sub-chapter container">
             <div class="row">
                 <div class="col-3 pr-0 d-flex justify-content-end align-items-center">
                     <h3><a href="#temporal-framing"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
