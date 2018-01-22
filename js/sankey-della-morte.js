@@ -63,7 +63,7 @@ function SurviesSankey(id, data) {
             .domain(years)
 
         let nodesColor = d3.scaleOrdinal()
-            .range(['#E7EDEF', '#F89C74', '#F6CF71', '#89C2DA'])
+            .range(['#E7EDEF', '#434B4F', '#B0C5CE', '#90BCCC'])
             // .range(['#E7EDEF', '#EF9D79', '#E9C670', '#89C2DA']), '#66C5CC'
             .domain(categories);
 
