@@ -27,7 +27,7 @@ function SurviesSankey(id, data) {
             nodesPadding = 5;
         } else {
             nodesPadding = width * 0.05;
-        }        
+        }
 
         height = width * .5;
         if (height > window.innerHeight) { height = window.innerHeight * .8 }
@@ -80,7 +80,7 @@ function SurviesSankey(id, data) {
                 let innerHtml = '<span class="color-square" style="background-color: '+ nodesColor(d) +';"></span> '+ d.replace('1_','').replace('2_','').replace('3_','').replace('4_','');
                 return innerHtml;
             })
-            
+
 
         .enter()
             .append()
@@ -203,7 +203,7 @@ function SurviesSankey(id, data) {
                 .append("g")
                 .on('click',function(d){
                     console.log(d);
-                    console.log(masterData)
+                    // console.log(masterData)
                 });
 
         node.append("rect")

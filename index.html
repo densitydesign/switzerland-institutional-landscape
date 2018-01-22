@@ -134,6 +134,28 @@
 
                 <div id="timeline" class="col-12">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 939.3 343.9" xml:space="preserve" class="timeline-viz">
+                        <defs>
+                            <linearGradient id="detGradient">
+                                <stop offset="0%" stop-color="#B6EA78"/>
+                                <stop offset="50%" stop-color="#B6EA78"/>
+                                <stop offset="100%" stop-color="#B6EA78" stop-opacity="0.2"/>
+                            </linearGradient>
+                            <linearGradient id="detStrokeGradient">
+                                <stop offset="0%" stop-color="#000000"/>
+                                <stop offset="50%" stop-color="#000000"/>
+                                <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+                            </linearGradient>
+                            <linearGradient id="detGradientBackwards" x1="1" x2="0" y1="0" y2="0">
+                                <stop offset="0%" stop-color="#B6EA78"/>
+                                <stop offset="50%" stop-color="#B6EA78"/>
+                                <stop offset="100%" stop-color="#B6EA78" stop-opacity="0.2"/>
+                            </linearGradient>
+                            <linearGradient id="detStrokeGradientBackwards" x1="1" x2="0" y1="0" y2="0">
+                                <stop offset="0%" stop-color="#000000"/>
+                                <stop offset="50%" stop-color="#000000"/>
+                                <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
                         <g id="base">
                             <text transform="matrix(0.7071 -0.7071 0.7071 0.7071 68.9585 338.2278)" class="timeline-legend">1910</text>
                             <text transform="matrix(0.7071 -0.7071 0.7071 0.7071 168.3257 338.9103)" class="timeline-legend">1920</text>
@@ -172,19 +194,19 @@
                             <polygon id="det-08" class="timeline-dots dots-det" points="443.6 260.6 448.1 256.1 450.5 256.1 450.5 265.1 448.1 265.1 "/>
                             <polygon id="det-09" class="timeline-dots dots-det" points="473.6 260.6 478.1 256.1 480.5 256.1 480.5 265.1 478.1 265.1 "/>
                             <polygon id="det-10" class="timeline-dots dots-det" points="543.6 260.6 548.1 256.1 550.5 256.1 550.5 265.1 548.1 265.1 "/>
-                            <polygon id="det-11" class="timeline-dots dots-det" points="575.5 260.6 571 265.1 568.6 265.1 568.6 256.1 571 256.1 "/>
-                            <polygon id="det-12" class="timeline-dots dots-det" points="601.4 260.6 596.9 265.1 594.5 265.1 594.5 256.1 596.9 256.1 "/>
-                            <polygon id="det-13" class="timeline-dots dots-det" points="681.4 260.6 676.9 265.1 674.5 265.1 674.5 256.1 676.9 256.1 "/>
+                            <polygon id="det-11" class="timeline-dots dots-det det-closing" points="575.5 260.6 571 265.1 568.6 265.1 568.6 256.1 571 256.1 "/>
+                            <polygon id="det-12" class="timeline-dots dots-det det-closing" points="601.4 260.6 596.9 265.1 594.5 265.1 594.5 256.1 596.9 256.1 "/>
+                            <polygon id="det-13" class="timeline-dots dots-det det-closing" points="681.4 260.6 676.9 265.1 674.5 265.1 674.5 256.1 676.9 256.1 "/>
                             <polygon id="det-14" class="timeline-dots dots-det" points="673.6 253.6 678.1 249.1 680.5 249.1 680.5 258.1 678.1 258.1 "/>
-                            <polygon id="det-15" class="timeline-dots dots-det" points="691.4 260.6 686.9 265.1 684.5 265.1 684.5 256.1 686.9 256.1 "/>
-                            <polygon id="det-16" class="timeline-dots dots-det" points="691.4 253.6 686.9 258.1 684.5 258.1 684.5 249.1 686.9 249.1 "/>
+                            <polygon id="det-15" class="timeline-dots dots-det det-closing" points="691.4 260.6 686.9 265.1 684.5 265.1 684.5 256.1 686.9 256.1 "/>
+                            <polygon id="det-16" class="timeline-dots dots-det det-closing" points="691.4 253.6 686.9 258.1 684.5 258.1 684.5 249.1 686.9 249.1 "/>
                             <polygon id="det-17" class="timeline-dots dots-det" points="683.6 246.6 688.1 242.1 690.5 242.1 690.5 251.1 688.1 251.1 "/>
-                            <polygon id="det-18" class="timeline-dots dots-det" points="731.4 260.6 726.9 265.1 724.5 265.1 724.5 256.1 726.9 256.1 "/>
-                            <polygon id="det-19" class="timeline-dots dots-det" points="751.4 260.6 746.9 265.1 744.5 265.1 744.5 256.1 746.9 256.1 "/>
+                            <polygon id="det-18" class="timeline-dots dots-det det-closing" points="731.4 260.6 726.9 265.1 724.5 265.1 724.5 256.1 726.9 256.1 "/>
+                            <polygon id="det-19" class="timeline-dots dots-det det-closing" points="751.4 260.6 746.9 265.1 744.5 265.1 744.5 256.1 746.9 256.1 "/>
                             <polygon id="det-20" class="timeline-dots dots-det" points="743.6 253.6 748.1 249.1 750.5 249.1 750.5 258.1 748.1 258.1 "/>
                             <polygon id="det-21" class="timeline-dots dots-det" points="743.6 246.6 748.1 242.1 750.5 242.1 750.5 251.1 748.1 251.1 "/>
-                            <polygon id="det-22" class="timeline-dots dots-det" points="761.4 260.6 756.9 265.1 754.5 265.1 754.5 256.1 756.9 256.1 "/>
-                            <polygon id="det-23" class="timeline-dots dots-det" points="781.4 260.6 776.9 265.1 774.5 265.1 774.5 256.1 776.9 256.1 "/>
+                            <polygon id="det-22" class="timeline-dots dots-det det-closing" points="761.4 260.6 756.9 265.1 754.5 265.1 754.5 256.1 756.9 256.1 "/>
+                            <polygon id="det-23" class="timeline-dots dots-det det-closing" points="781.4 260.6 776.9 265.1 774.5 265.1 774.5 256.1 776.9 256.1 "/>
                             <circle id="leg-01" class="timeline-dots dots-leg" cx="97.3" cy="164.6" r="4"/>
                             <circle id="leg-02" class="timeline-dots dots-leg" cx="167.3" cy="164.6" r="4"/>
                             <circle id="leg-03" class="timeline-dots dots-leg" cx="247.3" cy="164.6" r="4"/>
@@ -219,8 +241,12 @@
                         </g>
                         <g id="texts">
                             <text transform="matrix(1 0 0 1 1.8633 264.249)" class="timeline-legend timeline-legend-det">Detention facilities</text>
+                            <text transform="matrix(1 0 0 1 30.8633 277.249)" class="timeline-legend timeline-legend-subtititle timeline-legend-det">Opened in</text>
+                            <text transform="matrix(1 0 0 1 30.8633 293.249)" class="timeline-legend timeline-legend-subtititle timeline-legend-det">Closed in</text>
                             <text transform="matrix(1 0 0 1 1.8633 168.7495)" class="timeline-legend timeline-legend-leg">Legislation</text>
                             <text transform="matrix(1 0 0 1 1.8633 73.249)" class="timeline-legend timeline-legend-soc">Social historical events</text>
+                            <polygon class="timeline-legend timeline-legend-det dots-det" points="18.6,274.6 23.1,270.1 25.5,270.1 25.5,279.1 23.1,279.1 	"/>
+                            <polygon class="timeline-legend timeline-legend-det dots-det det-closing" points="26.5,289.6 22,294.1 19.6,294.1 19.6,285.1 22,285.1 	"/>
                         </g>
                     </svg>
                 </div>
@@ -646,7 +672,6 @@
                     <p>How could administrative detainees leave correctional labour facilities again? When was the main purpose of "(re-)education" pursued by administrative detention reached? Who decided when a detainee could be released? Was an administrative detainee really free when he/she left the correctional labour facility? The chapter on release practices is dedicated to these issues.</p>
                     <p>The release could be either final or on probation. For example, if in the Twenties a detainee wished to be released in advance from the "correctional labour facility for drunkards Fir Tree House" ("maison de travail pour buveurs, Sapinière"), which was part of the correctional labour facilities of Bellechasse in the Canton of Fribourg, at the end of the day the power to decide was in the hands of the facility director. His expert assessment was crucial for establishing the detainee's "recovery performance".</p>
                     <p>In this way, the inmates were put under strong pressure to comply and meet the expectations set in terms of work and behaviour during their detention. A release on probation, as transition between detention and freedom, essentially entailed - and not only in Bellechasse and in the Twenties - restrictions concerning the behaviour required during the probation period (for example, a ban on entering inns or abstinence from alcohol). Inmates released on probation were kept under surveillance by local authorities or employees of the supervision authority. If during the probation period they did not behave as prescribed, they risked to be locked up again in the correctional labour facility. The fact that many people were detained several times shows how difficult it was to escape the control mechanisms.</p>
-                    <p>[DIAGRAM]</p>
                 </div>
             </div>
             <hr class="mb-5" />
