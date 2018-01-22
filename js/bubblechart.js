@@ -218,21 +218,22 @@ function Bubblechart(id, data) {
                         return capacityColor(d.capacity_group);
                     }
                 })
-                .on('mouseenter', function(d) {
-                    svg.selectAll('.label')
-                        .filter(function(e) { return e.id == d.id })
-                        .classed('hidden', false);
-                })
-                .on("mouseleave", function(d) {
-                    svg.selectAll('.label')
-                        .filter(function(e) {
-                            console.log(e);
-                            console.log(d);
-                            return e.id == d.id })
-                        .classed('hidden', true);
-                })
+                // .on('mouseenter', function(d) {
+                //     svg.selectAll('.label')
+                //         .filter(function(e) { return e.id == d.id })
+                //         .classed('hidden', false);
+                // })
+                // .on("mouseleave", function(d) {
+                //     svg.selectAll('.label')
+                //         .filter(function(e) {
+                //             console.log(e);
+                //             console.log(d);
+                //             return e.id == d.id })
+                //         .classed('hidden', true);
+                // })
                 .on("click", function(d) {
-                    console.log(masterData.filter(function(e) { return d.id == e.id }));
+                    let activeYear = $('#bubblechart .active-year').attr('data-id');
+                    buildSidepanel(d.id, activeYear);
                 });
 
             node.transition()

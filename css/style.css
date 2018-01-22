@@ -315,11 +315,14 @@ p.caption:first-child {
 /* 1.1 timeline */
 
 #timeline {
-    background: rgba(176, 197, 206, 0.07);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+    margin: 2rem 0;
+    background: #FAFBFC;
     border-top: 1px solid #B0C5CE;
     border-bottom: 1px solid #B0C5CE;
-    padding: 2rem 0;
-    margin-bottom: 1rem;
+    z-index: 90;
 }
 
 .timeline-viz {
@@ -327,54 +330,65 @@ p.caption:first-child {
     height: auto;
 }
 
-.timeline-viz text {
-    font-size: 10px;
+.timeline-legend {
+    font-family: 'Brandon Grotesque', sans-serif;
+    font-size: 0.6rem;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease;
 }
-
-.baseline {
+.timeline-line {
     fill: none;
     stroke: #000000;
-    stroke-width: 0.5px;
-    stroke-miterlimit: 10px;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
 }
-
-.baseline-dashed {
-    fill: none;
-    stroke: #000000;
-    stroke-width: 0.5px;
-    stroke-miterlimit: 10px;
+.line-dashed {
     stroke-dasharray: 4.6, 4.6;
 }
-
-.baseline-dot {
+.timeline-base-dots {
     fill: #FFFFFF;
     stroke: #000000;
-    stroke-width: 0.5px;
-    stroke-miterlimit: 10px;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
 }
-
-.events-dot {
-    fill: #FF8E66;
-    stroke: #000000;
-    stroke-width: 0.5px;
-    stroke-miterlimit: 10px;
+.timeline-dots {
+    cursor: pointer;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease;
 }
-
-.laws-dot {
-    fill: #6699FF;
-    stroke: #000000;
-    stroke-width: 0.5px;
-    stroke-miterlimit: 10px;
+.element-grayed {
+    opacity: 0.2;
 }
-
-.survey-dot {
+.dots-det {
     fill: #B6EA78;
     stroke: #000000;
-    stroke-width: 0.5px;
-    stroke-miterlimit: 10px;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+.dots-leg {
+    fill: #6699FF;
+    stroke: #000000;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+.dots-soc {
+    fill: #FF8E66;
+    stroke: #000000;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+.timeline-text {
+    margin-bottom: 3rem;
+    opacity: 0.2;
+    -webkit-transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease;
 }
 
-
+.timeline-text.text-highlighted {
+    opacity: 1;
+}
 
 
 
@@ -453,6 +467,9 @@ p.caption:first-child {
 }
 
 /* 1.4 typologies network of correlations */
+#typologies-graph {
+    margin-top: 1rem;
+}
 
 #typologies-graph circle.node {
     stroke-width: .5px;

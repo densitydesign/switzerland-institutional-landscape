@@ -99,6 +99,70 @@ $(document).ready(function() {
                 });
         });
 
+    // set waypoints for timeline
+    // highlight social if going down, hide if going up
+    let social_waypoint = new Waypoint({
+        element: document.getElementById('timeline-text-soc'),
+        handler: function(direction) {
+            if (direction == 'down') {
+                $('.timeline-dots').addClass('element-grayed');
+                $('.dots-soc').removeClass('element-grayed');
+                $('#texts .timeline-legend').addClass('element-grayed');
+                $('.timeline-legend-soc').removeClass('element-grayed');
+                $('.timeline-text').removeClass('text-highlighted');
+                $('#timeline-text-soc').addClass('text-highlighted');
+            } else {
+                $('.timeline-dots').removeClass('element-grayed');
+                $('#texts .timeline-legend').removeClass('element-grayed');
+                $('.timeline-text').removeClass('text-highlighted');
+            }
+        },
+        offset: '70%'
+    });
+
+    let legislative_waypoint = new Waypoint({
+        element: document.getElementById('timeline-text-leg'),
+        handler: function(direction) {
+            if (direction == 'down') {
+                $('.timeline-dots').addClass('element-grayed');
+                $('.dots-leg').removeClass('element-grayed');
+                $('#texts .timeline-legend').addClass('element-grayed');
+                $('.timeline-legend-leg').removeClass('element-grayed');
+                $('.timeline-text').removeClass('text-highlighted');
+                $('#timeline-text-leg').addClass('text-highlighted');
+            } else {
+                $('.timeline-dots').addClass('element-grayed');
+                $('.dots-soc').removeClass('element-grayed');
+                $('#texts .timeline-legend').addClass('element-grayed');
+                $('.timeline-legend-soc').removeClass('element-grayed');
+                $('.timeline-text').removeClass('text-highlighted');
+                $('#timeline-text-soc').addClass('text-highlighted');
+            }
+        },
+        offset: '65%'
+    });
+
+    let detention_waypoint = new Waypoint({
+        element: document.getElementById('timeline-text-det'),
+        handler: function(direction) {
+            if (direction == 'down') {
+                $('.timeline-dots').addClass('element-grayed');
+                $('.dots-det').removeClass('element-grayed');
+                $('#texts .timeline-legend').addClass('element-grayed');
+                $('.timeline-legend-det').removeClass('element-grayed');
+                $('.timeline-text').removeClass('text-highlighted');
+                $('#timeline-text-det').addClass('text-highlighted');
+            } else {
+                $('.timeline-dots').addClass('element-grayed');
+                $('.dots-leg').removeClass('element-grayed');
+                $('#texts .timeline-legend').addClass('element-grayed');
+                $('.timeline-legend-leg').removeClass('element-grayed');
+                $('.timeline-text').removeClass('text-highlighted');
+                $('#timeline-text-leg').addClass('text-highlighted');
+            }
+        },
+        offset: '70%'
+    });
 
     // change matrix selects when changing years, setup matrix buttons
     let $matrixButtons = $('#matrix .btn-matrix-year'),
@@ -317,12 +381,6 @@ $(document).on('setWaypoints', function() {
 
 });
 
-$(document).on('setNavigation', function() {
-    console.log('ready for navigation');
-
-    // $('body').scrollspy({ target: '#navigation-sidebar' })
-});
-
 function changeButton(year, width, buttons, spacer) {
     $(buttons).removeClass('active-year');
     $(buttons + '[data-id='+ year +']').addClass('active-year');
@@ -464,6 +522,11 @@ function buildSidepanelList(list, year) {
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
+}
+
+function changeMatrixStatus(valY, valX) {
+    $('#scatterplot-y').val(valY).change();
+    $('#scatterplot-x').val(valX).change();
 }
 
 function closeSidepanel() {
