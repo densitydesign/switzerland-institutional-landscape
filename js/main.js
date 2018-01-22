@@ -36,7 +36,7 @@ $(document).ready(function() {
             masterData = data;
 
             // load asynchronously the datasets
-            var dataFiles = ['./data_and_scripts/data/data-sankey-from-raw.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
+            var dataFiles = ['./data_and_scripts/data/sankey-institutions-with-list.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
                 queue = d3.queue();
 
             dataFiles.forEach(function(filename) {

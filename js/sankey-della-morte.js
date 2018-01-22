@@ -202,8 +202,7 @@ function SurviesSankey(id, data) {
             .enter()
                 .append("g")
                 .on('click',function(d){
-                    console.log(d);
-                    // console.log(masterData)
+                    console.log(d)
                 });
 
         node.append("rect")
@@ -257,9 +256,9 @@ function SurviesSankey(id, data) {
                     return 'url(#' + d.source.name.split(' ').join('_') + '-' + d.target.name.split(' ').join('_') + ')'
                 }
             })
-            // .on('click', function(d) {
-            //     console.log(d)
-            // });
+            .on('click', function(d) {
+                console.log(d)
+            });
 
         link.append("title")
             .text(function(d) { return d.source.name + " → " + d.target.name + "\n" + format(d.value); });

@@ -27,14 +27,18 @@ node_xj({
 
         // console.log(result);
 
-        fs.writeFile("./data/sankey-institutions.json", JSON.stringify(result, null, null), function(err) {
-            if (err) {
-                return console.log(err);
-            }
-            console.log("The file was saved!");
-        });
+        // fs.writeFile("./data/sankey-institutions.json", JSON.stringify(result, null, null), function(err) {
+        //     if (err) {
+        //         return console.log(err);
+        //     }
+        //     console.log("The file was saved!");
+        // });
 
         // The data has then to be reworked in RAWGraphs, using the alluvial diagram (sankey) and exporting the JSON data format
+
+        // REWORK THE DATA IN RAWGRAPHS, THEN EXECUTE "sankey-della-morte-2.js"
+
+
     }
 });
 
