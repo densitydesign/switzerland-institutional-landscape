@@ -162,6 +162,7 @@ p.caption:first-child {
             transform: rotate(-90deg);
     -webkit-transform-origin: 0 0;
             transform-origin: 0 0;
+    z-index: 2000;
 }
 
 .nav-divider {
@@ -417,6 +418,7 @@ p.caption:first-child {
 
 #sankey .nodes rect {
     stroke: none;
+    cursor: pointer;
 }
 
 #sankey .nodes text {}
@@ -424,7 +426,7 @@ p.caption:first-child {
 #sankey .links path {
     fill: none;
     opacity: .3;
-    /*cursor: pointer;*/
+    cursor: pointer;
 }
 
 #sankey .links path:hover {

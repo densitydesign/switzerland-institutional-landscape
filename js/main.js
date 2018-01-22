@@ -466,12 +466,16 @@ function buildSidepanel(id, year) {
     $('.sidepanel').addClass('sidepanel-open');
 }
 
-function buildSidepanelList(list, year) {
-    let filters = {
-        id: list,
-        survey_year: [year]
-    }
-    let filtered_institution = multiFilter(masterData, filters);
+function buildSidepanelList(list) {
+
+    let filtered_institution = [];
+    list.forEach(function(id){
+        let match = masterData.find(function(element) {
+            return element.id == id;
+        });
+        filtered_institution.push(match);
+    })
+    // console.log(filtered_institution);
 
     d3.select('.sidepanel-container')
         .transition()
