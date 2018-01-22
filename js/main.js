@@ -397,9 +397,16 @@ function changeButton(year, width, buttons, spacer) {
 }
 
 function buildSidepanel(id, year) {
-    let filters = {
-        id: [id],
-        survey_year: [year]
+    let filters;
+    if (year == 'all') {
+        filters = {
+            id: [id]
+        }
+    } else {
+        filters = {
+            id: [id],
+            survey_year: [year]
+        }
     }
     let filtered_institution = multiFilter(masterData, filters);
 
@@ -421,8 +428,10 @@ function buildSidepanel(id, year) {
     panel.append('h6')
         .classed('sidepanel-data', true)
         .text(function(d){
-            if (year != 1940) {
+            if (year != 1940 && year != 'all') {
                 return 'Survey of ' + year;
+            } else if (year == 'all') {
+                return 'Unspecified survey';
             } else {
                 return 'Data from the 1940s';
             }
