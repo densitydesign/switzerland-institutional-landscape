@@ -21,7 +21,7 @@ function CircularNetwork(id, data) {
     let color = d3.scaleOrdinal()
         
         .range(['#ca5268', '#85c4c9', '#97e196', '#888888'])
-        .range(['#CFB76D', '#51938D', '#BC6458', '#EAE6DA'])
+        .range(['#CFB76D', '#79745C', '#B5BA72', '#EAE6DA'])
         .domain(['c1', 'c2', 'c3', 'not defined'])
 
     let areaScale = d3.scaleLinear()
