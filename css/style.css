@@ -213,7 +213,7 @@ p.caption:first-child {
 .nav-divider {
     width: 3px;
     height: 15px;
-    background-color: #81AA91;
+    background-color: #666;
     border-radius: 2px;
 }
 
@@ -678,6 +678,7 @@ p.caption:first-child {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     margin-bottom: 20px;
+    font-size: 0.8em;
 }
 
 .select-container {
@@ -780,7 +781,7 @@ p.caption:first-child {
 }
 
 #accepting-institutions .label.faded {
-    opacity: .35
+    opacity: .35;
 }
 
 #accepting-institutions .node {
@@ -795,4 +796,5 @@ p.caption:first-child {
     text-transform: uppercase;
     font-size: .65rem;
     font-weight: bold;
+
 }
