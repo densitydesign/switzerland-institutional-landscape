@@ -7,6 +7,7 @@ let timeline,
     typologiesGraph;
 
 let years = [1933, 1940, 1954, 1965, 1980],
+    yearsAlternative = [1900, 1933, 1940, 1954, 1965, 1980],
     containerMapsWidth,
     containerBubblechartWidth,
     containerTypologiesWidth,
@@ -75,7 +76,7 @@ $(document).ready(function() {
                     if (error) throw error;
 
                     map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
-                    map_all_institutions.draw(1954);
+                    map_all_institutions.draw(1900);
 
                     map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
 
@@ -260,10 +261,10 @@ $(document).on('setWaypoints', function() {
     buttonWidth = $('.btn-maps-year[data-id=1940]').width();
 
     // save the selection to a variable to improve performance
-    let $mapButtons = $('#maps .btn-maps-year');
+    // let $mapButtons = $('#maps .btn-maps-year');
 
     //set up initial active map button
-    changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
+    changeButton(1900, containerMapsWidth, '.btn-maps-year', 7);
 
     // initiate waypoints
     // waypoint for sankey/mosaic. call function sankey if going down, mosaic if going up
@@ -286,18 +287,28 @@ $(document).on('setWaypoints', function() {
         handler: function(direction) {
             if (direction == 'down') {
                 // console.log('call map_typologies 1954');
-                $mapButtons.each(function(i) {;
-                    $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
-                });
+                $('.year-all').fadeOut(function(){
+                    $(this).remove();
+                    $('#maps .btn-maps-year').each(function(i) {
+                        $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
+                        changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
+                    });
+                })
                 map_typologies.draw(1965);
-                changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
+
             } else {
                 // console.log('call map_all_institutions 1954');
-                $mapButtons.each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ');closeSidepanel()');
+                $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(1900);closeSidepanel()" data-id="1900">All</span>`).fadeIn(function(){
+                    $('#maps .btn-maps-year').each(function(i, btn) {
+                        $(this).attr('onclick', 'map_all_institutions.draw(' + yearsAlternative[i] + ');closeSidepanel()');
+                    });
+                    changeButton(1900, containerMapsWidth, '.btn-maps-year', 7);
                 });
-                map_all_institutions.draw(1954);
-                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
+                map_all_institutions.draw(1900);
+                $('.year-all').on('click', function(){
+                    let newYear = $(this).attr('data-id');
+                    changeButton(newYear, containerMapsWidth, '.btn-maps-year', 7);
+                });
             }
         },
         offset: '40%'
@@ -308,14 +319,14 @@ $(document).on('setWaypoints', function() {
         handler: function(direction) {
             if (direction == 'down') {
                 // console.log('call map_capacities 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
                 changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_typologies 1954');
-                $mapButtons.each(function(i) {;
+                $('#maps .btn-maps-year').each(function(i) {;
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1965);
@@ -330,14 +341,14 @@ $(document).on('setWaypoints', function() {
         handler: function(direction) {
             if (direction == 'down') {
                 // console.log('call map_confession 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1965, 'confession');
                 changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_capacities 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
@@ -352,14 +363,14 @@ $(document).on('setWaypoints', function() {
         handler: function(direction) {
             if (direction == 'down') {
                 // console.log('call map_gender 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender");closeSidepanel()');
                 });
                 map_all_institutions.draw(1965, 'accepted_gender');
                 changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_confession 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1965, 'confession');
@@ -369,7 +380,7 @@ $(document).on('setWaypoints', function() {
         offset: '40%'
     });
 
-    $mapButtons.on('click', function(){
+    $('#maps .btn-maps-year').on('click', function(){
         let newYear = $(this).attr('data-id');
         changeButton(newYear, containerMapsWidth, '.btn-maps-year', 7);
     });
@@ -398,7 +409,7 @@ function changeButton(year, width, buttons, spacer) {
 
 function buildSidepanel(id, year) {
     let filters;
-    if (year == 'all') {
+    if (year == 1900) {
         filters = {
             id: [id]
         }
@@ -428,9 +439,9 @@ function buildSidepanel(id, year) {
     panel.append('h6')
         .classed('sidepanel-data', true)
         .text(function(d){
-            if (year != 1940 && year != 'all') {
+            if (year != 1940 && year != 1900) {
                 return 'Survey of ' + year;
-            } else if (year == 'all') {
+            } else if (year == 1900) {
                 return 'Unspecified survey';
             } else {
                 return 'Data from the 1940s';

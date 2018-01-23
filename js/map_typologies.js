@@ -115,7 +115,7 @@ function MapTypologies(id, swiss, data) {
         //calculate width and height for each small map
         width = $('#maps-visualization').width();
         height = width * .8;
-        radius = 2;
+        radius = 1.5;
         mapsWidth = width / 3 - 30;
         mapsHeight = mapsWidth * 0.9;
 
@@ -324,7 +324,7 @@ function MapTypologies(id, swiss, data) {
 
                 node = node.enter()
                     .append('circle')
-                    .classed('dot', true)
+                    .classed('dot-small', true)
                     .attr('r', 1e-6)
                     .on("click", function(d) {
                         let activeYear = $('#maps .active-year').attr('data-id');

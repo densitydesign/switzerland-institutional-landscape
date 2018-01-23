@@ -608,6 +608,10 @@ p.caption:first-child {
     stroke: #ffffff;
     cursor: pointer;
 }
+.dot-small {
+    fill: #105965;
+    cursor: pointer;
+}
 
 .item-text {
     font-size: .65rem;

@@ -145,7 +145,7 @@ function MapAll(id, swiss, data) {
         //filter the data for the correct year
         let selectedYear,
             institutions;
-        if (year == 'all') {
+        if (year == 1900) {
             selectedYear = this.allData;
             institutions = selectedYear.map(function(d){
                 return {
