@@ -48,13 +48,14 @@ function MapAll(id, swiss, data) {
     }
     let capacityScale = d3.scaleOrdinal()
         .domain(categoriesList['capacity_group'])
-        .range(['#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a', '#333333']);
+        // .range(['#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a', '#EAE6DA']);
+        .range(['#DCC274', '#CFB76D', '#B5A060', '#8F7F4B', '#4F462A', '#38321E', '#EAE6DA']);
     let confessionScale = d3.scaleOrdinal()
         .domain(categoriesList['confession'])
-        .range(['#50e3c2', '#ff7a5a', '#fcf4d9', '#333333']);
+        .range(['#CC2936', '#61988E', '#EDDEA4', '#EAE6DA']);
     let genderScale = d3.scaleOrdinal()
         .domain(categoriesList['accepted_gender'])
-        .range(['#a7d46f', '#ffed8f', '#e3f8ff', '#333333']);
+        .range(['#575A4B', '#FF6663', '#EDDEA4', '#EAE6DA']);
     let currentCategory;
 
     // check if svg has already been created and if not, creates it
