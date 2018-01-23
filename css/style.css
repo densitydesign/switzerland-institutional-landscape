@@ -9,7 +9,6 @@
 @import '../fonts/Brandon_bld-export/Brandon_bld.css';
 @import '../fonts/Brandon_bld_it-export/Brandon_bld_it.css';
 
-
 /* General for all viz */
 
 html {
@@ -139,17 +138,20 @@ p.caption:first-child {
 }
 
 .btn-secondary {
-    width: 100px;
+    width: 70px;
     background-color: rgba(176, 197, 206, 0.07);
     border-radius: 28px;
+    font-size: 0.8rem;
     color: #000000;
+    padding: .2rem .5rem;
     cursor: pointer;
 }
 .btn-secondary:hover {
-    background-color: #B0C5CE;
+    background-color: #81AA91;
 }
+
 .btn-secondary:not([disabled]):not(.disabled).active {
-    background-color: #B0C5CE;
+    background-color: #81AA91;
     -webkit-box-shadow: none;
             box-shadow: none;
 }
@@ -159,7 +161,23 @@ p.caption:first-child {
 }
 
 .underlined {
-    text-decoration: underline;
+    text-decoration: none;
+    color: rgba(0,0,0,.7);
+    transition: 0.2s ease;
+}
+
+.underlined::before {
+    font-family: "FontAwesome";
+    text-decoration: none;
+    content: "\f040";
+    font-weight: lighter;
+    font-size: 0.8em;
+    margin-left: 0.3em;
+    margin-right: 0.2em;
+}
+
+.underlined:hover {
+    color: #81AA91;
 }
 
 .link-spaced {
@@ -348,9 +366,11 @@ p.caption:first-child {
     position: sticky;
     top: 20px;
     margin: 2rem 0;
+    padding-bottom: 0.4em;
     background: #FAFBFC;
-    border-top: 1px solid #B0C5CE;
+    border: 1px solid #B0C5CE;
     border-bottom: 1px solid #B0C5CE;
+    border-radius: 2px;
     z-index: 90;
 }
 
@@ -403,13 +423,13 @@ p.caption:first-child {
 }
 
 .dots-leg {
-    fill: #434B4F;
+    fill: #90BCCC;
     stroke: #000000;
     stroke-width: 0.5;
     stroke-miterlimit: 10;
 }
 .dots-soc,.dots-leg {
-    fill: #434B4F;
+    fill: #90BCCC;
     stroke: #000;
     stroke-width: 0.5;
     stroke-miterlimit: 10;
@@ -464,10 +484,12 @@ p.caption:first-child {
 /* 1.3 bubblechart - purpose of institutions */
 
 #bubblechart {
+    padding-top: 1rem;
     border-top: 1px solid #CFB76D;
-    border-bottom: 1px solid #CFB76D;
+    border: 1px solid #CFB76D;
     background: rgba(207, 183, 109, 0.05);
-    margin-bottom: 1rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
 }
 
 #bubblechart svg {
@@ -609,15 +631,10 @@ p.caption:first-child {
     stroke-width: .5px;
 }
 
-
-
-
-
-
 /* map_all_institutions styles */
 
 .dot {
-    fill: #000;
+    fill: #333;
     stroke-width: 0.5px;
     stroke: #000;
     cursor: pointer;
@@ -695,9 +712,9 @@ p.caption:first-child {
 }
 
 .bubble {
-    stroke: #000;
+    stroke: rgba(0,0,0,.4);
     stroke-width: 1px;
-    fill: #434B4F;
+    fill: #CFB76D;
 }
 
 
