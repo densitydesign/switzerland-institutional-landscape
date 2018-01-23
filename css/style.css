@@ -17,6 +17,14 @@ html {
     line-height: 1.55rem;
 }
 
+::-moz-selection {
+    background: rgba(129, 170, 145, 0.4);
+}
+
+::selection {
+    background: rgba(129, 170, 145, 0.4);
+}
+
 body {
     position: relative;
     -webkit-transition: right 0.5s ease;
@@ -33,6 +41,7 @@ body.sidebar-open {
 
 a {
     color: #81AA91;
+    -webkit-transition: ease .3s;
     transition: ease .3s;
 }
 
@@ -81,7 +90,10 @@ hr:before {
 
 p {
     margin-bottom: 1rem;
-    font-family: "Crimson Text";
+    font-family: "Crimson Text", serif;
+}
+aside p {
+    font-family: "Brandon Grotesque", sans-serif;
 }
 
 p.caption {
@@ -164,15 +176,16 @@ p.caption:first-child {
 .underlined {
     text-decoration: none;
     color: rgba(0,0,0,.7);
+    -webkit-transition: 0.2s ease;
     transition: 0.2s ease;
 }
 
 .underlined::before {
     font-family: "FontAwesome";
     text-decoration: none;
-    content: "\f040";
+    content: "\f25a";
     font-weight: lighter;
-    font-size: 0.8em;
+    font-size: 0.75em;
     margin-left: 0.3em;
     margin-right: 0.2em;
 }
@@ -443,9 +456,9 @@ p.caption:first-child {
     stroke-miterlimit: 10;
 }
 .dots-det.det-closing {
-    fill: #B6EA78; 
+    fill: #B6EA78;
     fill: url(#detGradientBackwards);
-    stroke: #000000; 
+    stroke: #000000;
     stroke: url(#detStrokeGradientBackwards);
     stroke-width: 0.5;
     stroke-miterlimit: 10;
@@ -621,6 +634,7 @@ p.caption:first-child {
 
 .year-switch {
     cursor: pointer;
+    line-height: 1.1;
 }
 
 /* swiss map styles */
@@ -643,13 +657,13 @@ p.caption:first-child {
 /* map_all_institutions styles */
 
 .dot {
-    fill: #333;
+    fill: #333333;
     stroke-width: 0.5px;
     stroke: #000;
     cursor: pointer;
 }
 .dot-small {
-    fill: #105965;
+    fill: #333333;
     cursor: pointer;
 }
 
