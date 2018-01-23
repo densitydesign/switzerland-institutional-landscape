@@ -179,7 +179,7 @@ function AcceptingInstitutions(id, data, swiss) {
                         })
                         // console.log('sending', sending);
                         // console.log('receiving', receiving);
-                        console.log('exchanges', exchanges);
+                        // console.log('exchanges', exchanges);
                     } else {
                         // console.log('no cantons sending to', d.properties.abbr);
                         viz_message = d.properties.name + ' did not received detainees from other cantons in ' + config.year + '.';
@@ -332,40 +332,41 @@ function AcceptingInstitutions(id, data, swiss) {
                 .append("circle")
                 .classed('node', true)
                 .attr("r", 0)
+                .style('cursor', 'pointer')
                 .merge(node)
                 .on('click', function(d) {
-                    console.log(d);
+                    buildSidepanel(d.id, 1900);
                 })
-                .on('mouseenter', function(d) {
-                    d3.selectAll(id + ' .node')
-                        .style('opacity', .4)
-
-                    d3.select(this)
-                        .style('opacity', 1)
-                        .transition()
-                        .duration(300)
-                        .attr('r', fixedRadius * 1.5)
-
-                    d3.selectAll(id + ' .nodeLabel')
-                        .filter(function(e) { return e.id == d.id })
-                        .transition()
-                        .duration(500)
-                        .style('opacity', 1)
-                })
-                .on('mouseout', function(d) {
-                    d3.selectAll(id + ' .node')
-                        .style('opacity', 1)
-
-                    d3.select(this).transition()
-                        .duration(300)
-                        .attr('r', fixedRadius)
-
-                    d3.selectAll(id + ' .nodeLabel')
-                        .filter(function(e) { return e.id == d.id })
-                        .transition()
-                        .duration(500)
-                        .style('opacity', 0)
-                })
+                // .on('mouseenter', function(d) {
+                //     d3.selectAll(id + ' .node')
+                //         .style('opacity', .4)
+                //
+                //     d3.select(this)
+                //         .style('opacity', 1)
+                //         .transition()
+                //         .duration(300)
+                //         .attr('r', fixedRadius * 1.5)
+                //
+                //     d3.selectAll(id + ' .nodeLabel')
+                //         .filter(function(e) { return e.id == d.id })
+                //         .transition()
+                //         .duration(500)
+                //         .style('opacity', 1)
+                // })
+                // .on('mouseout', function(d) {
+                //     d3.selectAll(id + ' .node')
+                //         .style('opacity', 1)
+                //
+                //     d3.select(this).transition()
+                //         .duration(300)
+                //         .attr('r', fixedRadius)
+                //
+                //     d3.selectAll(id + ' .nodeLabel')
+                //         .filter(function(e) { return e.id == d.id })
+                //         .transition()
+                //         .duration(500)
+                //         .style('opacity', 0)
+                // })
 
 
             node.transition()

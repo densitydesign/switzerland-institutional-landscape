@@ -179,7 +179,7 @@ function CircularNetwork(id, data) {
                             if ( n.id == l.target.id || n.id == l.source.id) {
                                 if (n.id != d.id) {
                                     d3.select(this).style('opacity', 1);
-                                }    
+                                }
                             }
                         });
                     } else {
@@ -197,9 +197,11 @@ function CircularNetwork(id, data) {
         link = link.enter().append("path")
             .classed('link', true)
             .style('stroke-width', function(d) { return edgeWeight(d.weight) })
+            .style('cursor', 'pointer')
             // .attr('marker-end', 'url(#arrowhead)')
             .on('click', function(d) {
-                console.log(d);
+                // console.log(d);
+                buildSidepanelList(d.target_institutions);
             })
             .merge(link);
 

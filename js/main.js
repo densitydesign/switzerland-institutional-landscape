@@ -421,78 +421,108 @@ function changeButton(year, width, buttons, spacer) {
 
 function buildSidepanel(id, year) {
     let filters;
-    if (year == 1900) {
-        filters = {
-            id: [id]
-        }
+    if (id.substring(0,2) == 'XX') {
+
+        d3.select('.sidepanel-container')
+            .transition()
+            .duration(300)
+            .style('opacity', 1e-6)
+            .remove();
+
+        let panel = d3.select('.sidepanel')
+            .append('div')
+            .classed('sidepanel-container', true);
+
+        panel.transition()
+            .delay(300)
+            .duration(300)
+            .style('opacity', 1);
+
+        panel.append('h6')
+            .classed('sidepanel-data', true)
+            .text('Unspecified survey');
+
+        panel.append('h5')
+            .classed('sidepanel-name', true)
+            .text('Other');
+
+        panel.append('p')
+            .text('There is not enough information about the institution.');
+
     } else {
-        filters = {
-            id: [id],
-            survey_year: [year]
-        }
-    }
-    let filtered_institution = multiFilter(masterData, filters);
-
-    d3.select('.sidepanel-container')
-        .transition()
-        .duration(300)
-        .style('opacity', 1e-6)
-        .remove();
-
-    let panel = d3.select('.sidepanel')
-        .append('div')
-        .classed('sidepanel-container', true);
-
-    panel.transition()
-        .delay(300)
-        .duration(300)
-        .style('opacity', 1);
-
-    panel.append('h6')
-        .classed('sidepanel-data', true)
-        .text(function(d){
-            if (year != 1940 && year != 1900) {
-                return 'Survey of ' + year;
-            } else if (year == 1900) {
-                return 'Unspecified survey';
-            } else {
-                return 'Data from the 1940s';
+        if (year == 1900) {
+            filters = {
+                id: [id]
             }
-        });
+        } else {
+            filters = {
+                id: [id],
+                survey_year: [year]
+            }
+        }
+        let filtered_institution = multiFilter(masterData, filters);
 
-    panel.append('h5')
-        .classed('sidepanel-name', true)
-        .text(filtered_institution[0].institution);
+        d3.select('.sidepanel-container')
+            .transition()
+            .duration(300)
+            .style('opacity', 1e-6)
+            .remove();
 
-    panel.append('p')
-        .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
+        let panel = d3.select('.sidepanel')
+            .append('div')
+            .classed('sidepanel-container', true);
 
-    panel.append('p')
-        .html('<strong>opened: </strong>' + filtered_institution[0].opened);
+        panel.transition()
+            .delay(300)
+            .duration(300)
+            .style('opacity', 1);
 
-    panel.append('p')
-        .html('<strong>closed: </strong>' + filtered_institution[0].closed);
+        panel.append('h6')
+            .classed('sidepanel-data', true)
+            .text(function(d){
+                if (year != 1940 && year != 1900) {
+                    return 'Survey of ' + year;
+                } else if (year == 1900) {
+                    return 'Unspecified survey';
+                } else {
+                    return 'Data from the 1940s';
+                }
+            });
 
-    panel.append('p')
-        .html('<strong>capacity: </strong>' + filtered_institution[0].capacity_group);
+        panel.append('h5')
+            .classed('sidepanel-name', true)
+            .text(filtered_institution[0].institution);
 
-    panel.append('p')
-        .html('<strong>accepted gender: </strong>' + filtered_institution[0].accepted_gender);
+        panel.append('p')
+            .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
 
-    panel.append('p')
-        .html('<strong>confession: </strong>' + filtered_institution[0].confession);
+        panel.append('p')
+            .html('<strong>opened: </strong>' + filtered_institution[0].opened);
 
-    panel.append('p')
-        .html('<strong>typology: </strong>' + filtered_institution[0].typologies);
+        panel.append('p')
+            .html('<strong>closed: </strong>' + filtered_institution[0].closed);
 
-    panel.append('div')
-        .classed('sidepanel-button', true)
-        .append('a')
-        .attr('href', function(d){
-            return './glossary/#selected-' + filtered_institution[0].id;
-        })
-        .attr('target', '_blank')
-        .text('Get more details');
+        panel.append('p')
+            .html('<strong>capacity: </strong>' + filtered_institution[0].capacity_group);
+
+        panel.append('p')
+            .html('<strong>accepted gender: </strong>' + filtered_institution[0].accepted_gender);
+
+        panel.append('p')
+            .html('<strong>confession: </strong>' + filtered_institution[0].confession);
+
+        panel.append('p')
+            .html('<strong>typology: </strong>' + filtered_institution[0].typologies);
+
+        panel.append('div')
+            .classed('sidepanel-button', true)
+            .append('a')
+            .attr('href', function(d){
+                return './glossary/#selected-' + filtered_institution[0].id;
+            })
+            .attr('target', '_blank')
+            .text('Get more details');
+    }
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
