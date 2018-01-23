@@ -1,12 +1,13 @@
-let masterData;
+let masterData,
+    timelinetimelineData;
 
-let timeline,
-    surviesSankey,
+let surviesSankey,
     surveySankeyMode = 'mosaic',
     bubblechart,
     typologiesGraph;
 
 let years = [1933, 1940, 1954, 1965, 1980],
+    yearsAlternative = [1900, 1933, 1940, 1954, 1965, 1980],
     containerMapsWidth,
     containerBubblechartWidth,
     containerTypologiesWidth,
@@ -31,9 +32,11 @@ $(document).ready(function() {
 
     d3.queue()
         .defer(d3.json, './data_and_scripts/data/master.json')
-        .await(function(error, data) {
+        .defer(d3.json, './data_and_scripts/data/timeline.json')
+        .await(function(error, data, dataTimeline) {
             if (error) throw error;
             masterData = data;
+            timelineData = dataTimeline;
 
             // load asynchronously the datasets
             var dataFiles = ['./data_and_scripts/data/sankey-institutions-with-list.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
@@ -47,9 +50,6 @@ $(document).ready(function() {
                 if (err) {
                     console.error(err);
                 }
-
-                // timeline = new Timeline('#timeline');
-                // timeline.draw();
 
                 surviesSankey = new SurviesSankey('#sankey', datasets[0]);
                 surviesSankey.draw(surveySankeyMode);
@@ -75,7 +75,7 @@ $(document).ready(function() {
                     if (error) throw error;
 
                     map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
-                    map_all_institutions.draw(1954);
+                    map_all_institutions.draw(1900);
 
                     map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
 
@@ -163,6 +163,19 @@ $(document).ready(function() {
         },
         offset: '70%'
     });
+    // set events for timeline
+    $('.dots-det').click(function(){
+        let dotId = $(this).attr('data-id');
+        buildSidepanel(dotId, 1900);
+    })
+    $('.dots-leg').click(function(){
+        let elementYear = $(this).attr('data-id');
+        buildTimelineSidepanel('law', elementYear);
+    })
+    $('.dots-soc').click(function(){
+        let elementYear = $(this).attr('data-id');
+        buildTimelineSidepanel('events', elementYear);
+    })
 
     // change matrix selects when changing years, setup matrix buttons
     let $matrixButtons = $('#matrix .btn-matrix-year'),
@@ -260,10 +273,10 @@ $(document).on('setWaypoints', function() {
     buttonWidth = $('.btn-maps-year[data-id=1940]').width();
 
     // save the selection to a variable to improve performance
-    let $mapButtons = $('#maps .btn-maps-year');
+    // let $mapButtons = $('#maps .btn-maps-year');
 
     //set up initial active map button
-    changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
+    changeButton(1900, containerMapsWidth, '.btn-maps-year', 7);
 
     // initiate waypoints
     // waypoint for sankey/mosaic. call function sankey if going down, mosaic if going up
@@ -286,18 +299,28 @@ $(document).on('setWaypoints', function() {
         handler: function(direction) {
             if (direction == 'down') {
                 // console.log('call map_typologies 1954');
-                $mapButtons.each(function(i) {;
-                    $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
-                });
+                $('.year-all').fadeOut(function(){
+                    $(this).remove();
+                    $('#maps .btn-maps-year').each(function(i) {
+                        $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
+                        changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
+                    });
+                })
                 map_typologies.draw(1965);
-                changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
+
             } else {
                 // console.log('call map_all_institutions 1954');
-                $mapButtons.each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ');closeSidepanel()');
+                $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(1900);closeSidepanel()" data-id="1900">All</span>`).fadeIn(function(){
+                    $('#maps .btn-maps-year').each(function(i, btn) {
+                        $(this).attr('onclick', 'map_all_institutions.draw(' + yearsAlternative[i] + ');closeSidepanel()');
+                    });
+                    changeButton(1900, containerMapsWidth, '.btn-maps-year', 7);
                 });
-                map_all_institutions.draw(1954);
-                changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
+                map_all_institutions.draw(1900);
+                $('.year-all').on('click', function(){
+                    let newYear = $(this).attr('data-id');
+                    changeButton(newYear, containerMapsWidth, '.btn-maps-year', 7);
+                });
             }
         },
         offset: '40%'
@@ -308,14 +331,14 @@ $(document).on('setWaypoints', function() {
         handler: function(direction) {
             if (direction == 'down') {
                 // console.log('call map_capacities 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
                 changeButton(1954, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_typologies 1954');
-                $mapButtons.each(function(i) {;
+                $('#maps .btn-maps-year').each(function(i) {;
                     $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
                 });
                 map_typologies.draw(1965);
@@ -330,14 +353,14 @@ $(document).on('setWaypoints', function() {
         handler: function(direction) {
             if (direction == 'down') {
                 // console.log('call map_confession 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1965, 'confession');
                 changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_capacities 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
                 });
                 map_all_institutions.draw(1954, 'capacity_group');
@@ -352,14 +375,14 @@ $(document).on('setWaypoints', function() {
         handler: function(direction) {
             if (direction == 'down') {
                 // console.log('call map_gender 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender");closeSidepanel()');
                 });
                 map_all_institutions.draw(1965, 'accepted_gender');
                 changeButton(1965, containerMapsWidth, '.btn-maps-year', 7);
             } else {
                 // console.log('call map_confession 1954');
-                $mapButtons.each(function(i, btn) {
+                $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
                 });
                 map_all_institutions.draw(1965, 'confession');
@@ -369,7 +392,7 @@ $(document).on('setWaypoints', function() {
         offset: '40%'
     });
 
-    $mapButtons.on('click', function(){
+    $('#maps .btn-maps-year').on('click', function(){
         let newYear = $(this).attr('data-id');
         changeButton(newYear, containerMapsWidth, '.btn-maps-year', 7);
     });
@@ -397,81 +420,124 @@ function changeButton(year, width, buttons, spacer) {
 }
 
 function buildSidepanel(id, year) {
-    let filters = {
-        id: [id],
-        survey_year: [year]
-    }
-    let filtered_institution = multiFilter(masterData, filters);
+    let filters;
+    if (id.substring(0,2) == 'XX') {
 
-    d3.select('.sidepanel-container')
-        .transition()
-        .duration(300)
-        .style('opacity', 1e-6)
-        .remove();
+        d3.select('.sidepanel-container')
+            .transition()
+            .duration(300)
+            .style('opacity', 1e-6)
+            .remove();
 
-    let panel = d3.select('.sidepanel')
-        .append('div')
-        .classed('sidepanel-container', true);
+        let panel = d3.select('.sidepanel')
+            .append('div')
+            .classed('sidepanel-container', true);
 
-    panel.transition()
-        .delay(300)
-        .duration(300)
-        .style('opacity', 1);
+        panel.transition()
+            .delay(300)
+            .duration(300)
+            .style('opacity', 1);
 
-    panel.append('h6')
-        .classed('sidepanel-data', true)
-        .text(function(d){
-            if (year != 1940) {
-                return 'Survey of ' + year;
-            } else {
-                return 'Data from the 1940s';
+        panel.append('h6')
+            .classed('sidepanel-data', true)
+            .text('Unspecified survey');
+
+        panel.append('h5')
+            .classed('sidepanel-name', true)
+            .text('Other');
+
+        panel.append('p')
+            .text('There is not enough information about the institution.');
+
+    } else {
+        if (year == 1900) {
+            filters = {
+                id: [id]
             }
-        });
+        } else {
+            filters = {
+                id: [id],
+                survey_year: [year]
+            }
+        }
+        let filtered_institution = multiFilter(masterData, filters);
 
-    panel.append('h5')
-        .classed('sidepanel-name', true)
-        .text(filtered_institution[0].institution);
+        d3.select('.sidepanel-container')
+            .transition()
+            .duration(300)
+            .style('opacity', 1e-6)
+            .remove();
 
-    panel.append('p')
-        .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
+        let panel = d3.select('.sidepanel')
+            .append('div')
+            .classed('sidepanel-container', true);
 
-    panel.append('p')
-        .html('<strong>opened: </strong>' + filtered_institution[0].opened);
+        panel.transition()
+            .delay(300)
+            .duration(300)
+            .style('opacity', 1);
 
-    panel.append('p')
-        .html('<strong>closed: </strong>' + filtered_institution[0].closed);
+        panel.append('h6')
+            .classed('sidepanel-data', true)
+            .text(function(d){
+                if (year != 1940 && year != 1900) {
+                    return 'Survey of ' + year;
+                } else if (year == 1900) {
+                    return 'Unspecified survey';
+                } else {
+                    return 'Data from the 1940s';
+                }
+            });
 
-    panel.append('p')
-        .html('<strong>capacity: </strong>' + filtered_institution[0].capacity_group);
+        panel.append('h5')
+            .classed('sidepanel-name', true)
+            .text(filtered_institution[0].institution);
 
-    panel.append('p')
-        .html('<strong>accepted gender: </strong>' + filtered_institution[0].accepted_gender);
+        panel.append('p')
+            .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
 
-    panel.append('p')
-        .html('<strong>confession: </strong>' + filtered_institution[0].confession);
+        panel.append('p')
+            .html('<strong>opened: </strong>' + filtered_institution[0].opened);
 
-    panel.append('p')
-        .html('<strong>typology: </strong>' + filtered_institution[0].typologies);
+        panel.append('p')
+            .html('<strong>closed: </strong>' + filtered_institution[0].closed);
 
-    panel.append('div')
-        .classed('sidepanel-button', true)
-        .append('a')
-        .attr('href', function(d){
-            return './glossary/#selected-' + filtered_institution[0].id;
-        })
-        .attr('target', '_blank')
-        .text('Get more details');
+        panel.append('p')
+            .html('<strong>capacity: </strong>' + filtered_institution[0].capacity_group);
+
+        panel.append('p')
+            .html('<strong>accepted gender: </strong>' + filtered_institution[0].accepted_gender);
+
+        panel.append('p')
+            .html('<strong>confession: </strong>' + filtered_institution[0].confession);
+
+        panel.append('p')
+            .html('<strong>typology: </strong>' + filtered_institution[0].typologies);
+
+        panel.append('div')
+            .classed('sidepanel-button', true)
+            .append('a')
+            .attr('href', function(d){
+                return './glossary/#selected-' + filtered_institution[0].id;
+            })
+            .attr('target', '_blank')
+            .text('Get more details');
+    }
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
 }
 
-function buildSidepanelList(list, year) {
-    let filters = {
-        id: list,
-        survey_year: [year]
-    }
-    let filtered_institution = multiFilter(masterData, filters);
+function buildSidepanelList(list) {
+
+    let filtered_institution = [];
+    list.forEach(function(id){
+        let match = masterData.find(function(element) {
+            return element.id == id;
+        });
+        filtered_institution.push(match);
+    })
+    // console.log(filtered_institution);
 
     d3.select('.sidepanel-container')
         .transition()
@@ -519,6 +585,59 @@ function buildSidepanelList(list, year) {
         .transition()
         .duration(500)
         .style('opacity', 1);
+
+    $('body').addClass('sidebar-open modal-open');
+    $('.sidepanel').addClass('sidepanel-open');
+}
+
+function buildTimelineSidepanel(type, year) {
+    let filters= {
+            type: [type],
+            date: [year]
+        };
+    let filtered_institution = multiFilter(timelineData, filters);
+
+    d3.select('.sidepanel-container')
+        .transition()
+        .duration(300)
+        .style('opacity', 1e-6)
+        .remove();
+
+    let panel = d3.select('.sidepanel')
+        .append('div')
+        .classed('sidepanel-container', true);
+
+    panel.transition()
+        .delay(300)
+        .duration(300)
+        .style('opacity', 1);
+
+    panel.append('h6')
+        .classed('sidepanel-data', true)
+        .text(function(d){
+            if (type == 'events') {
+                return filtered_institution[0].date;
+            } else {
+                let date = filtered_institution[0].date.match(/\d+/g);
+                return date;
+            }
+        });
+
+    panel.append('h5')
+        .classed('sidepanel-name', true)
+        .style('text-transform', 'capitalize')
+        .text(filtered_institution[0].type);
+
+    panel.append('p')
+        .text(filtered_institution[0].text);
+
+    if (filtered_institution[0].link != null) {
+        panel.append('p')
+            .append('a')
+            .attr('href', filtered_institution[0].link)
+            .attr('target', '_blank')
+            .text('Link to source');
+    }
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');

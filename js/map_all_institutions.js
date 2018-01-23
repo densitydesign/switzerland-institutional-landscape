@@ -8,6 +8,10 @@ function MapAll(id, swiss, data) {
             .entries(data);
         // console.log(this.data);
         // console.log(swiss);
+        this.allData = d3.nest()
+            .key(function(d) { return d.id; })
+            .entries(data);
+        // console.log(this.allData);
     }
     //define elements that will be present in the visualization
     let svg,
@@ -140,17 +144,35 @@ function MapAll(id, swiss, data) {
             .style('opacity', 0.5);
 
         //filter the data for the correct year
-        let selectedYear = this.data.filter(function(el){return el.key == year;});
-        let institutions = selectedYear[0].values.map(function(d){
-            return {
-                'x' : getCoordinates(d, 'lon'),
-                'y' : getCoordinates(d, 'lat'),
-                'id': d.id,
-                'capacity_group': d.capacity_group,
-                'confession': d.confession,
-                'accepted_gender': d.accepted_gender
-            };
-        });
+        let selectedYear,
+            institutions;
+        if (year == 1900) {
+            selectedYear = this.allData;
+            institutions = selectedYear.map(function(d){
+                return {
+                    'x' : getCoordinates(d.values[0], 'lon'),
+                    'y' : getCoordinates(d.values[0], 'lat'),
+                    'id': d.key,
+                    'capacity_group': d.values[0].capacity_group,
+                    'confession': d.values[0].confession,
+                    'accepted_gender': d.values[0].accepted_gender
+                };
+            });
+            // console.log('ciao');
+        } else {
+            selectedYear = this.data.filter(function(el){return el.key == year;});
+            // console.log(selectedYear);
+            institutions = selectedYear[0].values.map(function(d){
+                return {
+                    'x' : getCoordinates(d, 'lon'),
+                    'y' : getCoordinates(d, 'lat'),
+                    'id': d.id,
+                    'capacity_group': d.capacity_group,
+                    'confession': d.confession,
+                    'accepted_gender': d.accepted_gender
+                };
+            });
+        }
         // console.log(institutions);
 
         //draw institutions

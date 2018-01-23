@@ -163,8 +163,7 @@ function Matrix(id, data, categories) {
                 let newList = d.value.list.map(function(el){
                     return el.id;
                 });
-                let activeYear = $('#matrix .active-year').attr('data-id');
-                buildSidepanelList(newList, activeYear);
+                buildSidepanelList(newList);
             })
             .merge(bubbles)
             .attr('cx', function(d) {

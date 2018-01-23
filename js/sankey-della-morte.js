@@ -202,7 +202,7 @@ function SurviesSankey(id, data) {
             .enter()
                 .append("g")
                 .on('click',function(d){
-                    console.log(d)
+                    buildSidepanelList(d.list);
                 });
 
         node.append("rect")
@@ -257,7 +257,7 @@ function SurviesSankey(id, data) {
                 }
             })
             .on('click', function(d) {
-                console.log(d)
+                buildSidepanelList(d.list);
             });
 
         link.append("title")
