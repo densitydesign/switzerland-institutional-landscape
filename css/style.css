@@ -341,7 +341,10 @@ p.caption:first-child {
     -webkit-transition: opacity 0.5s ease;
             transition: opacity 0.5s ease;
 }
-.timeline-legend-subtititle {
+.timeline-legend-title {
+    font-weight: bold;
+}
+.timeline-legend-subtitle {
     font-size: 0.5rem;
 }
 .timeline-line {

@@ -1,7 +1,7 @@
-let masterData;
+let masterData,
+    timelinetimelineData;
 
-let timeline,
-    surviesSankey,
+let surviesSankey,
     surveySankeyMode = 'mosaic',
     bubblechart,
     typologiesGraph;
@@ -32,9 +32,11 @@ $(document).ready(function() {
 
     d3.queue()
         .defer(d3.json, './data_and_scripts/data/master.json')
-        .await(function(error, data) {
+        .defer(d3.json, './data_and_scripts/data/timeline.json')
+        .await(function(error, data, dataTimeline) {
             if (error) throw error;
             masterData = data;
+            timelineData = dataTimeline;
 
             // load asynchronously the datasets
             var dataFiles = ['./data_and_scripts/data/sankey-institutions-with-list.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
@@ -48,9 +50,6 @@ $(document).ready(function() {
                 if (err) {
                     console.error(err);
                 }
-
-                // timeline = new Timeline('#timeline');
-                // timeline.draw();
 
                 surviesSankey = new SurviesSankey('#sankey', datasets[0]);
                 surviesSankey.draw(surveySankeyMode);
@@ -164,6 +163,19 @@ $(document).ready(function() {
         },
         offset: '70%'
     });
+    // set events for timeline
+    $('.dots-det').click(function(){
+        let dotId = $(this).attr('data-id');
+        buildSidepanel(dotId, 1900);
+    })
+    $('.dots-leg').click(function(){
+        let elementYear = $(this).attr('data-id');
+        buildTimelineSidepanel('law', elementYear);
+    })
+    $('.dots-soc').click(function(){
+        let elementYear = $(this).attr('data-id');
+        buildTimelineSidepanel('events', elementYear);
+    })
 
     // change matrix selects when changing years, setup matrix buttons
     let $matrixButtons = $('#matrix .btn-matrix-year'),
@@ -543,6 +555,59 @@ function buildSidepanelList(list) {
         .transition()
         .duration(500)
         .style('opacity', 1);
+
+    $('body').addClass('sidebar-open modal-open');
+    $('.sidepanel').addClass('sidepanel-open');
+}
+
+function buildTimelineSidepanel(type, year) {
+    let filters= {
+            type: [type],
+            date: [year]
+        };
+    let filtered_institution = multiFilter(timelineData, filters);
+
+    d3.select('.sidepanel-container')
+        .transition()
+        .duration(300)
+        .style('opacity', 1e-6)
+        .remove();
+
+    let panel = d3.select('.sidepanel')
+        .append('div')
+        .classed('sidepanel-container', true);
+
+    panel.transition()
+        .delay(300)
+        .duration(300)
+        .style('opacity', 1);
+
+    panel.append('h6')
+        .classed('sidepanel-data', true)
+        .text(function(d){
+            if (type == 'events') {
+                return filtered_institution[0].date;
+            } else {
+                let date = filtered_institution[0].date.match(/\d+/g);
+                return date;
+            }
+        });
+
+    panel.append('h5')
+        .classed('sidepanel-name', true)
+        .style('text-transform', 'capitalize')
+        .text(filtered_institution[0].type);
+
+    panel.append('p')
+        .text(filtered_institution[0].text);
+
+    if (filtered_institution[0].link != null) {
+        panel.append('p')
+            .append('a')
+            .attr('href', filtered_institution[0].link)
+            .attr('target', '_blank')
+            .text('Link to source');
+    }
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
