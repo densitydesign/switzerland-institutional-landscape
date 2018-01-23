@@ -15,7 +15,7 @@ function TypologiesGraph(id, data) {
 
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
-        svg = this.svg = d3.select(this.id).append('svg');
+        svg = this.svg = d3.select(this.id).insert('svg', '.typologies-legend');
     }
 
     // intialise containers of the graph

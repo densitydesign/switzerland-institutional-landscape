@@ -50,8 +50,6 @@ a:hover {
     text-decoration: none;
 }
 
-h1 {}
-
 h2 {
     font-size: 2.5rem;
     text-transform: uppercase;
@@ -90,13 +88,14 @@ hr:before {
 
 p {
     margin-bottom: 1rem;
-    font-family: "Crimson Text", serif;
+    font-family: "EB Garamond", serif;
 }
 aside p {
     font-family: "Brandon Grotesque", sans-serif;
 }
 
 p.caption {
+    font-family: "Brandon Grotesque", sans-serif;
     font-size: 0.8rem;
     margin-bottom: 0.8rem;
     color: #4a4a4a;
@@ -143,7 +142,6 @@ p.caption:first-child {
     pointer-events: none;
     opacity: 1;
     text-transform: capitalize;
-    /*fill: #333;*/
 }
 
 .label.hidden {
@@ -198,7 +196,9 @@ p.caption:first-child {
     margin-right: 8px;
 }
 
-
+.subchapter-spacer {
+    height: 40px;
+}
 
 /* Cover */
 
@@ -482,10 +482,6 @@ p.caption:first-child {
     padding: 1.4rem 0 6rem;
 }
 
-#sankey svg {
-    /*background-color: #fafafa;*/
-}
-
 #sankey .nodes rect {
     stroke: none;
     cursor: pointer;
@@ -514,16 +510,10 @@ p.caption:first-child {
     margin-bottom: 2rem;
 }
 
-#bubblechart svg {
-    /*background-color: #eee;*/
-    /*padding: 2rem 0;*/
-}
-
 #bubblechart circle.node {
     stroke: #074050;
     stroke-width: .5px;
     cursor: pointer;
-    /*display: none;*/
 }
 
 #bubblechart .legend g {
@@ -556,20 +546,43 @@ p.caption:first-child {
 #typologies-graph circle.node {
     stroke-width: .5px;
     cursor: pointer;
-    /*fill: #105965;*/
-    /*opacity: .2;*/
 }
 
 #typologies-graph line.link {
     stroke: #EAE6DA;
-    /*stroke-width: 1px;*/
-    opacity: .5;
+    opacity: .8;
     cursor: pointer;
 }
 
 #typologies-graph .label {
     text-anchor: middle;
 }
+
+.typologies-legend {
+    margin-top: 1rem;
+}
+
+.legend-text {
+    font-family: 'Brandon Grotesque', sans-serif;
+}
+.legend-text-label {
+    font-size: 8px;
+}
+.legend-circle {
+    stroke: #000000;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+.legend-text-number {
+    font-size: 7px;
+}
+.legend-line {
+    fill: none;
+    stroke: #EAE6DA;
+    stroke-miterlimit: 10;
+}
+
+
 /* STYLES CHAPTER 2 */
 
 /* container styles */
@@ -785,23 +798,6 @@ p.caption:first-child {
     -webkit-transition: fill 0.5s ease, opacity 0.5s ease;
     transition: fill 0.5s ease, opacity 0.5s ease;
 }
-
-
-
-
-
-/*#accepting-institutions .canton-contour:hover {
-    opacity: 1;
-}*/
-
-
-/*#accepting-institutions .canton-contour.sending {
-    fill: green;
-}
-
-#accepting-institutions .canton-contour.receiving {
-    fill: red;
-}*/
 
 #accepting-institutions .canton-contour.faded {
     opacity: .5;
