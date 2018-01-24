@@ -9,13 +9,20 @@
 @import '../fonts/Brandon_bld-export/Brandon_bld.css';
 @import '../fonts/Brandon_bld_it-export/Brandon_bld_it.css';
 
-
 /* General for all viz */
 
 html {
-    background-color: rgba(176, 197, 206, 0.07);
+    background-color: rgba(176, 197, 206, 0.1);
     font-size: 18px;
     line-height: 1.55rem;
+}
+
+::-moz-selection {
+    background: rgba(129, 170, 145, 0.4);
+}
+
+::selection {
+    background: rgba(129, 170, 145, 0.4);
 }
 
 body {
@@ -32,15 +39,24 @@ body.sidebar-open {
     right: 25%;
 }
 
-h1 {}
+a {
+    color: #81AA91;
+    -webkit-transition: ease .3s;
+    transition: ease .3s;
+}
+
+a:hover {
+    color: #81AA91;
+    text-decoration: none;
+}
 
 h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-transform: uppercase;
     letter-spacing: 0;
     font-weight: bold;
-    margin-bottom: 3rem;
-    margin-top: 6rem;
+    margin-bottom: 5rem;
+    margin-top: 5.5rem;
 }
 
 h3 {
@@ -53,13 +69,35 @@ h3 {
     margin-bottom: 1.2rem;
 }
 
+hr {
+    border: 0.5px solid rgba(0,0,0,.4);
+    width: 66%;
+}
+hr:before {
+    content:'***';
+    background: white;
+    font-weight:100;
+    padding: 0 5px 0 5px;
+    font-size: 1.5em;
+    position: relative;
+    left: 47%;
+    bottom: 14px;
+    color: rgba(0,0,0,.4);
+    text-align: center;
+}
+
 p {
     margin-bottom: 1rem;
+    font-family: "EB Garamond", serif;
+}
+aside p {
+    font-family: "Brandon Grotesque", sans-serif;
 }
 
 p.caption {
-    font-size: 0.62rem;
-    margin-bottom: 0.62rem;
+    font-family: "Brandon Grotesque", sans-serif;
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
     color: #4a4a4a;
 }
 
@@ -104,7 +142,6 @@ p.caption:first-child {
     pointer-events: none;
     opacity: 1;
     text-transform: capitalize;
-    /*fill: #333;*/
 }
 
 .label.hidden {
@@ -112,19 +149,22 @@ p.caption:first-child {
 }
 
 .btn-secondary {
-    width: 100px;
+    width: 70px;
     background-color: rgba(176, 197, 206, 0.07);
     border-radius: 28px;
+    font-size: 0.8rem;
     color: #000000;
+    padding: .2rem .5rem;
     cursor: pointer;
 }
 .btn-secondary:hover {
-    background-color: #B0C5CE;
+    background-color: #81AA91;
 }
+
 .btn-secondary:not([disabled]):not(.disabled).active {
-    background-color: #B0C5CE;
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    background-color: #81AA91;
+    -webkit-box-shadow: inset 0 0 3px 3px rgba(134,142,150,.5);
+            box-shadow: inset 0 0 3px 3px rgba(134,142,150,.5);
 }
 
 .chapter {
@@ -132,14 +172,33 @@ p.caption:first-child {
 }
 
 .underlined {
-    text-decoration: underline;
+    text-decoration: none;
+    color: rgba(0,0,0,.7);
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease;
+}
+
+.underlined::before {
+    font-family: "FontAwesome";
+    text-decoration: none;
+    content: "\f25a";
+    font-weight: lighter;
+    font-size: 0.75em;
+    margin-left: 0.3em;
+    margin-right: 0.2em;
+}
+
+.underlined:hover {
+    color: #81AA91;
 }
 
 .link-spaced {
     margin-right: 8px;
 }
 
-
+.subchapter-spacer {
+    height: 40px;
+}
 
 /* Cover */
 
@@ -154,6 +213,7 @@ p.caption:first-child {
 
 /* Navigation */
 #navigation-sidebar {
+    color: #000;
     position: fixed;
     top: 62vh;
     left: 0;
@@ -169,14 +229,15 @@ p.caption:first-child {
 }
 
 .nav-divider {
-    width: 7px;
+    width: 3px;
     height: 15px;
-    background-color: #333333;
+    background-color: #666;
     border-radius: 2px;
 }
 
 .nav-link {
     padding: 0 0.3rem;
+    color: #000;
     height: 20px;
     opacity: 1;
     overflow-x: hidden;
@@ -323,9 +384,11 @@ p.caption:first-child {
     position: sticky;
     top: 20px;
     margin: 2rem 0;
+    padding-bottom: 0.4em;
     background: #FAFBFC;
-    border-top: 1px solid #B0C5CE;
+    border: 1px solid #B0C5CE;
     border-bottom: 1px solid #B0C5CE;
+    border-radius: 2px;
     z-index: 90;
 }
 
@@ -341,7 +404,10 @@ p.caption:first-child {
     -webkit-transition: opacity 0.5s ease;
             transition: opacity 0.5s ease;
 }
-.timeline-legend-subtititle {
+.timeline-legend-title {
+    font-weight: bold;
+}
+.timeline-legend-subtitle {
     font-size: 0.5rem;
 }
 .timeline-line {
@@ -369,30 +435,31 @@ p.caption:first-child {
     opacity: 0.2;
 }
 .dots-det {
-    /* fill: #B6EA78; */
+    fill: #B6EA78;
     fill: url(#detGradient);
-    /* stroke: #000000; */
+    stroke: #000000;
     stroke: url(#detStrokeGradient);
     stroke-width: 0.5;
     stroke-miterlimit: 10;
 }
-.dots-det.det-closing {
-    /* fill: #B6EA78; */
-    fill: url(#detGradientBackwards);
-    /* stroke: #000000; */
-    stroke: url(#detStrokeGradientBackwards);
-    stroke-width: 0.5;
-    stroke-miterlimit: 10;
-}
+
 .dots-leg {
-    fill: #6699FF;
+    fill: #90BCCC;
     stroke: #000000;
     stroke-width: 0.5;
     stroke-miterlimit: 10;
 }
-.dots-soc {
-    fill: #FF8E66;
+.dots-soc,.dots-leg {
+    fill: #90BCCC;
+    stroke: #000;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+.dots-det.det-closing {
+    fill: #B6EA78;
+    fill: url(#detGradientBackwards);
     stroke: #000000;
+    stroke: url(#detStrokeGradientBackwards);
     stroke-width: 0.5;
     stroke-miterlimit: 10;
 }
@@ -415,10 +482,6 @@ p.caption:first-child {
     padding: 1.4rem 0 6rem;
 }
 
-#sankey svg {
-    /*background-color: #fafafa;*/
-}
-
 #sankey .nodes rect {
     stroke: none;
     cursor: pointer;
@@ -436,30 +499,21 @@ p.caption:first-child {
     opacity: .6 !important;
 }
 
-
-
-
-
-
 /* 1.3 bubblechart - purpose of institutions */
 
 #bubblechart {
+    padding-top: 1rem;
     border-top: 1px solid #CFB76D;
-    border-bottom: 1px solid #CFB76D;
+    border: 1px solid #CFB76D;
     background: rgba(207, 183, 109, 0.05);
-    margin-bottom: 1rem;
-}
-
-#bubblechart svg {
-    /*background-color: #eee;*/
-    /*padding: 2rem 0;*/
+    border-radius: 2px;
+    margin-bottom: 2rem;
 }
 
 #bubblechart circle.node {
     stroke: #074050;
     stroke-width: .5px;
     cursor: pointer;
-    /*display: none;*/
 }
 
 #bubblechart .legend g {
@@ -492,14 +546,11 @@ p.caption:first-child {
 #typologies-graph circle.node {
     stroke-width: .5px;
     cursor: pointer;
-    /*fill: #105965;*/
-    /*opacity: .2;*/
 }
 
 #typologies-graph line.link {
-    stroke: #ccc;
-    /*stroke-width: 1px;*/
-    opacity: .5;
+    stroke: #EAE6DA;
+    opacity: .8;
     cursor: pointer;
 }
 
@@ -507,12 +558,32 @@ p.caption:first-child {
     text-anchor: middle;
 }
 
+.typologies-legend {
+    margin-top: 1rem;
+}
 
-
+.legend-text {
+    font-family: 'Brandon Grotesque', sans-serif;
+}
+.legend-text-label {
+    font-size: 8px;
+}
+.legend-circle {
+    stroke: #000000;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+.legend-text-number {
+    font-size: 7px;
+}
+.legend-line {
+    fill: none;
+    stroke: #EAE6DA;
+    stroke-miterlimit: 10;
+}
 
 
 /* STYLES CHAPTER 2 */
-
 
 /* container styles */
 
@@ -576,6 +647,7 @@ p.caption:first-child {
 
 .year-switch {
     cursor: pointer;
+    line-height: 1.1;
 }
 
 /* swiss map styles */
@@ -595,17 +667,16 @@ p.caption:first-child {
     stroke-width: .5px;
 }
 
-
-
-
-
-
 /* map_all_institutions styles */
 
 .dot {
-    fill: #105965;
+    fill: #333333;
     stroke-width: 0.5px;
-    stroke: #ffffff;
+    stroke: #000;
+    cursor: pointer;
+}
+.dot-small {
+    fill: #333333;
     cursor: pointer;
 }
 
@@ -647,6 +718,7 @@ p.caption:first-child {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     margin-bottom: 20px;
+    font-size: 0.8em;
 }
 
 .select-container {
@@ -681,9 +753,9 @@ p.caption:first-child {
 }
 
 .bubble {
-    stroke: #000;
+    stroke: rgba(0,0,0,.4);
     stroke-width: 1px;
-    fill: #007bff;
+    fill: #CFB76D;
 }
 
 
@@ -727,29 +799,12 @@ p.caption:first-child {
     transition: fill 0.5s ease, opacity 0.5s ease;
 }
 
-
-
-
-
-/*#accepting-institutions .canton-contour:hover {
-    opacity: 1;
-}*/
-
-
-/*#accepting-institutions .canton-contour.sending {
-    fill: green;
-}
-
-#accepting-institutions .canton-contour.receiving {
-    fill: red;
-}*/
-
 #accepting-institutions .canton-contour.faded {
     opacity: .5;
 }
 
 #accepting-institutions .label.faded {
-    opacity: .35
+    opacity: .35;
 }
 
 #accepting-institutions .node {
@@ -764,4 +819,5 @@ p.caption:first-child {
     text-transform: uppercase;
     font-size: .65rem;
     font-weight: bold;
+
 }

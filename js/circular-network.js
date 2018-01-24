@@ -19,8 +19,9 @@ function CircularNetwork(id, data) {
     // green: #73C86B
 
     let color = d3.scaleOrdinal()
-        .range(['#999', '#F24440', '#1785FB', '#73C86B'])
+        
         .range(['#ca5268', '#85c4c9', '#97e196', '#888888'])
+        .range(['#CFB76D', '#79745C', '#B5BA72', '#EAE6DA'])
         .domain(['c1', 'c2', 'c3', 'not defined'])
 
     let areaScale = d3.scaleLinear()
@@ -179,7 +180,7 @@ function CircularNetwork(id, data) {
                             if ( n.id == l.target.id || n.id == l.source.id) {
                                 if (n.id != d.id) {
                                     d3.select(this).style('opacity', 1);
-                                }    
+                                }
                             }
                         });
                     } else {
@@ -197,9 +198,11 @@ function CircularNetwork(id, data) {
         link = link.enter().append("path")
             .classed('link', true)
             .style('stroke-width', function(d) { return edgeWeight(d.weight) })
+            .style('cursor', 'pointer')
             // .attr('marker-end', 'url(#arrowhead)')
             .on('click', function(d) {
-                console.log(d);
+                // console.log(d);
+                buildSidepanelList(d.target_institutions);
             })
             .merge(link);
 

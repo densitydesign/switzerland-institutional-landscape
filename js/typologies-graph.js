@@ -15,7 +15,7 @@ function TypologiesGraph(id, data) {
 
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
-        svg = this.svg = d3.select(this.id).append('svg');
+        svg = this.svg = d3.select(this.id).insert('svg', '.typologies-legend');
     }
 
     // intialise containers of the graph
@@ -50,7 +50,7 @@ function TypologiesGraph(id, data) {
     // #e4f1e1,#b4d9cc,#89c0b6,#63a6a0,#448c8a,#287274,#0d585f
 
     let occurrence = d3.scaleLinear()
-        .range(['#e4f1e1', '#0d585f'])
+        .range(['#DCC274', '#8F7F4B'])
         .domain([1, 306]);
 
     let weight = d3.scaleLinear()
