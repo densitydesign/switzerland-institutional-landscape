@@ -235,7 +235,7 @@ p.caption:first-child {
     border-radius: 2px;
 }
 
-.nav-link {
+#navigation-sidebar .nav-link {
     padding: 0 0.3rem;
     color: #000;
     height: 20px;
@@ -274,7 +274,7 @@ p.caption:first-child {
     opacity: 1;
 }
 
-.nav-link:not(.active) {
+#navigation-sidebar .nav-link:not(.active) {
     width: 0;
     opacity: 0;
 }
@@ -581,10 +581,7 @@ p.caption:first-child {
     font-size: 6px;
 }
 .legend-circle {
-    fill: #FCFBFA;
-    stroke: #333333;
-    stroke-width: 0.5;
-    stroke-miterlimit: 10;
+    stroke: none;
 }
 .legend-circle-filled {
     fill: #B5BA72;
@@ -801,6 +798,13 @@ p.caption:first-child {
 
 #circular-network .btn-container {
     margin-bottom: -1.4rem;
+}
+
+#circular-network .legend-circle {
+    fill: #FCFBFA;
+    stroke: #333333;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
 }
 
 #accepting-institutions .canton-contour {

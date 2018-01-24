@@ -25,8 +25,12 @@ nav.navbar {
 }
 
 .search-institution {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-grow: 10;
+    -webkit-box-flex: 10;
+        -ms-flex-positive: 10;
+            flex-grow: 10;
 }
 
 .selected-institution {
@@ -62,6 +66,7 @@ nav.navbar {
 .item {
     border-bottom: 1px solid var(--uek-blue);
     border-left: 0 solid var(--uek-blue);
+    -webkit-transition: border-left .5s ease;
     transition: border-left .5s ease;
     cursor: pointer;
 }
@@ -77,12 +82,17 @@ nav.navbar {
 }
 
 .field {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
 .label {
-    flex-basis: 0.25%;
-    flex-grow: 1;
+    -ms-flex-preferred-size: 0.25%;
+        flex-basis: 0.25%;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
     text-align: right;
     padding-right: 1rem;
     font-size: 8px;
@@ -92,8 +102,11 @@ nav.navbar {
 }
 
 .value {
-    flex-basis: 0.75%;
-    flex-grow: 3;
+    -ms-flex-preferred-size: 0.75%;
+        flex-basis: 0.75%;
+    -webkit-box-flex: 3;
+        -ms-flex-positive: 3;
+            flex-grow: 3;
     font-size: 0.83rem;
     line-height: 2rem;
 }
@@ -122,7 +135,7 @@ nav.navbar {
 }
 
 .how-to {
-	color: var(--uek-dark-blue); 
+	color: var(--uek-dark-blue);
 }
 
 .map > div {
@@ -155,4 +168,22 @@ nav.navbar {
     font-size: 0.83rem;
     line-height: 1rem;
     text-align: left;
+}
+
+#about a {
+    font-family: 'Brandon Grotesque', sans-serif;
+    text-decoration: underline;
+}
+
+.about-btn {
+    height: 45px;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 8px 0;
+    background-color: #81AA91;
+    border-radius: 22px;
+}
+.about-btn a {
+    color: #212529;
+    padding: 9px 72px;
 }
