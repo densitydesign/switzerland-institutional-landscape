@@ -47,7 +47,7 @@ function Matrix(id, data, categories) {
         //calculate dimensions of the viz container, axis and grids
         width = $('#matrix-visualization').width();
         height = width * .8;
-        margin = 140;
+        margin = 110;
         svg.attr('width', width)
             .attr('height', height);
         matrix_x_axis.attr('transform', 'translate(0,' + (height - margin) + ')');
@@ -130,11 +130,16 @@ function Matrix(id, data, categories) {
 
         //draw axes and grids
         svg.select('.axis-y')
-            .transition()
-            .call(yAxis);
+            //.transition()
+            .call(yAxis)
+            .selectAll(".tick text")
+            .call(wrapY, 96);
+
         svg.select('.axis-x')
-            .transition()
-            .call(xAxis);
+            // .transition()
+            .call(xAxis)
+            .selectAll(".tick text")
+            .call(wrapX, 110);
 
         svg.select('.grid-y')
             .transition()
@@ -179,6 +184,95 @@ function Matrix(id, data, categories) {
             .attr('r', function(d) {
                 return rScale(d.value.amount);
             });
+
+    }
+
+    function wrapY (text, width) {
+        // console.log(text);
+        text.each(function() {
+
+            var breakChars = ['/', '&', '-'],
+            text = d3.select(this),
+            textContent = text.text(),
+            spanContent;
+
+            breakChars.forEach(char => {
+                // Add a space after each break char for the function to use to determine line breaks
+                textContent = textContent.replace(char, char + ' ');
+            });
+
+            var words = textContent.split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 0.65, // ems
+            x = text.attr('x'),
+            y = text.attr('y'),
+            dy = parseFloat(text.attr('dy') || 0),
+            tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
+
+            while (word = words.pop()) {
+                line.push(word);
+                tspan.text(line.join(' '));
+                if (tspan.node().getComputedTextLength() > width) {
+                    line.pop();
+                    spanContent = line.join(' ');
+                    breakChars.forEach(char => {
+                        // Remove spaces trailing breakChars that were added above
+                        spanContent = spanContent.replace(char + ' ', char);
+                    });
+                    tspan.text(spanContent);
+                    line = [word];
+                    tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', ++lineNumber * (lineHeight/lineNumber) + dy + 'em').text(word);
+                }
+            }
+        });
+    }
+
+    function wrapX (text, width) {
+        // console.log(text);
+        text.each(function() {
+
+            var breakChars = ['/', '&', '-'],
+            text = d3.select(this),
+            textContent = text.text(),
+            spanContent;
+
+            breakChars.forEach(char => {
+                // Add a space after each break char for the function to use to determine line breaks
+                textContent = textContent.replace(char, char + ' ');
+            });
+
+            var words = textContent.split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1, // ems
+            x = text.attr('x'),
+            y = text.attr('y'),
+            dy = parseFloat(text.attr('dy') || 0),
+            tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
+
+            while (word = words.pop()) {
+                line.push(word);
+                tspan.text(line.join(' '));
+                if (tspan.node().getComputedTextLength() > width) {
+                    line.pop();
+                    spanContent = line.join(' ');
+                    breakChars.forEach(char => {
+                        // Remove spaces trailing breakChars that were added above
+                        spanContent = spanContent.replace(char + ' ', char);
+                    });
+                    tspan.text(spanContent);
+                    line = [word];
+                    tspan = text.append('tspan')
+                        .attr('x', 0)
+                        .attr('y', y)
+                        .attr('dy', ++lineNumber * (lineHeight/lineNumber) + dy + 'em')
+                        .text(word);
+                }
+            }
+        });
 
     }
 
