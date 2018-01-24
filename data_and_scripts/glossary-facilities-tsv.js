@@ -7,7 +7,7 @@ console.log('yo')
 
 node_xj({
     input: "data/glossary-facilities/ids-correspondences.xlsx", // input xls
-    output: 'data/glossary-facilities.json', // output json
+    output: null, // output json
     // sheet: "sheetname"  // specific sheetname
 }, function(err, ids) {
     if (err) {
