@@ -58,7 +58,7 @@ $(document).ready(function() {
                 bubblechart.draw();
 
                 typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
-                typologiesGraph.draw();
+                typologiesGraph.draw(1954);
 
                 // To be called after all the charts have been initialized
                 // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
