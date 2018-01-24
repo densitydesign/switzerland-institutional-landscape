@@ -17,7 +17,7 @@ function handleSelection(d) {
         })
         .classed('active', true);
 
-    let selectionName = `${d.key} - name`;
+    let selectionName = `${d.key} - ${d.values[0].values[0].institution}`;
     d3.select('.selected-institution .selected-name')
         .html(selectionName);
 
@@ -143,7 +143,7 @@ function populateSidebar(data) {
             // console.log(filtered[0].values[0]);
             value = filtered[0].values[0][field];
         }
-        return value;
+        return value.replace(/;/g,'; ');
     }
 
     function getValueSource(year, field) {
@@ -184,7 +184,7 @@ function populateSidebar(data) {
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
     //Institution purposes as from sources
-    thisTitle = 'Institution purposes';
+    thisTitle = 'Institution purposes as reported in source';
     furtherInformations += `
                 <div class="row section-title">
                     <div class="col-3"></div>
@@ -242,7 +242,7 @@ function populateSidebar(data) {
                 </div>`;
 
     //Institution purposes as from sources
-    thisTitle = 'Institution categories';
+    thisTitle = 'Institution categories as reported in source';
     furtherInformations += `
                 <div class="row section-title">
                     <div class="col-3"></div>
@@ -276,7 +276,7 @@ function populateSidebar(data) {
                 </div>`;
 
     //Institution purposes as from sources
-    thisTitle = 'Institution capacities';
+    thisTitle = 'Institution capacities as reported in source';
     furtherInformations += `
                 <div class="row section-title">
                     <div class="col-3"></div>
@@ -469,7 +469,7 @@ d3.queue()
 
 
                 let thisHtml = `
-                    <div class="id field hidden">
+                    <div class="id field d-none">
                         <div class="label">Id</div>
                         <div class="value">${d.values[0].values[0].id}</div>
                     </div>
