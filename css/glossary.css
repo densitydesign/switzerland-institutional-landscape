@@ -147,8 +147,9 @@ nav.navbar {
 
 .values div:first-child {
     font-size: 0.5rem;
-    line-height: 1.3rem;
+    line-height: 1.05rem;
     text-align: right;
+    margin-top: 0.06rem;
 }
 
 .values div:last-child {

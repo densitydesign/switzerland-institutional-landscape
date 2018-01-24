@@ -1,4 +1,4 @@
-let map, swissbbox;
+let map, swissbbox, master, sourcesData;
 
 let circularArea = {
     'center': [5.9814056, 46.7912769],
@@ -146,6 +146,29 @@ function populateSidebar(data) {
         return value;
     }
 
+    function getValueSource(year, field) {
+        // console.log(year, field, data.key);
+
+        year = year+'';
+
+        let filtered = sourcesData.filter(function(e){
+            return e.id == data.key;
+        })[0]
+        // console.log(filtered)
+
+        let source = filtered.sources.filter(function(e){
+            return e.source_year == year
+        })[0]
+        // console.log(source)
+
+        if (source) {
+            return source[field]==''?'–':source[field];
+        } else {
+            return '–'
+        }
+
+    }
+
 
     let furtherInformations = ``;
 
@@ -153,18 +176,162 @@ function populateSidebar(data) {
     thisTitle = 'Institution name';
     thisField = 'institution';
     furtherInformations += `
-				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+                <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
         <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
         <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
+    //Institution purposes as from sources
+    thisTitle = 'Institution purposes';
+    furtherInformations += `
+                <div class="row section-title">
+                    <div class="col-3"></div>
+                    <div class="col-9">${thisTitle}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1933<br/>Source of 1933</div>
+                    <div class="col-9">${getValueSource(1933,'purpose')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1940ies<br/>Source of 1933</div>
+                    <div class="col-9">
+                        ${getValueSource('1940ies','purpose_source1933')}
+                    </div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1940ies<br/>Source of 1944</div>
+                    <div class="col-9">
+                        ${getValueSource('1940ies','purpose_source1944')}
+                    </div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1940ies<br/>Source of 1945</div>
+                    <div class="col-9">
+                        ${getValueSource('1940ies','purpose_source1945')}
+                    </div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1954<br/>source one</div>
+                    <div class="col-9">${getValueSource(1954,'purpose1')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1954<br/>source two</div>
+                    <div class="col-9">${getValueSource(1954,'purpose2')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1965</div>
+                    <div class="col-9">${getValueSource(1965,'purpose1')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1965<br/>source one</div>
+                    <div class="col-9">${getValueSource(1965,'purpose2')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1980<br/>source one</div>
+                    <div class="col-9">${getValueSource(1980,'purpose1')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1980<br/>source two</div>
+                    <div class="col-9">${getValueSource(1980,'purpose2')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1980<br/>source three</div>
+                    <div class="col-9">${getValueSource(1980,'purpose3')}</div>
+                </div>`;
+
+    //Institution purposes as from sources
+    thisTitle = 'Institution categories';
+    furtherInformations += `
+                <div class="row section-title">
+                    <div class="col-3"></div>
+                    <div class="col-9">${thisTitle}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1933<br/>Source of 1933</div>
+                    <div class="col-9">${getValueSource(1933,'categories')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1940ies<br/>Source of ???</div>
+                    <div class="col-9">
+                        ${getValueSource('1940ies','categories')}
+                    </div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1954<br/>source one</div>
+                    <div class="col-9">${getValueSource(1954,'categories')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1954<br/>source two</div>
+                    <div class="col-9">${getValueSource(1954,'categories')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1965</div>
+                    <div class="col-9">${getValueSource(1965,'categories')}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1980<br/>source one</div>
+                    <div class="col-9">${getValueSource(1980,'categories')}</div>
+                </div>`;
+
+    //Institution purposes as from sources
+    thisTitle = 'Institution capacities';
+    furtherInformations += `
+                <div class="row section-title">
+                    <div class="col-3"></div>
+                    <div class="col-9">${thisTitle}</div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1933<br/>Source of 1933</div>
+                    <div class="col-9">${getValueSource(1933,'capacities')}</div>
+                </div>
+
+                <div class="row values">
+                    <div class="col-3">Topography 1940ies<br/>Source of 1933</div>
+                    <div class="col-9">
+                        ${getValueSource('1940ies','capacities_source1933')}
+                    </div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1940ies<br/>Source of 1939</div>
+                    <div class="col-9">
+                        ${getValueSource('1940ies','capacities_source1944')}
+                    </div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1940ies<br/>Source of 1944</div>
+                    <div class="col-9">
+                        ${getValueSource('1940ies','capacities_source1944')}
+                    </div>
+                </div>
+                <div class="row values">
+                    <div class="col-3">Topography 1940ies<br/>Source of 1945</div>
+                    <div class="col-9">
+                        ${getValueSource('1940ies','capacities_source1945')}
+                    </div>
+                </div>
+
+                <div class="row values">
+                    <div class="col-3">Topography 1954<br/>source one</div>
+                    <div class="col-9">${getValueSource(1954,'capacities')}</div>
+                </div>
+
+                <div class="row values">
+                    <div class="col-3">Topography 1965</div>
+                    <div class="col-9">${getValueSource(1965,'capacities')}</div>
+                </div>
+
+                <div class="row values">
+                    <div class="col-3">Topography 1980<br/>source three</div>
+                    <div class="col-9">${getValueSource(1980,'capacities')}</div>
+                </div>`;
+
     //Typologies
     thisTitle = 'Typologies';
     thisField = 'typologies';
     furtherInformations += `
-				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+                <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
         <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
@@ -175,7 +342,7 @@ function populateSidebar(data) {
     thisTitle = 'Confession';
     thisField = 'confession';
     furtherInformations += `
-				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+                <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
         <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
@@ -186,7 +353,7 @@ function populateSidebar(data) {
     thisTitle = 'Accepted gender';
     thisField = 'accepted_gender';
     furtherInformations += `
-				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+                <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
         <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
@@ -197,7 +364,7 @@ function populateSidebar(data) {
     thisTitle = 'Funding agencies';
     thisField = 'funding_agency';
     furtherInformations += `
-				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+                <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
         <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
@@ -208,7 +375,7 @@ function populateSidebar(data) {
     thisTitle = 'Committing agencies';
     thisField = 'committing_agencies';
     furtherInformations += `
-				<div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
+                <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
         <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
@@ -254,137 +421,141 @@ function reset(url) {
     }
 }
 
-d3.json('./../data_and_scripts/data/master.json', function(err, data) {
-    if (err) throw error;
-    // console.log(data);
-
-    data = d3.nest()
-        .key(function(d) { return d.id })
-        .key(function(d) { return d.survey_year })
-        .entries(data);
-
-    // console.log(data);
-
-    let item = d3.select('.list-container').selectAll('.item')
-
-
-    item = item.data(data, function(d) { return d.id; });
-
-    item.exit().remove();
-
-    item = item.enter()
-        .append('div')
-        .classed('item py-3', true)
-        .attr('id', function(d) { return d.key; })
-        .html(function(d) {
-
-            function fn(year) {
-                let thisYear = d.values.filter(function(e) {
-                    return e.key == year;
-                })
-                if (thisYear.length > 0)  {
-                    return "";
-                } else {
-                    return "off";
-                }
-            }
-            if (d.values[0].values[0].opened_alternative) {
-            		d.values[0].values[0].opened_alternative = '('+d.values[0].values[0].opened_alternative+')'
-            }
-
-            if (d.values[0].values[0].closed_alternative) {
-            		d.values[0].values[0].closed_alternative = '('+d.values[0].values[0].closed_alternative+')'
-            }
-            
-
-            let thisHtml = `
-					<div class="id field">
-    					<div class="label">Id</div>
-    					<div class="value">${d.values[0].values[0].id}</div>
-    				</div>
-    				<div class="canton field">
-    					<div class="label">Canton</div>
-    					<div class="value">${d.values[0].values[0].canton}</div>
-    				</div>
-    				<div class="city field">
-    					<div class="label">City</div>
-    					<div class="value">${d.values[0].values[0].city}</div>
-    				</div>
-    				<div class="institution field">
-    					<div class="label">Landmark name</div>
-    					<div class="value">${d.values[0].values[0].name_landmark}</div>
-    				</div>
-    				<div class="opening field">
-    					<div class="label">Opened in (alternative)</div>
-    					<div class="value">${d.values[0].values[0].opened} ${d.values[0].values[0].opened_alternative}</div>
-    				</div>
-    				<div class="closing field">
-    					<div class="label">Closed in (Alternative)</div>
-    					<div class="value">${d.values[0].values[0].closed} ${d.values[0].values[0].closed_alternative}</div>
-    				</div>
-    				<div class="surveyes field">
-    					<div class="label">Surveyes</div>
-    					<div class="value"><span class="${fn(1933)}">1933</span><span class="${fn(1940)}">1940's</span><span class="${fn(1954)}">1954</span><span class="${fn(1965)}">1965</span><span class="${fn(1980)}">1980</span></div>
-    				</div>
-			`;
-            return thisHtml;
-        })
-        .on('click', function(d) {
-            handleSelection(d);
-            location.replace(`#selected-${encodeURIComponent(d.key)}`);
-            d3.event.preventDefault();
-        })
-        .merge(item);
-
-    reset();
-
-    d3.json('./../data_and_scripts/data/ch.json', function(err, ch) {
+d3.queue()
+    .defer(d3.json, './../data_and_scripts/data/master.json')
+    .defer(d3.json, './../data_and_scripts/data/sources-data.json')
+    .await(function(err, data, data2) {
         if (err) throw err;
-        // console.log(ch);
-        mapboxgl.accessToken = 'pk.eyJ1IjoiaW9zb25vc2VtcHJlaW8iLCJhIjoiOHpYSnpLQSJ9.2ZxP5dSbQhs-dH0PhXER9A';
-        map = new mapboxgl.Map({
-            container: 'map', // container id
-            style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
-            center: [5.9814056, 46.7912769], // starting position [lng, lat]46.7912769,5.9814056
-            zoom: 1 // starting zoom
-        });
+        // console.log(data);
+        sourcesData = data2;
+
+        data = d3.nest()
+            .key(function(d) { return d.id })
+            .key(function(d) { return d.survey_year })
+            .entries(data);
+
+        // console.log(data);
+
+        let item = d3.select('.list-container').selectAll('.item')
+
+
+        item = item.data(data, function(d) { return d.id; });
+
+        item.exit().remove();
+
+        item = item.enter()
+            .append('div')
+            .classed('item py-3', true)
+            .attr('id', function(d) { return d.key; })
+            .html(function(d) {
+
+                function fn(year) {
+                    let thisYear = d.values.filter(function(e) {
+                        return e.key == year;
+                    })
+                    if (thisYear.length > 0)  {
+                        return "";
+                    } else {
+                        return "off";
+                    }
+                }
+                if (d.values[0].values[0].opened_alternative) {
+                    d.values[0].values[0].opened_alternative = '(' + d.values[0].values[0].opened_alternative + ')'
+                }
+
+                if (d.values[0].values[0].closed_alternative) {
+                    d.values[0].values[0].closed_alternative = '(' + d.values[0].values[0].closed_alternative + ')'
+                }
+
+
+                let thisHtml = `
+                    <div class="id field d-none">
+                        <div class="label">Id</div>
+                        <div class="value">${d.values[0].values[0].id}</div>
+                    </div>
+                    <div class="canton field">
+                        <div class="label">Canton</div>
+                        <div class="value">${d.values[0].values[0].canton}</div>
+                    </div>
+                    <div class="city field">
+                        <div class="label">City</div>
+                        <div class="value">${d.values[0].values[0].city}</div>
+                    </div>
+                    <div class="institution field">
+                        <div class="label">Landmark name</div>
+                        <div class="value">${d.values[0].values[0].name_landmark}</div>
+                    </div>
+                    <div class="opening field">
+                        <div class="label">Opened in (alternative)</div>
+                        <div class="value">${d.values[0].values[0].opened} ${d.values[0].values[0].opened_alternative}</div>
+                    </div>
+                    <div class="closing field">
+                        <div class="label">Closed in (Alternative)</div>
+                        <div class="value">${d.values[0].values[0].closed} ${d.values[0].values[0].closed_alternative}</div>
+                    </div>
+                    <div class="surveyes field">
+                        <div class="label">Surveyes</div>
+                        <div class="value"><span class="${fn(1933)}">1933</span><span class="${fn(1940)}">1940's</span><span class="${fn(1954)}">1954</span><span class="${fn(1965)}">1965</span><span class="${fn(1980)}">1980</span></div>
+                    </div>
+            `;
+                return thisHtml;
+            })
+            .on('click', function(d) {
+                handleSelection(d);
+                location.replace(`#selected-${encodeURIComponent(d.key)}`);
+                d3.event.preventDefault();
+            })
+            .merge(item);
+
+        reset();
+
+        d3.json('./../data_and_scripts/data/ch.json', function(err, ch) {
+            if (err) throw err;
+            // console.log(ch);
+            mapboxgl.accessToken = 'pk.eyJ1IjoiaW9zb25vc2VtcHJlaW8iLCJhIjoiOHpYSnpLQSJ9.2ZxP5dSbQhs-dH0PhXER9A';
+            map = new mapboxgl.Map({
+                container: 'map', // container id
+                style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
+                center: [5.9814056, 46.7912769], // starting position [lng, lat]46.7912769,5.9814056
+                zoom: 1 // starting zoom
+            });
 
 
 
-        console.log('read url data');
+            console.log('read url data');
 
-        map.on('load', function() {
-            let swiss = topojson.feature(ch, ch.objects.country);
-            swissbbox = topojson.bbox(ch, ch.objects.country);
+            map.on('load', function() {
+                let swiss = topojson.feature(ch, ch.objects.country);
+                swissbbox = topojson.bbox(ch, ch.objects.country);
 
-            map.fitBounds([
-                [
-                    swissbbox[0],
-                    swissbbox[1]
-                ],
-                [
-                    swissbbox[2],
-                    swissbbox[3]
-                ]
-            ]);
+                map.fitBounds([
+                    [
+                        swissbbox[0],
+                        swissbbox[1]
+                    ],
+                    [
+                        swissbbox[2],
+                        swissbbox[3]
+                    ]
+                ]);
 
-            if (location.hash && location.hash != '#no-selection') {
-                console.log('there is something preselected:', location.hash.substring(10));
+                if (location.hash && location.hash != '#no-selection') {
+                    console.log('there is something preselected:', location.hash.substring(10));
 
-                let thisSelection = data.filter(function(d) { return d.key == location.hash.substring(10) });
-                thisSelection = thisSelection[0]
-                handleSelection(thisSelection);
+                    let thisSelection = data.filter(function(d) { return d.key == location.hash.substring(10) });
+                    thisSelection = thisSelection[0]
+                    handleSelection(thisSelection);
 
-                $('.list-container').animate({
-                    scrollTop: $(`#${location.hash.substring(10)}`).offset().top - 72
-                }, 2000);
+                    $('.list-container').animate({
+                        scrollTop: $(`#${location.hash.substring(10)}`).offset().top - 72
+                    }, 2000);
 
-            }
+                }
+            })
+
         })
 
     })
-
-})
 
 
 

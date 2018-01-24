@@ -39,6 +39,12 @@ node_xj({
             } else {
                 // console.log(master);
 
+                master = master.map(function(d){
+                    return {
+                        'id': d.id
+                    }
+                })
+
                 let top1933 = fs.readFileSync('data/glossary-facilities/top1933-utf8.tsv', 'utf8')
                     .toString();
                 top1933 = d3.tsvParse(top1933);
@@ -60,13 +66,13 @@ node_xj({
                 top1980 = d3.tsvParse(top1980);
                 
                 
-                // console.log(top1933[0])
-                Object.keys(top1980[0]).forEach(function(d,i){
-                    console.log('---',i);
-                    console.log(d)
-                    console.log('\n');
+                // // console.log(top1933[0])
+                // Object.keys(top1980[0]).forEach(function(d,i){
+                //     console.log('---',i);
+                //     console.log(d)
+                //     console.log('\n');
 
-                })
+                // })
 
 
                 master.forEach(function(d,i) {
@@ -274,7 +280,10 @@ node_xj({
 
 
                 })
-                fs.writeFile("./data/master-glossary.json", JSON.stringify(master, null, 2), 'utf8', function(err) {
+                
+                master = _.uniqBy(master, 'id')
+
+                fs.writeFile("./data/sources-data.json", JSON.stringify(master, null, 2), 'utf8', function(err) {
                     if (err) {
                         return console.log(err);
                     }
