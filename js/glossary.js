@@ -376,7 +376,7 @@ d3.json('./../data_and_scripts/data/master.json', function(err, data) {
                 handleSelection(thisSelection);
 
                 $('.list-container').animate({
-                    scrollTop: $(`#${location.hash.substring(10)}`).offset().top - 72
+                    scrollTop: $(`#${location.hash.substring(10)}`).offset().top - 132
                 }, 2000);
 
             }
