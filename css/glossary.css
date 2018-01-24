@@ -10,8 +10,13 @@ nav.navbar {
     border-bottom: 1px solid var(--uek-blue);
 }
 
-.navbar-brand {
-    text-align: center;
+nav.nav-menu {
+    border-bottom: none;
+    padding-bottom: 4px;
+}
+
+nav.navbar:last-of-type {
+    padding-top: 0;
 }
 
 .navbar-toggler {
@@ -20,12 +25,13 @@ nav.navbar {
     cursor: pointer;
 }
 
-.navbar-nav {
-    padding-top: 8px;
+.navbar-text {
+    padding-top: .4rem;
+    padding-bottom: .4rem;
 }
 
 .logo-img {
-    width: 200px;
+    width: 180px;
     height: auto;
 }
 
@@ -55,16 +61,18 @@ nav.navbar {
     cursor: pointer;
 }
 
-.main {}
+.main p {
+    font-family: 'Brandon Grotesque', sans-serif;
+}
 
 .list-container {
     border-right: 1px solid var(--uek-blue);
-    height: calc(100vh - 72px);
+    height: calc(100vh - 134px);
     overflow: scroll;
 }
 
 .details-container {
-    height: calc(100vh - 72px);
+    height: calc(100vh - 134px);
     overflow: scroll;
 }
 
