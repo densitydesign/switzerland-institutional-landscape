@@ -17,7 +17,7 @@ function handleSelection(d) {
         })
         .classed('active', true);
 
-    let selectionName = `${d.key} - name`;
+    let selectionName = `${d.key} - ${d.values[0].values[0].institution}`;
     d3.select('.selected-institution .selected-name')
         .html(selectionName);
 
@@ -295,7 +295,7 @@ d3.json('./../data_and_scripts/data/master.json', function(err, data) {
             if (d.values[0].values[0].closed_alternative) {
             		d.values[0].values[0].closed_alternative = '('+d.values[0].values[0].closed_alternative+')'
             }
-            
+
 
             let thisHtml = `
 					<div class="id field">
