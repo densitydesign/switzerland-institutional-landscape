@@ -606,9 +606,6 @@ p.caption:first-child {
 .legend-circle {
     stroke: none;
 }
-.legend-circle-filled {
-    fill: #B5BA72;
-}
 .legend-edges {
     fill: none;
     stroke-miterlimit: 10;
@@ -828,6 +825,10 @@ p.caption:first-child {
     stroke: #333333;
     stroke-width: 0.5;
     stroke-miterlimit: 10;
+}
+
+#network .legend-circle-filled {
+    fill: #B5BA72;
 }
 
 #accepting-institutions .canton-contour {
