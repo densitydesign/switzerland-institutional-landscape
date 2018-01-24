@@ -433,6 +433,7 @@ p.caption:first-child {
 }
 .element-grayed {
     opacity: 0.2;
+    pointer-events: none;
 }
 .dots-det {
     fill: #B6EA78;
@@ -803,9 +804,7 @@ p.caption:first-child {
 }
 
 #accepting-institutions .canton-contour {
-    /*fill: #EEE5CA;*/
     shape-rendering: geometricPrecision;
-    /*stroke: #fff;*/
     pointer-events: auto;
     opacity: 1;
     cursor: pointer;
@@ -822,7 +821,6 @@ p.caption:first-child {
 }
 
 #accepting-institutions .node {
-    /*stroke: #666;*/
     fill: #333;
 }
 
@@ -834,4 +832,15 @@ p.caption:first-child {
     font-size: .65rem;
     font-weight: bold;
 
+}
+
+/* CREDITS */
+#credits {
+    padding: 4rem 0 2rem;
+    background-color: #212529;
+}
+
+#credits h3,
+#credits p {
+    color: #FCFBFA;
 }
