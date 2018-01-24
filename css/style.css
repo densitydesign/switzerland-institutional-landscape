@@ -231,12 +231,12 @@ p.caption:first-child {
 .nav-divider {
     width: 3px;
     height: 15px;
-    background-color: #666;
+    background-color: #666666;
     border-radius: 2px;
 }
 
 #navigation-sidebar .nav-link {
-    padding: 0 0.3rem;
+    padding: 0 0.5rem 0 0.3rem;
     color: #000;
     height: 20px;
     opacity: 1;
@@ -249,28 +249,51 @@ p.caption:first-child {
     position: relative;
 }
 
+.link-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 15px;
+    background-color: #666666;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.link-container:first-of-type::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -3px;
+    width: 3px;
+    height: 15px;
+    background-color: #666666;
+    border-radius: 2px;
+}
+
 .link-introduction,
-.nav-link.link-introduction:hover,
+#navigation-sidebar .nav-link.link-introduction:hover,
 .link-introduction h6 {
-    width: calc(109px + 2 * 0.3rem);
+    width: 123px;
     opacity: 1;
 }
 .link-geographies,
-.nav-link.link-geographies:hover,
+#navigation-sidebar .nav-link.link-geographies:hover,
 .link-geographies h6 {
-    width: calc(194px + 2 * 0.3rem);
+    width: 208px;
     opacity: 1;
 }
 .link-interconnections,
-.nav-link.link-interconnections:hover,
+#navigation-sidebar .nav-link.link-interconnections:hover,
 .link-interconnections h6 {
-    width: calc(145px + 2 * 0.3rem);
+    width: 160px;
     opacity: 1;
 }
 .link-entering-exiting,
-.nav-link.link-entering-exiting:hover,
+#navigation-sidebar .nav-link.link-entering-exiting:hover,
 .link-entering-exiting h6 {
-    width: calc(188px + 2 * 0.3rem);
+    width: 202px;
     opacity: 1;
 }
 

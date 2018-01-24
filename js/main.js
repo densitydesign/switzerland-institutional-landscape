@@ -99,6 +99,23 @@ $(document).ready(function() {
                 });
         });
 
+    // add scroll events to navigation sidebar
+    $("#navigation-sidebar .nav-link").on('click', function(e) {
+        // prevent default anchor click behavior
+        e.preventDefault();
+        // store hash
+        let hash = this.hash;
+        // animate
+        $('html, body').animate({
+           scrollTop: $(hash).offset().top
+        }, 500, function(){
+           // when done, add hash to url
+           // (default click behaviour)
+           window.location.hash = hash;
+        });
+
+    });
+
     // set waypoints for timeline
     // highlight social if going down, hide if going up
     let social_waypoint = new Waypoint({
