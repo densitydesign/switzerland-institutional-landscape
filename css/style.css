@@ -568,11 +568,6 @@ p.caption:first-child {
 .legend-text-label {
     font-size: 8px;
 }
-.legend-circle {
-    stroke: #000000;
-    stroke-width: 0.5;
-    stroke-miterlimit: 10;
-}
 .legend-text-number {
     font-size: 7px;
 }

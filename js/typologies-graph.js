@@ -89,7 +89,7 @@ function TypologiesGraph(id, data) {
         if (year) {
             thisData = data[year];
         } else {
-            thisData = data[1933];
+            thisData = data[1954];
         }
 
         nodes = thisData.nodes;
