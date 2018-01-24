@@ -19,7 +19,7 @@ function CircularNetwork(id, data) {
     // green: #73C86B
 
     let color = d3.scaleOrdinal()
-        
+
         .range(['#ca5268', '#85c4c9', '#97e196', '#888888'])
         .range(['#CFB76D', '#79745C', '#B5BA72', '#EAE6DA'])
         .domain(['c1', 'c2', 'c3', 'not defined'])
@@ -92,7 +92,7 @@ function CircularNetwork(id, data) {
 
         width = d3.select(this.id)
             .node()
-            .offsetWidth - 30;
+            .offsetWidth - 60;
 
         height = width * .6;
         if (height > window.innerHeight) { height = window.innerHeight * .8 }
@@ -101,7 +101,7 @@ function CircularNetwork(id, data) {
 
         // svg.style('border', '1px solid blue');
 
-        g.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        g.attr("transform", "translate(" + (width / 2 - 100) + "," + height / 2 + ")");
 
 
         resetRect

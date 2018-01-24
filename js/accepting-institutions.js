@@ -60,7 +60,7 @@ function AcceptingInstitutions(id, data, swiss) {
 
         width = d3.select(this.id)
             .node()
-            .offsetWidth - 30;
+            .offsetWidth - 60;
 
         height = width * .6;
         if (height > window.innerHeight) { height = window.innerHeight * .8 }

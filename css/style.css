@@ -576,7 +576,22 @@ p.caption:first-child {
     stroke: #EAE6DA;
     stroke-miterlimit: 10;
 }
-
+.legend-text-sublabel {
+    font-size: 6px;
+}
+.legend-circle {
+    fill: #FCFBFA;
+    stroke: #333333;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+.legend-circle-filled {
+    fill: #B5BA72;
+}
+.legend-edges {
+    fill: none;
+    stroke-miterlimit: 10;
+}
 
 /* STYLES CHAPTER 2 */
 
@@ -781,6 +796,10 @@ p.caption:first-child {
     text-anchor: middle;
     -webkit-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
+}
+
+#circular-network .btn-container {
+    margin-bottom: -1.4rem;
 }
 
 #accepting-institutions .canton-contour {

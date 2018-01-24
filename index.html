@@ -593,7 +593,7 @@
                 <div id="diagram-entering" class="col-12">
                     <!-- TO be filled with diagram -->
                 </div>
-                <div class="col-7 offset-2">
+                <div class="col-6 offset-2">
                     <p>In Switzerland, the administrative detention procedures were based on a heterogeneous and complex set of cantonal statutes and on the Swiss Civil Code. Each Canton developed its own procedures and established the authorities involved at local, regional and cantonal level. Thus, the process leading to administrative detention took up many different forms.</p>
                     <p>In the Canton of Fribourg, for example, the various detention measures were decided mainly by the prefect, who represented the government in his district and was responsible for maintaining public order. This kind of procedure was subject to few formal requirements and was often carried out in an expeditious way. It set forth that the prefect had to conduct the investigation, mainly drawing on the allegations of the police and the public authorities. In the end, he alone decided on the detention. The person reported was granted a minimum of legal guarantees consisting of the right to be heard and the right to appeal to the government. The citizens of the Canton of Fribourg were usually detained in Bellechasse, a correctional facility that also took charge of detainees from other Swiss Cantons. In other words, the cantonal governments concluded agreements with one another for the execution of administrative detention orders outside their own territory. The network of connections that existed between the various cantons for purposes of administrative detention can be seen in the following chart.</p>
                     <p>[DIAGRAM]</p>
@@ -612,6 +612,10 @@
                 </div>
             </div>
             <div class="row visualisation">
+                <div class="col-6 offset-2">
+                    <p>This chart shows which cantons worked in cooperation with each other for dealing with administrative detention matters (e.g. detainees sending from different cantons into the canton of Fribourg). In some cases it was not possible to determine from the sources in which facility a detainee was ultimately interned. These cases have been marked as "unknown". Another interesting feature of this chart is that it shows the existence of intercantonal connections that differed from those later agreed upon in the Intercantonal Convention on Criminal Correction. This cooperation between the cantons provided a solution for the execution of measures such as administrative detention even where there were no detention facilities in operation on the territory of a given canton (such as Nidwalden, for example).</p>
+                </div>
+                <div class="col-12 subchapter-spacer"></div>
                 <div id="circular-network" class="col-12">
                     <!-- <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-secondary active" onclick="circularNetwork.draw(1954)">
@@ -632,19 +636,57 @@
                     </div>
                     <!-- To be filled with D3 -->
                 </div>
-                <div class="col-8 mx-auto">
-                    <img class="img-fluid mb-5" style="width: 778px;" src="./assets-provvisori/legend-network-cantons.png" />
-                </div>
-                <div class="col-7 offset-2">
-                    <p>This chart shows which cantons worked in cooperation with each other for dealing with administrative detention matters (e.g. detainees sending from different cantons into the canton of Fribourg). In some cases it was not possible to determine from the sources in which facility a detainee was ultimately interned. These cases have been marked as "unknown". Another interesting feature of this chart is that it shows the existence of intercantonal connections that differed from those later agreed upon in the Intercantonal Convention on Criminal Correction. This cooperation between the cantons provided a solution for the execution of measures such as administrative detention even where there were no detention facilities in operation on the territory of a given canton (such as Nidwalden, for example).</p>
+                <div class="col-8 offset-1">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 406.9 74.4" xml:space="preserve">
+                    	<text transform="matrix(1 0 0 1 2.0569 8.5)" class="legend-text legend-text-label">Belonging Concordat</text>
+                    	<text transform="matrix(1 0 0 1 145.0667 8.5)" class="legend-text legend-text-label">N° of occurences</text>
+                    	<text transform="matrix(1 0 0 1 243.2288 8.5)" class="legend-text legend-text-label">Edge direction</text>
+                    	<text transform="matrix(1 0 0 1 349.981 8.5)" class="legend-text legend-text-label">Edge color</text>
+                    	<rect x="2.1" y="15.8" style="fill: #CFB76D;" width="8" height="8"/>
+                    	<rect x="2.1" y="29.1" style="fill: #79745C;" width="8" height="8"/>
+                    	<rect x="2.1" y="42.4" style="fill: #B5BA72;" width="8" height="8"/>
+                    	<rect x="2.1" y="55.7" style="fill: #EAE6DA;" width="8" height="8"/>
+                    	<text transform="matrix(1 0 0 1 14 21.4834)" class="legend-text legend-text-sublabel">Concordat of the Latin cantons</text>
+                    	<text transform="matrix(1 0 0 1 14 34.7676)" class="legend-text legend-text-sublabel">Concordat of Central and North-West Switzerland</text>
+                    	<text transform="matrix(1 0 0 1 14 48.0518)" class="legend-text legend-text-sublabel">Concordat of Eastern Switzerland</text>
+                    	<text transform="matrix(1 0 0 1 14 61.3359)" class="legend-text legend-text-sublabel">Not specified</text>
+                    	<circle class="legend-circle" cx="167.2" cy="31.7" r="15"/>
+                    	<circle class="legend-circle" cx="167.2" cy="42.7" r="4"/>
+                    	<text transform="matrix(1 0 0 1 186.022 45.7676)" class="legend-text legend-text-sublabel">1</text>
+                    	<text transform="matrix(1 0 0 1 185.8589 21.7676)" class="legend-text legend-text-sublabel">13</text>
+                    	<text transform="matrix(1 0 0 1 227 39.917)" class="legend-text legend-text-sublabel">Sending</text>
+                    	<text transform="matrix(1 0 0 1 286 47.917)" class="legend-text legend-text-sublabel">Sending</text>
+                    	<text transform="matrix(1 0 0 1 236 65.917)" class="legend-text legend-text-sublabel">Receiving</text>
+                    	<text transform="matrix(1 0 0 1 271 20.917)" class="legend-text legend-text-sublabel">Receiving</text>
+                    	<path class="legend-circle" d="M267.3 27.1c-0.9-0.2-1.8-0.3-2.7-0.3 -6.9 0-12.4 5.6-12.4 12.4 0 0.9 0.1 1.7 0.3 2.5"/>
+                    	<circle class="legend-circle" cx="252.3" cy="43.8" r="4"/>
+                    	<circle class="legend-circle" cx="269.2" cy="27.1" r="4"/>
+                    	<line class="legend-circle" x1="258.1" y1="38.3" x2="262.6" y2="33.8"/>
+                    	<polygon points="262.7 35 262.4 34 261.4 33.6 263.6 32.8 "/>
+                    	<path class="legend-circle" d="M264.2 57.8c0.9 0.2 1.8 0.3 2.7 0.3 6.9 0 12.4-5.6 12.4-12.4 0-0.9-0.1-1.7-0.3-2.5"/>
+                    	<circle class="legend-circle" cx="262.3" cy="57.8" r="4"/>
+                    	<circle class="legend-circle" cx="279.2" cy="41.1" r="4"/>
+                    	<line class="legend-circle" x1="273.4" y1="46.6" x2="268.9" y2="51.1"/>
+                    	<polygon points="268.8 49.9 269.1 50.8 270.1 51.2 267.9 52.1 "/>
+                    	<text transform="matrix(1 0 0 1 357 70.917)" class="legend-text legend-text-sublabel">Different concordat</text>
+                    	<text transform="matrix(1 0 0 1 334 20.917)" class="legend-text legend-text-sublabel">Same concordat</text>
+                    	<path class="legend-edges" style="stroke: #CCCCCC;" d="M366.3 28.1c-0.9-0.2-1.8-0.3-2.7-0.3 -6.9 0-12.4 5.6-12.4 12.4 0 0.9 0.1 1.7 0.3 2.5"/>
+                    	<circle class="legend-circle legend-circle-filled" cx="368.2" cy="28.1" r="4"/>
+                    	<circle class="legend-circle legend-circle-filled" cx="351.3" cy="44.8" r="4"/>
+                    	<path class="legend-edges" style="stroke: #B5BA72;" d="M363.2 58.8c0.9 0.2 1.8 0.3 2.7 0.3 6.9 0 12.4-5.6 12.4-12.4 0-0.9-0.1-1.7-0.3-2.5"/>
+                    	<circle class="legend-circle" style="fill: #CFB76D;" cx="361.3" cy="58.8" r="4"/>
+                    	<circle class="legend-circle legend-circle-filled" cx="378.2" cy="42.1" r="4"/>
+                    </svg>
                 </div>
             </div>
             <!-- <hr class="mb-5" /> -->
+            <div class="subchapter-spacer"></div>
             <div class="row visualisation">
-                <div class="col-7 offset-2">
+                <div class="col-6 offset-2">
                     <p>The map below shows the interconnections between the cantons. It is possible to select any given canton and see the links it maintained with other cantons. In addition, it also shows the respective partner institutions that the cantonal administrations chose to work with.</p>
                 </div>
             </div>
+            <div class="subchapter-spacer"></div>
             <div class="row visualisation">
                 <div id="accepting-institutions" class="col-12">
                     <!-- <div class="btn-group" data-toggle="buttons">
@@ -693,7 +735,7 @@
                 </div>
             </div>
             <div class="row visualisation">
-                <div class="col-7 offset-2">
+                <div class="col-6 offset-2">
                     <p>How could administrative detainees leave correctional labour facilities again? When was the main purpose of "(re-)education" pursued by administrative detention reached? Who decided when a detainee could be released? Was an administrative detainee really free when he/she left the correctional labour facility? The chapter on release practices is dedicated to these issues.</p>
                     <p>The release could be either final or on probation. For example, if in the Twenties a detainee wished to be released in advance from the "correctional labour facility for drunkards Fir Tree House" ("maison de travail pour buveurs, Sapinière"), which was part of the correctional labour facilities of Bellechasse in the Canton of Fribourg, at the end of the day the power to decide was in the hands of the facility director. His expert assessment was crucial for establishing the detainee's "recovery performance".</p>
                     <p>In this way, the inmates were put under strong pressure to comply and meet the expectations set in terms of work and behaviour during their detention. A release on probation, as transition between detention and freedom, essentially entailed - and not only in Bellechasse and in the Twenties - restrictions concerning the behaviour required during the probation period (for example, a ban on entering inns or abstinence from alcohol). Inmates released on probation were kept under surveillance by local authorities or employees of the supervision authority. If during the probation period they did not behave as prescribed, they risked to be locked up again in the correctional labour facility. The fact that many people were detained several times shows how difficult it was to escape the control mechanisms.</p>
@@ -723,7 +765,7 @@
                 <div id="diagram-entering" class="col-12">
                     <!-- TO be filled with diagram -->
                 </div>
-                <div class="col-7 offset-2">
+                <div class="col-6 offset-2">
                     <p><em>Idea and development:</em> Andrea Benedetti (DD), Paolo Ciuccarelli (DD), Marco Dal Molin (IEC), Tommaso Elli (DD), Ernst Guggisberg (IEC), Michele Invernizzi (DD), Michele Mauri (DD), Jos&#233;phine M&#233;traux (IEC)</p>
                     <p><em>Data gathering and analyzing:</em> Marco Dal Molin, Ernst Guggisberg, Deborah Morat</p>
                     <p><em>Texts:</em> Marco Dal Molin, Nicole G&#246;nitzer, Ernst Guggisberg, Mirjam H&#228;sler, Matthieu Lavoyer, Jos&#233;phine M&#233;traux</p>
