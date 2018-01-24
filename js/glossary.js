@@ -469,7 +469,7 @@ d3.queue()
 
 
                 let thisHtml = `
-                    <div class="id field d-none">
+                    <div class="id field hidden">
                         <div class="label">Id</div>
                         <div class="value">${d.values[0].values[0].id}</div>
                     </div>
@@ -547,7 +547,7 @@ d3.queue()
                     handleSelection(thisSelection);
 
                     $('.list-container').animate({
-                        scrollTop: $(`#${location.hash.substring(10)}`).offset().top - 72
+                        scrollTop: $(`#${location.hash.substring(10)}`).offset().top - 132
                     }, 2000);
 
                 }

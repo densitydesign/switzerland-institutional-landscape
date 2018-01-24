@@ -5,65 +5,67 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title></title>
+    <title>Glossaries</title>
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="./../css/style.css">
     <link rel="stylesheet" href="./../css/glossary.css">
 </head>
 
 <body>
-   <nav class="navbar navbar-light fixed-top" style="">
-        <a class="navbar-brand" href="#"><img src="./../assets/logo-uek.png" class="d-inline-block align-top h-100" alt=""></a>
-        <form class="search-institution form-inline my-2 my-lg-0 w-50">
-            <input id="mySearchList" onkeyup="searchList()" class="form-control mr-sm-2 w-100 text-center" Xtype="search" placeholder="Search here or click on an institution to show further details" Xaria-label="Search">
-        </form>
-        <span class="selected-institution navbar-text">
-                <span>Selected: </span><span class="selected-name"> ID - Name</span><span class="ml-2" onclick="reset(true);"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
-        </span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+   <nav class="navbar navbar-light navbar-expand-md">
+        <a class="navbar-brand" href="#"><img src="./../assets/logo-uek.png" class="logo-img" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#glossaryNavbar" aria-controls="glossaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="./">Glossary home</a>
+        <div class="collapse navbar-collapse justify-content-around" id="glossaryNavbar">
+            <ul class="navbar-nav">
+                <li class="mx-lg-2 mx-xl-4 nav-item active">
+                    <a class="nav-link" href="./about.html">About the glossaries</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./about.html">About</a>
+                <li class="mx-lg-2 mx-xl-4 nav-item">
+                    <a class="nav-link" href="./index.html">Glossary of institutions</a>
                 </li>
-                <li class="nav-item">
+                <li class="mx-lg-2 mx-xl-4 nav-item">
+                    <a class="nav-link" href="#">Glossary of legal texts</a>
+                </li>
+                <li class="mx-lg-2 mx-xl-4 nav-item">
                     <a class="nav-link" href="./../">Back to report</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <section class="chapter container-fluid">
+    <section id="glossaries" class="chapter container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-11 offset-1">
-                    <h2 class="mt-5 pt-5">Glossary of institutions</h2>
+                    <h2 class="mt-5 pt-5">Glossaries</h2>
                 </div>
             </div>
         </div>
-        <section id="about" class="sub-chapter container">
+        <section id="institutions-glossary" class="sub-chapter container">
             <div class="row">
-                <div class="col-3 pr-0 d-flex justify-content-end align-items-center">
+                <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
                     <h3><a href="#about"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
                 </div>
                 <div class="col-6">
-                    <h3>About</h3>
+                    <h3>Glossary of institutions</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 offset-3 about-btn">
+                    <a href="./index.html">Explore the glossary</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6 offset-2">
-                    <p>This glossary is part of a bigger report about the phenomenon of Administrative Detention in Switzerland in the …</p>
                     <p>The glossary includes all of the institutions mentioned in the sources consulted. Although the list contains almost 650 entries, it is probably not complete. Descriptive data was collected for each institution, including the name and, where known, the date of its establishment and closure, etc.</p>
-                    <p>The institutions have also been georeferenced, that is, assigned geographical coordinates, so that they can be located on the map.</p>
+                    <p>The institutions have also been georeferenced, that is, assigned geographical coordinates, so that they can be located on the map. For each facility, original quotes have been gathered from the individual sources, which provide additional information on the purpose for which the facility was established and on the detainees held there.</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-6 offset-3">
-                    <p>Click here to download the full dataset.</p>
+                <div class="col-6 offset-2">
+                    <p><a href="">All of the raw data is also available for downloading.</a></p>
                 </div>
             </div>
             <div class="row">
@@ -72,12 +74,35 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-6 offset-3">
-                    <p>Click here to navigate to the repository.</p>
+                <div class="col-6 offset-2">
+                    <p><a href="">Click here to navigate to the repository.</a></p>
+                </div>
+            </div>
+        </section>
+        <div class="subchapter-spacer"></div>
+        <section id="laws-glossary" class="sub-chapter container">
+            <div class="row">
+                <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
+                    <h3><a href="#about"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
+                </div>
+                <div class="col-6">
+                    <h3>Glossary of legal texts</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 offset-3 about-btn">
+                    <a href="">Explore the glossary</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 offset-2">
+                    <p>A large number of legal enactments (statutes, ordinances, regulations, etc.) were in effect both at the federal level and at the cantonal level, which provided the legal basis for decisions on administrative detention by the competent cantonal authorities.</p>
+                    <p>Those enactments came from the domains of public law, civil law, or even criminal law, whereby a large number of the enactments fell within the domain of cantonal public law (cantonal administrative law). The laws focused on a wide range of individuals, who were characterised in different ways – e.g. as “dissolute or indolent”, “drunkards” (or “alcoholics”), juveniles, “mentally ill” (or persons with “psychological disorders”), “vagrants”, or “prostitutes”. Below is a list of the most important cantonal and federal enactments in Switzerland of relevance for administrative detention measures.</p>
                 </div>
             </div>
         </section>
     </section>
+
     <section id="credits" class="chapter container-fluid mb-0">
         <!-- <div class="container">
             <div class="row">
@@ -86,26 +111,26 @@
                 </div>
             </div>
         </div> -->
-        <section id="" class="sub-chapter container">
+        <div class="subchapter-spacer"></div>
+        <section class="sub-chapter container">
             <div class="row">
-                <div class="col-3 pr-0 d-flex justify-content-end align-items-center">
+                <div class="col-2 pr-0 d-flex justify-content-end align-items-center">
                     <h3><a href="#Credits"><i class="fa fa-link" aria-hidden="true"></i></a></h3>
                 </div>
                 <div class="col-6">
-                    <h3>Credits</h3>
+                    <h3>Website credits</h3>
                 </div>
             </div>
             <div class="row visualisation">
-                <div id="diagram-entering" class="col-12">
-                    <!-- TO be filled with diagram -->
-                </div>
-                <div class="col-7 offset-2">
-                    <p>Idea and development: DensityDesign, Ernst, Joséphine, Marco</p>
-                    <p>Texts: Ernst, Joséphine, Mirjam, Matthieu, Marco, Loretta, Nicole</p>
+                <div class="col-6 offset-2">
+                    <p><em>Idea and development:</em> Andrea Benedetti (DD), Paolo Ciuccarelli (DD), Marco Dal Molin (IEC), Tommaso Elli (DD), Ernst Guggisberg (IEC), Michele Invernizzi (DD), Michele Mauri (DD), Jos&#233;phine M&#233;traux (IEC)</p>
+                    <p><em>Data gathering and analyzing:</em> Marco Dal Molin, Ernst Guggisberg, Deborah Morat</p>
+                    <p><em>Texts:</em> Marco Dal Molin, Nicole G&#246;nitzer, Ernst Guggisberg, Mirjam H&#228;sler, Matthieu Lavoyer, Jos&#233;phine M&#233;traux</p>
                 </div>
             </div>
         </section>
     </section>
+
     <script src="https://use.fontawesome.com/0d09bc9826.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
