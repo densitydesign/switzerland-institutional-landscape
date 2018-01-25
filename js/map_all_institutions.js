@@ -89,6 +89,7 @@ function MapAll(id, swiss, data) {
             .style('opacity', 1e-6)
             .remove();
         d3.select('#maps-visualization .maps-container')
+            .classed('map-on', false)
             .style('pointer-events', 'none');
         d3.select('#maps-visualization .maps-container rect')
             .style('pointer-events', 'none');
@@ -97,8 +98,16 @@ function MapAll(id, swiss, data) {
         width = $('#maps-visualization').width();
         height = width * .7;
         radius = 3;
-        svg.attr('width', width)
+        svg.classed('map-on', true)
+            .attr('width', width)
             .attr('height', height)
+            .attr('data-category', function(d){
+                if (category == undefined) {
+                    return 'typology';
+                } else {
+                    return category;
+                }
+            })
             .style('position', 'absolute');
 
         // adapt map to viewport

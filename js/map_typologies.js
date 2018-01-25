@@ -107,6 +107,9 @@ function MapTypologies(id, swiss, data) {
             .duration(400)
             .style('opacity', 1e-6)
             .remove();
+        d3.select('#maps-visualization .map-container')
+            .classed('map-on', false)
+            .attr('data-category', 'hidden');
         d3.select('#maps-visualization .maps-container')
             .style('pointer-events', 'auto');
         d3.select('#maps-visualization .maps-container rect')
@@ -129,7 +132,8 @@ function MapTypologies(id, swiss, data) {
         secondRow = mapsHeight + verticalSpacer;
         thirdRow = 2 * secondRow;
 
-        svg.attr('width', width)
+        svg.classed('map-on', true)
+            .attr('width', width)
             .attr('height', height);
 
         mapRect.attr('width', width)

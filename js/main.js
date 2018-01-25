@@ -265,6 +265,16 @@ $(document).ready(function() {
             typologiesGraph.draw();
         }
 
+        let mapState = $('#maps-visualization .map-container').attr('data-category');
+        let yearState = $('#maps .btn-year.active-year').attr('data-id');
+        if (mapState == 'hidden') {
+            map_typologies.draw(yearState);
+        } else if (mapState == 'typology') {
+            map_all_institutions.draw(yearState);
+        } else {
+            map_all_institutions.draw(yearState, mapState);
+        }
+
         if (d3.select(circularNetwork.id).node().offsetWidth - 30 != circularNetwork.width) {
             circularNetwork.draw();
         }
