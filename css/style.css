@@ -2,10 +2,6 @@
 
 @import '../fonts/Brandon_reg-export/Brandon_reg.css';
 @import '../fonts/Brandon_reg_it-export/Brandon_reg_it.css';
-
-/*@import '../fonts/Brandon_med-export/Brandon_med.css';
-@import '../fonts/Brandon_med_it-export/Brandon_med_it.css';*/
-
 @import '../fonts/Brandon_bld-export/Brandon_bld.css';
 @import '../fonts/Brandon_bld_it-export/Brandon_bld_it.css';
 
@@ -198,6 +194,21 @@ p.caption:first-child {
 
 .subchapter-spacer {
     height: 40px;
+}
+
+.interaction-note {
+    width: 180px;
+    padding: 0.6rem 0.8rem;
+    background-color: #D8ECE0;
+    border-radius: 2px;
+    border: 1px solid #81AA91;
+}
+
+.interaction-note p {
+    position: relative;
+    margin: 0;
+    font-family: 'Brandon Grotesque', sans-serif;
+    font-weight: bold;
 }
 
 /* Cover */
@@ -610,6 +621,16 @@ p.caption:first-child {
     fill: none;
     stroke-miterlimit: 10;
 }
+.legend-rect {
+    fill: none;
+    stroke: #333333;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+.legend-title {
+    font-size: 8px;
+    font-weight: bold;
+}
 
 /* STYLES CHAPTER 2 */
 
@@ -792,6 +813,9 @@ p.caption:first-child {
 
 /* STYLES CHAPTER 4 */
 
+.svg-diagram {
+    margin: 2rem 0;
+}
 
 /* typologies network of correlations */
 
