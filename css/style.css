@@ -174,15 +174,15 @@ p.caption:first-child {
     transition: 0.2s ease;
 }
 
-.underlined::before {
-    font-family: "FontAwesome";
+/* .underlined::before {
+    font-family: "Font Awesome 5 Regular";
     text-decoration: none;
     content: "\f25a";
     font-weight: lighter;
     font-size: 0.75em;
     margin-left: 0.3em;
     margin-right: 0.2em;
-}
+} */
 
 .underlined:hover {
     color: #81AA91;
@@ -198,7 +198,7 @@ p.caption:first-child {
 
 .interaction-note {
     /* width: 180px; */
-    padding: 0.6rem 0.8rem 0;
+    /* padding: 0.6rem 0.8rem 0; */
     /* background-color: #D8ECE0; */
     /* border-radius: 2px; */
     /* border: 1px solid #81AA91; */
@@ -697,6 +697,7 @@ p.caption:first-child {
 .year-switch {
     cursor: pointer;
     line-height: 1.1;
+    padding-left: 3px;
 }
 
 /* swiss map styles */
@@ -883,7 +884,10 @@ p.caption:first-child {
     text-transform: uppercase;
     font-size: .65rem;
     font-weight: bold;
+}
 
+#accepting-institutions .btn-group {
+    left: 4px;
 }
 
 /* CREDITS */

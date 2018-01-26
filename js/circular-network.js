@@ -169,7 +169,22 @@ function CircularNetwork(id, data) {
             .attr('fill', function(d) { return color(d.concordat) })
             .attr("r", function(d) { return Math.sqrt(d.count * scaleFactor * 10 / Math.PI); })
             .on('click', function(d) {
-                // console.log(d.id);
+                let involved_links = links.filter(function(e){
+                    return d.id == e.sourceName || d.id == e.targetName;
+                })
+
+                let involved_facilities = [];
+
+                involved_links.forEach(function(e){
+                    e.target_institutions.forEach(function(ee){
+                        involved_facilities.push(ee);
+                    });
+                })
+
+                involved_facilities = _.uniq(involved_facilities);
+
+                buildSidepanelList(involved_facilities);
+
                 d3.selectAll(id + ' .node').style('opacity',0.1);
 
                 d3.selectAll(id + ' .link').each(function(l) {
