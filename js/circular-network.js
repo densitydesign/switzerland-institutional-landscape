@@ -88,7 +88,7 @@ function CircularNetwork(id, data) {
         .alphaDecay(.02)
         .on("tick", null);
 
-    this.draw = function(year) {
+    this.draw = function(year, canton) {
 
         width = d3.select(this.id)
             .node()
@@ -165,9 +165,21 @@ function CircularNetwork(id, data) {
         node = node.enter()
             .append("circle")
             .classed('node', true)
+            .merge(node)
             .attr('stroke', function(d) { return d3.color(color(d.concordat)).darker(.75) })
             .attr('fill', function(d) { return color(d.concordat) })
             .attr("r", function(d) { return Math.sqrt(d.count * scaleFactor * 10 / Math.PI); })
+            .style('opacity', function(d){
+                if (canton != undefined) {
+                    if (d.id == canton) {
+                        return 1;
+                    } else {
+                        return 0.1;
+                    }
+                } else {
+                    return 1;
+                }
+            })
             .on('click', function(d) {
                 let involved_links = links.filter(function(e){
                     return d.id == e.sourceName || d.id == e.targetName;
@@ -204,22 +216,39 @@ function CircularNetwork(id, data) {
                 });
                 d3.select(this).style('opacity', 1);
 
-            })
-            .merge(node);
+            });
 
         // Apply the general update pattern to the links.
         link = link.data(links, function(d) { return d.source.id + "-" + d.target.id; });
         link.exit().remove();
         link = link.enter().append("path")
             .classed('link', true)
+            .merge(link)
             .style('stroke-width', function(d) { return edgeWeight(d.weight) })
             .style('cursor', 'pointer')
+            .style('opacity', function(d){
+                if (canton != undefined) {
+                    if (d.sourceName == canton || d.targetName == canton) {
+                        d3.selectAll(id + ' .node').each(function(n) {
+                            if ( n.id == d.targetName || n.id == d.sourceName) {
+                                if (n.id != canton) {
+                                    d3.select(this).style('opacity', 1);
+                                }
+                            }
+                        });
+                        return 1;
+                    } else {
+                        return 0.05;
+                    }
+                } else {
+                    return 0.5;
+                }
+            })
             // .attr('marker-end', 'url(#arrowhead)')
             .on('click', function(d) {
                 // console.log(d);
                 buildSidepanelList(d.target_institutions);
-            })
-            .merge(link);
+            });
 
         // Apply general update pattern to labels
         label = label.data(nodes, function(d) { return d.id; });

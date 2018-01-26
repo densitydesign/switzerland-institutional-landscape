@@ -80,7 +80,7 @@ $(document).ready(function() {
                     map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
 
                     circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
-                    circularNetwork.draw();
+                    circularNetwork.draw(1954, 'FR');
 
                     acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, acceptingInstitutionsConfig);
                     acceptingInstitutions.draw(acceptingInstitutionsConfig);
