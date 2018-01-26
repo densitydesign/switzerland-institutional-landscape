@@ -835,6 +835,10 @@ p.caption:first-child {
     margin-bottom: -1.4rem;
 }
 
+#circular-network .sidenote {
+    margin-bottom: -3rem;
+}
+
 #network .legend-circle {
     fill: #FCFBFA;
     stroke: #333333;
