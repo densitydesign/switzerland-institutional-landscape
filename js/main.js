@@ -255,33 +255,49 @@ $(document).ready(function() {
 
         if (d3.select(surviesSankey.id).node().offsetWidth - 30 != surviesSankey.width) {
             surviesSankey.draw(surveySankeyMode);
-        }
-
-        if (d3.select(bubblechart.id).node().offsetWidth - 30 != bubblechart.width) {
             bubblechart.draw();
-        }
-
-        if (d3.select(typologiesGraph.id).node().offsetWidth - 30 != typologiesGraph.width) {
             typologiesGraph.draw();
-        }
 
-        let mapState = $('#maps-visualization .map-container').attr('data-category');
-        let yearState = $('#maps .btn-year.active-year').attr('data-id');
-        if (mapState == 'hidden') {
-            map_typologies.draw(yearState);
-        } else if (mapState == 'typology') {
-            map_all_institutions.draw(yearState);
-        } else {
-            map_all_institutions.draw(yearState, mapState);
-        }
+            let mapState = $('#maps-visualization .map-container').attr('data-category');
+            let yearState = $('#maps .btn-year.active-year').attr('data-id');
+            if (mapState == 'hidden') {
+                map_typologies.draw(yearState);
+            } else if (mapState == 'typology') {
+                map_all_institutions.draw(yearState);
+            } else {
+                map_all_institutions.draw(yearState, mapState);
+            }
 
-        if (d3.select(circularNetwork.id).node().offsetWidth - 30 != circularNetwork.width) {
+            matrix.draw(1954);
             circularNetwork.draw();
-        }
-
-        if (d3.select(acceptingInstitutions.id).node().offsetWidth - 30 != acceptingInstitutions.width) {
             acceptingInstitutions.draw(acceptingInstitutionsConfig);
         }
+
+        // if (d3.select(bubblechart.id).node().offsetWidth - 30 != bubblechart.width) {
+        //     bubblechart.draw();
+        // }
+        //
+        // if (d3.select(typologiesGraph.id).node().offsetWidth - 30 != typologiesGraph.width) {
+        //     typologiesGraph.draw();
+        // }
+        //
+        // let mapState = $('#maps-visualization .map-container').attr('data-category');
+        // let yearState = $('#maps .btn-year.active-year').attr('data-id');
+        // if (mapState == 'hidden') {
+        //     map_typologies.draw(yearState);
+        // } else if (mapState == 'typology') {
+        //     map_all_institutions.draw(yearState);
+        // } else {
+        //     map_all_institutions.draw(yearState, mapState);
+        // }
+        //
+        // if (d3.select(circularNetwork.id).node().offsetWidth - 30 != circularNetwork.width) {
+        //     circularNetwork.draw();
+        // }
+        //
+        // if (d3.select(acceptingInstitutions.id).node().offsetWidth - 30 != acceptingInstitutions.width) {
+        //     acceptingInstitutions.draw(acceptingInstitutionsConfig);
+        // }
 
 
     }
