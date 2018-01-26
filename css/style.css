@@ -876,8 +876,8 @@ p.caption:first-child {
     font-weight: bold;
 }
 
-#accepting-institutions .btn-group {
-    left: 4px;
+.selected-canton {
+    top: -3px;
 }
 
 /* CREDITS */

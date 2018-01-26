@@ -83,7 +83,7 @@ $(document).ready(function() {
                     circularNetwork.draw(1954, 'FR');
 
                     acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, acceptingInstitutionsConfig);
-                    acceptingInstitutions.draw(acceptingInstitutionsConfig);
+                    acceptingInstitutions.draw(acceptingInstitutionsConfig, 'FR');
 
                     $(document).trigger('setNavigation');
                 });
