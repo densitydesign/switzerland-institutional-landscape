@@ -57,7 +57,12 @@ function MapTypologies(id, swiss, data) {
 
     // transform topojson to geojson
     let swissOutline = topojson.feature(swiss, swiss.objects.country),
-        cantons = topojson.feature(swiss, swiss.objects.cantons);
+        cantons = topojson.feature(swiss, swiss.objects.cantons),
+        oldCantons = topojson.feature(swiss, swiss.objects.cantons),
+        union = turf.union(oldCantons.features[1], oldCantons.features[25]);
+
+    oldCantons.features[1] = union;
+    oldCantons.features.pop();
 
     // set variables for zoom
     let zoom = d3.zoom()
@@ -207,13 +212,22 @@ function MapTypologies(id, swiss, data) {
             .style('opacity', 0.5);
 
         let cantonsBorder = cantonsBorderContainer.selectAll('path')
-            .data(function(d,i) {
-                return cantons.features.map(function(el){
-                    return {
-                        index: i,
-                        shape: el
-                    }
-                })
+            .data(function(d,i){
+                if (year < 1980 && year != 1900) {
+                    return oldCantons.features.map(function(el){
+                        return {
+                            index: i,
+                            shape: el
+                        }
+                    })
+                } else {
+                    return cantons.features.map(function(el){
+                        return {
+                            index: i,
+                            shape: el
+                        }
+                    })
+                }
             });
 
         cantonsBorder.exit()

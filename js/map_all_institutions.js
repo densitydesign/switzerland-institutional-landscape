@@ -34,7 +34,12 @@ function MapAll(id, swiss, data) {
 
     // transform topojson to geojson
     let swissOutline = topojson.feature(swiss, swiss.objects.country),
-        cantons = topojson.feature(swiss, swiss.objects.cantons);
+        cantons = topojson.feature(swiss, swiss.objects.cantons),
+        oldCantons = topojson.feature(swiss, swiss.objects.cantons),
+        union = turf.union(oldCantons.features[1], oldCantons.features[25]);
+
+    oldCantons.features[1] = union;
+    oldCantons.features.pop();
 
     // define forces
     let simulation = d3.forceSimulation()
@@ -134,7 +139,13 @@ function MapAll(id, swiss, data) {
             .style('opacity', 0.5);
 
         let cantonsBorder = cantonsBorderContainer.selectAll('path')
-            .data(cantons.features);
+            .data(function(d){
+                if (year < 1980 && year != 1900) {
+                    return oldCantons.features;
+                } else {
+                    return cantons.features;
+                }
+            });
 
         cantonsBorder.exit()
             .transition()
