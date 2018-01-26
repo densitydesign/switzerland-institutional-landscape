@@ -197,11 +197,11 @@ p.caption:first-child {
 }
 
 .interaction-note {
-    width: 180px;
-    padding: 0.6rem 0.8rem;
-    background-color: #D8ECE0;
-    border-radius: 2px;
-    border: 1px solid #81AA91;
+    /* width: 180px; */
+    padding: 0.6rem 0.8rem 0;
+    /* background-color: #D8ECE0; */
+    /* border-radius: 2px; */
+    /* border: 1px solid #81AA91; */
 }
 
 .interaction-note p {
