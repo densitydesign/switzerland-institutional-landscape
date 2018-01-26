@@ -159,8 +159,8 @@ p.caption:first-child {
 
 .btn-secondary:not([disabled]):not(.disabled).active {
     background-color: #81AA91;
-    -webkit-box-shadow: inset 0 0 3px 3px rgba(134,142,150,.5);
-            box-shadow: inset 0 0 3px 3px rgba(134,142,150,.5);
+    -webkit-box-shadow: inset 0 0 3px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .chapter {
@@ -173,16 +173,6 @@ p.caption:first-child {
     -webkit-transition: 0.2s ease;
     transition: 0.2s ease;
 }
-
-/* .underlined::before {
-    font-family: "Font Awesome 5 Regular";
-    text-decoration: none;
-    content: "\f25a";
-    font-weight: lighter;
-    font-size: 0.75em;
-    margin-left: 0.3em;
-    margin-right: 0.2em;
-} */
 
 .underlined:hover {
     color: #81AA91;

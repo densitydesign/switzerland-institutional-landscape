@@ -389,7 +389,18 @@ function AcceptingInstitutions(id, data, swiss) {
                 .merge(nodeLabel)
                 .append("text")
                 .classed('nodeLabel', true)
-                .text(function(d) { return d.name_landmark })
+                .style('opacity', 0)
+                .text(function(d) { return d.name_landmark; });
+
+            nodeLabel.transition()
+                .duration(500)
+                .delay(300)
+                .style('opacity', function(d){
+                    let code = d.id.match(/\D+/)[0];
+                    if (code == 'XX') {
+                        return 1;
+                    }
+                });
 
 
             simulation
