@@ -80,6 +80,12 @@ function AcceptingInstitutions(id, data, swiss) {
         // transform topojson to geojson
         let cantons = topojson.feature(swiss, swiss.objects.cantons);
 
+        if (config.year < 1980) {
+            var union = turf.union(cantons.features[1], cantons.features[25]);
+            cantons.features[1] = union;
+            cantons.features.pop();
+        }
+
         // adapt map to viewport
         projection.fitSize([width, height - 10], cantons);
 
@@ -338,36 +344,36 @@ function AcceptingInstitutions(id, data, swiss) {
                 .on('click', function(d) {
                     buildSidepanel(d.id, 1900);
                 })
-                // .on('mouseenter', function(d) {
-                //     d3.selectAll(id + ' .node')
-                //         .style('opacity', .4)
-                //
-                //     d3.select(this)
-                //         .style('opacity', 1)
-                //         .transition()
-                //         .duration(300)
-                //         .attr('r', fixedRadius * 1.5)
-                //
-                //     d3.selectAll(id + ' .nodeLabel')
-                //         .filter(function(e) { return e.id == d.id })
-                //         .transition()
-                //         .duration(500)
-                //         .style('opacity', 1)
-                // })
-                // .on('mouseout', function(d) {
-                //     d3.selectAll(id + ' .node')
-                //         .style('opacity', 1)
-                //
-                //     d3.select(this).transition()
-                //         .duration(300)
-                //         .attr('r', fixedRadius)
-                //
-                //     d3.selectAll(id + ' .nodeLabel')
-                //         .filter(function(e) { return e.id == d.id })
-                //         .transition()
-                //         .duration(500)
-                //         .style('opacity', 0)
-                // })
+            // .on('mouseenter', function(d) {
+            //     d3.selectAll(id + ' .node')
+            //         .style('opacity', .4)
+            //
+            //     d3.select(this)
+            //         .style('opacity', 1)
+            //         .transition()
+            //         .duration(300)
+            //         .attr('r', fixedRadius * 1.5)
+            //
+            //     d3.selectAll(id + ' .nodeLabel')
+            //         .filter(function(e) { return e.id == d.id })
+            //         .transition()
+            //         .duration(500)
+            //         .style('opacity', 1)
+            // })
+            // .on('mouseout', function(d) {
+            //     d3.selectAll(id + ' .node')
+            //         .style('opacity', 1)
+            //
+            //     d3.select(this).transition()
+            //         .duration(300)
+            //         .attr('r', fixedRadius)
+            //
+            //     d3.selectAll(id + ' .nodeLabel')
+            //         .filter(function(e) { return e.id == d.id })
+            //         .transition()
+            //         .duration(500)
+            //         .style('opacity', 0)
+            // })
 
 
             node.transition()
