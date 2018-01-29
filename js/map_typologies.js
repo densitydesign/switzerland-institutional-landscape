@@ -69,7 +69,7 @@ function MapTypologies(id, swiss, data) {
         .on("zoom", zoomed);
 
     let initialTransform = d3.zoomIdentity
-        .translate(0,0)
+        .translate(0,-10)
         .scale(1);
 
     let active = d3.select(null);
@@ -119,6 +119,8 @@ function MapTypologies(id, swiss, data) {
             .style('pointer-events', 'auto');
         d3.select('#maps-visualization .maps-container rect')
             .style('pointer-events', 'all');
+
+        currentMapsCategory = 'none';
 
         //calculate width and height for each small map
         width = $('#maps-visualization').width();
@@ -304,6 +306,9 @@ function MapTypologies(id, swiss, data) {
             .transition()
             .duration(500)
             .style('opacity', 1);
+
+        d3.selectAll('text.maps-label')
+            .call(wrap, 120);
 
         // filter the data for the correct year
         let selectedYear = this.data.filter(function(el){return el.key == year;});
@@ -505,5 +510,48 @@ function MapTypologies(id, swiss, data) {
         g.transition()
             .duration(750)
             .call(zoom.transform, transform);
+    }
+
+    function wrap (text, width) {
+
+        text.each(function() {
+
+            var breakChars = ['/', '&', '-'],
+            text = d3.select(this),
+            textContent = text.text(),
+            spanContent;
+
+            breakChars.forEach(char => {
+                // Add a space after each break char for the function to use to determine line breaks
+                textContent = textContent.replace(char, char + ' ');
+            });
+
+            var words = textContent.split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            x = text.attr('x'),
+            y = text.attr('y'),
+            dy = parseFloat(text.attr('dy') || 0),
+            tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
+
+            while (word = words.pop()) {
+                line.push(word);
+                tspan.text(line.join(' '));
+                if (tspan.node().getComputedTextLength() > width) {
+                    line.pop();
+                    spanContent = line.join(' ');
+                    breakChars.forEach(char => {
+                        // Remove spaces trailing breakChars that were added above
+                        spanContent = spanContent.replace(char + ' ', char);
+                    });
+                    tspan.text(spanContent);
+                    line = [word];
+                    tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word);
+                }
+            }
+        });
+
     }
 }

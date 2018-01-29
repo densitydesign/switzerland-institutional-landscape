@@ -29,7 +29,13 @@ function SurviesSankey(id, data) {
             nodesPadding = width * 0.05;
         }
 
-        height = width * .5;
+        let subchapterWidth = $('#temporal-framing').width();
+        if (subchapterWidth < 930) {
+            height = width * .8;
+        } else {
+            height = width * .6;
+        }
+
         if (height > window.innerHeight) { height = window.innerHeight * .8 }
 
         svg.attr('width', width)

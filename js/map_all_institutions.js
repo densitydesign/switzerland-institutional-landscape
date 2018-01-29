@@ -61,7 +61,6 @@ function MapAll(id, swiss, data) {
     let genderScale = d3.scaleOrdinal()
         .domain(categoriesList['accepted_gender'])
         .range(['#575A4B', '#FF6663', '#EDDEA4', '#EAE6DA']);
-    let currentCategory;
 
     // check if svg has already been created and if not, creates it
     if (!this.svg) {
@@ -102,7 +101,16 @@ function MapAll(id, swiss, data) {
         //calculate width and height of the viz container and set them as svg dimensions
         width = $('#maps-visualization').width();
         height = width * .7;
-        radius = 3;
+
+        let subchapterWidth = $('#temporal-framing').width();
+        if (subchapterWidth < 700) {
+            height = width * .85;
+            radius = 1.8;
+        } else {
+            height = width * .7;
+            radius = 3;
+        }
+
         svg.classed('map-on', true)
             .attr('width', width)
             .attr('height', height)
@@ -234,7 +242,7 @@ function MapAll(id, swiss, data) {
                 })
                 .attr('r', radius);
 
-            if (currentCategory != category) {
+            if (currentMapsCategory != category) {
                 // add legend
                 item = legendGroup.selectAll('.item')
                     .data(categoriesList[category]);
@@ -261,7 +269,13 @@ function MapAll(id, swiss, data) {
                     .style('opacity', 1e-6)
                     .attr('width', 15)
                     .attr('height', 15)
-                    .attr('x', 15)
+                    .attr('x', function(d){
+                        if (subchapterWidth < 700) {
+                            return 5;
+                        } else {
+                            return 15;
+                        }
+                    })
                     .attr('y', function(d, i){
                         return i * 20;
                     })
@@ -282,7 +296,13 @@ function MapAll(id, swiss, data) {
                 item.append('text')
                     .classed('item-text', true)
                     .style('opacity', 1e-6)
-                    .attr('x', 40)
+                    .attr('x', function(d){
+                        if (subchapterWidth < 700) {
+                            return 30;
+                        } else {
+                            return 40;
+                        }
+                    })
                     .attr('y', function(d, i){
                         return i * 20 + 12;
                     })
@@ -294,7 +314,7 @@ function MapAll(id, swiss, data) {
                     .delay(function(d, i) { return i * 2 })
                     .style('opacity', 1);
 
-                currentCategory = category;
+                currentMapsCategory = category;
             }
         } else {
             node = node.enter()
@@ -311,6 +331,8 @@ function MapAll(id, swiss, data) {
                 .duration(500)
                 .delay(function(d, i) { return i * 2 })
                 .attr('r', radius);
+
+            currentMapsCategory = 'none';
         }
 
         simulation.alpha(1)

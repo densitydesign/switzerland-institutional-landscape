@@ -15,10 +15,13 @@ let years = [1933, 1940, 1954, 1965, 1980],
     containerCircularWidth,
     containerAcceptingWidth,
     buttonWidth,
+    bubblechartSpacer,
+    typologiesSpacer,
     mapsSpacer,
     matrixSpacer,
     map_all_institutions,
     map_typologies,
+    currentMapsCategory,
     matrix;
 
 let circularNetwork,
@@ -199,7 +202,7 @@ $(document).ready(function() {
     // change matrix selects when changing years, setup matrix buttons
     let $matrixButtons = $('#matrix .btn-matrix-year'),
         $matrixSelects = $('#matrix .select-container'),
-        subchapterWidth = $('#institutions-maps').width();;
+        subchapterWidth = $('#temporal-framing').width();
 
     containerBubblechartWidth = $('#bubblechart .btn-container').width();
     containerTypologiesWidth = $('#typologies-graph .btn-container').width();
@@ -210,13 +213,21 @@ $(document).ready(function() {
 
     if (subchapterWidth > 960) {
         matrixSpacer = 8;
-    } else {
+        bubblechartSpacer = 7;
+        typologiesSpacer = 7;
+    } else if (subchapterWidth > 720) {
         matrixSpacer = 12;
+        bubblechartSpacer = 10;
+        typologiesSpacer = 14;
+    } else {
+        matrixSpacer = 30;
+        bubblechartSpacer = 20;
+        typologiesSpacer = 400;
     }
 
     //set up initial active buttons
-    changeButton(1954, containerBubblechartWidth, '.btn-bubblechart-year', 7);
-    changeButton(1954, containerTypologiesWidth, '.btn-typologies-year', 7);
+    changeButton(1954, containerBubblechartWidth, '.btn-bubblechart-year', bubblechartSpacer);
+    changeButton(1954, containerTypologiesWidth, '.btn-typologies-year', typologiesSpacer);
     changeButton(1954, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
     changeButton(1954, containerCircularWidth, '.btn-circular-year', 8);
     changeButton(1954, containerAcceptingWidth, '.btn-accepting-year', 8);
@@ -224,13 +235,13 @@ $(document).ready(function() {
     $('.btn-bubblechart-year').on('click', function() {
         let newYear = $(this).attr('data-id');
 
-        changeButton(newYear, containerBubblechartWidth, '.btn-bubblechart-year', 7);
+        changeButton(newYear, containerBubblechartWidth, '.btn-bubblechart-year', bubblechartSpacer);
     });
 
     $('.btn-typologies-year').on('click', function() {
         let newYear = $(this).attr('data-id');
 
-        changeButton(newYear, containerTypologiesWidth, '.btn-typologies-year', 7);
+        changeButton(newYear, containerTypologiesWidth, '.btn-typologies-year', typologiesSpacer);
     });
 
     $matrixButtons.on('click', function() {
@@ -263,12 +274,21 @@ $(document).ready(function() {
         // }
 
         if (d3.select(surviesSankey.id).node().offsetWidth - 30 != surviesSankey.width) {
+
+            let bubblechartYearState = $('#bubblechart .active-year').attr('data-id'),
+                typologiesYearState = $('#typologies-graph .active-year').attr('data-id'),
+                mapYearState = $('#maps .btn-year.active-year').attr('data-id'),
+                matrixYearState = $('#matrix .active-year').attr('data-id'),
+                circularYearState = $('#circular-network .active-year').attr('data-id'),
+                acceptingYearState = $('#accepting-institutions .active-year').attr('data-id');
+
+            acceptingInstitutionsConfig.year = acceptingYearState;
+
             surviesSankey.draw(surveySankeyMode);
-            bubblechart.draw();
-            typologiesGraph.draw();
+            bubblechart.draw(bubblechartYearState);
+            typologiesGraph.draw(typologiesYearState);
 
             let mapState = $('#maps-visualization .map-container').attr('data-category');
-            let mapYearState = $('#maps .btn-year.active-year').attr('data-id');
             if (mapState == 'hidden') {
                 map_typologies.draw(mapYearState);
             } else if (mapState == 'typology') {
@@ -277,8 +297,8 @@ $(document).ready(function() {
                 map_all_institutions.draw(mapYearState, mapState);
             }
 
-            matrix.draw(1954);
-            circularNetwork.draw();
+            matrix.draw(matrixYearState);
+            circularNetwork.draw(circularYearState);
             acceptingInstitutions.draw(acceptingInstitutionsConfig);
 
             //re-calc all the widths for the year buttons
@@ -289,23 +309,26 @@ $(document).ready(function() {
             containerCircularWidth = $('#circular-network .btn-container').width();
             containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
 
-            let bubblechartYearState = $('#bubblechart .active-year').attr('data-id'),
-                typologiesYearState = $('#typologies-graph .active-year').attr('data-id'),
-                matrixYearState = $('#matrix .active-year').attr('data-id'),
-                circularYearState = $('#circular-network .active-year').attr('data-id'),
-                acceptingYearState = $('#accepting-institutions .active-year').attr('data-id');
-
-            let subchapterWidth = $('#institutions-maps').width();
+            let subchapterWidth = $('#temporal-framing').width();
             if (subchapterWidth > 960) {
                 mapsSpacer = 7;
                 matrixSpacer = 8;
-            } else {
+                bubblechartSpacer = 7;
+                typologiesSpacer = 7;
+            } else if (subchapterWidth > 720) {
                 mapsSpacer = 14;
                 matrixSpacer = 12;
+                bubblechartSpacer = 10;
+                typologiesSpacer = 14;
+            } else {
+                mapsSpacer = 20;
+                matrixSpacer = 30;
+                bubblechartSpacer = 20;
+                typologiesSpacer = 400;
             }
 
-            changeButton(bubblechartYearState, containerBubblechartWidth, '.btn-bubblechart-year', 7);
-            changeButton(typologiesYearState, containerTypologiesWidth, '.btn-typologies-year', 7);
+            changeButton(bubblechartYearState, containerBubblechartWidth, '.btn-bubblechart-year', bubblechartSpacer);
+            changeButton(typologiesYearState, containerTypologiesWidth, '.btn-typologies-year', typologiesSpacer);
             changeButton(mapYearState, containerMapsWidth, '.btn-maps-year', mapsSpacer);
             changeButton(matrixYearState, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
             changeButton(circularYearState, containerCircularWidth, '.btn-circular-year', 8);
@@ -353,11 +376,13 @@ $(document).on('setWaypoints', function() {
     //calculate container and button width
     containerMapsWidth = $('#maps .btn-container').width();
     buttonWidth = $('.btn-maps-year[data-id=1940]').width();
-    let subchapterWidth = $('#institutions-maps').width();
+    let subchapterWidth = $('#temporal-framing').width();
     if (subchapterWidth > 960) {
         mapsSpacer = 7;
-    } else {
+    } else if (subchapterWidth > 720) {
         mapsSpacer = 14;
+    } else {
+        mapsSpacer = 20;
     }
 
     // save the selection to a variable to improve performance
@@ -499,10 +524,17 @@ function changeButton(year, width, buttons, spacer) {
     $(buttons).each(function(i){
         if (i == indexButton) {
             $(this).css('left', width / 2);
+            if ($(buttons).length == 6 && buttons == '.btn-maps-year' && spacer == 20) {
+                $(this).css('top', 25);
+            } else {
+                $(this).css('top', 0);
+            }
         } else if (i < indexButton) {
             $(this).css('left', 15 + (15 + buttonWidth) * i + width / spacer);
+            $(this).css('top', 0);
         } else {
             $(this).css('left', width - 15 - (15 + buttonWidth) * ($(buttons).length - i - 1) - width / spacer);
+            $(this).css('top', 0);
         }
     })
 }

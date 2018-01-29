@@ -166,11 +166,19 @@ function Bubblechart(id, data) {
         if (height < 400) { height = 400 }
         if (height > window.innerHeight) { height = window.innerHeight * .8 }
         this.svg.attr('width', width)
-            .attr('height', height)
+            .attr('height', height);
 
-        legendPosition
-            .range([width / 6 + 15, width - width / 6 - 15])
-            .domain([0, 8]);
+        let subchapterWidth = $('#temporal-framing').width();
+
+        if (subchapterWidth > 960) {
+            legendPosition.range([width / 6 + 15, width - width / 6 - 15]);
+        } else if (subchapterWidth > 720) {
+            legendPosition.range([width / 12 + 15, width - width / 12 - 15]);
+        } else {
+            legendPosition.range([width / 25 + 15, width - width / 25 - 15]);
+        }
+
+        legendPosition.domain([0, 8]);
 
         g.attr("transform", "translate(" + width / 2 + "," + (height / 2 - 20) + ")");
 
@@ -276,8 +284,7 @@ function Bubblechart(id, data) {
                 .classed('label', true)
                 .merge(groupsNames)
                 .attr('x', function(d) {
-                    let thisx = -width * .5 + (width / (nodesGroups.length) * d);
-                    thisx -= (width / (nodesGroups.length)) * .5;
+                    let thisx = -width * .5 + (width / (nodesGroups.length + 1)) * d * 1.1;
                     return thisx;
                 })
                 .attr('y', 160)
@@ -309,10 +316,8 @@ function Bubblechart(id, data) {
             simulation.alpha(1)
                 .nodes(nodes)
                 .force("x", d3.forceX(function(d) {
-                        let thisx = -width * .5 + (width / (nodesGroups.length) * d.group);
-                        thisx -= (width / (nodesGroups.length)) * .5;
+                        let thisx = -width * .5 + (width / (nodesGroups.length + 1)) * d.group * 1.1;
                         return thisx;
-                        // return width / (nodesGroups.length + 2) * (d.group + 1) - width / 2 - width / (nodesGroups.length + 2) * .3;
                     })
                     .strength(0.2))
                 .on("tick", ticked)

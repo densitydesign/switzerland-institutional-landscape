@@ -67,8 +67,14 @@ function TypologiesGraph(id, data) {
             .node()
             .offsetWidth - 30;
 
-        height = width * .5;
+        let subchapterWidth = $('#temporal-framing').width();
+        if (subchapterWidth <= 930) {
+            height = width * .8;
+        } else {
+            height = width * .5;
+        }
         if (height > window.innerHeight) { height = window.innerHeight * .8 }
+
         svg.attr('width', width)
             .attr('height', height);
 
