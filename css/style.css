@@ -366,7 +366,7 @@ p.caption:first-child {
     color: #000000
 }
 .sidepanel-button {
-    width: 70%;
+    width: 90%;
     height: 45px;
     margin: 26px auto;
     text-align: center;
@@ -852,4 +852,10 @@ p.caption:first-child {
 #credits h3,
 #credits p {
     color: #FCFBFA;
+}
+
+@media (min-width: 992px) {
+    .sidepanel-button {
+        width: 70%;
+    }
 }
