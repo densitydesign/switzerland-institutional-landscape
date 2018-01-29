@@ -715,6 +715,12 @@ p.caption:first-child {
 
 /* matrix */
 
+#matrix .row {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+}
+
 .dropdown-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -758,9 +764,6 @@ p.caption:first-child {
     stroke-width: 1px;
     fill: #CFB76D;
 }
-
-
-
 
 
 /* STYLES CHAPTER 4 */

@@ -614,7 +614,7 @@
                     <p>In Switzerland, the administrative detention procedures were based on a heterogeneous and complex set of cantonal statutes and on the Swiss Civil Code. Each Canton developed its own procedures and established the authorities involved at local, regional and cantonal level. Thus, the process leading to administrative detention took up many different forms.</p>
                     <p>In the Canton of Fribourg, for example, the various detention measures were decided mainly by the prefect, who represented the government in his district and was responsible for maintaining public order. This kind of procedure was subject to few formal requirements and was often carried out in an expeditious way. It set forth that the prefect had to conduct the investigation, mainly drawing on the allegations of the police and the public authorities. In the end, he alone decided on the detention. The person reported was granted a minimum of legal guarantees consisting of the right to be heard and the right to appeal to the government. The citizens of the Canton of Fribourg were usually detained in Bellechasse, a correctional facility that also took charge of detainees from other Swiss Cantons. In other words, the cantonal governments concluded agreements with one another for the execution of administrative detention orders outside their own territory. The network of connections that existed between the various cantons for purposes of administrative detention can be seen in the following chart.</p>
                 </div>
-                <div class="col-8 offset-1">
+                <div class="col-10 col-xl-8 offset-1">
                     <svg class="svg-diagram my-4" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 406.9 138.4" xml:space="preserve">
                     	<path class="legend-rect" d="M74.3 46.8h-69c-1.1 0-2-0.9-2-2V5.3c0-1.1 0.9-2 2-2h69c1.1 0 2 0.9 2 2v39.5C76.3 45.9 75.4 46.8 74.3 46.8z"/>
                     	<text transform="matrix(1 0 0 1 8.2683 15.5)" class="legend-text legend-title">Denouncing</text>
@@ -686,28 +686,30 @@
                             <input type="radio" name="options" id="ai1965" autocomplete="off"> 1965
                         </label>
                     </div> -->
-                    <div class="col-4 circular-buttons">
-                        <div class="col-12 text-center year-title">
-                            <span>Selected Year</span>
+                    <div class="row">
+                        <div class="col-4 circular-buttons">
+                            <div class="col-12 text-center year-title">
+                                <span>Selected Year</span>
+                            </div>
+                            <div class="col-12 btn-container mb-4">
+                                <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1954)" data-id="1954">1954</span>
+                                <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1965)" data-id="1965">1965</span>
+                            </div>
                         </div>
-                        <div class="col-12 btn-container mb-4">
-                            <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1954)" data-id="1954">1954</span>
-                            <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1965)" data-id="1965">1965</span>
-                        </div>
-                    </div>
-                    <div class="col-4 offset-8 sidenote">
-                        <div class="interaction-note pl-3 mb-2">
-                            <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i></p>
-                        </div>
-                        <div class="pl-3 mt-4">
-                            <p class="caption font-weight-bold mt-1 mb-2">Viz. 4.2 – Network between cantons</p>
-                            <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
-                            <p class="caption mb-2"><a href="./data_and_scripts/data/cantons-network.json" download="4_network_between_cantons.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
+                        <div class="col-4 offset-4 sidenote">
+                            <div class="interaction-note pl-3 mb-2">
+                                <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i></p>
+                            </div>
+                            <div class="pl-3 mt-4">
+                                <p class="caption font-weight-bold mt-1 mb-2">Viz. 4.2 – Network between cantons</p>
+                                <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
+                                <p class="caption mb-2"><a href="./data_and_scripts/data/cantons-network.json" download="4_network_between_cantons.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
+                            </div>
                         </div>
                     </div>
                     <!-- To be filled with D3 -->
                 </div>
-                <div class="col-8 offset-1">
+                <div class="col-9 col-xl-8 offset-xl-1 mt-2 mt-xl-0 ml-4 ml-xl-0">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 406.9 74.4" xml:space="preserve">
                     	<text transform="matrix(1 0 0 1 2.0569 8.5)" class="legend-text legend-text-label">Belonging Concordat</text>
                     	<text transform="matrix(1 0 0 1 145.0667 8.5)" class="legend-text legend-text-label">N° of occurences</text>
@@ -830,7 +832,7 @@
             <!-- <hr class="mb-5" /> -->
         </section>
     </section>
-    <section id="credits" class="chapter mb-5 container-fluid mb-0 pt-5 pb-4">
+    <section id="credits" class="chapter container-fluid pt-5 pb-4">
         <!-- <div class="container">
             <div class="row">
                 <div class="col-11 offset-1">
