@@ -94,15 +94,22 @@ function CircularNetwork(id, data) {
             .node()
             .offsetWidth - 60;
 
-        height = width * .6;
+        let subchapterWidth = $('#temporal-framing').width();
+        if (subchapterWidth <= 930) {
+            height = width * .8;
+        } else {
+            height = width * .6;
+        }
+
         if (height > window.innerHeight) { height = window.innerHeight * .8 }
         svg.attr('width', width)
             .attr('height', height);
 
-        // svg.style('border', '1px solid blue');
-
-        g.attr("transform", "translate(" + (width / 2 - 100) + "," + height / 2 + ")");
-
+        if (subchapterWidth <= 930) {
+            g.attr("transform", "translate(" + (width / 2 - 40) + "," + height / 2 + ")");
+        } else {
+            g.attr("transform", "translate(" + (width / 2 - 100) + "," + height / 2 + ")");
+        }
 
         resetRect
             .attr('x', -width / 2)

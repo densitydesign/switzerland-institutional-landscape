@@ -611,7 +611,7 @@ p.caption:first-child {
     position: sticky;
     top: 80px;
     width: 100%;
-    height: 84vh;
+    height: 60vh;
 }
 
 .btn-container {
@@ -860,5 +860,8 @@ p.caption:first-child {
     }
     .sidepanel-button {
         width: 70%;
+    }
+    #maps {
+        height: 84vh;
     }
 }
