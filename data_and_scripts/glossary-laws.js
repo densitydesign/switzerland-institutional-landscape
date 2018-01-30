@@ -15,43 +15,43 @@ node_xj({
 
         //split each institution with more than one typology so they can then be filtered in the viz
         result.forEach(function(el){
-            // console.log(el);
-            let dotParse = d3.timeParse("%d.%m.%Y"),
-                slashParse = d3.timeParse("%d/%m/%Y"),
-                yearParse = d3.timeParse("%Y"),
-                parsedIssueDate = null,
+            // console.log(el.issue_date);
+            let parsedIssueDate = null,
                 parsedInforceDate = null,
                 parsedRepealDate = null,
                 typology;
 
             if (el.issue_date.indexOf('.') != -1) {
-                parsedIssueDate = dotParse(el.issue_date);
+                let dateArray = el.issue_date.split('.');
+                parsedIssueDate = dateArray[2] + '-' + dateArray[1] + '-' + dateArray[0];
             } else if (el.issue_date.indexOf('/') != -1) {
-                let newDate = el.issue_date.replace(/(\d\d)$/, '19$1');
-                parsedIssueDate = slashParse(newDate);
+                let dateArray = el.issue_date.split('/');
+                parsedIssueDate = '19' + dateArray[2] + '-' + dateArray[0] + '-' + dateArray[1];
             } else {
-                parsedIssueDate = yearParse(el.issue_date);
+                parsedIssueDate = el.issue_date + '-01-01';
             }
 
             if (el.inforce_date != '') {
                 if (el.inforce_date.indexOf('.') != -1) {
-                    parsedInforceDate = dotParse(el.inforce_date);
+                    let dateArray = el.inforce_date.split('.');
+                    parsedInforceDate = dateArray[2] + '-' + dateArray[1] + '-' + dateArray[0];
                 } else if (el.inforce_date.indexOf('/') != -1) {
-                    let newDate = el.inforce_date.replace(/(\d\d)$/, '19$1');
-                    parsedInforceDate = slashParse(newDate);
+                    let dateArray = el.inforce_date.split('/');
+                    parsedInforceDate = '19' + dateArray[2] + '-' + dateArray[0] + '-' + dateArray[1];
                 } else {
-                    parsedInforceDate = yearParse(el.inforce_date);
+                    parsedInforceDate = el.inforce_date + '-01-01';
                 }
             }
 
             if (el.repeal_date != '') {
                 if (el.repeal_date.indexOf('.') != -1) {
-                    parsedRepealDate = dotParse(el.repeal_date);
+                    let dateArray = el.repeal_date.split('.');
+                    parsedRepealDate = dateArray[2] + ', ' + dateArray[1] + ', ' + dateArray[0];
                 } else if (el.repeal_date.indexOf('/') != -1) {
-                    let newDate = el.repeal_date.replace(/(\d\d)$/, '19$1');
-                    parsedRepealDate = slashParse(newDate);
+                    let dateArray = el.repeal_date.split('/');
+                    parsedRepealDate = '19' + dateArray[2] + ', ' + dateArray[1] + ', ' + dateArray[0];
                 } else {
-                    parsedRepealDate = yearParse(el.repeal_date);
+                    parsedRepealDate = el.repeal_date + ', 01, 01';
                 }
             }
 

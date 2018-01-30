@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <nav>
+    <nav class="glossary-nav">
         <nav class="navbar navbar-light navbar-expand-md nav-menu">
              <a class="navbar-brand" href="#"><img src="./../assets/logo-uek.png" class="logo-img" alt="Logo"></a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#glossaryNavbar" aria-controls="glossaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
          </nav>
          <nav class="navbar navbar-light justify-content-center">
              <form class="search-institution form-inline my-lg-0 order-md-1">
-                 <input id="lawsSearchList" onkeyup="searchLawList()" class="form-control mr-sm-2 w-100 text-center" Xtype="search" placeholder="Search here or click on an institution to show further details" Xaria-label="Search">
+                 <input id="lawsSearchList" onkeyup="searchLawList()" class="form-control mr-sm-2 w-100 text-center" Xtype="search" placeholder="Search here or click on a law in the timeline to show further details" Xaria-label="Search">
              </form>
              <span class="selected-institution navbar-text order-md-1">
                      <span>Selected: </span><span class="selected-name"> ID - Name</span><span class="ml-2" onclick="resetLaws(true);"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
@@ -46,10 +46,12 @@
          </nav>
  </nav>
     <section class="container-fluid">
-        <div class="row">
+        <div class="row timeline-container">
+            <div class="col-12">
 
+            </div>
         </div>
-        <div class="row">
+        <div class="row info-container">
             <div class="col-6">
 
             </div>

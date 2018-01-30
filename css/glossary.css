@@ -3,6 +3,11 @@
     --uek-middle-light-blue: #E7EDEF;
     --uek-light-blue: #FCFDFD;
     --uek-dark-blue: #799BAA;
+    --glossary-nav-heigth: 134px;
+}
+
+.glossary-nav {
+    height: var(--glossary-nav-heigth);
 }
 
 nav.navbar {
@@ -67,12 +72,12 @@ nav.navbar:last-of-type {
 
 .list-container {
     border-right: 1px solid var(--uek-blue);
-    height: calc(100vh - 134px);
+    height: calc(100vh - var(--glossary-nav-heigth));
     overflow: scroll;
 }
 
 .details-container {
-    height: calc(100vh - 134px);
+    height: calc(100vh - var(--glossary-nav-heigth));
     overflow: scroll;
 }
 
@@ -199,4 +204,17 @@ nav.navbar:last-of-type {
 .about-btn a {
     color: #212529;
     padding: 9px 72px;
+}
+
+/* Glossary of legal text styles */
+.timeline-container {
+    height: calc(50vh - var(--glossary-nav-heigth));
+}
+
+.timeline-container div {
+    overflow-x: scroll;
+}
+
+.info-container {
+    height: 50vh;
 }
