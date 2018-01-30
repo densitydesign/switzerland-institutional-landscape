@@ -638,7 +638,7 @@ function buildSidepanel(id, year) {
             .classed('sidepanel-button', true)
             .append('a')
             .attr('href', function(d){
-                return './glossary/#selected-' + filtered_institution[0].id;
+                return './glossaries/institutions-glossary.html#selected-' + filtered_institution[0].id;
             })
             .attr('target', '_blank')
             .text('Get more details');
@@ -700,7 +700,7 @@ function buildSidepanelList(list) {
             return d.id + ' - ' + d.institution;
         })
         .attr('href',function(d){
-            return './glossary/#selected-' + d.id;
+            return './glossaries/institutions-glossary.html#selected-' + d.id;
         })
         .transition()
         .duration(500)

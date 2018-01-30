@@ -54,6 +54,7 @@ function CircularNetwork(id, data) {
             'orient': 'auto',
             'markerWidth': 13,
             'markerHeight': 13,
+            'markerUnits': 'userSpaceOnUse',
             'xoverflow': 'visible'
         })
         .append('svg:path')

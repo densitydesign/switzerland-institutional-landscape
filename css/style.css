@@ -228,6 +228,10 @@ p.caption:first-child {
             transition: width 0.5s ease, opacity 0.5s ease 0.2s;
 }
 
+#navigation-sidebar .nav-link h6 {
+    font-weight: 400;
+}
+
 .link-container {
     position: relative;
 }
