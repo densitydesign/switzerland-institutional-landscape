@@ -53,7 +53,6 @@ function MapAll(id, swiss, data) {
     }
     let capacityScale = d3.scaleOrdinal()
         .domain(categoriesList['capacity_group'])
-        // .range(['#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a', '#EAE6DA']);
         .range(['#DCC274', '#CFB76D', '#B5A060', '#8F7F4B', '#4F462A', '#38321E', '#EAE6DA']);
     let confessionScale = d3.scaleOrdinal()
         .domain(categoriesList['confession'])

@@ -218,3 +218,14 @@ nav.navbar:last-of-type {
 .info-container {
     height: 50vh;
 }
+
+.axis-group text {
+    font-family: 'Brandon Grotesque', sans-serif;
+    font-size: 0.8rem;
+}
+
+.law-dot {
+    stroke: #000000;
+    stroke-width: 1px;
+    opacity: 0.8;
+}
