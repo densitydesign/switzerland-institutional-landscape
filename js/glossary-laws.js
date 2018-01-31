@@ -49,7 +49,8 @@ let svgMap = d3.select('.geo-container')
     .attr('height', heightMap + marginMap.top);
 let mapGroup = svgMap.append('g').classed('map-swiss', true).attr('transform', 'translate(' + marginMap.left + ',' + marginMap.top + ')'),
     swissBorderContainer = mapGroup.append('g').classed('map-country', true),
-    cantonsBorderContainer = mapGroup.append('g').classed('map-cantons', true);
+    cantonsBorderContainer = mapGroup.append('g').classed('map-cantons', true),
+    legendGroup = svgMap.append('g').classed('map-legend', true).attr('transform', 'translate(0,' + marginMap.top + ')');
 
 d3.queue()
     .defer(d3.json, './../data_and_scripts/data/glossary-laws.json')
@@ -113,7 +114,22 @@ d3.queue()
             .style('fill', function(d){
                 return colorScale(d.range);
             })
-            .on('click', updateGlossary);
+            .on('click', function(d){
+                d3.selectAll('.law-dot')
+                    .classed('law-selected', false)
+                    .transition()
+                    .duration(350)
+                    .ease(d3.easeBackIn.overshoot(4))
+                    .attr('r', 5);
+                d3.select(this)
+                    .classed('law-selected', true)
+                    .transition()
+                    .duration(500)
+                    .ease(d3.easeBackOut.overshoot(6))
+                    .attr('r', 7);
+
+                updateGlossary(d);
+            });
 
         laws.transition()
             .duration(300)
@@ -144,7 +160,7 @@ function customAxis(g) {
     g.selectAll(".tick text").attr("x", -20).attr('fill', '#90BCCC');
 }
 
-function drawMap(selectedYear, canton, range) {
+function drawMap(selectedYear, canton) {
 
     // adapt map to viewport
     projection.fitSize([widthMap, heightMap], cantons);
@@ -227,20 +243,78 @@ function drawMap(selectedYear, canton, range) {
                 }
             }
         });
+
+    // add legend
+    let legendTitle = legendGroup.selectAll('.item-title')
+        .data(['Cantons affected by a law that is:']);
+
+    legendTitle.enter()
+        .append('text')
+        .classed('item-title', true)
+        .attr('x', 15)
+        .attr('y', 0)
+        .style('opacity', 1e-6)
+        .text(function(d){
+            return d;
+        })
+        .transition()
+        .duration(500)
+        .style('opacity', 1);;
+
+    let item = legendGroup.selectAll('.item')
+        .data([{'color': '#CC2936', 'label': 'cantonal'}, {'color': '#61988E', 'label': 'federal'}, {'color': '#EDDEA4', 'label': 'intercantonal'}, {'color': '#EAE6DA', 'label': 'international'}])
+        .enter()
+        .append('g')
+        .classed('item', true);
+
+    item.append('rect')
+        .classed('item-color', true)
+        .style('opacity', 1e-6)
+        .style('stroke', '#999999')
+        .style('stroke-width', .5)
+        .attr('width', 15)
+        .attr('height', 15)
+        .attr('x', 15)
+        .attr('y', function(d, i){
+            return 12 + i * 20;
+        })
+        .transition()
+        .duration(500)
+        .delay(function(d, i) { return i * 2 })
+        .style('fill', function(d){
+            return d.color;
+        })
+        .style('opacity', 0.8);
+
+    item.append('text')
+        .classed('item-text', true)
+        .style('opacity', 1e-6)
+        .attr('x', 40)
+        .attr('y', function(d, i){
+            return i * 20 + 22;
+        })
+        .text(function(d){
+            return d.label;
+        })
+        .transition()
+        .duration(500)
+        .delay(function(d, i) { return i * 2 })
+        .style('opacity', 1);
 }
 
 function updateGlossary(d) {
     console.log(d);
     console.log(lawsData);
+
     let cantonArray = [];
     let newYear = formatDate(d.issue_date);
 
     if (d.range == 'intercantonal' && d.canton.length > 0) {
         let cantonList = d.canton.slice(24).split(', ');
         cantonArray = cantonArray.concat(cantonList);
-        drawMap(+newYear, cantonArray, d.range);
+        drawMap(+newYear, cantonArray);
     } else {
-        drawMap(+newYear, d.canton, d.range);
+        drawMap(+newYear, d.canton);
     }
 
 }
