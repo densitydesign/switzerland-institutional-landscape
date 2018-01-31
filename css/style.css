@@ -669,7 +669,7 @@ p.caption:first-child {
 }
 
 .canton-contour {
-    fill: #ffffff;
+    fill: #FFFFFF;
     shape-rendering: geometricPrecision;
     stroke: #999999;
     stroke-width: .5px;
