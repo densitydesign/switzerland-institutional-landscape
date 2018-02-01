@@ -746,7 +746,13 @@ function buildTimelineSidepanel(type, year) {
     panel.append('h5')
         .classed('sidepanel-name', true)
         .style('text-transform', 'capitalize')
-        .text(filtered_institution[0].type);
+        .text(function(d){
+            if (filtered_institution[0].title == null) {
+                return filtered_institution[0].type;
+            } else {
+                return filtered_institution[0].title;
+            }
+        });
 
     panel.append('p')
         .text(filtered_institution[0].text);
