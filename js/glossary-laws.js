@@ -15,7 +15,8 @@ let colorScale = d3.scaleOrdinal()
     .range(['#CC2936', '#61988E', '#EDDEA4', '#EAE6DA']);
 
 // time parser
-let formatDate = d3.timeFormat('%Y');
+let formatYear = d3.timeFormat('%Y');
+let formatDate = d3.timeFormat('%B %d, %Y');
 
 // set up axis
 let xAxis = d3.axisBottom(timeScale)
@@ -52,6 +53,8 @@ let mapGroup = svgMap.append('g').classed('map-swiss', true).attr('transform', '
     cantonsBorderContainer = mapGroup.append('g').classed('map-cantons', true),
     legendGroup = svgMap.append('g').classed('map-legend', true).attr('transform', 'translate(0,' + marginMap.top + ')');
 
+let infoContainer = d3.select('.description-container').append('div').classed('row', true);
+
 d3.queue()
     .defer(d3.json, './../data_and_scripts/data/glossary-laws.json')
     .defer(d3.json, './../data_and_scripts/data/ch.json')
@@ -64,9 +67,19 @@ d3.queue()
 
         // format the data
         data.forEach(function(d,i,a) {
-            let dateArray = d.issue_date.split('-');
-            let parsed = new Date(Date.UTC(dateArray[0], dateArray[1] - 1, dateArray[2]));
-            d.issue_date = parsed;
+            let dateArrayIssue = d.issue_date.split('-');
+            let parsedIssue = new Date(Date.UTC(dateArrayIssue[0], dateArrayIssue[1] - 1, dateArrayIssue[2]));
+            d.issue_date = parsedIssue;
+            if (d.inforce_date != null) {
+                let dateArrayInforce = d.inforce_date.split('-');
+                let parsedInforce = new Date(Date.UTC(dateArrayInforce[0], dateArrayInforce[1] - 1, dateArrayInforce[2]));
+                d.inforce_date = parsedInforce;
+            }
+            if (d.repeal_date != null) {
+                let dateArrayRepeal = d.repeal_date.split('-');
+                let parsedRepeal = new Date(Date.UTC(dateArrayRepeal[0], dateArrayRepeal[1] - 1, dateArrayRepeal[2]));
+                d.repeal_date = parsedRepeal;
+            }
             d.level = 0;
         });
 
@@ -151,6 +164,7 @@ d3.queue()
         oldCantons.features.pop();
 
         drawMap(2000, 'none');
+        populatePanel();
     });
 
 function customAxis(g) {
@@ -246,7 +260,7 @@ function drawMap(selectedYear, canton) {
 
     // add legend
     let legendTitle = legendGroup.selectAll('.item-title')
-        .data(['Cantons affected by a law that is:']);
+        .data(['Legal text range:']);
 
     legendTitle.enter()
         .append('text')
@@ -259,6 +273,7 @@ function drawMap(selectedYear, canton) {
         })
         .transition()
         .duration(500)
+        .delay(500)
         .style('opacity', 1);;
 
     let item = legendGroup.selectAll('.item')
@@ -278,12 +293,12 @@ function drawMap(selectedYear, canton) {
         .attr('y', function(d, i){
             return 12 + i * 20;
         })
-        .transition()
-        .duration(500)
-        .delay(function(d, i) { return i * 2 })
         .style('fill', function(d){
             return d.color;
         })
+        .transition()
+        .duration(500)
+        .delay(function(d, i) { return 500 + i * 20 })
         .style('opacity', 0.8);
 
     item.append('text')
@@ -298,16 +313,122 @@ function drawMap(selectedYear, canton) {
         })
         .transition()
         .duration(500)
-        .delay(function(d, i) { return i * 2 })
+        .delay(function(d, i) { return 500 + i * 20 })
         .style('opacity', 1);
 }
 
+function populatePanel(data) {
+    // console.log(data);
+
+    if (data != undefined) {
+        // console.log(data);
+        let lawData = [];
+        lawData.push(data);
+
+        d3.select('.no-info-box')
+            .transition()
+            .duration(300)
+            .style('opacity', 1e-6)
+            .remove();
+
+        let infoBox = infoContainer.selectAll('.info-box')
+            .data(lawData);
+
+        infoBox.enter()
+            .append('div')
+            .attr('class', 'col-11 info-box mt-4 pl-4')
+            .style('opacity', 1e-6)
+            .merge(infoBox)
+            .html(function(d){
+                let issueDate,
+                    inforceDate,
+                    repealDate;
+
+                if (d.original_issue_date.length == 4) {
+                    issueDate = d.original_issue_date;
+                } else {
+                    issueDate = formatDate(d.issue_date);
+                }
+
+                let newContent = `
+                    <div class="title">
+                        <h6 class="font-weight-bold">Legal text information:</h6>
+                    </div>
+                    <div class="typology field">
+                        <div class="label">Typology</div>
+                        <div class="value">${d.typology == null ? '-' : d.typology}</div>
+                    </div>
+                    <div class="range field">
+                        <div class="label">Range</div>
+                        <div class="value">${d.range}</div>
+                    </div>
+                    <div class="name field">
+                        <div class="label">Title</div>
+                        <div class="value">${d.title}</div>
+                    </div>
+                    <div class="canton field">
+                        <div class="label">Affected Cantons</div>
+                        <div class="value">${d.canton == 'CH' || d.canton == 'IN' ? 'All' : d.range == 'intercantonal' && d.canton.length > 0 ? d.canton.slice(24) : d.canton}</div>
+                    </div>
+                    <div class="issue-date field">
+                        <div class="label">Issue Date</div>
+                        <div class="value">${issueDate}</div>
+                    </div>`;
+                if (d.inforce_date != null) {
+                    if (d.original_inforce_date.length == 4) {
+                        inforceDate = d.original_inforce_date;
+                    } else {
+                        inforceDate = formatDate(d.inforce_date);
+                    }
+                    newContent += `
+                        <div class="inforce-date field">
+                            <div class="label">Enforcement Date</div>
+                            <div class="value">${inforceDate}</div>
+                        </div>`;
+                }
+                if (d.repeal_date != null) {
+                    if (d.original_repeal_date.length == 4) {
+                        repealDate = d.original_repeal_date;
+                    } else {
+                        repealDate = formatDate(d.repeal_date);
+                    }
+                    newContent += `
+                        <div class="repeal-date field">
+                            <div class="label">Repeal Date</div>
+                            <div class="value">${repealDate}</div>
+                        </div>`;
+                }
+                return newContent;
+            })
+            .transition()
+            .duration(300)
+            .delay(300)
+            .style('opacity', 1);
+
+    } else {
+        d3.select('.info-box')
+            .transition()
+            .duration(300)
+            .style('opacity', 1e-6)
+            .remove();
+
+        let noInfoText = infoContainer.append('div')
+            .attr('class', 'col-12 no-info-box text-center mt-5')
+            .style('opacity', 1e-6)
+            .text('No legal text selected.')
+
+        noInfoText.transition()
+            .duration(300)
+            .delay(500)
+            .style('opacity', 1);
+    }
+}
+
 function updateGlossary(d) {
-    console.log(d);
-    console.log(lawsData);
+    // console.log(d);
 
     let cantonArray = [];
-    let newYear = formatDate(d.issue_date);
+    let newYear = formatYear(d.issue_date);
 
     if (d.range == 'intercantonal' && d.canton.length > 0) {
         let cantonList = d.canton.slice(24).split(', ');
@@ -316,5 +437,7 @@ function updateGlossary(d) {
     } else {
         drawMap(+newYear, d.canton);
     }
+
+    populatePanel(d);
 
 }

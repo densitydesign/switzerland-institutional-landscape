@@ -46,12 +46,12 @@ node_xj({
             if (el.repeal_date != '') {
                 if (el.repeal_date.indexOf('.') != -1) {
                     let dateArray = el.repeal_date.split('.');
-                    parsedRepealDate = dateArray[2] + ', ' + dateArray[1] + ', ' + dateArray[0];
+                    parsedRepealDate = dateArray[2] + '-' + dateArray[1] + '-' + dateArray[0];
                 } else if (el.repeal_date.indexOf('/') != -1) {
                     let dateArray = el.repeal_date.split('/');
-                    parsedRepealDate = '19' + dateArray[2] + ', ' + dateArray[1] + ', ' + dateArray[0];
+                    parsedRepealDate = '19' + dateArray[2] + '-' + dateArray[0] + '-' + dateArray[1];
                 } else {
-                    parsedRepealDate = el.repeal_date + ', 01, 01';
+                    parsedRepealDate = el.repeal_date + '-01-01';
                 }
             }
 
@@ -90,7 +90,10 @@ node_xj({
                 'title': el.title,
                 'articles': el.articles,
                 'typology': typology,
-                'range': el.range
+                'range': el.range,
+                'original_issue_date': el.issue_date,
+                'original_inforce_date': el.inforce_date,
+                'original_repeal_date': el.repeal_date
             }
             finalArray.push(institution);
         });

@@ -219,6 +219,25 @@ nav.navbar:last-of-type {
     height: 50vh;
 }
 
+.geo-container .item {
+    cursor: default;
+}
+
+.description-container .value {
+    -webkit-box-flex: 5;
+        -ms-flex-positive: 5;
+                flex-grow: 5;
+}
+
+.description-container .row::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 60%;
+    margin-top: 10%;
+    border-left: 2px solid var(--uek-blue);
+}
+
 .axis-group text {
     font-family: 'Brandon Grotesque', sans-serif;
     font-size: 0.8rem;
@@ -232,6 +251,6 @@ nav.navbar:last-of-type {
 }
 
 text.item-title {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: bold;
 }
