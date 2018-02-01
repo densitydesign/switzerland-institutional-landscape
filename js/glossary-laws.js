@@ -368,7 +368,7 @@ function populatePanel(data) {
                     </div>
                     <div class="canton field">
                         <div class="label">Affected Cantons</div>
-                        <div class="value">${d.canton == 'CH' || d.canton == 'IN' ? 'All' : d.range == 'intercantonal' && d.canton.length > 0 ? d.canton.slice(24) : d.canton}</div>
+                        <div class="value">${d.canton == 'CH' || d.canton == 'IN' ? 'All' : d.range == 'intercantonal' && d.canton.length > 0 ? d.canton.slice(24) : d.canton == '' ? 'Not specified' : d.canton}</div>
                     </div>
                     <div class="issue-date field">
                         <div class="label">Issue Date</div>
@@ -396,6 +396,13 @@ function populatePanel(data) {
                         <div class="repeal-date field">
                             <div class="label">Repeal Date</div>
                             <div class="value">${repealDate}</div>
+                        </div>`;
+                }
+                if (d.articles != '') {
+                    newContent += `
+                        <div class="articles field">
+                            <div class="label">Relevant Articles</div>
+                            <div class="value">${d.articles}</div>
                         </div>`;
                 }
                 return newContent;
