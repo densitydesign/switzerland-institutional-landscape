@@ -25,6 +25,54 @@
     unicode-range: U+000-5FF;
 }
 
+@-webkit-keyframes loadSwiss {
+    0% {
+        stroke-dashoffset: 1467;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: -1467;
+    }
+}
+
+@keyframes loadSwiss {
+    0% {
+        stroke-dashoffset: 1467;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: -1467;
+    }
+}
+
+@-webkit-keyframes loadSwissText {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes loadSwissText {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 
 /* General for all viz */
 
@@ -118,6 +166,40 @@ p.caption {
 
 p.caption:first-child {
     color: #333333;
+}
+
+.initial-loader {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: #81AA91;
+    z-index: 9999;
+}
+
+.initial-loader div {
+    width: 20vw;
+}
+
+.initial-loader svg {
+    width: 20vw;
+    fill: none;
+    stroke: #FAFBFC;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1467;
+    -webkit-animation: 6s cubic-bezier(.3,0,.4,1) infinite loadSwiss;
+            animation: 6s cubic-bezier(.3,0,.4,1) infinite loadSwiss;
+}
+
+.initial-loader p {
+    width: 20vw;
+    font-family: 'Brandon Grotesque', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #FAFBFC;
+    -webkit-animation: 5s cubic-bezier(.5,0,.7,1) 2s infinite loadSwissText;
+            animation: 5s cubic-bezier(.5,0,.7,1) 2s infinite loadSwissText;
 }
 
 .open-in-external-window {

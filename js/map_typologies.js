@@ -82,7 +82,7 @@ function MapTypologies(id, swiss, data) {
         svg = this.div_typology;
         mapRect = svg.append('rect')
             .classed('map-background', true);
-        g = svg.append('g');
+        g = svg.append('g').classed('maps-group', true);
         mapsSvg = g.selectAll('.maps-svg')
             .data(categories)
             .enter()
@@ -293,12 +293,12 @@ function MapTypologies(id, swiss, data) {
             .attr('x', function(d){
                 let baseContainer = this.parentNode.parentNode.parentNode.getBoundingClientRect();
                 let thisMap = d3.select(this.parentNode.parentNode).select('.maps-swiss').node().getBoundingClientRect();
-                return thisMap.x - baseContainer.x + mapsWidth / 2;
+                return thisMap.left - baseContainer.left + mapsWidth / 2;
             })
             .attr('y', function(d){
                 let baseContainer = this.parentNode.parentNode.parentNode.getBoundingClientRect();
                 let thisMap = d3.select(this.parentNode.parentNode).select('.maps-swiss').node().getBoundingClientRect();
-                return thisMap.y - baseContainer.y + mapsHeight - 10;
+                return thisMap.top - baseContainer.top + mapsHeight - 10;
             })
             .merge(label)
             .text(function(d){return d;})

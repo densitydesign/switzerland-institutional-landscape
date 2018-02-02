@@ -84,13 +84,21 @@ $(document).ready(function() {
 
                     map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
 
+                    $(document).trigger('setNavigation');
+
                     circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
                     circularNetwork.draw(1954, 'FR');
 
                     acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, acceptingInstitutionsConfig);
                     acceptingInstitutions.draw(acceptingInstitutionsConfig, 'FR');
 
-                    $(document).trigger('setNavigation');
+                    d3.select('.initial-loader').classed('content-loaded', true)
+                        .transition()
+                        .duration(1000)
+                        .style('opacity', 1e-6)
+                        .on('end', function(d){
+                            d3.select('.initial-loader').remove();
+                        });
                 });
 
             // load asynchronously the datasets for chapter 3
@@ -384,9 +392,6 @@ $(document).on('setWaypoints', function() {
     } else {
         mapsSpacer = 20;
     }
-
-    // save the selection to a variable to improve performance
-    // let $mapButtons = $('#maps .btn-maps-year');
 
     //set up initial active map button
     changeButton(1900, containerMapsWidth, '.btn-maps-year', mapsSpacer);

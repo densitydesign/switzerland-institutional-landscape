@@ -155,7 +155,7 @@ function SurviesSankey(id, data) {
             .classed('label', true)
             .classed('year-label', true)
             .attr('x', function(d) { return nodesPosition(d) + nodesWidth/2 })
-            .attr('y', '1rem')
+            .attr('y', 18)
             .attr('text-anchor', 'middle')
             .text(function(d) {
                 if (d == 1940) {
