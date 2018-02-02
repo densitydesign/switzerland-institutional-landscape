@@ -304,16 +304,12 @@ function AcceptingInstitutions(id, data, swiss) {
                 });
 
                 d3.select(this)
-                    .styles({
-                        'stroke': d3.color(concordatColors(d.properties.concordat)).darker(1),
-                        'fill': d3.color(concordatColors(d.properties.concordat)).brighter(.6)
-                    });
+                    .style('stroke', d3.color(concordatColors(d.properties.concordat)).darker(1))
+                    .style('fill', d3.color(concordatColors(d.properties.concordat)).brighter(.6));
 
                 svg.append('text')
                     .attr('id', 'viz-message')
-                    .styles({
-                        'text-anchor': 'middle'
-                    })
+                    .style('text-anchor', 'middle')
                     .attr('x', width / 2)
                     .attr('y', height - 5)
                     .text(viz_message)
@@ -487,16 +483,12 @@ function AcceptingInstitutions(id, data, swiss) {
 
                 if (config.direction == 'from') {
                     d3.select('.sending')
-                        .styles({
-                            'stroke': d3.color(concordatColors(d.properties.concordat)).darker(1),
-                            'fill': d3.color(concordatColors(d.properties.concordat)).brighter(.6)
-                        });
+                        .style('stroke', d3.color(concordatColors(d.properties.concordat)).darker(1))
+                        .style('fill', d3.color(concordatColors(d.properties.concordat)).brighter(.6));
                 } else {
                     d3.select('.receiving')
-                        .styles({
-                            'stroke': d3.color(concordatColors(d.properties.concordat)).darker(1),
-                            'fill': d3.color(concordatColors(d.properties.concordat)).brighter(.6)
-                        });
+                        .style('stroke', d3.color(concordatColors(d.properties.concordat)).darker(1))
+                        .style('fill', d3.color(concordatColors(d.properties.concordat)).brighter(.6));
                 }
 
                 nodes = selected_institutions;
@@ -510,13 +502,10 @@ function AcceptingInstitutions(id, data, swiss) {
                 .classed('sending', false)
                 .classed('receiving', false)
                 .classed('faded', false)
-                .styles({
-                    'stroke': function(d) {
-                        return d3.color(concordatColors(d.properties.concordat)).darker(.75)
-                    },
-                    'stroke-width': '.5px',
-                    'fill': function(d) { return d3.color(concordatColors(d.properties.concordat)) }
-                });
+                .style('stroke', function(d) { return d3.color(concordatColors(d.properties.concordat)).darker(.75) })
+                .style('stroke-width', .5 + 'px')
+                .style('fill', function(d) { return d3.color(concordatColors(d.properties.concordat)) });
+
             d3.selectAll(id + ' .label').classed('faded', false);
 
             d3.selectAll('#viz-message').remove();

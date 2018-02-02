@@ -112,16 +112,12 @@ function AcceptingInstitutions(id, data, swiss) {
                 console.log(d)
 
                 d3.selectAll(id + ' .canton-contour')
-                    .styles({
-                        "fill": "#E2D4A7",
-                        "stroke": "none",
-                        "opacity": ".5"
-                    });
+                    .style('fill', '#E2D4A7')
+                    .style('stroke', 'none')
+                    .style('opacity', .5);
 
                 d3.selectAll(id + ' .label')
-                    .styles({
-                        "opacity": "0.3"
-                    });
+                    .style('opacity', .3);
 
                 // Gather data for intitutions
                 let relatedInstitutions = [];
@@ -162,32 +158,24 @@ function AcceptingInstitutions(id, data, swiss) {
 
                         d3.selectAll(id + ' .canton-contour')
                             .filter(function(f) { return f.properties.abbr == e.key })
-                            .styles({
-                                "opacity": "1",
-                                "stroke": '#666',
-                            })
+                            .style('opacity', .5)
+                            .style('stroke', '#666666');
 
                         d3.selectAll(id + ' .label')
                             .filter(function(f) { return f.properties.abbr == e.key })
-                            .styles({
-                                "opacity": "1"
-                            })
+                            .style('opacity', 1);
                     })
 
                     sendingCantons.forEach(function(e) {
                         d3.selectAll(id + ' .canton-contour')
                             .filter(function(f) { return f.properties.abbr == e })
-                            .styles({
-                                "fill": "#FF7070",
-                                "stroke": '#802626',
-                                "opacity": "1"
-                            })
+                            .style('fill', '#FF7070')
+                            .style('stroke', '#802626')
+                            .style('opacity', 1);
 
                         d3.selectAll(id + ' .label')
                             .filter(function(f) { return f.properties.abbr == e })
-                            .styles({
-                                "opacity": "1"
-                            })
+                            .style('opacity', 1);
                     })
                 } else {
                     console.log('no receiving institutions')
@@ -197,9 +185,7 @@ function AcceptingInstitutions(id, data, swiss) {
 
                 d3.selectAll(id + ' .label')
                     .filter(function(f) { return f.properties.abbr == d.properties.abbr })
-                    .styles({
-                        "opacity": "1"
-                    })
+                    .style('opacity', 1);
 
             })
             .merge(cantonsBorders)
@@ -237,11 +223,9 @@ function AcceptingInstitutions(id, data, swiss) {
                 .append("circle")
                 .classed('node', true)
                 .attr("r", 0)
-                .styles({
-                    'fill': '#ff4c4c',
-                    'stroke': '#333333',
-                    'stroke-width': '0.5px'
-                })
+                .style('fill', '#ff4c4c')
+                .style('stroke', '#333333')
+                .style('stroke-width', .5 + 'px')
                 .on('click', function(d) {
                     console.log(d);
                 })
@@ -283,16 +267,12 @@ function AcceptingInstitutions(id, data, swiss) {
         reset();
         function reset() {
             d3.selectAll(id + ' .canton-contour')
-                .styles({
-                    "fill": "#EEE5CA",
-                    "stroke": "#666666",
-                    "opacity": "1"
-                });
+                .style('fill', '#EEE5CA')
+                .style('stroke', '#666666')
+                .style('opacity', 1);
 
             d3.selectAll(id + ' .label')
-                .styles({
-                    "opacity": "1"
-                });
+                .style('opacity', 1);
 
             node = node.data([], function(d) { return d.id; });
             node.exit().transition()

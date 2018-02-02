@@ -1,9 +1,30 @@
 /* Import Fonts */
 
-@import '../fonts/Brandon_reg-export/Brandon_reg.css';
-@import '../fonts/Brandon_reg_it-export/Brandon_reg_it.css';
-@import '../fonts/Brandon_bld-export/Brandon_bld.css';
-@import '../fonts/Brandon_bld_it-export/Brandon_bld_it.css';
+/* @import '../fonts/Brandon_reg-export/Brandon_reg.css'; */
+/* @import '../fonts/Brandon_reg_it-export/Brandon_reg_it.css'; */
+/* @import '../fonts/Brandon_bld-export/Brandon_bld.css'; */
+/* @import '../fonts/Brandon_bld_it-export/Brandon_bld_it.css'; */
+/* unicode-range: U+000-5FF; /* Latin glyphs */
+
+@font-face {
+    font-family: "Brandon Grotesque";
+    src: url("/fonts/Brandon_reg-export/Brandon_reg.woff2") format("woff2"),
+         url("/fonts/Brandon_reg-export/Brandon_reg.woff") format("woff"),
+         url("/fonts/Brandon_reg-export/Brandon_reg.otf") format("opentype");
+    font-style: normal;
+    font-weight: 400;
+    unicode-range: U+000-5FF;
+}
+@font-face {
+    font-family: "Brandon Grotesque";
+    src: url("/fonts/Brandon_bld-export/Brandon_bld.woff2") format("woff2"),
+         url("/fonts/Brandon_bld-export/Brandon_bld.woff") format("woff"),
+         url("/fonts/Brandon_bld-export/Brandon_bld.otf") format("opentype");
+    font-style: normal;
+    font-weight: 600;
+    unicode-range: U+000-5FF;
+}
+
 
 /* General for all viz */
 
@@ -50,14 +71,14 @@ h2 {
     font-size: 2.2rem;
     text-transform: uppercase;
     letter-spacing: 0;
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 5rem;
     margin-top: 5.5rem;
 }
 
 h3 {
     font-size: 1.33rem;
-    font-weight: bold;
+    font-weight: 600;
     color: rgba(0, 0, 0, 0.90);
     letter-spacing: 0;
     line-height: 1.55rem;
@@ -71,7 +92,7 @@ hr {
 hr:before {
     content:'***';
     background: white;
-    font-weight:100;
+    font-weight: 400;
     padding: 0 5px;
     font-size: 1.5em;
     position: relative;
@@ -181,7 +202,7 @@ p.caption:first-child {
     position: relative;
     margin: 0;
     font-family: 'Brandon Grotesque', sans-serif;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 /* Cover */
@@ -355,7 +376,7 @@ p.caption:first-child {
 }
 .sidepanel-name {
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 .sidepanel-support-title {
     margin-bottom: 20px;
@@ -413,7 +434,7 @@ p.caption:first-child {
             transition: opacity 0.5s ease;
 }
 .timeline-legend-title {
-    font-weight: bold;
+    font-weight: 600;
 }
 .timeline-legend-subtitle {
     font-size: 0.5rem;
@@ -588,7 +609,7 @@ p.caption:first-child {
 }
 .legend-title {
     font-size: 8px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 /* STYLES CHAPTER 2 */
@@ -646,7 +667,7 @@ p.caption:first-child {
 }
 .active-year {
     font-size: .85rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 .active-year::after {
     opacity: 0;
@@ -841,7 +862,7 @@ p.caption:first-child {
     pointer-events: none;
     text-transform: uppercase;
     font-size: .65rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .selected-canton {

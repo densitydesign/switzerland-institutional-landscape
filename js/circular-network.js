@@ -46,17 +46,15 @@ function CircularNetwork(id, data) {
     }
 
     svg.append('defs').append('marker')
-        .attrs({
-            'id': 'arrowhead',
-            'viewBox': '-0 -5 10 10',
-            'refX': 13,
-            'refY': 0,
-            'orient': 'auto',
-            'markerWidth': 13,
-            'markerHeight': 13,
-            'markerUnits': 'userSpaceOnUse',
-            'xoverflow': 'visible'
-        })
+        .attr('id', 'arrowhead')
+        .attr('viewBox', '-0 -5 10 10')
+        .attr('refX', 13)
+        .attr('refY', 0)
+        .attr('orient', 'auto')
+        .attr('markerWidth', 13)
+        .attr('markerHeight', 13)
+        .attr('markerUnits', 'userSpaceOnUse')
+        .attr('xoverflow', 'visible')
         .append('svg:path')
         .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
         .attr('fill', '#999')

@@ -288,10 +288,8 @@ function Bubblechart(id, data) {
                     return thisx;
                 })
                 .attr('y', 160)
-                .styles({
-                    'text-anchor': 'middle',
-                    'opacity': 0
-                })
+                .style('text-anchor', 'middle')
+                .style('opacity', 0)
                 .text(function(d) {
                     let thisName;
                     if (d == '1') {
@@ -351,17 +349,13 @@ function Bubblechart(id, data) {
                     })
                     .transition()
                     .duration(750)
-                    .styles({
-                        'opacity': .1
-                    })
+                    .style('opacity', .1)
             })
             .on('mouseleave', function(d) {
                 d3.selectAll(id + ' .node')
                     .transition()
                     .duration(750)
-                    .styles({
-                        'opacity': 1
-                    })
+                    .style('opacity', 1)
             });
 
         legendItem.selectAll('*')
