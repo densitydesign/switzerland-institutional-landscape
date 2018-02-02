@@ -1,12 +1,12 @@
 /* Import Fonts */
 
-/* @import '../fonts/Brandon_reg-export/Brandon_reg.css'; */
+@import '../fonts/Brandon_reg-export/Brandon_reg.css';
 /* @import '../fonts/Brandon_reg_it-export/Brandon_reg_it.css'; */
-/* @import '../fonts/Brandon_bld-export/Brandon_bld.css'; */
+@import '../fonts/Brandon_bld-export/Brandon_bld.css';
 /* @import '../fonts/Brandon_bld_it-export/Brandon_bld_it.css'; */
 /* unicode-range: U+000-5FF; /* Latin glyphs */
 
-@font-face {
+/* @font-face {
     font-family: "Brandon Grotesque";
     src: url("../fonts/Brandon_reg-export/Brandon_reg.woff2") format("woff2"),
          url("../fonts/Brandon_reg-export/Brandon_reg.woff") format("woff"),
@@ -23,7 +23,7 @@
     font-style: normal;
     font-weight: 600;
     unicode-range: U+000-5FF;
-}
+} */
 
 /* @-webkit-keyframes loadSwiss {
     0% {
