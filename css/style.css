@@ -25,7 +25,7 @@
     unicode-range: U+000-5FF;
 }
 
-@-webkit-keyframes loadSwiss {
+/* @-webkit-keyframes loadSwiss {
     0% {
         stroke-dashoffset: 1467;
     }
@@ -47,9 +47,9 @@
     100% {
         stroke-dashoffset: -1467;
     }
-}
+} */
 
-@-webkit-keyframes loadSwissText {
+@-webkit-keyframes loadSwiss {
     0% {
         opacity: 1;
     }
@@ -61,7 +61,7 @@
     }
 }
 
-@keyframes loadSwissText {
+@keyframes loadSwiss {
     0% {
         opacity: 1;
     }
@@ -187,9 +187,9 @@ p.caption:first-child {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke-dasharray: 1467;
-    -webkit-animation: 6s cubic-bezier(.3,0,.4,1) infinite loadSwiss;
-            animation: 6s cubic-bezier(.3,0,.4,1) infinite loadSwiss;
+    /* stroke-dasharray: 1467; */
+    -webkit-animation: 5s cubic-bezier(.5,0,.7,1) 1s infinite loadSwiss;
+            animation: 5s cubic-bezier(.5,0,.7,1) 1s infinite loadSwiss;
 }
 
 .initial-loader p {
@@ -198,8 +198,8 @@ p.caption:first-child {
     font-size: 0.8rem;
     text-transform: uppercase;
     color: #FAFBFC;
-    -webkit-animation: 5s cubic-bezier(.5,0,.7,1) 2s infinite loadSwissText;
-            animation: 5s cubic-bezier(.5,0,.7,1) 2s infinite loadSwissText;
+    -webkit-animation: 5s cubic-bezier(.5,0,.7,1) 1s infinite loadSwiss;
+            animation: 5s cubic-bezier(.5,0,.7,1) 1s infinite loadSwiss;
 }
 
 .open-in-external-window {
