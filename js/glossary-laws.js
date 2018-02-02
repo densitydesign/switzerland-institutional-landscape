@@ -33,9 +33,6 @@ let swissOutline,
     oldCantons,
     union;
 
-// define variable that saves the data
-let lawsData;
-
 // append svgs
 let svgTimeline = d3.select('.timeline-container div')
     .append('svg')
@@ -100,8 +97,6 @@ d3.queue()
             }
             d.level = levelCount;
         });
-
-        lawsData = sortedData;
 
         timeScale.domain(d3.extent(data, function(d) { return d.issue_date; }));
 
