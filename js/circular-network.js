@@ -14,6 +14,8 @@ function CircularNetwork(id, data) {
         node,
         label;
 
+    let arrowSize = 10;
+
     // red: #F24440
     // blue: #1785FB
     // green: #73C86B
@@ -45,24 +47,40 @@ function CircularNetwork(id, data) {
         svg = this.svg = d3.select(this.id).append('svg')
     }
 
+    // // build the arrow.
+    // svg.append("svg:defs").selectAll("marker")
+    //     .data(["end"]) // Different link/path types can be defined here
+    //     .enter().append("svg:marker") // This section adds in the arrows
+    //     .attr("id", String)
+    //     .attr("viewBox", "0 -5 10 10")
+    //     .attr("refX", 15)
+    //     .attr("refY", -1.5)
+    //     .attr("markerWidth", 6)
+    //     .attr("markerHeight", 6)
+    //     .attr("orient", "auto")
+    //     .append("svg:path")
+    //     .attr("d", "M0,-5L10,0L0,5")
+    //     .style("stroke-width", function(d) { return Math.sqrt(d.value); })
+
     svg.append('defs').append('marker')
-        .attr('id', 'arrowhead')
+        .attr('id', 'end')
         .attr('viewBox', '-0 -5 10 10')
-        .attr('refX', 13)
+        .attr('refX', 0)
         .attr('refY', 0)
         .attr('orient', 'auto')
-        .attr('markerWidth', 13)
-        .attr('markerHeight', 13)
+        .attr('markerWidth', arrowSize)
+        .attr('markerHeight', arrowSize)
         .attr('markerUnits', 'userSpaceOnUse')
         .attr('xoverflow', 'visible')
         .append('svg:path')
         .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
-        .attr('fill', '#999')
+        .attr('fill', '#333')
         .style('stroke', 'none');
 
     // intialise containers of the graph
     g = svg.append("g");
     resetRect = g.append('rect');
+
     link = g.append("g")
         .selectAll(".link");
 
@@ -71,6 +89,8 @@ function CircularNetwork(id, data) {
 
     label = g.append("g")
         .selectAll(".label");
+
+
 
     // intialise variables for data binding
     nodes = [];
@@ -175,7 +195,7 @@ function CircularNetwork(id, data) {
             .attr('stroke', function(d) { return d3.color(color(d.concordat)).darker(.75) })
             .attr('fill', function(d) { return color(d.concordat) })
             .attr("r", function(d) { return Math.sqrt(d.count * scaleFactor * 10 / Math.PI); })
-            .style('opacity', function(d){
+            .style('opacity', function(d) {
                 if (canton != undefined) {
                     if (d.id == canton) {
                         return 1;
@@ -187,14 +207,14 @@ function CircularNetwork(id, data) {
                 }
             })
             .on('click', function(d) {
-                let involved_links = links.filter(function(e){
+                let involved_links = links.filter(function(e) {
                     return d.id == e.sourceName || d.id == e.targetName;
                 })
 
                 let involved_facilities = [];
 
-                involved_links.forEach(function(e){
-                    e.target_institutions.forEach(function(ee){
+                involved_links.forEach(function(e) {
+                    e.target_institutions.forEach(function(ee) {
                         involved_facilities.push(ee);
                     });
                 })
@@ -203,14 +223,35 @@ function CircularNetwork(id, data) {
 
                 buildSidepanelList(involved_facilities);
 
-                d3.selectAll(id + ' .node').style('opacity',0.1);
+                // d3.selectAll(id + ' .node').style('opacity', 0.1);
+
+                // d3.selectAll(id + ' .link').each(function(l) {
+                //     // console.log(l);
+                //     if (l.source.id == d.id || l.target.id == d.id) {
+                //         d3.select(this).style('opacity', 1);
+                //         d3.selectAll(id + ' .node').each(function(n) {
+                //             if (n.id == l.target.id || n.id == l.source.id) {
+                //                 if (n.id != d.id) {
+                //                     d3.select(this).style('opacity', 1);
+                //                 }
+                //             }
+                //         });
+                //     } else {
+                //         d3.select(this).style('opacity', 0.05);
+                //     }
+                // });
+                // d3.select(this).style('opacity', 1);
+
+            })
+            .on('mouseenter', function(d) {
+                d3.selectAll(id + ' .node').style('opacity', 0.1);
 
                 d3.selectAll(id + ' .link').each(function(l) {
                     // console.log(l);
                     if (l.source.id == d.id || l.target.id == d.id) {
                         d3.select(this).style('opacity', 1);
                         d3.selectAll(id + ' .node').each(function(n) {
-                            if ( n.id == l.target.id || n.id == l.source.id) {
+                            if (n.id == l.target.id || n.id == l.source.id) {
                                 if (n.id != d.id) {
                                     d3.select(this).style('opacity', 1);
                                 }
@@ -221,7 +262,10 @@ function CircularNetwork(id, data) {
                     }
                 });
                 d3.select(this).style('opacity', 1);
-
+            })
+            .on('mouseleave', function(d) {
+                d3.selectAll(id + ' .node').style('opacity', 1);
+                d3.selectAll(id + ' .link').style('opacity', .5);
             });
 
         // Apply the general update pattern to the links.
@@ -232,11 +276,11 @@ function CircularNetwork(id, data) {
             .merge(link)
             .style('stroke-width', function(d) { return edgeWeight(d.weight) })
             .style('cursor', 'pointer')
-            .style('opacity', function(d){
+            .style('opacity', function(d) {
                 if (canton != undefined) {
                     if (d.sourceName == canton || d.targetName == canton) {
                         d3.selectAll(id + ' .node').each(function(n) {
-                            if ( n.id == d.targetName || n.id == d.sourceName) {
+                            if (n.id == d.targetName || n.id == d.sourceName) {
                                 if (n.id != canton) {
                                     d3.select(this).style('opacity', 1);
                                 }
@@ -250,7 +294,7 @@ function CircularNetwork(id, data) {
                     return 0.5;
                 }
             })
-            // .attr('marker-end', 'url(#arrowhead)')
+            .attr("marker-end", "url(#end)")
             .on('click', function(d) {
                 // console.log(d);
                 buildSidepanelList(d.target_institutions);
@@ -291,6 +335,13 @@ function CircularNetwork(id, data) {
                     return linkArc(d);
                 })
 
+            link.attr("d", function(d) {
+                let element = this;
+                return shortenedLinkArc(d, element);
+            });
+
+
+
             label.attr("x", function(d) { return d.x; })
                 .attr("y", function(d) { return d.y; });
         }
@@ -301,6 +352,22 @@ function CircularNetwork(id, data) {
                 dy = d.target.y - d.source.y,
                 dr = Math.sqrt(dx * dx + dy * dy); //Pythagoras!
             return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+        }
+
+        // Draw curved edges, shortened so to fit the arrows
+        function shortenedLinkArc(d, element) {
+            // length of current path
+            var pl = element.getTotalLength();
+            // radius of target node
+            var r = Math.sqrt(d.target.count * scaleFactor * 10 / Math.PI) + arrowSize + 1;
+            // new end point of path
+            var m = element.getPointAtLength(pl - r);
+
+            var dx = m.x - d.source.x,
+                dy = m.y - d.source.y,
+                dr = Math.sqrt(dx * dx + dy * dy);
+
+            return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + m.x + "," + m.y;
         }
 
     } // draw
