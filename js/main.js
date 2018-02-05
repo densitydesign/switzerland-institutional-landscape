@@ -622,22 +622,22 @@ function buildSidepanel(id, year) {
             .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
 
         panel.append('p')
-            .html('<strong>opened: </strong>' + filtered_institution[0].opened);
+            .html('<span class="section-title">opened</span></br>' + filtered_institution[0].opened);
 
         panel.append('p')
-            .html('<strong>closed: </strong>' + filtered_institution[0].closed);
+            .html('<span class="section-title">closed: </span></br>' + filtered_institution[0].closed);
 
         panel.append('p')
-            .html('<strong>capacity: </strong>' + filtered_institution[0].capacity_group);
+            .html('<span class="section-title">capacity: </span></br>' + filtered_institution[0].capacity_group);
 
         panel.append('p')
-            .html('<strong>accepted gender: </strong>' + filtered_institution[0].accepted_gender);
+            .html('<span class="section-title">accepted gender: </span></br>' + filtered_institution[0].accepted_gender);
 
         panel.append('p')
-            .html('<strong>confession: </strong>' + filtered_institution[0].confession);
+            .html('<span class="section-title">confession: </span></br>' + filtered_institution[0].confession);
 
         panel.append('p')
-            .html('<strong>typology: </strong>' + filtered_institution[0].typologies);
+            .html('<span class="section-title">typology: </span></br>' + filtered_institution[0].typologies.replace(/;/g,'; '));
 
         panel.append('div')
             .classed('sidepanel-button', true)
