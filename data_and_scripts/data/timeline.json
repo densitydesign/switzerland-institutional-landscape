@@ -91,129 +91,147 @@
       "link" : "https://www.uek-administrative-versorgungen.ch/en/Glossary.2.html"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1912",
       "title" : null,
       "text" : "Implementation of the Swiss Civil Code (ZGB)",
-      "link" : "http://www.hls-dhs-dss.ch/textes/d/D30734.php"
+      "link" : "http://www.hls-dhs-dss.ch/textes/d/D30734.php",
+      "id" : null
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1919",
       "title" : null,
       "text" : "Canton of Neuenburg: Law on the administrative detention of drinkers of April 22nd, 1919",
-      "link" : null
+      "link" : null,
+      "id" : "NE002"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1927",
       "title" : null,
       "text" : "Canton of Geneva: Law on the correction and detention of alcoholics June 18th, 1927",
-      "link" : null
+      "link" : null,
+      "id" : "GE001"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1932",
       "title" : null,
       "text" : "Canton of Appenzell Innerhoden: Treaty between the Government of the Canton of Appenzell I.Rh. on the one hand and the Government of the Canton of Fribourg on the other hand from August 10th/23rd, 1932 concerning accommodation of administrative detainees in the institutions of Bellechasse in the canton of Fribourg",
-      "link" : null
+      "link" : null,
+      "id" : "AI011"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1933",
       "title" : null,
       "text" : "Canton of Fribourg: Law of February 10th, 1933 regarding the institutions of Bellechasse",
-      "link" : null
+      "link" : null,
+      "id" : "FR016"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1941",
       "title" : null,
       "text" : "Canton of Vaud: Law of December 8th, 1941 on the administrative detention of socially dangerous elements",
-      "link" : null
+      "link" : null,
+      "id" : "VD017"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1942",
       "title" : null,
       "text" : "Canton of Friborg: Law of May 13th, 1942 on the administrative detention of individuals endangering public security",
-      "link" : null
+      "link" : null,
+      "id" : "FR018"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1942a",
       "title" : null,
       "text" : "Implementation of the Swiss criminal code (StGB)",
-      "link" : "http://www.hls-dhs-dss.ch/textes/d/D9616.php"
+      "link" : "http://www.hls-dhs-dss.ch/textes/d/D9616.php",
+      "id" : null
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1950",
       "title" : null,
       "text" : "Canton of Valais: Order of April 27th, 1950 concerning the administrative detention",
-      "link" : null
+      "link" : null,
+      "id" : "VS005"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1956",
       "title" : null,
       "text" : "Agreement between the eastern cantons of Switzerland regarding the execution of prison sentences and imprisonments, as well as the measures according to the Swiss Criminal Code and the provisions of the cantonal law of January 27th, 1956",
-      "link" : "https://www.konkordate.ch/"
+      "link" : "https://www.konkordate.ch/",
+      "id" : null
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1958",
       "title" : null,
       "text" : "Canton of Aargau: Agreement on the allowances for forced laborers assigned to the institution of Sedel in the canton of Lucerne of May 29th, 1958",
-      "link" : null
+      "link" : null,
+      "id" : "AG036"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1959",
       "title" : null,
       "text" : "Concordat on the Execution of penal sentences and measures according to the Swiss Criminal Code and the law of the cantons of northwest and central Switzerland of March 4th, 1959",
-      "link" : "http://www.lexfind.ch/dtah/21581/2/253-010.pdf"
+      "link" : "http://www.lexfind.ch/dtah/21581/2/253-010.pdf",
+      "id" : null
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1963",
       "title" : null,
       "text" : "Concordat on the Execution of penal sentences and measures for adults in the French-speaking cantons of November 21st, 1963",
-      "link" : null
+      "link" : null,
+      "id" : "IC006"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1965",
       "title" : null,
       "text" : "Canton of Fribourg: Law of May 7th, 1965 on the fight against alcoholism",
-      "link" : null
+      "link" : null,
+      "id" : "FR025"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1966",
       "title" : null,
       "text" : "Federal Act on federal subsidies for prisons and educational institutions of October 6th, 1966",
-      "link" : "https://www.amtsdruckschriften.bar.admin.ch/viewOrigDoc/10043418.pdf?id=10043418"
+      "link" : "https://www.amtsdruckschriften.bar.admin.ch/viewOrigDoc/10043418.pdf?id=10043418",
+      "id" : null
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1971",
       "title" : null,
       "text" : "Canton of St. Gallen: Law on the abolition of administrative detention of June 15th, 1971",
-      "link" : null
+      "link" : null,
+      "id" : "SG025"
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1977",
       "title" : null,
       "text" : "Message on the amendment of the Swiss Civil Code (deprivation of freedom) and the withdrawal of the reservation on article 5 of the Convention for the Protection of Human Rights and Fundamental Freedoms of August 17th, 1977",
-      "link" : "https://www.amtsdruckschriften.bar.admin.ch/viewOrigDoc/10047151.pdf?id=10047151"
+      "link" : "https://www.amtsdruckschriften.bar.admin.ch/viewOrigDoc/10047151.pdf?id=10047151",
+      "id" : null
     },
     {
-      "type" : "law",
+      "type" : "legal text",
       "date" : "1984",
       "title" : null,
       "text" : "Concordat on the execution of penal sentences and measures for adults and adolescents in the cantons of western Switzerland and in the canton of Ticino on October 22nd, 1984",
-      "link" : null
+      "link" : null,
+      "id" : "IC009"
     }
   ]
