@@ -191,7 +191,7 @@ function populateSidebar(data) {
                     <div class="col-9">${thisTitle}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1933<br/>Source of 1933</div>
+                    <div class="col-3">Topography 1933</div>
                     <div class="col-9">${getValueSource(1933,'purpose')}</div>
                 </div>
                 <div class="row values">
@@ -213,35 +213,35 @@ function populateSidebar(data) {
                     </div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1954<br/>source one</div>
+                    <div class="col-3">Topography 1954<br/>Purpose</div>
                     <div class="col-9">${getValueSource(1954,'purpose1')}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1954<br/>source two</div>
+                    <div class="col-3">Topography 1954<br/>Terms of detention</div>
                     <div class="col-9">${getValueSource(1954,'purpose2')}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1965</div>
+                    <div class="col-3">Topography 1965<br/>Purpose</div>
                     <div class="col-9">${getValueSource(1965,'purpose1')}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1965<br/>source one</div>
+                    <div class="col-3">Topography 1965<br/>Terms of detention</div>
                     <div class="col-9">${getValueSource(1965,'purpose2')}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1980<br/>source one</div>
+                    <div class="col-3">Topography 1980<br/>Purpose</div>
                     <div class="col-9">${getValueSource(1980,'purpose1')}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1980<br/>source two</div>
+                    <div class="col-3">Topography 1980<br/>Historical facts</div>
                     <div class="col-9">${getValueSource(1980,'purpose2')}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1980<br/>source three</div>
+                    <div class="col-3">Topography 1980<br/>Conducted measures</div>
                     <div class="col-9">${getValueSource(1980,'purpose3')}</div>
                 </div>`;
 
-    //Institution purposes as from sources
+    //Institution categories as from sources
     thisTitle = 'Institution categories as reported in source';
     furtherInformations += `
                 <div class="row section-title">
@@ -249,33 +249,25 @@ function populateSidebar(data) {
                     <div class="col-9">${thisTitle}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1933<br/>Source of 1933</div>
+                    <div class="col-3">Topography 1933</div>
                     <div class="col-9">${getValueSource(1933,'categories')}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1940ies<br/>Source of ???</div>
+                    <div class="col-3">Topography 1940ies<br/>Source of 1939</div>
                     <div class="col-9">
                         ${getValueSource('1940ies','categories')}
                     </div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1954<br/>source one</div>
+                    <div class="col-3">Topography 1954</div>
                     <div class="col-9">${getValueSource(1954,'categories')}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1954<br/>source two</div>
-                    <div class="col-9">${getValueSource(1954,'categories')}</div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1965</div>
-                    <div class="col-9">${getValueSource(1965,'categories')}</div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1980<br/>source one</div>
+                    <div class="col-3">Topography 1980</div>
                     <div class="col-9">${getValueSource(1980,'categories')}</div>
                 </div>`;
 
-    //Institution purposes as from sources
+    //Capacities as from sources
     thisTitle = 'Institution capacities as reported in source';
     furtherInformations += `
                 <div class="row section-title">
@@ -283,7 +275,7 @@ function populateSidebar(data) {
                     <div class="col-9">${thisTitle}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topography 1933<br/>Source of 1933</div>
+                    <div class="col-3">Topography 1933</div>
                     <div class="col-9">${getValueSource(1933,'capacities')}</div>
                 </div>
 
@@ -313,7 +305,7 @@ function populateSidebar(data) {
                 </div>
 
                 <div class="row values">
-                    <div class="col-3">Topography 1954<br/>source one</div>
+                    <div class="col-3">Topography 1954</div>
                     <div class="col-9">${getValueSource(1954,'capacities')}</div>
                 </div>
 
@@ -323,7 +315,7 @@ function populateSidebar(data) {
                 </div>
 
                 <div class="row values">
-                    <div class="col-3">Topography 1980<br/>source three</div>
+                    <div class="col-3">Topography 1980</div>
                     <div class="col-9">${getValueSource(1980,'capacities')}</div>
                 </div>`;
 

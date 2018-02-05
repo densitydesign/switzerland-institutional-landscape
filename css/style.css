@@ -293,6 +293,12 @@ p.caption:first-child {
     margin: 0;
     font-family: 'Brandon Grotesque', sans-serif;
     font-weight: 600;
+    opacity: 0.5;
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+}
+.interaction-note p:hover {
+    opacity: 1;
 }
 
 /* Cover */
