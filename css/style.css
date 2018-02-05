@@ -73,6 +73,14 @@
     }
 }
 
+:root {
+    --uek-blue: #B0C5CE;
+    --uek-middle-light-blue: #E7EDEF;
+    --uek-light-blue: #FCFDFD;
+    --uek-dark-blue: #799BAA;
+    --glossary-nav-heigth: 134px;
+}
+
 
 /* General for all viz */
 
@@ -449,10 +457,11 @@ p.caption:first-child {
 .sidepanel-container {
     width: 25vw;
     padding: 1.2rem;
+    padding-top: 2rem;
     opacity: 0;
 }
 .sidepanel-data {
-    color: #B0C5CE;
+    color: var(--uek-dark-blue);
     font-size: 0.65rem;
     text-transform: uppercase;
 }
@@ -466,8 +475,11 @@ p.caption:first-child {
     font-size: 0.75rem;
 }
 .sidepanel p {
-    font-size: 0.9em;
+    font-size: 0.83em;
     margin-bottom: 12px;
+}
+.sidepanel p:first-of-type {
+    margin-bottom: 1.5rem;
 }
 .sidepanel-list-item a {
     color: #000000
@@ -487,6 +499,15 @@ p.caption:first-child {
 .sidepanel-button a:focus {
     color: #000000;
     text-decoration: none;
+}
+
+.sidepanel .section-title {
+    font-size: 0.5rem;
+    color: var(--uek-dark-blue);
+    line-height: 1rem;
+    text-transform: uppercase;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
 }
 
 
