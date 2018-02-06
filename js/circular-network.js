@@ -21,7 +21,6 @@ function CircularNetwork(id, data) {
     // green: #73C86B
 
     let color = d3.scaleOrdinal()
-
         .range(['#ca5268', '#85c4c9', '#97e196', '#888888'])
         .range(['#CFB76D', '#79745C', '#B5BA72', '#EAE6DA'])
         .domain(['c1', 'c2', 'c3', 'not defined'])
@@ -47,23 +46,8 @@ function CircularNetwork(id, data) {
         svg = this.svg = d3.select(this.id).append('svg')
     }
 
-    // // build the arrow.
-    // svg.append("svg:defs").selectAll("marker")
-    //     .data(["end"]) // Different link/path types can be defined here
-    //     .enter().append("svg:marker") // This section adds in the arrows
-    //     .attr("id", String)
-    //     .attr("viewBox", "0 -5 10 10")
-    //     .attr("refX", 15)
-    //     .attr("refY", -1.5)
-    //     .attr("markerWidth", 6)
-    //     .attr("markerHeight", 6)
-    //     .attr("orient", "auto")
-    //     .append("svg:path")
-    //     .attr("d", "M0,-5L10,0L0,5")
-    //     .style("stroke-width", function(d) { return Math.sqrt(d.value); })
-
     svg.append('defs').append('marker')
-        .attr('id', 'end')
+        .attr('id', 'end-c1')
         .attr('viewBox', '-0 -5 10 10')
         .attr('refX', 0)
         .attr('refY', 0)
@@ -74,8 +58,53 @@ function CircularNetwork(id, data) {
         .attr('xoverflow', 'visible')
         .append('svg:path')
         .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
-        .attr('fill', '#333')
-        .style('stroke', 'none');
+        .style('stroke', 'none')
+        .attr('fill', color('c1'));
+
+    svg.append('defs').append('marker')
+        .attr('id', 'end-c2')
+        .attr('viewBox', '-0 -5 10 10')
+        .attr('refX', 0)
+        .attr('refY', 0)
+        .attr('orient', 'auto')
+        .attr('markerWidth', arrowSize)
+        .attr('markerHeight', arrowSize)
+        .attr('markerUnits', 'userSpaceOnUse')
+        .attr('xoverflow', 'visible')
+        .append('svg:path')
+        .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+        .style('stroke', 'none')
+        .attr('fill', color('c2'));
+
+    svg.append('defs').append('marker')
+        .attr('id', 'end-c3')
+        .attr('viewBox', '-0 -5 10 10')
+        .attr('refX', 0)
+        .attr('refY', 0)
+        .attr('orient', 'auto')
+        .attr('markerWidth', arrowSize)
+        .attr('markerHeight', arrowSize)
+        .attr('markerUnits', 'userSpaceOnUse')
+        .attr('xoverflow', 'visible')
+        .append('svg:path')
+        .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+        .style('stroke', 'none')
+        .attr('fill', color('c3'));
+
+    svg.append('defs').append('marker')
+        .attr('id', 'end-nd')
+        .attr('viewBox', '-0 -5 10 10')
+        .attr('refX', 0)
+        .attr('refY', 0)
+        .attr('orient', 'auto')
+        .attr('markerWidth', arrowSize)
+        .attr('markerHeight', arrowSize)
+        .attr('markerUnits', 'userSpaceOnUse')
+        .attr('xoverflow', 'visible')
+        .append('svg:path')
+        .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+        .style('stroke', 'none')
+        .attr('fill', '#ccc');
 
     // intialise containers of the graph
     g = svg.append("g");
@@ -104,7 +133,7 @@ function CircularNetwork(id, data) {
         // .force("collision", null)
         .force("center", d3.forceCenter())
         // .force("r", d3.forceRadial(100))
-        .alphaDecay(.02)
+        .alphaDecay(.9)
         .on("tick", null);
 
     this.draw = function(year, canton) {
@@ -294,7 +323,7 @@ function CircularNetwork(id, data) {
                     return 0.5;
                 }
             })
-            .attr("marker-end", "url(#end)")
+
             .on('click', function(d) {
                 // console.log(d);
                 buildSidepanelList(d.target_institutions);
@@ -325,14 +354,24 @@ function CircularNetwork(id, data) {
                 .attr("cy", function(d) { return d.y; });
 
             link.attr('stroke', function(d) {
-                    if (d.source.concordat == d.target.concordat) {
-                        return '#ccc';
-                    } else {
-                        return color(d.source.concordat);
-                    }
+                    return color(d.source.concordat);
+                    // if (d.source.concordat == d.target.concordat) {
+                    //     return '#ccc';
+                    // } else {
+                    //     return color(d.source.concordat);
+                    // }
                 })
                 .attr("d", function(d) {
                     return linkArc(d);
+                })
+                .attr("marker-end", function(d) {
+                    // console.log(d);
+                    return 'url(#end-'+d.source.concordat+')';
+                    // if (d.source.concordat == d.target.concordat) {
+                    //     return 'url(#end-nd)';
+                    // } else {
+                    //     return 'url(#end-'+d.source.concordat+')';
+                    // }
                 })
 
             link.attr("d", function(d) {
@@ -359,7 +398,7 @@ function CircularNetwork(id, data) {
             // length of current path
             var pl = element.getTotalLength();
             // radius of target node
-            var r = Math.sqrt(d.target.count * scaleFactor * 10 / Math.PI) + arrowSize + 1;
+            var r = Math.sqrt(d.target.count * scaleFactor * 10 / Math.PI) + arrowSize + 0;
             // new end point of path
             var m = element.getPointAtLength(pl - r);
 
