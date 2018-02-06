@@ -1,3 +1,6 @@
+// store data
+let lawsData;
+
 // set the dimensions of the timeline
 let marginTimeline = {top: 0, right: 20, bottom: 0, left: 20},
     widthTimeline = ($('.timeline-container div').width() - marginTimeline.left - marginTimeline.right) * 8,
@@ -100,6 +103,8 @@ d3.queue()
 
         timeScale.domain(d3.extent(data, function(d) { return d.issue_date; }));
 
+        lawsData = sortedData;
+
         let laws = svgTimeline.append('g')
             .classed('laws-group', true)
             .selectAll('.law-dot')
@@ -137,6 +142,8 @@ d3.queue()
                     .attr('r', 7);
 
                 updateGlossary(d);
+                location.replace(`#selected-${encodeURIComponent(d.id)}`);
+                d3.event.preventDefault();
             });
 
         laws.transition()
@@ -158,8 +165,30 @@ d3.queue()
         oldCantons.features[1] = union;
         oldCantons.features.pop();
 
-        drawMap(2000, 'none');
-        populatePanel();
+        if (location.hash && location.hash != '#no-selection') {
+            let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
+
+            d3.select('.law-dot[data-id="' + location.hash.substring(10) + '"]')
+                .classed('law-selected', true)
+                .transition()
+                .duration(500)
+                .ease(d3.easeBackOut.overshoot(6))
+                .attr('r', 7);
+
+            let elementOffset = $('.law-selected').offset().left - $('.timeline-container').width() / 2;
+
+            if (elementOffset > 0) {
+                $('.timeline-container div').animate({
+                    scrollLeft: elementOffset
+                }, 2000);
+            }
+
+            updateGlossary(selectedLaw);
+
+        } else {
+            drawMap(2000, 'none');
+            populatePanel();
+        }
     });
 
 function customAxis(g) {

@@ -571,7 +571,6 @@ p.caption:first-child {
 }
 .element-grayed {
     opacity: 0.2;
-    pointer-events: none;
 }
 .dots-det {
     fill: #B6EA78;
