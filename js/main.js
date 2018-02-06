@@ -200,7 +200,7 @@ $(document).ready(function() {
     })
     $('.dots-leg').click(function(){
         let elementYear = $(this).attr('data-id');
-        buildTimelineSidepanel('legal text', elementYear);
+        buildTimelineSidepanel('law', elementYear);
     })
     $('.dots-soc').click(function(){
         let elementYear = $(this).attr('data-id');
@@ -720,7 +720,7 @@ function buildTimelineSidepanel(type, year) {
             type: [type],
             date: [year]
         };
-    let filtered_element = multiFilter(timelineData, filters);
+    let filtered_institution = multiFilter(timelineData, filters);
 
     d3.select('.sidepanel-container')
         .transition()
@@ -741,9 +741,9 @@ function buildTimelineSidepanel(type, year) {
         .classed('sidepanel-data', true)
         .text(function(d){
             if (type == 'events') {
-                return filtered_element[0].date;
+                return filtered_institution[0].date;
             } else {
-                let date = filtered_element[0].date.match(/\d+/g);
+                let date = filtered_institution[0].date.match(/\d+/g);
                 return date;
             }
         });
@@ -752,33 +752,22 @@ function buildTimelineSidepanel(type, year) {
         .classed('sidepanel-name', true)
         .style('text-transform', 'capitalize')
         .text(function(d){
-            if (filtered_element[0].title == null) {
-                return filtered_element[0].type;
+            if (filtered_institution[0].title == null) {
+                return filtered_institution[0].type;
             } else {
-                return filtered_element[0].title;
+                return filtered_institution[0].title;
             }
         });
 
     panel.append('p')
-        .text(filtered_element[0].text);
+        .text(filtered_institution[0].text);
 
-    if (filtered_element[0].link != null) {
+    if (filtered_institution[0].link != null) {
         panel.append('p')
             .append('a')
-            .attr('href', filtered_element[0].link)
+            .attr('href', filtered_institution[0].link)
             .attr('target', '_blank')
             .text('Link to source');
-    }
-
-    if (type == 'legal text' && filtered_element[0].id != null) {
-        panel.append('div')
-            .classed('sidepanel-button', true)
-            .append('a')
-            .attr('href', function(d){
-                return './glossaries/laws-glossary.html#selected-' + encodeURIComponent(filtered_element[0].id);
-            })
-            .attr('target', '_blank')
-            .text('Get more details');
     }
 
     $('body').addClass('sidebar-open modal-open');
