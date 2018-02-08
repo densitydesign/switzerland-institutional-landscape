@@ -124,7 +124,7 @@ a:hover {
 }
 
 h2 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
     letter-spacing: 0;
     font-weight: 600;
@@ -185,11 +185,11 @@ p.caption:first-child {
 }
 
 .initial-loader div {
-    width: 20vw;
+    width: 50vw;
 }
 
 .initial-loader svg {
-    width: 20vw;
+    width: 50vw;
     fill: none;
     stroke: #FAFBFC;
     stroke-width: 2;
@@ -201,7 +201,7 @@ p.caption:first-child {
 }
 
 .initial-loader p {
-    width: 20vw;
+    width: 50vw;
     font-family: 'Brandon Grotesque', sans-serif;
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -987,6 +987,23 @@ p.caption:first-child {
 #credits h3,
 #credits p {
     color: #FCFBFA;
+}
+
+@media (min-width: 768px) {
+    h2 {
+        font-size: 2.2rem;
+    }
+    .initial-loader div {
+        width: 20vw;
+    }
+
+    .initial-loader svg {
+        width: 20vw;
+    }
+
+    .initial-loader p {
+        width: 20vw;
+    }
 }
 
 @media (min-width: 992px) {
