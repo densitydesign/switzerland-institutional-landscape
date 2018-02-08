@@ -169,6 +169,15 @@ function populateSidebar(data) {
 
     }
 
+    function getValueSourceHTML(year, field) {
+        let html = `<div class="row values">
+                    <div class="col-3">Topography ${year}</div>
+                    <div class="col-9">${getValueSource(year, field)}</div>
+                </div>`;
+
+        return html;
+    }
+
 
     let furtherInformations = ``;
 
@@ -190,56 +199,17 @@ function populateSidebar(data) {
                     <div class="col-3"></div>
                     <div class="col-9">${thisTitle}</div>
                 </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1933</div>
-                    <div class="col-9">${getValueSource(1933,'purpose')}</div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1940ies<br/>Source of 1933</div>
-                    <div class="col-9">
-                        ${getValueSource('1940ies','purpose_source1933')}
-                    </div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1940ies<br/>Source of 1944</div>
-                    <div class="col-9">
-                        ${getValueSource('1940ies','purpose_source1944')}
-                    </div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1940ies<br/>Source of 1945</div>
-                    <div class="col-9">
-                        ${getValueSource('1940ies','purpose_source1945')}
-                    </div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1954<br/>Purpose</div>
-                    <div class="col-9">${getValueSource(1954,'purpose1')}</div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1954<br/>Terms of detention</div>
-                    <div class="col-9">${getValueSource(1954,'purpose2')}</div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1965<br/>Purpose</div>
-                    <div class="col-9">${getValueSource(1965,'purpose1')}</div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1965<br/>Terms of detention</div>
-                    <div class="col-9">${getValueSource(1965,'purpose2')}</div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1980<br/>Purpose</div>
-                    <div class="col-9">${getValueSource(1980,'purpose1')}</div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1980<br/>Historical facts</div>
-                    <div class="col-9">${getValueSource(1980,'purpose2')}</div>
-                </div>
-                <div class="row values">
-                    <div class="col-3">Topography 1980<br/>Conducted measures</div>
-                    <div class="col-9">${getValueSource(1980,'purpose3')}</div>
-                </div>`;
+                ${getValueSourceHTML(1933,'purpose')}
+                ${getValueSourceHTML('1940ies','purpose_source1933')}
+                ${getValueSourceHTML('1940ies','purpose_source1944')}
+                ${getValueSourceHTML('1940ies','purpose_source1945')}
+                ${getValueSourceHTML(1954,'purpose1')}
+                ${getValueSourceHTML(1954,'purpose2')}
+                ${getValueSourceHTML(1965,'purpose1')}
+                ${getValueSourceHTML(1965,'purpose2')}
+                ${getValueSourceHTML(1980,'purpose1')}
+                ${getValueSourceHTML(1980,'purpose2')}
+                ${getValueSourceHTML(1980,'purpose3')}`;
 
     //Institution categories as from sources
     thisTitle = 'Institution categories as reported in source';
