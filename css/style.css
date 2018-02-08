@@ -429,13 +429,15 @@ p.caption:first-child {
     pointer-events: none;
 }
 
-#navigation-sidebar .subnav a:not(.active){
+#navigation-sidebar .subnav a:not(.active),
+#navigation-sidebar .subnav a:not(.active) p{
     opacity: 0;
     -webkit-transition: opacity 0.3s ease;
             transition: opacity 0.3s ease;
 }
 
-#navigation-sidebar .subnav .active {
+#navigation-sidebar .subnav .active,
+#navigation-sidebar .subnav .active p {
     opacity: 1;
 }
 
