@@ -530,10 +530,11 @@ p.caption:first-child {
     border-bottom: 1px solid #B0C5CE;
     border-radius: 2px;
     z-index: 90;
+    overflow-x: scroll;
 }
 
 .timeline-viz {
-    width: 100%;
+    width: 250%;
     height: auto;
 }
 
@@ -570,6 +571,7 @@ p.caption:first-child {
     opacity: 1;
     -webkit-transition: opacity 0.5s ease;
             transition: opacity 0.5s ease;
+    pointer-events: none;
 }
 .element-grayed {
     opacity: 0.2;
@@ -903,6 +905,13 @@ p.caption:first-child {
 
 /* STYLES CHAPTER 4 */
 
+.diagram-container {
+    overflow-x: scroll;
+}
+.svg-diagram {
+    width: 230%;
+}
+
 /* typologies network of correlations */
 
 #circular-network .node {
@@ -996,13 +1005,28 @@ p.caption:first-child {
     .initial-loader div {
         width: 20vw;
     }
-
     .initial-loader svg {
         width: 20vw;
     }
 
     .initial-loader p {
         width: 20vw;
+    }
+    #timeline {
+        overflow-x: auto;
+    }
+    .timeline-viz {
+        width: 100%;
+        height: auto;
+    }
+    .timeline-dots {
+        pointer-events: auto;
+    }
+    .diagram-container {
+        overflow-x: auto;
+    }
+    .svg-diagram {
+        width: 100%;
     }
 }
 

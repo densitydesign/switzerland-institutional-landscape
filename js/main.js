@@ -1,3 +1,5 @@
+let loadingSize;
+
 let masterData,
     timelinetimelineData;
 
@@ -35,99 +37,112 @@ let circularNetwork,
 
 $(document).ready(function() {
 
-    d3.queue()
-        .defer(d3.json, './data_and_scripts/data/master.json')
-        .defer(d3.json, './data_and_scripts/data/timeline.json')
-        .await(function(error, data, dataTimeline) {
-            if (error) throw error;
-            masterData = data;
-            timelineData = dataTimeline;
+    loadingSize = $(window).width();
 
-            // load asynchronously the datasets
-            var dataFiles = ['./data_and_scripts/data/sankey-institutions-with-list.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
-                queue = d3.queue();
+    if (loadingSize > 767) {
+        d3.queue()
+            .defer(d3.json, './data_and_scripts/data/master.json')
+            .defer(d3.json, './data_and_scripts/data/timeline.json')
+            .await(function(error, data, dataTimeline) {
+                if (error) throw error;
+                masterData = data;
+                timelineData = dataTimeline;
 
-            dataFiles.forEach(function(filename) {
-                queue.defer(d3.json, filename);
-            });
+                // load asynchronously the datasets
+                var dataFiles = ['./data_and_scripts/data/sankey-institutions-with-list.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
+                    queue = d3.queue();
 
-            queue.awaitAll(function(err, datasets) {
-                if (err) {
-                    console.error(err);
-                }
-
-                surviesSankey = new SurviesSankey('#sankey', datasets[0]);
-                surviesSankey.draw(surveySankeyMode);
-
-                bubblechart = new Bubblechart('#bubblechart', datasets[1]);
-                bubblechart.draw();
-
-                typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
-                typologiesGraph.draw(1954);
-
-                // To be called after all the charts have been initialized
-                // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
-                $(document).trigger('setWaypoints');
-            });
-
-            // load asynchronously the datasets for chapter 2 and for chapter 4 (need map)
-            d3.queue()
-                .defer(d3.json, './data_and_scripts/data/ch.json')
-                .defer(d3.json, './data_and_scripts/data/map_all_institutions.json')
-                .defer(d3.json, './data_and_scripts/data/map_typologies.json')
-                .defer(d3.json, './data_and_scripts/data/cantons-network.json')
-                .await(function(error, swiss, data_all, data_typologies, cantonsNetwork) {
-                    if (error) throw error;
-
-                    map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
-                    map_all_institutions.draw(1900);
-
-                    map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
-
-                    $(document).trigger('setNavigation');
-
-                    circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
-                    circularNetwork.draw(1954, 'FR');
-
-                    acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, acceptingInstitutionsConfig);
-                    acceptingInstitutions.draw(acceptingInstitutionsConfig, 'FR');
-
-                    d3.select('.initial-loader').classed('content-loaded', true)
-                        .transition()
-                        .duration(1000)
-                        .style('opacity', 1e-6)
-                        .on('end', function(d){
-                            d3.select('.initial-loader').remove();
-                        });
+                dataFiles.forEach(function(filename) {
+                    queue.defer(d3.json, filename);
                 });
 
-            // load asynchronously the datasets for chapter 3
-            d3.queue()
-                .defer(d3.json, './data_and_scripts/data/matrix.json')
-                .defer(d3.json, './data_and_scripts/data/matrix-categories.json')
-                .await(function(error, data_matrix, categories) {
-                    if (error) throw error;
-                    matrix = new Matrix('#matrix-visualization', data_matrix, categories);
-                    matrix.draw(1954);
+                queue.awaitAll(function(err, datasets) {
+                    if (err) {
+                        console.error(err);
+                    }
+
+                    surviesSankey = new SurviesSankey('#sankey', datasets[0]);
+                    surviesSankey.draw(surveySankeyMode);
+
+                    bubblechart = new Bubblechart('#bubblechart', datasets[1]);
+                    bubblechart.draw();
+
+                    typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
+                    typologiesGraph.draw(1954);
+
+                    // To be called after all the charts have been initialized
+                    // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
+                    $(document).trigger('setWaypoints');
                 });
-        });
 
-    // add scroll events to navigation sidebar
-    $("#navigation-sidebar .nav-link").on('click', function(e) {
-        // prevent default anchor click behavior
-        e.preventDefault();
-        // store hash
-        let hash = this.hash;
-        // animate
-        $('html, body').animate({
-           scrollTop: $(hash).offset().top
-        }, 500, function(){
-           // when done, add hash to url
-           // (default click behaviour)
-           window.location.hash = hash;
-        });
+                // load asynchronously the datasets for chapter 2 and for chapter 4 (need map)
+                d3.queue()
+                    .defer(d3.json, './data_and_scripts/data/ch.json')
+                    .defer(d3.json, './data_and_scripts/data/map_all_institutions.json')
+                    .defer(d3.json, './data_and_scripts/data/map_typologies.json')
+                    .defer(d3.json, './data_and_scripts/data/cantons-network.json')
+                    .await(function(error, swiss, data_all, data_typologies, cantonsNetwork) {
+                        if (error) throw error;
 
-    });
+                        map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
+                        map_all_institutions.draw(1900);
+
+                        map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
+
+                        $(document).trigger('setNavigation');
+
+                        circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
+                        circularNetwork.draw(1954, 'FR');
+
+                        acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, acceptingInstitutionsConfig);
+                        acceptingInstitutions.draw(acceptingInstitutionsConfig, 'FR');
+
+                        d3.select('.initial-loader').classed('content-loaded', true)
+                            .transition()
+                            .duration(1000)
+                            .style('opacity', 1e-6)
+                            .on('end', function(d){
+                                d3.select('.initial-loader').remove();
+                            });
+                    });
+
+                // load asynchronously the datasets for chapter 3
+                d3.queue()
+                    .defer(d3.json, './data_and_scripts/data/matrix.json')
+                    .defer(d3.json, './data_and_scripts/data/matrix-categories.json')
+                    .await(function(error, data_matrix, categories) {
+                        if (error) throw error;
+                        matrix = new Matrix('#matrix-visualization', data_matrix, categories);
+                        matrix.draw(1954);
+                    });
+            });
+
+        // add scroll events to navigation sidebar
+        $("#navigation-sidebar .nav-link").on('click', function(e) {
+            // prevent default anchor click behavior
+            e.preventDefault();
+            // store hash
+            let hash = this.hash;
+            // animate
+            $('html, body').animate({
+               scrollTop: $(hash).offset().top
+            }, 500, function(){
+               // when done, add hash to url
+               // (default click behaviour)
+               window.location.hash = hash;
+            });
+
+        });
+    } else {
+        d3.select('.initial-loader').classed('content-loaded', true)
+            .transition()
+            .duration(1000)
+            .delay(1000)
+            .style('opacity', 1e-6)
+            .on('end', function(d){
+                d3.select('.initial-loader').remove();
+            });
+    }
 
     // set waypoints for timeline
     // highlight social if going down, hide if going up
@@ -193,86 +208,89 @@ $(document).ready(function() {
         },
         offset: '70%'
     });
-    // set events for timeline
-    $('.dots-det').click(function(){
-        let dotId = $(this).attr('data-id');
-        buildSidepanel(dotId, 1900);
-    })
-    $('.dots-leg').click(function(){
-        let elementYear = $(this).attr('data-id');
-        buildTimelineSidepanel('legal text', elementYear);
-    })
-    $('.dots-soc').click(function(){
-        let elementYear = $(this).attr('data-id');
-        buildTimelineSidepanel('events', elementYear);
-    })
 
-    // change matrix selects when changing years, setup matrix buttons
-    let $matrixButtons = $('#matrix .btn-matrix-year'),
-        $matrixSelects = $('#matrix .select-container'),
-        subchapterWidth = $('#temporal-framing').width();
+    if (loadingSize > 767) {
+        // set events for timeline
+        $('.dots-det').click(function(){
+            let dotId = $(this).attr('data-id');
+            buildSidepanel(dotId, 1900);
+        })
+        $('.dots-leg').click(function(){
+            let elementYear = $(this).attr('data-id');
+            buildTimelineSidepanel('legal text', elementYear);
+        })
+        $('.dots-soc').click(function(){
+            let elementYear = $(this).attr('data-id');
+            buildTimelineSidepanel('events', elementYear);
+        })
 
-    containerBubblechartWidth = $('#bubblechart .btn-container').width();
-    containerTypologiesWidth = $('#typologies-graph .btn-container').width();
-    containerMatrixWidth = $('#matrix .btn-container').width();
-    containerCircularWidth = $('#circular-network .btn-container').width();
-    containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
-    buttonWidth = $('.btn-typologies-year').width();
+        // change matrix selects when changing years, setup matrix buttons
+        let $matrixButtons = $('#matrix .btn-matrix-year'),
+            $matrixSelects = $('#matrix .select-container'),
+            subchapterWidth = $('#temporal-framing').width();
 
-    if (subchapterWidth > 960) {
-        matrixSpacer = 8;
-        bubblechartSpacer = 7;
-        typologiesSpacer = 7;
-    } else if (subchapterWidth > 720) {
-        matrixSpacer = 12;
-        bubblechartSpacer = 10;
-        typologiesSpacer = 14;
-    } else {
-        matrixSpacer = 30;
-        bubblechartSpacer = 20;
-        typologiesSpacer = 400;
-    }
+        containerBubblechartWidth = $('#bubblechart .btn-container').width();
+        containerTypologiesWidth = $('#typologies-graph .btn-container').width();
+        containerMatrixWidth = $('#matrix .btn-container').width();
+        containerCircularWidth = $('#circular-network .btn-container').width();
+        containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
+        buttonWidth = $('.btn-typologies-year').width();
 
-    //set up initial active buttons
-    changeButton(1954, containerBubblechartWidth, '.btn-bubblechart-year', bubblechartSpacer);
-    changeButton(1954, containerTypologiesWidth, '.btn-typologies-year', typologiesSpacer);
-    changeButton(1954, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
-    changeButton(1954, containerCircularWidth, '.btn-circular-year', 8);
-    changeButton(1954, containerAcceptingWidth, '.btn-accepting-year', 8);
+        if (subchapterWidth > 960) {
+            matrixSpacer = 8;
+            bubblechartSpacer = 7;
+            typologiesSpacer = 7;
+        } else if (subchapterWidth > 720) {
+            matrixSpacer = 12;
+            bubblechartSpacer = 10;
+            typologiesSpacer = 14;
+        } else {
+            matrixSpacer = 30;
+            bubblechartSpacer = 20;
+            typologiesSpacer = 400;
+        }
 
-    $('.btn-bubblechart-year').on('click', function() {
-        let newYear = $(this).attr('data-id');
+        //set up initial active buttons
+        changeButton(1954, containerBubblechartWidth, '.btn-bubblechart-year', bubblechartSpacer);
+        changeButton(1954, containerTypologiesWidth, '.btn-typologies-year', typologiesSpacer);
+        changeButton(1954, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
+        changeButton(1954, containerCircularWidth, '.btn-circular-year', 8);
+        changeButton(1954, containerAcceptingWidth, '.btn-accepting-year', 8);
 
-        changeButton(newYear, containerBubblechartWidth, '.btn-bubblechart-year', bubblechartSpacer);
-    });
+        $('.btn-bubblechart-year').on('click', function() {
+            let newYear = $(this).attr('data-id');
 
-    $('.btn-typologies-year').on('click', function() {
-        let newYear = $(this).attr('data-id');
-
-        changeButton(newYear, containerTypologiesWidth, '.btn-typologies-year', typologiesSpacer);
-    });
-
-    $matrixButtons.on('click', function() {
-        let newYear = $(this).attr('data-id');
-
-        $matrixSelects.each(function() {
-            $(this).children('select').attr('onchange', 'matrix.draw(' + newYear + ')');
+            changeButton(newYear, containerBubblechartWidth, '.btn-bubblechart-year', bubblechartSpacer);
         });
 
-        changeButton(newYear, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
-    });
+        $('.btn-typologies-year').on('click', function() {
+            let newYear = $(this).attr('data-id');
 
-    $('.btn-circular-year').on('click', function() {
-        let newYear = $(this).attr('data-id');
+            changeButton(newYear, containerTypologiesWidth, '.btn-typologies-year', typologiesSpacer);
+        });
 
-        changeButton(newYear, containerCircularWidth, '.btn-circular-year', 8);
-    });
+        $matrixButtons.on('click', function() {
+            let newYear = $(this).attr('data-id');
 
-    $('.btn-accepting-year').on('click', function() {
-        let newYear = $(this).attr('data-id');
+            $matrixSelects.each(function() {
+                $(this).children('select').attr('onchange', 'matrix.draw(' + newYear + ')');
+            });
 
-        changeButton(newYear, containerAcceptingWidth, '.btn-accepting-year', 8);
-    });
+            changeButton(newYear, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
+        });
+
+        $('.btn-circular-year').on('click', function() {
+            let newYear = $(this).attr('data-id');
+
+            changeButton(newYear, containerCircularWidth, '.btn-circular-year', 8);
+        });
+
+        $('.btn-accepting-year').on('click', function() {
+            let newYear = $(this).attr('data-id');
+
+            changeButton(newYear, containerAcceptingWidth, '.btn-accepting-year', 8);
+        });
+    }
 
     // Add listener for window resize event, which triggers actions such as the resize of visualizations.
     function doneResizing() {
@@ -280,6 +298,8 @@ $(document).ready(function() {
         // if (d3.select(timeline.id).node().offsetWidth - 30 != timeline.width) {
         //     timeline.draw();
         // }
+        let newWidth = $(window).width();
+        console.log(newWidth);
 
         if (d3.select(surviesSankey.id).node().offsetWidth - 30 != surviesSankey.width) {
 
