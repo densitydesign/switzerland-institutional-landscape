@@ -99,14 +99,20 @@ function MapAll(id, swiss, data) {
 
         //calculate width and height of the viz container and set them as svg dimensions
         width = $('#maps-visualization').width();
-        height = width * .7;
+        vHeight = $('#maps').height() - 50;
 
         let subchapterWidth = $('#temporal-framing').width();
         if (subchapterWidth < 700) {
             height = width * .85;
+            if (height > vHeight) {
+                height = vHeight;
+            }
             radius = 1.8;
         } else {
             height = width * .7;
+            if (height > vHeight) {
+                height = vHeight;
+            }
             radius = 3;
         }
 

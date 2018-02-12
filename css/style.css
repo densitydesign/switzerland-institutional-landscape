@@ -614,7 +614,10 @@ p.caption:first-child {
 .timeline-text.text-highlighted {
     opacity: 1;
 }
-
+#timeline .interaction-note {
+    position: relative;
+    top: 64px;
+}
 
 
 /* 1.2 mosaic plot and sankey */
@@ -739,14 +742,14 @@ p.caption:first-child {
 }
 
 .step:last-of-type {
-    height: 84vh;
+    height: 60vh;
     margin-bottom: 0;
 }
 
 #maps {
     position: -webkit-sticky;
     position: sticky;
-    top: 80px;
+    top: 45px;
     width: 100%;
     height: 60vh;
 }
@@ -1013,7 +1016,7 @@ p.caption:first-child {
         width: 20vw;
     }
     #timeline {
-        overflow-x: auto;
+        overflow-x: inherit;
     }
     .timeline-viz {
         width: 100%;
@@ -1023,7 +1026,7 @@ p.caption:first-child {
         pointer-events: auto;
     }
     .diagram-container {
-        overflow-x: auto;
+        overflow-x: inherit;
     }
     .svg-diagram {
         width: 100%;
@@ -1039,5 +1042,8 @@ p.caption:first-child {
     }
     #maps {
         height: 84vh;
+    }
+    .step:last-of-type {
+        height: 80vh;
     }
 }

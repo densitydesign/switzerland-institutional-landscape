@@ -124,10 +124,14 @@ function MapTypologies(id, swiss, data) {
 
         //calculate width and height for each small map
         width = $('#maps-visualization').width();
+        vHeight = $('#maps').height() - 50;
         height = width * .8;
+        if (height > vHeight) {
+            height = vHeight;
+        }
         radius = 1.5;
         mapsWidth = width / 3 - 30;
-        mapsHeight = mapsWidth * 0.9;
+        mapsHeight = mapsWidth * .7;
 
         // calculate distances to distribute the maps equally
         horizontalSpacer = (width - 3 * mapsWidth) / 2;
@@ -298,7 +302,7 @@ function MapTypologies(id, swiss, data) {
             .attr('y', function(d){
                 let baseContainer = this.parentNode.parentNode.parentNode.getBoundingClientRect();
                 let thisMap = d3.select(this.parentNode.parentNode).select('.maps-swiss').node().getBoundingClientRect();
-                return thisMap.top - baseContainer.top + mapsHeight - 10;
+                return thisMap.top - baseContainer.top + mapsHeight + 10;
             })
             .merge(label)
             .text(function(d){return d;})
@@ -307,8 +311,8 @@ function MapTypologies(id, swiss, data) {
             .duration(500)
             .style('opacity', 1);
 
-        d3.selectAll('text.maps-label')
-            .call(wrap, 120);
+        // d3.selectAll('text.maps-label')
+        //     .call(wrap, 120);
 
         // filter the data for the correct year
         let selectedYear = this.data.filter(function(el){return el.key == year;});

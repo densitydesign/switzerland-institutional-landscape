@@ -145,6 +145,7 @@ $(document).ready(function() {
     }
 
     // set waypoints for timeline
+    let timelineHeight = $('#timeline').outerHeight() + 54;
     // highlight social if going down, hide if going up
     let social_waypoint = new Waypoint({
         element: document.getElementById('timeline-text-soc'),
@@ -162,7 +163,7 @@ $(document).ready(function() {
                 $('.timeline-text').removeClass('text-highlighted');
             }
         },
-        offset: '70%'
+        offset: timelineHeight
     });
 
     let legislative_waypoint = new Waypoint({
@@ -184,7 +185,7 @@ $(document).ready(function() {
                 $('#timeline-text-soc').addClass('text-highlighted');
             }
         },
-        offset: '65%'
+        offset: timelineHeight
     });
 
     let detention_waypoint = new Waypoint({
@@ -206,7 +207,7 @@ $(document).ready(function() {
                 $('#timeline-text-leg').addClass('text-highlighted');
             }
         },
-        offset: '70%'
+        offset: timelineHeight
     });
 
     if (loadingSize > 767) {
@@ -298,8 +299,6 @@ $(document).ready(function() {
         // if (d3.select(timeline.id).node().offsetWidth - 30 != timeline.width) {
         //     timeline.draw();
         // }
-        let newWidth = $(window).width();
-        console.log(newWidth);
 
         if (d3.select(surviesSankey.id).node().offsetWidth - 30 != surviesSankey.width) {
 
