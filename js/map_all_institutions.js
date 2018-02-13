@@ -231,7 +231,10 @@ function MapAll(id, swiss, data) {
                     let activeYear = $('#maps .active-year').attr('data-id');
                     buildSidepanel(d.id, activeYear);
                 })
-                .merge(node);
+                .merge(node)
+                .attr('data-hover', function(d){
+                    return d[category];
+                });
 
             node.transition()
                 .duration(500)
@@ -261,7 +264,28 @@ function MapAll(id, swiss, data) {
                 item = item.enter()
                     .append('g')
                     .classed('item', true)
-                    .merge(item);
+                    .style('cursor', 'pointer')
+                    .merge(item)
+                    .attr('data-hover', function(d){
+                        return d;
+                    })
+                    .on('mouseenter', function(d) {
+                        d3.selectAll('#maps .dot')
+                            .transition()
+                            .duration(500)
+                            .style('opacity', .1)
+
+                        d3.selectAll('#maps .dot[data-hover="' + d + '"]')
+                            .transition()
+                            .duration(500)
+                            .style('opacity', 1)
+                    })
+                    .on('mouseleave', function(d) {
+                        d3.selectAll('#maps .dot')
+                            .transition()
+                            .duration(500)
+                            .style('opacity', 1)
+                    });
 
                 item.selectAll('*')
                     .transition()
