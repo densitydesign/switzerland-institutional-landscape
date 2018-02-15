@@ -229,6 +229,10 @@ function Bubblechart(id, data) {
                         return capacityColor(d.capacity_group);
                     }
                 })
+                .attr('data-toggle', 'tooltip')
+                .attr('data-placement', 'top')
+                .attr('data-html', 'true')
+                .attr('title', '<strong>landmark<br/>città, cantone</strong>')
                 // .on('mouseenter', function(d) {
                 //     svg.selectAll('.label')
                 //         .filter(function(e) { return e.id == d.id })
@@ -406,6 +410,9 @@ function Bubblechart(id, data) {
         //             }
         //         }
         //     });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
 
     } //draw
 
