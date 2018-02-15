@@ -99,17 +99,17 @@ function MapTypologies(id, swiss, data) {
         //remove precedent map with a transition
         d3.selectAll('#maps-visualization .map-swiss path')
             .transition()
-            .duration(400)
+            .duration(300)
             .style('opacity', 1e-6)
             .remove();
         d3.selectAll('#maps-visualization .map-dots circle')
             .transition()
-            .duration(400)
+            .duration(300)
             .attr('r', 1e-6)
             .remove();
         d3.selectAll('#maps-visualization .map-legend .item')
             .transition()
-            .duration(400)
+            .duration(300)
             .style('opacity', 1e-6)
             .remove();
         d3.select('#maps-visualization .map-container')
@@ -302,7 +302,7 @@ function MapTypologies(id, swiss, data) {
             .attr('y', function(d){
                 let baseContainer = this.parentNode.parentNode.parentNode.getBoundingClientRect();
                 let thisMap = d3.select(this.parentNode.parentNode).select('.maps-swiss').node().getBoundingClientRect();
-                return thisMap.top - baseContainer.top + mapsHeight + 10;
+                return thisMap.top - baseContainer.top + mapsHeight + 6;
             })
             .merge(label)
             .text(function(d){return d;})
@@ -357,7 +357,20 @@ function MapTypologies(id, swiss, data) {
                         let activeYear = $('#maps .active-year').attr('data-id');
                         buildSidepanel(d.id, activeYear);
                     })
-                    .merge(node);
+                    .merge(node)
+                    .attr('data-toggle', 'tooltip')
+                    .attr('data-placement', 'top')
+                    .attr('data-html', 'true')
+                    .attr('trigger', 'click')
+                    .attr('title', function(d){
+                        let thisRecord = masterData.filter(function(e){
+                            return e.id == d.id;
+                        })[0]
+                        let name_landmark = thisRecord.name_landmark;
+                        let city = thisRecord.city;
+                        let canton_code = thisRecord.canton_code;
+                        return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}, ${canton_code}</span></div>`;
+                    });
 
                 node.transition()
                     .duration(500)
@@ -399,6 +412,9 @@ function MapTypologies(id, swiss, data) {
             reset();
         })
 
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     }
 
     function getCoordinates(d, i, counter) {

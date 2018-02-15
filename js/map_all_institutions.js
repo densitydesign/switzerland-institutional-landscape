@@ -232,6 +232,19 @@ function MapAll(id, swiss, data) {
                     buildSidepanel(d.id, activeYear);
                 })
                 .merge(node)
+                .attr('data-toggle', 'tooltip')
+                .attr('data-placement', 'top')
+                .attr('data-html', 'true')
+                .attr('trigger', 'click')
+                .attr('title', function(d){
+                    let thisRecord = masterData.filter(function(e){
+                        return e.id == d.id;
+                    })[0]
+                    let name_landmark = thisRecord.name_landmark;
+                    let city = thisRecord.city;
+                    let canton_code = thisRecord.canton_code;
+                    return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}, ${canton_code}</span></div>`;
+                })
                 .attr('data-hover', function(d){
                     return d[category];
                 });
@@ -354,7 +367,20 @@ function MapAll(id, swiss, data) {
                     let activeYear = $('#maps .active-year').attr('data-id');
                     buildSidepanel(d.id, activeYear);
                 })
-                .merge(node);
+                .merge(node)
+                .attr('data-toggle', 'tooltip')
+                .attr('data-placement', 'top')
+                .attr('data-html', 'true')
+                .attr('trigger', 'click')
+                .attr('title', function(d){
+                    let thisRecord = masterData.filter(function(e){
+                        return e.id == d.id;
+                    })[0]
+                    let name_landmark = thisRecord.name_landmark;
+                    let city = thisRecord.city;
+                    let canton_code = thisRecord.canton_code;
+                    return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}, ${canton_code}</span></div>`;
+                });
 
             node.transition()
                 .duration(500)
@@ -376,6 +402,10 @@ function MapAll(id, swiss, data) {
                 return radius + 0.5;
             }))
             .restart();
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     }
 
     function getCoordinates(d, i) {

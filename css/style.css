@@ -1029,6 +1029,7 @@ p.caption:first-child {
 
 .concordat-legend {
     margin-bottom: -3rem;
+    pointer-events: none;
 }
 
 /* CREDITS */
