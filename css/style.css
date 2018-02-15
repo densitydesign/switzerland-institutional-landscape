@@ -453,8 +453,15 @@ p.caption:first-child {
     display: block;
 }
 
-#navigation-sidebar .subnav a{
+#navigation-sidebar .subnav a,
+#navigation-sidebar .subnav p,
+#navigation-sidebar .subnav,
+#navigation-sidebar .link-container {
     pointer-events: none;
+}
+
+#navigation-sidebar .link-container > .nav-link {
+    pointer-events: auto;
 }
 
 #navigation-sidebar .subnav a:not(.active),
