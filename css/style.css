@@ -302,6 +302,33 @@ p.caption:first-child {
     opacity: 1;
 }
 
+.tooltip.show {
+    opacity:1;
+}
+
+.tooltip .tooltip-inner{
+    background-color: white;
+    border: 1px solid rgb(144, 188, 204);
+    color: black;
+}
+
+.tooltip .arrow::before {
+    border-top-color: rgb(144, 188, 204) !important;
+}
+
+.viz-tooltip{
+    font-size: .7rem;
+    font-family: 'Brandon Grotesque', sans-serif;
+}
+
+.viz-tooltip span:nth-of-type(2){
+    font-size: .50rem;
+    letter-spacing: .1px;
+    /*font-style: italic;*/
+    text-transform: uppercase;
+    color: #666;
+}
+
 /* Cover */
 
 .cover {
@@ -833,10 +860,6 @@ p.caption:first-child {
 .item-text {
     font-size: .65rem;
 }
-
-
-
-
 
 /* map_typologies styles */
 
