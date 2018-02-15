@@ -218,13 +218,9 @@ function SurviesSankey(id, data) {
             .attr("width", function(d) { return d.x1 - d.x0; })
             .style("fill", function(d) { return nodesColor(d.name); })
             .style("stroke", function(d) {
-                // console.log(d)
-                if (d.name == "1_uncertain") {
-                    return d3.color(nodesColor(d.name)).darker(1);
-                } else {
-                    return 'none';
-                }
-            });
+                return d3.color(nodesColor(d.name)).darker(1);
+            })
+            .style('stroke-width', .5);
 
         node.append("text")
             .classed('label', true)

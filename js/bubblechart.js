@@ -296,10 +296,18 @@ function Bubblechart(id, data) {
                 .style('opacity', 0)
                 .text(function(d) {
                     let thisName;
-                    if (d == '1') {
-                        thisName = '1 Typology';
-                    } else {
-                        thisName = d + ' Typologies';
+                    switch (d) {
+                        case '1':
+                            thisName = 'Single purpose';
+                            break;
+                        case '2':
+                            thisName = 'Two purposes';
+                            break;
+                        case '3':
+                            thisName = 'Three purposes';
+                            break;
+                        default:
+                            thisName = 'Four purposes';
                     }
                     return thisName;
                 })
