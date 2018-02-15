@@ -141,6 +141,8 @@ function Matrix(id, data, categories) {
             .selectAll(".tick text")
             .call(wrapX, 110);
 
+        d3.selectAll('#matrix .domain').remove();
+
         svg.select('.grid-y')
             .transition()
             .call(yGrid);

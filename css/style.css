@@ -919,9 +919,10 @@ p.caption:first-child {
 }
 
 .grid line {
-    stroke: lightgrey;
+    stroke: #9799a8;
     stroke-opacity: 0.7;
-    stroke-dasharray: 8;
+    stroke-dasharray: 3;
+    stroke-width: .5;
 }
 
 .grid path {
@@ -932,6 +933,12 @@ p.caption:first-child {
     stroke: rgba(0,0,0,.4);
     stroke-width: 1px;
     fill: #CFB76D;
+}
+
+.custom-select {
+    height: calc(1.8rem + 2px);
+    padding-top: 0.2rem;
+    padding-bottom: 0.1rem;
 }
 
 
@@ -1020,6 +1027,10 @@ p.caption:first-child {
     top: -3px;
 }
 
+.concordat-legend {
+    margin-bottom: -3rem;
+}
+
 /* CREDITS */
 #credits {
     background-color: #212529;
@@ -1074,5 +1085,8 @@ p.caption:first-child {
     }
     .step:last-of-type {
         height: 80vh;
+    }
+    .concordat-legend {
+        margin-bottom: -5rem;
     }
 }

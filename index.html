@@ -584,9 +584,9 @@
                 <div id="matrix" class="visualization col-8 d-none d-md-block">
                     <div class="row">
                         <div class='dropdown-container col-6 mb-3'>
-                            <div class='select-container'>
+                            <div class='select-container mb-1'>
                                 <label>Y Axis:</label>
-                                <select id='scatterplot-y' class="pr-lg-4 ml-2" onchange="matrix.draw(1954)">
+                                <select id='scatterplot-y' class="pr-lg-4 ml-2 custom-select" onchange="matrix.draw(1954)">
                                     <option value='capacity_group'>Capacity</option>
                                     <option value='committing_agencies'>Committing Agency</option>
                                     <option value='confession'>Confession</option>
@@ -597,7 +597,7 @@
                             </div>
                             <div class='select-container'>
                                 <label>X Axis:</label>
-                                <select id='scatterplot-x' class="pr-lg-4 ml-2" onchange="matrix.draw(1954)">
+                                <select id='scatterplot-x' class="pr-lg-4 ml-2 custom-select" onchange="matrix.draw(1954)">
                                     <option value='capacity_group'>Capacity</option>
                                     <option value='committing_agencies'>Committing Agency</option>
                                     <option value='confession'>Confession</option>
@@ -859,16 +859,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-11 col-lg-8 offset-1">
+                        <div class="col-md-11 col-lg-9 col-xl-8 offset-1 concordat-legend">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 406.9 74.4" xml:space="preserve">
                             	<text transform="matrix(1 0 0 1 2.0569 8.5)" class="legend-text legend-text-label">Belonging Concordat</text>
-                            	<text transform="matrix(1 0 0 1 145.0667 8.5)" class="legend-text legend-text-label">N° of occurences</text>
-                            	<text transform="matrix(1 0 0 1 243.2288 8.5)" class="legend-text legend-text-label">Edge direction</text>
-                            	<text transform="matrix(1 0 0 1 349.981 8.5)" class="legend-text legend-text-label">Edge color</text>
                             	<rect x="2.1" y="15.8" style="fill: #CFB76D;" width="8" height="8"/>
                             	<rect x="2.1" y="29.1" style="fill: #79745C;" width="8" height="8"/>
                             	<rect x="2.1" y="42.4" style="fill: #B5BA72;" width="8" height="8"/>
                             	<rect x="2.1" y="55.7" style="fill: #EAE6DA;" width="8" height="8"/>
+                                <text transform="matrix(1 0 0 1 14 21.4834)" class="legend-text legend-text-sublabel">Concordat of the Latin cantons</text>
+                            	<text transform="matrix(1 0 0 1 14 34.7676)" class="legend-text legend-text-sublabel">Concordat of Central and North-West Switzerland</text>
+                            	<text transform="matrix(1 0 0 1 14 48.0518)" class="legend-text legend-text-sublabel">Concordat of Eastern Switzerland</text>
+                            	<text transform="matrix(1 0 0 1 14 61.3359)" class="legend-text legend-text-sublabel">Not specified</text>
                             </svg>
                         </div>
                     </div>
