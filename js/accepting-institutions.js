@@ -350,11 +350,23 @@ function AcceptingInstitutions(id, data, swiss) {
             node = node.enter()
                 .append("circle")
                 .classed('node', true)
-                .attr("r", 0)
+                .attr("r", 1)
                 .style('cursor', 'pointer')
                 .merge(node)
                 .on('click', function(d) {
                     buildSidepanel(d.id, 1900);
+                })
+                .attr('data-toggle', 'tooltip')
+                .attr('data-placement', 'top')
+                .attr('data-html', 'true')
+                .attr('trigger', 'click')
+                .attr('title', function(d){
+                    let thisRecord = masterData.filter(function(e){
+                        return e.id == d.id;
+                    })[0]
+                    let name_landmark = thisRecord.name_landmark;
+                    let city = thisRecord.city;
+                    return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}</span></div>`;
                 })
             // .on('mouseenter', function(d) {
             //     d3.selectAll(id + ' .node')
@@ -389,7 +401,10 @@ function AcceptingInstitutions(id, data, swiss) {
 
             node.transition()
                 .duration(500)
-                .attr('r', fixedRadius);
+                .attr('r', fixedRadius)
+                .on("end", function(){
+                    $('[data-toggle="tooltip"]').tooltip()
+                });
 
             nodeLabel = nodeLabel.data(nodes, function(d) { return d.id; });
             nodeLabel.exit().remove();
