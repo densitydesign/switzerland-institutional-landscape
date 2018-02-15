@@ -222,7 +222,6 @@ p.caption:first-child {
 }
 
 .legend > span {
-    text-transform: capitalize;
     position: relative;
     padding-left: 20px;
     margin-bottom: 0.62rem;

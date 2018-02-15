@@ -5,7 +5,7 @@ function SurviesSankey(id, data) {
     let svg,
         width,
         height,
-        margin = {left:5,right:5,top:0,bottom: 0},
+        margin = { left: 5, right: 5, top: 0, bottom: 0 },
         nodesWidth = 15,
         nodesPadding,
         transitionDuration = 0;
@@ -82,13 +82,17 @@ function SurviesSankey(id, data) {
         legendItems = legendItems.enter()
             .append('span')
             .merge(legendItems)
-            .html(function(d){
-                let innerHtml = '<span class="color-square" style="background-color: '+ nodesColor(d) +';"></span> '+ d.replace('1_','').replace('2_','').replace('3_','').replace('4_','');
-                return innerHtml;
+            .html(function(d) {
+                function capitalizeFirstLetter(string) {
+                    return string.charAt(0).toUpperCase() + string.slice(1);
+                }
+                let innerHtml = '<span class="color-square" style="background-color: ' + nodesColor(d) + ';"></span> ' + capitalizeFirstLetter(d.replace('1_', '').replace('2_', '').replace('closed', 'closed or not yet opened').replace('3_', '').replace('4_', ''));
+
+                return capitalizeFirstLetter(innerHtml);
             })
 
 
-        .enter()
+            .enter()
             .append()
 
         // Gradients
@@ -154,7 +158,7 @@ function SurviesSankey(id, data) {
             .append('text')
             .classed('label', true)
             .classed('year-label', true)
-            .attr('x', function(d) { return nodesPosition(d) + nodesWidth/2 })
+            .attr('x', function(d) { return nodesPosition(d) + nodesWidth / 2 })
             .attr('y', 18)
             .attr('text-anchor', 'middle')
             .text(function(d) {
@@ -164,9 +168,9 @@ function SurviesSankey(id, data) {
                     return d;
                 }
             })
-            // .filter(function(d) { return nodesPosition(d) > width / 2 })
-            // .attr('x', function(d) { return nodesPosition(d) + 15 })
-            // .attr('text-anchor', 'end')
+        // .filter(function(d) { return nodesPosition(d) > width / 2 })
+        // .attr('x', function(d) { return nodesPosition(d) + 15 })
+        // .attr('text-anchor', 'end')
 
 
 
@@ -177,7 +181,7 @@ function SurviesSankey(id, data) {
             .nodePadding(nodesPadding)
             .extent([
                 [margin.left, 30],
-                [width-margin.right, height-margin.bottom]
+                [width - margin.right, height - margin.bottom]
             ])
             .iterations(0); // this forces the layout to keep the original nodes order in the dataset
 
@@ -204,12 +208,12 @@ function SurviesSankey(id, data) {
         })
 
         node = node
-                .data(data.nodes)
+            .data(data.nodes)
             .enter()
-                .append("g")
-                .on('click',function(d){
-                    buildSidepanelList(d.list);
-                });
+            .append("g")
+            .on('click', function(d) {
+                buildSidepanelList(d.list);
+            });
 
         node.append("rect")
             .attr("x", function(d) { return d.x0; })
@@ -270,7 +274,7 @@ function SurviesSankey(id, data) {
         if (model == 'mosaic') {
 
             d3.selectAll('.year-label')
-                .attr('x', function(d) { return nodesPosition(d) + nodesWidth/2 })
+                .attr('x', function(d) { return nodesPosition(d) + nodesWidth / 2 })
                 .transition()
                 .duration(transitionDuration)
                 .attr('x', function(d) { return mosaicPosition(d) + mosaicPosition.bandwidth() * .5 })
@@ -292,12 +296,12 @@ function SurviesSankey(id, data) {
                 .style('opacity', 0);
 
             link.style('opacity', .3)
-                .style('pointer-events','auto')
+                .style('pointer-events', 'auto')
                 .transition()
                 .delay(0)
                 .duration(transitionDuration * .5)
                 .style('opacity', 0)
-                .style('pointer-events','none');
+                .style('pointer-events', 'none');
 
         } else if (model == 'sankey') {
 
@@ -305,7 +309,7 @@ function SurviesSankey(id, data) {
                 .attr('x', function(d) { return mosaicPosition(d) + mosaicPosition.bandwidth() * .5 })
                 .transition()
                 .duration(transitionDuration)
-                .attr('x', function(d) { return nodesPosition(d) + nodesWidth/2 })
+                .attr('x', function(d) { return nodesPosition(d) + nodesWidth / 2 })
 
             d3.selectAll('.nodes rect')
                 .attr('x', function(d) { return mosaicPosition(d.group) })
@@ -324,16 +328,16 @@ function SurviesSankey(id, data) {
                 .style('opacity', 1);
 
             link.style('opacity', 0)
-                .style('pointer-events','none')
+                .style('pointer-events', 'none')
                 .transition()
                 .delay(transitionDuration * 0.5)
                 .duration(transitionDuration * .5)
                 .style('opacity', .3)
-                .style('pointer-events','auto');
+                .style('pointer-events', 'auto');
 
         }
 
-        transitionDuration =1000;
+        transitionDuration = 1000;
 
     } // draw
 
