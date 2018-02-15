@@ -106,6 +106,7 @@ body {
     font-family: 'Brandon Grotesque', sans-serif;
     -webkit-box-shadow: 0px 0px 5px #B0C5CE;
             box-shadow: 0px 0px 5px #B0C5CE;
+    color: #2f3236;
 }
 
 body.sidebar-open {
@@ -675,13 +676,10 @@ p.caption:first-child {
     border-radius: 2px;
 }
 
-#bubblechart circle.node {
+#bubblechart circle.node,
+#bubblechart .item circle {
     stroke: #074050;
     stroke-width: .5px;
-    cursor: pointer;
-}
-
-#bubblechart .legend g {
     cursor: pointer;
 }
 
@@ -737,7 +735,8 @@ p.caption:first-child {
     font-size: 6px;
 }
 .legend-circle {
-    stroke: none;
+    stroke: #074050;
+    stroke-width: .5;
 }
 .legend-edges {
     fill: none;
@@ -966,7 +965,7 @@ p.caption:first-child {
 }
 
 #circular-network .sidenote {
-    margin-bottom: -3rem;
+    margin-bottom: -6rem;
 }
 
 #network .legend-circle {

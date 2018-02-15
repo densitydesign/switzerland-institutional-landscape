@@ -15,7 +15,7 @@ function TypologiesGraph(id, data) {
 
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
-        svg = this.svg = d3.select(this.id).insert('svg', '.typologies-legend');
+        svg = this.svg = d3.select(this.id).append('svg');
     }
 
     // intialise containers of the graph
@@ -109,6 +109,7 @@ function TypologiesGraph(id, data) {
             .classed('node', true)
             .attr("r", 10)
             .style('fill', function(d) { return occurrence(d.count) })
+            .style('stroke', '#074050')
             .on('click', function(d) {
                 console.log(d);
                 nodes.forEach(function(n) {
