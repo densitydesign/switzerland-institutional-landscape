@@ -145,7 +145,7 @@ $(document).ready(function() {
     }
 
     // set waypoints for timeline
-    let timelineHeight = $('#timeline').outerHeight() + 54;
+    let timelineHeight = $('#timeline').outerHeight() + 60;
     // highlight social if going down, hide if going up
     let social_waypoint = new Waypoint({
         element: document.getElementById('timeline-text-soc'),
@@ -670,7 +670,7 @@ function buildSidepanel(id, year) {
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
-    $('[data-toggle="tooltip"]').tooltip('disable')
+    $('[data-toggle="tooltip"]').tooltip('disable');
 }
 
 function buildSidepanelList(list) {
@@ -803,6 +803,7 @@ function buildTimelineSidepanel(type, year) {
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
+    $('[data-toggle="tooltip"]').tooltip('disable');
 }
 
 function changeMatrixStatus(valY, valX) {
@@ -819,7 +820,7 @@ function closeSidepanel() {
 
     $('body').removeClass('sidebar-open modal-open');
     $('.sidepanel').removeClass('sidepanel-open');
-    $('[data-toggle="tooltip"]').tooltip('enable')
+    $('[data-toggle="tooltip"]').tooltip('enable');
 }
 
 function multiFilter(array, filters) {
