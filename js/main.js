@@ -33,7 +33,7 @@ let circularNetwork,
         'direction': 'into',
         'year': 1954
     }
-    aiDirection = 'into';
+aiDirection = 'into';
 
 $(document).ready(function() {
 
@@ -101,7 +101,7 @@ $(document).ready(function() {
                             .transition()
                             .duration(1000)
                             .style('opacity', 1e-6)
-                            .on('end', function(d){
+                            .on('end', function(d) {
                                 d3.select('.initial-loader').remove();
                             });
                     });
@@ -125,11 +125,11 @@ $(document).ready(function() {
             let hash = this.hash;
             // animate
             $('html, body').animate({
-               scrollTop: $(hash).offset().top
-            }, 500, function(){
-               // when done, add hash to url
-               // (default click behaviour)
-               window.location.hash = hash;
+                scrollTop: $(hash).offset().top
+            }, 500, function() {
+                // when done, add hash to url
+                // (default click behaviour)
+                window.location.hash = hash;
             });
 
         });
@@ -139,7 +139,7 @@ $(document).ready(function() {
             .duration(1000)
             .delay(1000)
             .style('opacity', 1e-6)
-            .on('end', function(d){
+            .on('end', function(d) {
                 d3.select('.initial-loader').remove();
             });
     }
@@ -212,15 +212,15 @@ $(document).ready(function() {
 
     if (loadingSize > 767) {
         // set events for timeline
-        $('.dots-det').click(function(){
+        $('.dots-det').click(function() {
             let dotId = $(this).attr('data-id');
             buildSidepanel(dotId, 1900);
         })
-        $('.dots-leg').click(function(){
+        $('.dots-leg').click(function() {
             let elementYear = $(this).attr('data-id');
             buildTimelineSidepanel('legal text', elementYear);
         })
-        $('.dots-soc').click(function(){
+        $('.dots-soc').click(function() {
             let elementYear = $(this).attr('data-id');
             buildTimelineSidepanel('events', elementYear);
         })
@@ -436,7 +436,7 @@ $(document).on('setWaypoints', function() {
         handler: function(direction) {
             if (direction == 'down') {
                 // console.log('call map_typologies 1954');
-                $('.year-all').fadeOut(function(){
+                $('.year-all').fadeOut(function() {
                     $(this).remove();
                     $('#maps .btn-maps-year').each(function(i) {
                         $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
@@ -447,14 +447,14 @@ $(document).on('setWaypoints', function() {
 
             } else {
                 // console.log('call map_all_institutions 1954');
-                $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(1900);closeSidepanel()" data-id="1900">All</span>`).fadeIn(function(){
+                $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(1900);closeSidepanel()" data-id="1900">All</span>`).fadeIn(function() {
                     $('#maps .btn-maps-year').each(function(i, btn) {
                         $(this).attr('onclick', 'map_all_institutions.draw(' + yearsAlternative[i] + ');closeSidepanel()');
                     });
                     changeButton(1900, containerMapsWidth, '.btn-maps-year', mapsSpacer);
                 });
                 map_all_institutions.draw(1900);
-                $('.year-all').on('click', function(){
+                $('.year-all').on('click', function() {
                     let newYear = $(this).attr('data-id');
                     changeButton(newYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
                 });
@@ -529,12 +529,12 @@ $(document).on('setWaypoints', function() {
         offset: '40%'
     });
 
-    $('#maps .btn-maps-year').on('click', function(){
+    $('#maps .btn-maps-year').on('click', function() {
         let newYear = $(this).attr('data-id');
         changeButton(newYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
     });
 
-    $('.year-switch').on('click', function(){
+    $('.year-switch').on('click', function() {
         let newYear = $(this).attr('data-id');
         changeButton(newYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
     })
@@ -543,9 +543,9 @@ $(document).on('setWaypoints', function() {
 
 function changeButton(year, width, buttons, spacer) {
     $(buttons).removeClass('active-year');
-    $(buttons + '[data-id='+ year +']').addClass('active-year');
+    $(buttons + '[data-id=' + year + ']').addClass('active-year');
     let indexButton = $(buttons).index($(buttons + '.active-year'));
-    $(buttons).each(function(i){
+    $(buttons).each(function(i) {
         if (i == indexButton) {
             $(this).css('left', width / 2);
             if ($(buttons).length == 6 && buttons == '.btn-maps-year' && spacer == 20) {
@@ -565,7 +565,7 @@ function changeButton(year, width, buttons, spacer) {
 
 function buildSidepanel(id, year) {
     let filters;
-    if (id.substring(0,2) == 'XX') {
+    if (id.substring(0, 2) == 'XX') {
 
         d3.select('.sidepanel-container')
             .transition()
@@ -623,7 +623,7 @@ function buildSidepanel(id, year) {
 
         panel.append('h6')
             .classed('sidepanel-data', true)
-            .text(function(d){
+            .text(function(d) {
                 if (year != 1940 && year != 1900) {
                     return 'Survey of ' + year;
                 } else if (year == 1900) {
@@ -656,12 +656,12 @@ function buildSidepanel(id, year) {
             .html('<span class="section-title">confession</span></br>' + filtered_institution[0].confession);
 
         panel.append('p')
-            .html('<span class="section-title">typology</span></br>' + filtered_institution[0].typologies.replace(/;/g,'; '));
+            .html('<span class="section-title">typology</span></br>' + filtered_institution[0].typologies.replace(/;/g, '; '));
 
         panel.append('div')
             .classed('sidepanel-button', true)
             .append('a')
-            .attr('href', function(d){
+            .attr('href', function(d) {
                 return './glossaries/institutions-glossary.html#selected-' + filtered_institution[0].id;
             })
             .attr('target', '_blank')
@@ -670,12 +670,13 @@ function buildSidepanel(id, year) {
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
+    $('[data-toggle="tooltip"]').tooltip('disable')
 }
 
 function buildSidepanelList(list) {
 
     let filtered_institution = [];
-    list.forEach(function(id){
+    list.forEach(function(id) {
         let match = masterData.find(function(element) {
             return element.id == id;
         });
@@ -703,7 +704,7 @@ function buildSidepanelList(list) {
         .text('Click on an institution to get more details:');
 
     let institutionList = panel.selectAll('.institution-list')
-        .data(filtered_institution, function(d){
+        .data(filtered_institution, function(d) {
             return d.id;
         });
 
@@ -720,10 +721,10 @@ function buildSidepanelList(list) {
         .style('opacity', 1e-6)
         .attr('target', '_blank')
         .merge(institutionList)
-        .text(function(d){
+        .text(function(d) {
             return d.id + ' - ' + d.institution;
         })
-        .attr('href',function(d){
+        .attr('href', function(d) {
             return './glossaries/institutions-glossary.html#selected-' + d.id;
         })
         .transition()
@@ -735,10 +736,10 @@ function buildSidepanelList(list) {
 }
 
 function buildTimelineSidepanel(type, year) {
-    let filters= {
-            type: [type],
-            date: [year]
-        };
+    let filters = {
+        type: [type],
+        date: [year]
+    };
     let filtered_element = multiFilter(timelineData, filters);
 
     d3.select('.sidepanel-container')
@@ -758,7 +759,7 @@ function buildTimelineSidepanel(type, year) {
 
     panel.append('h6')
         .classed('sidepanel-data', true)
-        .text(function(d){
+        .text(function(d) {
             if (type == 'events') {
                 return filtered_element[0].date;
             } else {
@@ -770,7 +771,7 @@ function buildTimelineSidepanel(type, year) {
     panel.append('h5')
         .classed('sidepanel-name', true)
         .style('text-transform', 'capitalize')
-        .text(function(d){
+        .text(function(d) {
             if (filtered_element[0].title == null) {
                 return filtered_element[0].type;
             } else {
@@ -793,7 +794,7 @@ function buildTimelineSidepanel(type, year) {
         panel.append('div')
             .classed('sidepanel-button', true)
             .append('a')
-            .attr('href', function(d){
+            .attr('href', function(d) {
                 return './glossaries/laws-glossary.html#selected-' + encodeURIComponent(filtered_element[0].id);
             })
             .attr('target', '_blank')
@@ -818,13 +819,14 @@ function closeSidepanel() {
 
     $('body').removeClass('sidebar-open modal-open');
     $('.sidepanel').removeClass('sidepanel-open');
+    $('[data-toggle="tooltip"]').tooltip('enable')
 }
 
 function multiFilter(array, filters) {
-  const filterKeys = Object.keys(filters);
-  // filters all elements passing the criteria
-  return array.filter((item) => {
-    // dynamically validate all filter criteria
-    return filterKeys.every(key => !!~filters[key].indexOf(item[key]));
-  });
+    const filterKeys = Object.keys(filters);
+    // filters all elements passing the criteria
+    return array.filter((item) => {
+        // dynamically validate all filter criteria
+        return filterKeys.every(key => !!~filters[key].indexOf(item[key]));
+    });
 }

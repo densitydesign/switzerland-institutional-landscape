@@ -232,7 +232,16 @@ function Bubblechart(id, data) {
                 .attr('data-toggle', 'tooltip')
                 .attr('data-placement', 'top')
                 .attr('data-html', 'true')
-                .attr('title', '<strong>landmark<br/>città, cantone</strong>')
+                .attr('trigger', 'click')
+                .attr('title', function(d){
+                    let thisRecord = masterData.filter(function(e){
+                        return e.id == d.id;
+                    })[0]
+                    let name_landmark = thisRecord.name_landmark;
+                    let city = thisRecord.city;
+                    let canton_code = thisRecord.canton_code;
+                    return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}, ${canton_code}</span></div>`;
+                })
                 // .on('mouseenter', function(d) {
                 //     svg.selectAll('.label')
                 //         .filter(function(e) { return e.id == d.id })
