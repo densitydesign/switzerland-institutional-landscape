@@ -362,12 +362,16 @@ function AcceptingInstitutions(id, data, swiss) {
                 .attr('data-html', 'true')
                 .attr('trigger', 'click')
                 .attr('title', function(d){
-                    let thisRecord = masterData.filter(function(e){
-                        return e.id == d.id;
-                    })[0]
-                    let name_landmark = thisRecord.name_landmark;
-                    let city = thisRecord.city;
-                    return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}</span></div>`;
+                    if (d.id.substring(0,2) == 'XX') {
+                        return `<div class="viz-tooltip"><span>Landmarks not specified</span></div>`;
+                    } else {
+                        let thisRecord = masterData.filter(function(e){
+                            return e.id == d.id;
+                        })[0]
+                        let name_landmark = thisRecord.name_landmark;
+                        let city = thisRecord.city;
+                        return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}</span></div>`;
+                    }
                 })
             // .on('mouseenter', function(d) {
             //     d3.selectAll(id + ' .node')

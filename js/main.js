@@ -16,6 +16,7 @@ let years = [1933, 1940, 1954, 1965, 1980],
     containerMatrixWidth,
     containerCircularWidth,
     containerAcceptingWidth,
+    containerAcceptingDirectionWidth,
     buttonWidth,
     bubblechartSpacer,
     typologiesSpacer,
@@ -96,7 +97,7 @@ $(document).ready(function() {
                         acceptingInstitutions.draw(acceptingInstitutionsConfig, 'FR');
 
                         $(document).trigger('setNavigation');
-                        
+
                     });
 
                 // load asynchronously the datasets for chapter 3
@@ -228,6 +229,7 @@ $(document).ready(function() {
         containerMatrixWidth = $('#matrix .btn-container').width();
         containerCircularWidth = $('#circular-network .btn-container').width();
         containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
+        containerAcceptingDirectionWidth = $('#accepting-institutions .btn-container-direction').width();
         buttonWidth = $('.btn-typologies-year').width();
 
         if (subchapterWidth > 960) {
@@ -250,6 +252,7 @@ $(document).ready(function() {
         changeButton(1954, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
         changeButton(1954, containerCircularWidth, '.btn-circular-year', 8);
         changeButton(1954, containerAcceptingWidth, '.btn-accepting-year', 8);
+        changeButton('into', containerAcceptingDirectionWidth, '.btn-direction', 8);
 
         $('.btn-bubblechart-year').on('click', function() {
             let newYear = $(this).attr('data-id');
@@ -284,6 +287,12 @@ $(document).ready(function() {
 
             changeButton(newYear, containerAcceptingWidth, '.btn-accepting-year', 8);
         });
+
+        $('.btn-direction').on('click', function() {
+            let newDirection = $(this).attr('data-id');
+
+            changeButton(newDirection, containerAcceptingDirectionWidth, '.btn-direction', 8);
+        });
     }
 
     // Add listener for window resize event, which triggers actions such as the resize of visualizations.
@@ -300,9 +309,11 @@ $(document).ready(function() {
                 mapYearState = $('#maps .btn-year.active-year').attr('data-id'),
                 matrixYearState = $('#matrix .active-year').attr('data-id'),
                 circularYearState = $('#circular-network .active-year').attr('data-id'),
-                acceptingYearState = $('#accepting-institutions .active-year').attr('data-id');
+                acceptingYearState = $('#accepting-institutions .btn-container .active-year').attr('data-id');
+                acceptingDirectionState = $('#accepting-institutions .btn-container-direction .active-year').attr('data-id');
 
             acceptingInstitutionsConfig.year = acceptingYearState;
+            acceptingInstitutionsConfig.direction = acceptingDirectionState;
 
             surviesSankey.draw(surveySankeyMode);
             bubblechart.draw(bubblechartYearState);
@@ -328,6 +339,7 @@ $(document).ready(function() {
             containerMatrixWidth = $('#matrix .btn-container').width();
             containerCircularWidth = $('#circular-network .btn-container').width();
             containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
+            containerAcceptingDirectionWidth = $('#accepting-institutions .btn-container-direction').width();
 
             let subchapterWidth = $('#temporal-framing').width();
             if (subchapterWidth > 960) {
@@ -353,6 +365,7 @@ $(document).ready(function() {
             changeButton(matrixYearState, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
             changeButton(circularYearState, containerCircularWidth, '.btn-circular-year', 8);
             changeButton(acceptingYearState, containerAcceptingWidth, '.btn-accepting-year', 8);
+            changeButton(acceptingDimensionState, containerAcceptingDimensionWidth, '.btn-dimension', 8);
         }
 
     }

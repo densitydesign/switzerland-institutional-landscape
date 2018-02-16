@@ -752,8 +752,8 @@
                                 <span>Selected Year</span>
                             </div>
                             <div class="col-12 btn-container mb-4">
-                                <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1954)" data-id="1954">1954</span>
-                                <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1965)" data-id="1965">1965</span>
+                                <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1954);closeSidepanel()" data-id="1954">1954</span>
+                                <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1965);closeSidepanel()" data-id="1965">1965</span>
                             </div>
                         </div>
                     </div>
@@ -838,22 +838,27 @@
                                 <span>Selected Year</span>
                             </div>
                             <div class="col-12 btn-container mb-4">
-                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig)" data-id="1954">1954</span>
-                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig)" data-id="1965">1965</span>
+                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig); closeSidepanel()" data-id="1954">1954</span>
+                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig); closeSidepanel()" data-id="1965">1965</span>
                             </div>
                         </div>
                         <div class="col-3" data-toggle="buttons">
                             <div class="col-12 text-center year-title mb-1">
                                 <span>Facilities accepting detainees</span>
                             </div>
-                            <div class="btn-group col-12 justify-content-center">
+                            <!-- <div class="btn-group col-12 justify-content-center">
                                 <label class="btn btn-secondary" onclick=" acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
                                     <input type="radio" name="options" id="aiFrom" autocomplete="off" checked> From
                                 </label>
                                 <label class="btn btn-secondary active" onclick=" acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
                                     <input type="radio" name="options" id="aiInto" autocomplete="off"> Into
                                 </label>
+                            </div> -->
+                            <div class="col-12 btn-container-direction mb-2">
+                                <span class="btn-year btn-direction" onclick="acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig); closeSidepanel()" data-id="from">From</span>
+                                <span class="btn-year btn-direction" onclick="acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig); closeSidepanel()" data-id="into">Into</span>
                             </div>
+
                             <div class="col-12 text-center year-title mb-1 selected-canton">
                                 <span>Fribourg</span>
                             </div>

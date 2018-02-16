@@ -786,7 +786,8 @@ p.caption:first-child {
     height: 60vh;
 }
 
-.btn-container {
+.btn-container,
+.btn-container-direction {
     position: relative;
     height: 22px;
 }
