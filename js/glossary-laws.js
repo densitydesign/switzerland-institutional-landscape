@@ -53,7 +53,7 @@ let mapGroup = svgMap.append('g').classed('map-swiss', true).attr('transform', '
     cantonsBorderContainer = mapGroup.append('g').classed('map-cantons', true),
     legendGroup = svgMap.append('g').classed('map-legend', true).attr('transform', 'translate(0,' + marginMap.top + ')');
 
-let infoContainer = d3.select('.description-container').append('div').classed('row', true);
+let infoContainer = d3.select('.description-container');
 
 d3.queue()
     .defer(d3.json, './../data_and_scripts/data/glossary-laws.json')
@@ -127,15 +127,30 @@ d3.queue()
             .style('fill', function(d){
                 return colorScale(d.range);
             })
+            .attr('data-toggle', 'tooltip')
+            .attr('data-placement', 'top')
+            .attr('data-html', 'true')
+            .attr('title', function(d){
+                let lawTitle = d.title;
+                let lawDate;
+                if (d.original_issue_date.length == 4) {
+                    lawDate = d.original_issue_date;
+                } else {
+                    lawDate = formatDate(d.issue_date);
+                }
+                return `<div class="viz-tooltip"><span>${lawTitle}</span><br/><span>${lawDate}</span></div>`;
+            })
             .on('click', function(d){
                 d3.selectAll('.law-dot')
                     .classed('law-selected', false)
+                    .classed('law-faded', true)
                     .transition()
                     .duration(350)
                     .ease(d3.easeBackIn.overshoot(4))
                     .attr('r', 5);
                 d3.select(this)
                     .classed('law-selected', true)
+                    .classed('law-faded', false)
                     .transition()
                     .duration(500)
                     .ease(d3.easeBackOut.overshoot(6))
@@ -168,8 +183,12 @@ d3.queue()
         if (location.hash && location.hash != '#no-selection') {
             let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
 
+            d3.selectAll('.law-dot')
+                .classed('law-faded', true);
+
             d3.select('.law-dot[data-id="' + location.hash.substring(10) + '"]')
                 .classed('law-selected', true)
+                .classed('law-faded', false)
                 .transition()
                 .duration(500)
                 .ease(d3.easeBackOut.overshoot(6))
@@ -189,6 +208,10 @@ d3.queue()
             drawMap(2000, 'none');
             populatePanel();
         }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     });
 
 function customAxis(g) {
@@ -249,6 +272,17 @@ function drawMap(selectedYear, canton) {
         .attr('data-canton', function(d){
             return d.properties.abbr;
         })
+        // .on('click', function(d){
+        //     let selectedLaws = lawsData.filter(function(el){
+        //         if (el.range == 'intercantonal' && el.canton.length > 0) {
+        //             let cantonList = el.canton.slice(24).split(', ');
+        //             return cantonList.indexOf(d.properties.abbr) != -1;
+        //         } else {
+        //             return el.canton == d.properties.abbr || el.canton == 'IN' || el.canton == 'CH';
+        //         }
+        //     });
+        //     populatePanel(selectedLaws);
+        // })
         .transition()
         .duration(500)
         .style('opacity', 0.8)
@@ -347,7 +381,11 @@ function populatePanel(data) {
     if (data != undefined) {
         // console.log(data);
         let lawData = [];
-        lawData.push(data);
+        if (Array.isArray(data)) {
+            lawData = data;
+        } else {
+            lawData.push(data);
+        }
 
         d3.select('.no-info-box')
             .transition()
@@ -359,6 +397,8 @@ function populatePanel(data) {
             .data(lawData);
 
         infoBox.enter()
+            .append('div')
+            .classed('row', true)
             .append('div')
             .attr('class', 'col-11 info-box mt-4 pl-4')
             .style('opacity', 1e-6)
@@ -443,7 +483,10 @@ function populatePanel(data) {
             .style('opacity', 1e-6)
             .remove();
 
-        let noInfoText = infoContainer.append('div')
+        let noInfoText = infoContainer
+            .append('div')
+            .classed('row', true)
+            .append('div')
             .attr('class', 'col-12 no-info-box text-center mt-5')
             .style('opacity', 1e-6)
             .text('No legal text selected.')

@@ -223,19 +223,25 @@ nav.navbar:last-of-type {
     cursor: default;
 }
 
+.geo-container::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 75%;
+    top: 14%;
+    right: 0;
+    border-left: 2px solid var(--uek-blue);
+}
+
+.description-container {
+    height: 50vh;
+    overflow-y: scroll;
+}
+
 .description-container .value {
     -webkit-box-flex: 5;
         -ms-flex-positive: 5;
                 flex-grow: 5;
-}
-
-.description-container .row::after {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 60%;
-    margin-top: 10%;
-    border-left: 2px solid var(--uek-blue);
 }
 
 .axis-group text {
@@ -247,6 +253,16 @@ nav.navbar:last-of-type {
     cursor: pointer;
     stroke: #000000;
     stroke-width: 1px;
+    opacity: 0.8;
+    -webkit-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+
+.law-dot.law-faded {
+    opacity: 0.4;
+}
+
+.law-dot.law-faded:hover {
     opacity: 0.8;
 }
 
