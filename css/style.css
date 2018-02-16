@@ -932,6 +932,7 @@ p.caption:first-child {
     stroke: rgba(0,0,0,.4);
     stroke-width: 1px;
     fill: #CFB76D;
+    cursor: pointer;
 }
 
 .custom-select {

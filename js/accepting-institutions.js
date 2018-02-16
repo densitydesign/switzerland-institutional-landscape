@@ -8,7 +8,8 @@ function AcceptingInstitutions(id, data, swiss) {
     let svg,
         nodes = [],
         mapData,
-        fixedRadius = 4;
+        fixedRadius = 4,
+        nav_waypoint;
 
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
@@ -543,6 +544,28 @@ function AcceptingInstitutions(id, data, swiss) {
                 .remove()
         }
 
+        // waypoint for hiding navbar at the bottom of the page
+        nav_waypoint = new Waypoint({
+            element: document.getElementById('last-paragraph'),
+            handler: function(direction) {
+                if (direction == 'down') {
+                    $('#navigation-sidebar').animate({opacity: 0}, 350);
+                } else {
+                    $('#navigation-sidebar').animate({opacity: 1}, 350);
+                }
+            },
+            offset: '70%'
+        });
+
+        if (d3.select('.initial-loader').node() != null) {
+            d3.select('.initial-loader').classed('content-loaded', true)
+                .transition()
+                .duration(1000)
+                .style('opacity', 1e-6)
+                .on('end', function(d) {
+                    d3.select('.initial-loader').remove();
+                });
+        }
 
     } // draw
 

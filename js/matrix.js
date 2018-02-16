@@ -178,8 +178,7 @@ function Matrix(id, data, categories) {
             })
             .attr('cy', function(d) {
                 return yScale(d.value.y);
-            })
-            .style('cursor', 'pointer');
+            });
 
         bubbles.transition()
             .duration(300)

@@ -235,7 +235,6 @@ function MapAll(id, swiss, data) {
                 .attr('data-toggle', 'tooltip')
                 .attr('data-placement', 'top')
                 .attr('data-html', 'true')
-                .attr('trigger', 'click')
                 .attr('title', function(d){
                     let thisRecord = masterData.filter(function(e){
                         return e.id == d.id;
@@ -371,7 +370,6 @@ function MapAll(id, swiss, data) {
                 .attr('data-toggle', 'tooltip')
                 .attr('data-placement', 'top')
                 .attr('data-html', 'true')
-                .attr('trigger', 'click')
                 .attr('title', function(d){
                     let thisRecord = masterData.filter(function(e){
                         return e.id == d.id;

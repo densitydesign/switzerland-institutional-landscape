@@ -89,21 +89,14 @@ $(document).ready(function() {
 
                         map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
 
-                        $(document).trigger('setNavigation');
-
                         circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
                         circularNetwork.draw(1954, 'FR');
 
                         acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, acceptingInstitutionsConfig);
                         acceptingInstitutions.draw(acceptingInstitutionsConfig, 'FR');
 
-                        d3.select('.initial-loader').classed('content-loaded', true)
-                            .transition()
-                            .duration(1000)
-                            .style('opacity', 1e-6)
-                            .on('end', function(d) {
-                                d3.select('.initial-loader').remove();
-                            });
+                        $(document).trigger('setNavigation');
+                        
                     });
 
                 // load asynchronously the datasets for chapter 3
@@ -362,33 +355,6 @@ $(document).ready(function() {
             changeButton(acceptingYearState, containerAcceptingWidth, '.btn-accepting-year', 8);
         }
 
-        // if (d3.select(bubblechart.id).node().offsetWidth - 30 != bubblechart.width) {
-        //     bubblechart.draw();
-        // }
-        //
-        // if (d3.select(typologiesGraph.id).node().offsetWidth - 30 != typologiesGraph.width) {
-        //     typologiesGraph.draw();
-        // }
-        //
-        // let mapState = $('#maps-visualization .map-container').attr('data-category');
-        // let yearState = $('#maps .btn-year.active-year').attr('data-id');
-        // if (mapState == 'hidden') {
-        //     map_typologies.draw(yearState);
-        // } else if (mapState == 'typology') {
-        //     map_all_institutions.draw(yearState);
-        // } else {
-        //     map_all_institutions.draw(yearState, mapState);
-        // }
-        //
-        // if (d3.select(circularNetwork.id).node().offsetWidth - 30 != circularNetwork.width) {
-        //     circularNetwork.draw();
-        // }
-        //
-        // if (d3.select(acceptingInstitutions.id).node().offsetWidth - 30 != acceptingInstitutions.width) {
-        //     acceptingInstitutions.draw(acceptingInstitutionsConfig);
-        // }
-
-
     }
 
     let resizeId;
@@ -537,7 +503,7 @@ $(document).on('setWaypoints', function() {
     $('.year-switch').on('click', function() {
         let newYear = $(this).attr('data-id');
         changeButton(newYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-    })
+    });
 
 });
 
