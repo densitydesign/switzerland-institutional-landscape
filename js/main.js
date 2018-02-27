@@ -10,6 +10,7 @@ let surviesSankey,
 
 let years = [1933, 1940, 1954, 1965, 1980],
     yearsAlternative = [1900, 1933, 1940, 1954, 1965, 1980],
+    mapStep = 'total',
     containerMapsWidth,
     containerBubblechartWidth,
     containerTypologiesWidth,
@@ -33,8 +34,12 @@ let circularNetwork,
     acceptingInstitutionsConfig = {
         'direction': 'into',
         'year': 1954
-    }
-aiDirection = 'into';
+    },
+    aiDirection = 'into';
+
+const timelineScroller = scrollama();
+const sankeyScroller = scrollama();
+const mapScroller = scrollama();
 
 $(document).ready(function() {
 
@@ -72,7 +77,7 @@ $(document).ready(function() {
                     typologiesGraph.draw(1954);
 
                     // To be called after all the charts have been initialized
-                    // call here the functions the initialize the waypoints for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
+                    // call here the functions the initialize scrollama for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
                     $(document).trigger('setWaypoints');
                 });
 
@@ -138,72 +143,17 @@ $(document).ready(function() {
             });
     }
 
-    // set waypoints for timeline
-    let timelineHeight = $('#timeline').outerHeight() + 60;
-    // highlight social if going down, hide if going up
-    let social_waypoint = new Waypoint({
-        element: document.getElementById('timeline-text-soc'),
-        handler: function(direction) {
-            if (direction == 'down') {
-                $('.timeline-dots').addClass('element-grayed');
-                $('.dots-soc').removeClass('element-grayed');
-                $('#texts .timeline-legend').addClass('element-grayed');
-                $('.timeline-legend-soc').removeClass('element-grayed');
-                $('.timeline-text').removeClass('text-highlighted');
-                $('#timeline-text-soc').addClass('text-highlighted');
-            } else {
-                $('.timeline-dots').removeClass('element-grayed');
-                $('#texts .timeline-legend').removeClass('element-grayed');
-                $('.timeline-text').removeClass('text-highlighted');
-            }
-        },
-        offset: timelineHeight
-    });
+    // set scrollama for timeline
+    let timelineOffset = ($('#timeline').outerHeight() + 60) / window.innerHeight;
 
-    let legislative_waypoint = new Waypoint({
-        element: document.getElementById('timeline-text-leg'),
-        handler: function(direction) {
-            if (direction == 'down') {
-                $('.timeline-dots').addClass('element-grayed');
-                $('.dots-leg').removeClass('element-grayed');
-                $('#texts .timeline-legend').addClass('element-grayed');
-                $('.timeline-legend-leg').removeClass('element-grayed');
-                $('.timeline-text').removeClass('text-highlighted');
-                $('#timeline-text-leg').addClass('text-highlighted');
-            } else {
-                $('.timeline-dots').addClass('element-grayed');
-                $('.dots-soc').removeClass('element-grayed');
-                $('#texts .timeline-legend').addClass('element-grayed');
-                $('.timeline-legend-soc').removeClass('element-grayed');
-                $('.timeline-text').removeClass('text-highlighted');
-                $('#timeline-text-soc').addClass('text-highlighted');
-            }
-        },
-        offset: timelineHeight
-    });
+    timelineScroller.setup({
+            step: '.timeline-text',
+            offset: timelineOffset
+        })
+        .onStepEnter(updateTimeline)
+        .onStepExit(resetTimeline);
 
-    let detention_waypoint = new Waypoint({
-        element: document.getElementById('timeline-text-det'),
-        handler: function(direction) {
-            if (direction == 'down') {
-                $('.timeline-dots').addClass('element-grayed');
-                $('.dots-det').removeClass('element-grayed');
-                $('#texts .timeline-legend').addClass('element-grayed');
-                $('.timeline-legend-det').removeClass('element-grayed');
-                $('.timeline-text').removeClass('text-highlighted');
-                $('#timeline-text-det').addClass('text-highlighted');
-            } else {
-                $('.timeline-dots').addClass('element-grayed');
-                $('.dots-leg').removeClass('element-grayed');
-                $('#texts .timeline-legend').addClass('element-grayed');
-                $('.timeline-legend-leg').removeClass('element-grayed');
-                $('.timeline-text').removeClass('text-highlighted');
-                $('#timeline-text-leg').addClass('text-highlighted');
-            }
-        },
-        offset: timelineHeight
-    });
-
+    // add year buttons only when screen is big enough
     if (loadingSize > 767) {
         // set events for timeline
         $('.dots-det').click(function() {
@@ -365,7 +315,12 @@ $(document).ready(function() {
             changeButton(matrixYearState, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
             changeButton(circularYearState, containerCircularWidth, '.btn-circular-year', 8);
             changeButton(acceptingYearState, containerAcceptingWidth, '.btn-accepting-year', 8);
-            changeButton(acceptingDimensionState, containerAcceptingDimensionWidth, '.btn-dimension', 8);
+            changeButton(acceptingDirectionState, containerAcceptingDirectionWidth, '.btn-direction', 8);
+
+            timelineScroller.resize();
+            sankeyScroller.resize();
+            mapScroller.resize();
+            navScroller.resize();
         }
 
     }
@@ -394,119 +349,22 @@ $(document).on('setWaypoints', function() {
     //set up initial active map button
     changeButton(1900, containerMapsWidth, '.btn-maps-year', mapsSpacer);
 
-    // initiate waypoints
+    // initiate scrollama
     // waypoint for sankey/mosaic. call function sankey if going down, mosaic if going up
-    let sankey_waypoint = new Waypoint({
-        element: document.getElementById('sankey-text'),
-        handler: function(direction) {
-            if (direction == 'down') {
-                surveySankeyMode = 'sankey';
-                surviesSankey.draw(surveySankeyMode);
-            } else {
-                surveySankeyMode = 'mosaic';
-                surviesSankey.draw(surveySankeyMode);
-            }
-        },
-        offset: '40%'
-    });
-    // waypoint for typology map. call function to draw the typologies if going down, to draw total map if going up
-    let typologies_waypoint = new Waypoint({
-        element: document.getElementById('map-typology-text'),
-        handler: function(direction) {
-            if (direction == 'down') {
-                // console.log('call map_typologies 1954');
-                $('.year-all').fadeOut(function() {
-                    $(this).remove();
-                    $('#maps .btn-maps-year').each(function(i) {
-                        $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
-                        changeButton(1965, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-                    });
-                })
-                map_typologies.draw(1965);
+    sankeyScroller.setup({
+            step: '#sankey-text',
+            offset: 0.4
+        })
+        .onStepEnter(updateSankey)
+        .onStepExit(resetSankey);
 
-            } else {
-                // console.log('call map_all_institutions 1954');
-                $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(1900);closeSidepanel()" data-id="1900">All</span>`).fadeIn(function() {
-                    $('#maps .btn-maps-year').each(function(i, btn) {
-                        $(this).attr('onclick', 'map_all_institutions.draw(' + yearsAlternative[i] + ');closeSidepanel()');
-                    });
-                    changeButton(1900, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-                });
-                map_all_institutions.draw(1900);
-                $('.year-all').on('click', function() {
-                    let newYear = $(this).attr('data-id');
-                    changeButton(newYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-                });
-            }
-        },
-        offset: '40%'
-    });
-    // waypoint for capacity map. call function to draw the capacities if going down, to draw typologies if going up
-    let capacity_waypoint = new Waypoint({
-        element: document.getElementById('map-capacity-text'),
-        handler: function(direction) {
-            if (direction == 'down') {
-                // console.log('call map_capacities 1954');
-                $('#maps .btn-maps-year').each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
-                });
-                map_all_institutions.draw(1954, 'capacity_group');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-            } else {
-                // console.log('call map_typologies 1954');
-                $('#maps .btn-maps-year').each(function(i) {;
-                    $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
-                });
-                map_typologies.draw(1965);
-                changeButton(1965, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-            }
-        },
-        offset: '40%'
-    });
-    // waypoint for confession map. call function to draw the confession if going down, to draw capacities if going up
-    let confession_waypoint = new Waypoint({
-        element: document.getElementById('map-confession-text'),
-        handler: function(direction) {
-            if (direction == 'down') {
-                // console.log('call map_confession 1954');
-                $('#maps .btn-maps-year').each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
-                });
-                map_all_institutions.draw(1965, 'confession');
-                changeButton(1965, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-            } else {
-                // console.log('call map_capacities 1954');
-                $('#maps .btn-maps-year').each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "capacity_group");closeSidepanel()');
-                });
-                map_all_institutions.draw(1954, 'capacity_group');
-                changeButton(1954, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-            }
-        },
-        offset: '40%'
-    });
-    // waypoint for gender map. call function to draw the gender if going down, to draw confession if going up
-    let gender_waypoint = new Waypoint({
-        element: document.getElementById('map-gender-text'),
-        handler: function(direction) {
-            if (direction == 'down') {
-                // console.log('call map_gender 1954');
-                $('#maps .btn-maps-year').each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "accepted_gender");closeSidepanel()');
-                });
-                map_all_institutions.draw(1965, 'accepted_gender');
-                changeButton(1965, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-            } else {
-                // console.log('call map_confession 1954');
-                $('#maps .btn-maps-year').each(function(i, btn) {
-                    $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "confession");closeSidepanel()');
-                });
-                map_all_institutions.draw(1965, 'confession');
-                changeButton(1965, containerMapsWidth, '.btn-maps-year', mapsSpacer);
-            }
-        },
-        offset: '40%'
-    });
+    // waypoint for typology map
+    mapScroller.setup({
+            step: '.step',
+            offset: 0.4
+        })
+        .onStepEnter(updateMap);
+
 
     $('#maps .btn-maps-year').on('click', function() {
         let newYear = $(this).attr('data-id');
@@ -809,4 +667,83 @@ function multiFilter(array, filters) {
         // dynamically validate all filter criteria
         return filterKeys.every(key => !!~filters[key].indexOf(item[key]));
     });
+}
+
+function updateTimeline(step) {
+    let currentEl = $('.timeline-text[data-scrollama-index="' + step.index + '"]').attr('data-step-type');
+
+    $('.timeline-dots').addClass('element-grayed');
+    $('.dots-' + currentEl).removeClass('element-grayed');
+    $('#texts .timeline-legend').addClass('element-grayed');
+    $('.timeline-legend-' + currentEl).removeClass('element-grayed');
+    $('.timeline-text').removeClass('text-highlighted');
+    $('#timeline-text-' + currentEl).addClass('text-highlighted');
+}
+
+function resetTimeline(step) {
+    if ((step.index == 0 && step.direction == 'up') || (step.index == 2 && step.direction == 'down')) {
+        $('.timeline-dots').removeClass('element-grayed');
+        $('#texts .timeline-legend').removeClass('element-grayed');
+        $('.timeline-text').removeClass('text-highlighted');
+    }
+}
+
+function updateSankey(step) {
+    if (step.direction == 'down') {
+        surveySankeyMode = 'sankey';
+        surviesSankey.draw(surveySankeyMode);
+    }
+}
+
+function resetSankey(step) {
+    if (step.direction == 'up') {
+        surveySankeyMode = 'mosaic';
+        surviesSankey.draw(surveySankeyMode);
+    }
+}
+
+function updateMap(step) {
+    let currentEl = $('.step[data-scrollama-index="' + step.index + '"]').attr('data-step-type');
+
+    if (currentEl != mapStep) {
+        let newMapYear = (currentEl == 'total') ? 1900 : (currentEl == 'capacity_group') ? 1954 : 1965;
+
+        if (currentEl == 'total') {
+            $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(` + newMapYear + `);closeSidepanel()" data-id="` + newMapYear + `">All</span>`).fadeIn(function() {
+                $('#maps .btn-maps-year').each(function(i, btn) {
+                    $(this).attr('onclick', 'map_all_institutions.draw(' + yearsAlternative[i] + ');closeSidepanel()');
+                });
+                changeButton(newMapYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
+            });
+            map_all_institutions.draw(newMapYear);
+            $('.year-all').on('click', function() {
+                let newYear = $(this).attr('data-id');
+                changeButton(newYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
+            });
+        } else if (currentEl == 'typology') {
+            if (step.direction == 'down') {
+                $('.year-all').fadeOut(function() {
+                    $(this).remove();
+                    $('#maps .btn-maps-year').each(function(i) {
+                        $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
+                        changeButton(newMapYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
+                    });
+                })
+                map_typologies.draw(newMapYear);
+            } else {
+                $('#maps .btn-maps-year').each(function(i) {;
+                    $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
+                });
+                map_typologies.draw(newMapYear);
+                changeButton(newMapYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
+            }
+        } else {
+            $('#maps .btn-maps-year').each(function(i, btn) {
+                $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', ' + currentEl + ');closeSidepanel()');
+            });
+            map_all_institutions.draw(newMapYear, currentEl);
+            changeButton(newMapYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
+        }
+        mapStep = currentEl;
+    }
 }

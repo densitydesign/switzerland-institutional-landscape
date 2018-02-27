@@ -320,13 +320,13 @@
                 </div>
 
                 <div class="col-md-7 col-lg-6 offset-md-2">
-                    <p id="timeline-text-soc" class="timeline-text mb-5">
+                    <p id="timeline-text-soc" class="timeline-text mb-5" data-step-type="soc">
                         <strong>Level 1, Social history:</strong> The introduction of social security measures in the 1940s (Old Age and Survivor Benefits Insurance, Disability Insurance, Family Allowances, Unemployment Insurance) - measures still in effect today - and Switzerland's ratification of the European Convention on Human Rights in 1974, had an important influence on the decisions taken by the authorities, as they offered viable alternatives for dealing with poverty and so called social deviance.
                     </p>
-                    <p id="timeline-text-leg" class="timeline-text mb-5">
+                    <p id="timeline-text-leg" class="timeline-text mb-5" data-step-type="leg">
                         <strong>Level 2, Legislation:</strong> This level shows the federal and cantonal laws that were of relevance to administrative detention measures. It makes clear the extent to which the use of administrative detention was influenced by cantonal structures. At the same time, a study of the wording of the laws reveals that the term "administrative detention" was only rarely employed; very often character descriptions are used for purposes of categorisation (e.g. indolent, dissolute, drunkard). This made it possible to take such social "abnormalities" and morally tinged categorisations as a basis for ordering administrative detention.
                     </p>
-                    <p id="timeline-text-det" class="timeline-text mb-5">
+                    <p id="timeline-text-det" class="timeline-text mb-5" data-step-type="det">
                         <strong>Level 3, Detention facilities:</strong> The majority of the detention facilities were established in the 19th and early 20th centuries. Between 1930 and 1980, they were supplemented by smaller facilities, which were used mainly for psychiatric cases. Beginning in the 1970s, there is a discernible trend towards the closing of district prisons, juvenile correction facilities, and labour colonies (presumably for purposes of centralisation under intercantonal conventions on correctional measures).
                     </p>
                 </div>
@@ -515,7 +515,7 @@
                     </div>
                 </div>
                 <div class="visualization-text col-md-4">
-                    <div id="map-total-text" class="step">
+                    <div id="map-total-text" class="step" data-step-type="total">
                         <div class="row">
                             <div class="col-10">
                                 <h3 class="mb-2"><a href="#geography-overview"></a>Overview</h3>
@@ -526,7 +526,7 @@
                         </div>
                         <p>This map provides a complete overview of the 648 facilities in operation in the years indicated. It is possible to identify areas of concentration and gaps in the geographic distribution. In <strong class="underlined year-switch" onclick="map_all_institutions.draw(1954);closeSidepanel()" data-id="1954"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1954</strong> for example, most of the surveyed facilities were spread all over the Mittelland with certain concentrations. As shown in the year of <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965);closeSidepanel()" data-id="1965"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1965</strong> lots of intistutions are gathered in urban centers like Zurich, Basel, Berne and Geneva, but also in rural areas like the Seeland.</p>
                     </div>
-                    <div id="map-typology-text" class="step">
+                    <div id="map-typology-text" class="step" data-step-type="typology">
                         <div class="row">
                             <div class="col-10">
                                 <h3 class="mb-2"><a href="#geography-typology"></a>Distribution by facility type</h3>
@@ -537,7 +537,7 @@
                         </div>
                         <p>The following types of detention facilities existed: forced labour institutions, labour colonies, juvenile reformatories, prisons, psychiatric institutions, municipal poorhouses (mentioned only in the <strong class="underlined year-switch" onclick="map_typologies.draw(1933);closeSidepanel()" data-id="1933"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1933</strong> source) and facilities for persons with special needs. All of these facility types were used for the confinement of administrative detainees. Conditions varied widely from canton to canton. With a closer look on the year <strong class="underlined year-switch" onclick="map_typologies.draw(1965);closeSidepanel()" data-id="1965"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1965</strong>, prisons were quite evenly spread all over Switzerland, because most districts had their own small prison. Furthermore, educational institutions were located in urban areas. Many forced labour institutions happened to be in previously drained rural and plain areas such as the Seeland (Etablissements de Bellechasse, Anstalten Witzwil, St. Johannsen, Arbeiterheim Tannenhof) or the Orbebene (Etablissements de la Plaine de l'Orbe).</p>
                     </div>
-                    <div id="map-capacity-text" class="step">
+                    <div id="map-capacity-text" class="step" data-step-type="capacity_group">
                         <div class="row">
                             <div class="col-10">
                                 <h3 class="mb-2"><a href="#geography-capacities"></a>Institutional capacities</h3>
@@ -549,7 +549,7 @@
                         <p>With the help of this map we would like to show how many places were available in each of the facilities. Here also, one can see how broad a range of facilities there was, from the smallest with a capacity of up to 19 places to the larger-sized ones with capacities of 150 or even 200 and more inmates.</p>
                         <p>In <strong class="underlined year-switch" onclick="map_all_institutions.draw(1954, 'capacity_group');closeSidepanel()" data-id="1954"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1954</strong>, considering forced labor institutions, labor colonies and juvenile reformatories only, almost one fifth of the available space for inmates in Switzerland was situated in just five facilities of the Seeland area: Etablissements de Bellechasse, Institutions of Witzwil, Arbeiterheim Tannenhof, St. Johannsen and Staatliche Erziehungsheim für Knaben. That is 1520 places of an estimated total of 9000. Many inmates of these institutions were meant to work on the plains and contribute to the income of the institution. Today, Witzwil and Bellechasse are two of the largest producers of agricultural goods in Switzerland.</p>
                     </div>
-                    <div id="map-confession-text" class="step">
+                    <div id="map-confession-text" class="step" data-step-type="confession">
                         <div class="row">
                             <div class="col-10">
                                 <h3 class="mb-2"><a href="#geography-denominations"></a>Distribution by denomination</h3>
@@ -561,7 +561,7 @@
                         <p>Religious confession and gender were two of the main criteria for deciding on the placement of detainees within the facilities: we distinguish between interdenominational, Protestant and Catholic ones. In the case of the poor houses the denomination remained often unknown. Interdenominational institutions were most likely state run and rather of large size, whereas Catholic and Protestant affiliated facilities were rather privately funded. For example, in  <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965, 'confession');closeSidepanel()" data-id="1965"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1965</strong> a total of 84 percent of the institutions were interdenominational (the lion's share being district prisons), 11 percent Catholic and 5 percent Protestant. Facilities that were restricted to a single confession were in most cases educational ones. Amongst the Catholic ones are Schweizerisches Mädchenheim in Richterswil ZH, Kinderdörfli Rathausen LU and Institution Bon Pasteuer in Lully FR and amongst the Protestant ones are the Mütter- und Kinderheim in Lausen BL, Landheim Brüttisellen in Bassersdorf ZH and Gemeinnütziges Erziehungsheim Schloss Kasteln in Oberflachs AG.
                         </p>
                     </div>
-                    <div id="map-gender-text" class="step">
+                    <div id="map-gender-text" class="step" data-step-type="accepted_gender">
                         <div class="row">
                             <div class="col-10">
                                 <h3 class="mb-2"><a href="#geography-gender"></a>Distribution by gender</h3>
@@ -974,7 +974,8 @@
     <script src="https://d3js.org/topojson.v3.min.js" charset="utf-8"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-    <script src="./js/noframework.waypoints.min.js"></script>
+    <script src='https://unpkg.com/intersection-observer'></script>
+    <script src='https://unpkg.com/scrollama'></script>
     <!-- Visualizations -->
     <script src="./js/timeline.js"></script>
     <script src="./js/sankey-della-morte.js"></script>

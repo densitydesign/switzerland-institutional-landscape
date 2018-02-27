@@ -1,3 +1,6 @@
+//set variable outside the function to make it accessible globally
+const navScroller = scrollama();
+
 function AcceptingInstitutions(id, data, swiss) {
 
     // console.log('accepting institutions');
@@ -8,8 +11,7 @@ function AcceptingInstitutions(id, data, swiss) {
     let svg,
         nodes = [],
         mapData,
-        fixedRadius = 4,
-        nav_waypoint;
+        fixedRadius = 4;
 
     if (!this.svg) {
         // check if svg has been craeted, if not runs init()
@@ -548,18 +550,13 @@ function AcceptingInstitutions(id, data, swiss) {
                 .remove()
         }
 
-        // waypoint for hiding navbar at the bottom of the page
-        nav_waypoint = new Waypoint({
-            element: document.getElementById('last-paragraph'),
-            handler: function(direction) {
-                if (direction == 'down') {
-                    $('#navigation-sidebar').animate({opacity: 0}, 350);
-                } else {
-                    $('#navigation-sidebar').animate({opacity: 1}, 350);
-                }
-            },
-            offset: '70%'
-        });
+        // scrollama for hiding navbar at the bottom of the page
+        navScroller.setup({
+                step: '#last-paragraph',
+                offset: 0.7
+            })
+            .onStepEnter(updateNavbar)
+            .onStepExit(resetNavbar);
 
         if (d3.select('.initial-loader').node() != null) {
             d3.select('.initial-loader').classed('content-loaded', true)
@@ -572,5 +569,16 @@ function AcceptingInstitutions(id, data, swiss) {
         }
 
     } // draw
+
+    function updateNavbar(step) {
+        if (step.direction == 'down') {
+            $('#navigation-sidebar').animate({opacity: 0}, 350);
+        }
+    }
+    function resetNavbar(step) {
+        if (step.direction == 'up') {
+            $('#navigation-sidebar').animate({opacity: 1}, 350);
+        }
+    }
 
 } // all
