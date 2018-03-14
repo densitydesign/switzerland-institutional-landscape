@@ -331,9 +331,11 @@ p.caption:first-child {
 
 span.interact-with-viz:before {
     content: 'Interact with the visualisation';
+    display: inline-block;
     font-size: 0.666rem;
     font-weight: 600;
     letter-spacing: 0.8px;
+    margin-bottom: 4px;
     text-transform: uppercase;
 }
 
@@ -343,7 +345,7 @@ span.interact-with-viz {
     display: block;
     border-radius: 3px;
     padding: 15px;
-    padding-top: 8px;
+    padding-top: 0.65rem;
     margin-bottom: 1rem;
 }
 
