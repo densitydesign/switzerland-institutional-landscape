@@ -193,6 +193,9 @@
             <div class="row">
                 <div class="col-md-8 col-lg-6 offset-md-2">
                     <p id="timeline-text-intro">The timeline covers the period from 1930 to 1980. Our intent is to provide an overview of developments in the social history of Switzerland during that period. The timeline also charts the relevant legislative developments and, at the same time, indicates which detention facilities were opened or closed during those years. The simultaneous display of events at these three levels helps to situate the phenomenon of administrative detention in a larger historical scale.</p>
+                    <span class="interact-with-viz">
+                        <p>The chart represent majour events happened between 1930 and 1990. Move <span class="action"><i class="fas fa-mouse-pointer"></i> mouse cursor</span> over any element to learn name and date of events, <span class="action"><i class="far fa-hand-pointer"></i> click</span> on to reveal more information in the side panel.</p>
+                    </span>
                 </div>
             </div>
 
@@ -372,6 +375,9 @@
                         <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i></p>
                     </div>
                     <p>This segment is about the sources, their quality and validity. The information on which the charts are based was gathered from five sources respectively lists of the facilities and institutions that were used for correctional purposes and the execution of administrative detention orders. Those directories were compiled at different times and by different authors. Common to all of the directories is that they cover the whole of Switzerland. In addition, at the time when they were compiled, they all served as guides (reference works) for committing agencies and are comparable in the amount of detail they include.</p>
+                    <span class="interact-with-viz">
+                        <p>The chart represent the surveyed facilities and their corresponding status year by year. <span class="action"><i class="fas fa-angle-double-down"></i> scroll down</span> to intertween from mosaic plot to a sankey diagram, <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any block or flow to reveal the list of facilities beloinging to the corresponding group.</p>
+                    </span>
                     <p>They vary widely in the perspectives from which they were prepared though, and thus focus on different types of institutions. Three of the directories contain all of the data we needed for preparing the charts (1954, 1965, 1980). For the other two, the lists of 1933 and the 1940ies, it was necessary for us to consult additional sources as well, in order to gather the complete information. Poorhouses are mentioned only in the first source, whereas the list of 1980 sheds light only on prisons. This also illustrates one of the weaknesses of these sources, since e.g. poor houses played a decisive role in dealing with poverty among the elderly and for the internment of persons of advanced age.</p>
                     <p id="sankey-text">In addition to the already mentioned mosaic-diagramm, the following sankey-diagramm shows the shifts of the observed institutions between the surveyed years. A total of 648 institutions are enlisted in the five directories, although not all of them necessarily appear in each individual survey (directory). How many of the institutions were open, but not surveyed by the authors and therefore are a blind spot in the data? The 1933 source is one of the most representative, as we find there all categories of facilities (poorhouses, juvenile reformatory, labour colonies, correctional labour facilities, institutions for persons with special needs, psychiatric facilities, alcoholic asylums) that are of interest to us in connection with the use of administrative detention. The category of "poorhouses" was left out in the other sources (and therefore labelled as uncertain); the focus of those sources is more on correctional labour and correctional facilities. In addition, some of the institutions were closed over the years, while new ones were opened.</p>
                 </div>
@@ -415,6 +421,9 @@
             <div class="row">
                 <div class="col-md-7 col-lg-6 offset-md-2">
                     <p>The institutions were often used to confine multiple categories of individuals ("drunkards", "indolent", "dissolute") who were interned on various grounds (under criminal law, civil law, administrative detention/cantonal internment laws). The Bellechasse facilities are typical of such institutions. The Bellechasse complex included a prison, an alcohol rehabilitation facility, and a correctional labour facility.</p>
+                    <span class="interact-with-viz">
+                        <p>In the chart, facilities are clustered depending on the number of typologies of individuals they hosted. Move the <span class="action"><i class="fas fa-mouse-pointer"></i> mouse cursor</span> over any element to learn name and location of facilities, <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any element to reveal more information in the side panel.</p>
+                    </span>
                     <p>The chart below shows the most common combinations of facility types. One can see, for instance, that in 1954 the combination Asylums for alcoholics - psychiatric facilities was common.</p>
                 </div>
                 <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
@@ -425,6 +434,7 @@
                     <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
                     <p class="caption mb-2"><a href="./data_and_scripts/data/bubblechart.json" download="1.3_purposes_of_institutions.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
                 </div>
+                
             </div>
             <div class="row visualisation">
                 <!-- <div class="col-12 text-left">
@@ -471,6 +481,13 @@
                         </svg>
                     </div>
                     <!-- to be filled with d3 -->
+                </div>
+                <div class="col-12">
+                    <div class="col-md-7 col-lg-6 offset-md-2">
+                        <span class="interact-with-viz">
+                            <p>[description to be written]</p>
+                        </span>
+                    </div>
                 </div>
                 <div class="col-3 col-lg-4 pl-4 mt-3 d-none d-md-block">
                     <div class="interaction-note mb-2">
@@ -525,6 +542,9 @@
                             <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i></p>
                         </div>
                         <p>This map provides a complete overview of the 648 facilities in operation in the years indicated. It is possible to identify areas of concentration and gaps in the geographic distribution. In <strong class="underlined year-switch" onclick="map_all_institutions.draw(1954);closeSidepanel()" data-id="1954"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1954</strong> for example, most of the surveyed facilities were spread all over the Mittelland with certain concentrations. As shown in the year of <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965);closeSidepanel()" data-id="1965"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1965</strong> lots of intistutions are gathered in urban centers like Zurich, Basel, Berne and Geneva, but also in rural areas like the Seeland.</p>
+                        <span class="interact-with-viz">
+                            <p>[description to be written]</p>
+                        </span>
                     </div>
                     <div id="map-typology-text" class="step" data-step-type="typology">
                         <div class="row">

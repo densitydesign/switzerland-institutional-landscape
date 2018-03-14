@@ -78,6 +78,7 @@
     --uek-middle-light-blue: #E7EDEF;
     --uek-light-blue: #FCFDFD;
     --uek-dark-blue: #799BAA;
+    --uek-green: #81AA91;
     --glossary-nav-heigth: 134px;
 }
 
@@ -326,6 +327,33 @@ p.caption:first-child {
     /*font-style: italic;*/
     text-transform: uppercase;
     color: #666;
+}
+
+span.interact-with-viz:before {
+    content: 'Interact with the visualisation';
+    font-size: 0.666rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+span.interact-with-viz {
+    background-color: #FCFFFD;
+    border: 1px solid var(--uek-green);
+    display: block;
+    border-radius: 3px;
+    padding: 15px;
+    padding-top: 8px;
+    margin-bottom: 1rem;
+}
+
+span.interact-with-viz p:last-child {
+    margin-bottom: 0px;
+}
+
+span.interact-with-viz .action {
+    color: var(--uek-green);
+    /*font-weight: 600;*/
 }
 
 /* Cover */
