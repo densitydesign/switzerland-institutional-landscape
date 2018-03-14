@@ -235,7 +235,7 @@ function CircularNetwork(id, data) {
                     return 1;
                 }
             })
-            .on('click', function(d) {
+            .on('dblclick', function(d) {
                 let involved_links = links.filter(function(e) {
                     return d.id == e.sourceName || d.id == e.targetName;
                 })
@@ -272,7 +272,7 @@ function CircularNetwork(id, data) {
                 // d3.select(this).style('opacity', 1);
 
             })
-            .on('mouseenter', function(d) {
+            .on('click', function(d) {
                 d3.selectAll(id + ' .node').style('opacity', 0.1);
 
                 d3.selectAll(id + ' .link').each(function(l) {
@@ -292,7 +292,7 @@ function CircularNetwork(id, data) {
                 });
                 d3.select(this).style('opacity', 1);
             })
-            .on('mouseleave', function(d) {
+            .on('xxxmouseleave', function(d) {
                 d3.selectAll(id + ' .node').style('opacity', 1);
                 d3.selectAll(id + ' .link').style('opacity', .5);
             });

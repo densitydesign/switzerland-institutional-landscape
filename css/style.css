@@ -355,7 +355,7 @@ span.interact-with-viz p:last-child {
 
 span.interact-with-viz .action {
     color: var(--uek-green);
-    /*font-weight: 600;*/
+    white-space: pre;
 }
 
 /* Cover */
