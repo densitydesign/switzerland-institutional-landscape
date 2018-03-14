@@ -88,6 +88,8 @@ html {
     background-color: rgba(176, 197, 206, 0.1);
     font-size: 18px;
     line-height: 1.55rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 ::-moz-selection {
@@ -143,10 +145,15 @@ h3 {
 }
 
 hr {
-    border: 0.5px solid rgba(0,0,0,.4);
-    width: 66%;
+
 }
-hr:before {
+.section-divider {
+    border: 0;
+    border-bottom: 1px solid #999;
+    -webkit-transform: rotate(5.7deg);
+            transform: rotate(5.7deg);
+}
+/* hr:before {
     content:'***';
     background: white;
     font-weight: 400;
@@ -157,7 +164,7 @@ hr:before {
     bottom: 14px;
     color: rgba(0,0,0,.4);
     text-align: center;
-}
+} */
 
 p {
     margin-bottom: 1rem;
