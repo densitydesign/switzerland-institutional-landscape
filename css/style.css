@@ -1,53 +1,7 @@
 /* Import Fonts */
 
 @import '../fonts/Brandon_reg-export/Brandon_reg.css';
-/* @import '../fonts/Brandon_reg_it-export/Brandon_reg_it.css'; */
 @import '../fonts/Brandon_bld-export/Brandon_bld.css';
-/* @import '../fonts/Brandon_bld_it-export/Brandon_bld_it.css'; */
-/* unicode-range: U+000-5FF; /* Latin glyphs */
-
-/* @font-face {
-    font-family: "Brandon Grotesque";
-    src: url("../fonts/Brandon_reg-export/Brandon_reg.woff2") format("woff2"),
-         url("../fonts/Brandon_reg-export/Brandon_reg.woff") format("woff"),
-         url("../fonts/Brandon_reg-export/Brandon_reg.otf") format("opentype");
-    font-style: normal;
-    font-weight: 400;
-    unicode-range: U+000-5FF;
-}
-@font-face {
-    font-family: "Brandon Grotesque";
-    src: url("../fonts/Brandon_bld-export/Brandon_bld.woff2") format("woff2"),
-         url("../fonts/Brandon_bld-export/Brandon_bld.woff") format("woff"),
-         url("../fonts/Brandon_bld-export/Brandon_bld.otf") format("opentype");
-    font-style: normal;
-    font-weight: 600;
-    unicode-range: U+000-5FF;
-} */
-
-/* @-webkit-keyframes loadSwiss {
-    0% {
-        stroke-dashoffset: 1467;
-    }
-    50% {
-        stroke-dashoffset: 0;
-    }
-    100% {
-        stroke-dashoffset: -1467;
-    }
-}
-
-@keyframes loadSwiss {
-    0% {
-        stroke-dashoffset: 1467;
-    }
-    50% {
-        stroke-dashoffset: 0;
-    }
-    100% {
-        stroke-dashoffset: -1467;
-    }
-} */
 
 @-webkit-keyframes loadSwiss {
     0% {
@@ -89,6 +43,8 @@ html {
     background-color: rgba(176, 197, 206, 0.1);
     font-size: 18px;
     line-height: 1.55rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 ::-moz-selection {
@@ -144,20 +100,13 @@ h3 {
 }
 
 hr {
-    border: 0.5px solid rgba(0,0,0,.4);
-    width: 66%;
+
 }
-hr:before {
-    content:'***';
-    background: white;
-    font-weight: 400;
-    padding: 0 5px;
-    font-size: 1.5em;
-    position: relative;
-    left: 47%;
-    bottom: 14px;
-    color: rgba(0,0,0,.4);
-    text-align: center;
+.section-divider {
+    border: 0;
+    border-bottom: 1px solid #999;
+    -webkit-transform: rotate(5.7deg);
+            transform: rotate(5.7deg);
 }
 
 p {
