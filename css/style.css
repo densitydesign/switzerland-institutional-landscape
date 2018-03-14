@@ -279,7 +279,7 @@ p.caption:first-child {
 }
 
 span.interact-with-viz:before {
-    content: 'Interact with the visualisation';
+    content: 'How to interact with the visualisation';
     display: inline-block;
     font-size: 0.666rem;
     font-weight: 600;
