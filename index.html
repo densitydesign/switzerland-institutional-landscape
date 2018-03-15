@@ -341,13 +341,13 @@
                     </div> -->
                 </div>
                 <div class="col-md-7 col-lg-6 offset-md-2">
-                    <p id="timeline-text-soc" class="timeline-text mb-5 pt-4" data-step-type="soc">
+                    <p id="timeline-text-soc" class="timeline-text mb-5 pt-5" data-step-type="soc">
                         <strong>Level 1, Social history:</strong> The introduction of social security measures in the 1940s (Old Age and Survivor Benefits Insurance, Disability Insurance, Family Allowances, Unemployment Insurance) - measures still in effect today - and Switzerland's ratification of the European Convention on Human Rights in 1974, had an important influence on the decisions taken by the authorities, as they offered viable alternatives for dealing with poverty and so called social deviance.
                     </p>
-                    <p id="timeline-text-leg" class="timeline-text mb-5 pt-4" data-step-type="leg">
+                    <p id="timeline-text-leg" class="timeline-text mb-5 pt-5" data-step-type="leg">
                         <strong>Level 2, Legislation:</strong> This level shows the federal and cantonal laws that were of relevance to administrative detention measures. It makes clear the extent to which the use of administrative detention was influenced by cantonal structures. At the same time, a study of the wording of the laws reveals that the term "administrative detention" was only rarely employed; very often character descriptions are used for purposes of categorisation (e.g. indolent, dissolute, drunkard). This made it possible to take such social "abnormalities" and morally tinged categorisations as a basis for ordering administrative detention.
                     </p>
-                    <p id="timeline-text-det" class="timeline-text mb-5 pt-4" data-step-type="det">
+                    <p id="timeline-text-det" class="timeline-text mb-5 pt-5" data-step-type="det">
                         <strong>Level 3, Detention facilities:</strong> The majority of the detention facilities were established in the 19th and early 20th centuries. Between 1930 and 1980, they were supplemented by smaller facilities, which were used mainly for psychiatric cases. Beginning in the 1970s, there is a discernible trend towards the closing of district prisons, juvenile correction facilities, and labour colonies (presumably for purposes of centralisation under intercantonal conventions on correctional measures).
                     </p>
                 </div>
@@ -412,6 +412,14 @@
                     <h3 class="mb-3">Facility purposes</h3>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-7 col-lg-6 offset-md-2">
+                    <p>The institutions were often used to confine multiple categories of individuals ("drunkards", "indolent", "dissolute") who were interned on various grounds (under criminal law, civil law, administrative detention/cantonal internment laws). The Bellechasse facilities are typical of such institutions. The Bellechasse complex included a prison, an alcohol rehabilitation facility, and a correctional labour facility.</p>
+                </div>
+                <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
+                    <!-- Empty -->
+                </div>
+            </div>
             <div class="row visualisation">
                 <div id="bubblechart" class="col-12 pt-3 mb-4">
                     <!-- <div class="btn-group" role="group" aria-label="Basic example">
@@ -438,9 +446,8 @@
             </div>
             <div class="row">
                 <div class="col-md-7 col-lg-6 offset-md-2">
-                    <p>The institutions were often used to confine multiple categories of individuals ("drunkards", "indolent", "dissolute") who were interned on various grounds (under criminal law, civil law, administrative detention/cantonal internment laws). The Bellechasse facilities are typical of such institutions. The Bellechasse complex included a prison, an alcohol rehabilitation facility, and a correctional labour facility.</p>
                     <span class="interact-with-viz">
-                        <p>In the chart above, facilities are clustered depending on the number of typologies of individuals they hosted.</br>Move the <span class="action"><i class="fas fa-mouse-pointer"></i> mouse cursor</span> over any element to learn name and location of facilities, <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any element to reveal further information in the side panel. Switch between survey years by using the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the visualisation.</p>
+                        <p>In the chart above, facilities are clustered depending on the number of typologies of individuals they hosted.</br>Move the <span class="action"><i class="fas fa-mouse-pointer"></i> mouse cursor</span> over any element to learn name and location of facilities, <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any element to reveal further information in the side panel. Switch between survey years by using the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the visualisation. <span class="action"><i class="fas fa-mouse-pointer"></i> hover</span> on legend items to highlight corresponding elements.</p>
                     </span>
                     <p>The chart below shows the most common combinations of facility types. One can see, for instance, that in 1954 the combination Asylums for alcoholics - psychiatric facilities was common.</p>
                 </div>
@@ -454,16 +461,6 @@
                 </div>
             </div>
             <div class="row visualisation">
-                <!-- <div class="col-12 text-left">
-                    <h4>Combinations of facility types</h4>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1933)">1933</button>
-                        <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1940)">1940</button>
-                        <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1954)">1954</button>
-                        <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1965)">1965</button>
-                        <button type="button" class="btn btn-secondary" onclick="typologiesGraph.draw(1980)">1980</button>
-                    </div>
-                </div> -->
                 <div id="typologies-graph" class="col-8 col-lg-7 offset-1 mt-3">
                     <div class="col-12 typologies-buttons mx-auto">
                         <div class="col-12 text-center year-title">
@@ -499,17 +496,19 @@
                     </div>
                     <!-- to be filled with d3 -->
                 </div>
-                <div class="col-12">
-                    <div class="col-md-7 col-lg-6 offset-md-2">
-                        <span class="interact-with-viz">
-                            <p>[description to be written]</p>
-                        </span>
-                    </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-lg-6 offset-md-2">
+                    <span class="interact-with-viz">
+                        <p>[Description to be written] </p>
+                    </span>
+                    <p>[Here could be more text.]</p>
                 </div>
-                <div class="col-3 col-lg-4 pl-4 mt-3 d-none d-md-block">
-                    <div class="interaction-note mb-2">
-                        <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i></p>
-                    </div>
+                <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
+                    <!-- <div class="interaction-note mb-2">
+                        <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i><i class="fas fa-mouse-pointer fa-sm" data-fa-transform="right-14"></i></p>
+                    </div> -->
                     <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.4 – Co-occurances of typologyes</p>
                     <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
                     <p class="caption mb-2"><a href="./data_and_scripts/data/typologies-graph.json" download="1.4_cooccurances_of_typologies.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
@@ -585,7 +584,7 @@
                         </div> -->
                         <p>With the help of this map we would like to show how many places were available in each of the facilities. Here also, one can see how broad a range of facilities there was, from the smallest with a capacity of up to 19 places to the larger-sized ones with capacities of 150 or even 200 and more inmates.</p>
                         <span class="interact-with-viz">
-                            <p>The map shows facilities and their respective capacity. <span class="action"><i class="fas fa-mouse-pointer"></i> hover</span> or <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any element to reveal further information.</p>
+                            <p>The map shows facilities and their respective capacity. <span class="action"><i class="fas fa-mouse-pointer"></i> hover</span> or <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any element to reveal further information. <span class="action"><i class="fas fa-mouse-pointer"></i> hover</span> on legend items to highlight corresponding elements.</p>
                         </span>
                         <p>In <strong class="underlined year-switch" onclick="map_all_institutions.draw(1954, 'capacity_group');closeSidepanel()" data-id="1954"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1954</strong>, considering forced labor institutions, labor colonies and juvenile reformatories only, almost one fifth of the available space for inmates in Switzerland was situated in just five facilities of the Seeland area: Etablissements de Bellechasse, Institutions of Witzwil, Arbeiterheim Tannenhof, St. Johannsen and Staatliche Erziehungsheim für Knaben. That is 1520 places of an estimated total of 9000. Many inmates of these institutions were meant to work on the plains and contribute to the income of the institution. Today, Witzwil and Bellechasse are two of the largest producers of agricultural goods in Switzerland.</p>
                     </div>
@@ -610,9 +609,6 @@
                                 <h3 class="mb-2"><a href="#geography-gender"></a>Distribution by gender</h3>
                             </div>
                         </div>
-                        <!-- <div class="interaction-note mb-2 d-none d-md-block">
-                            <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i></p>
-                        </div> -->
                         <p>Gender was the second major criterion that was considered when choosing a facility. Sticking to the targeted year of <strong class="underlined year-switch" onclick="map_all_institutions.draw(1965, 'accepted_gender');closeSidepanel()" data-id="1965"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-1" style="color: #81AA91;"></i>1965</strong>, the overall picture indicates, that 59 percent were for both genders, 27 for male and 14 for female inmates only. A considerable amount of facilities with places for both men and women were district prisons. By leaving this type aside, the proportion would shift distinctively towards one half of the total for male inmates, and a quarter for female respectively for both gender each.</p>
                         <span class="interact-with-viz">
                             <p>The map shows facilities and their accepted gender. <span class="action"><i class="fas fa-mouse-pointer"></i> hover</span> or <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any element to reveal more details.</p>
@@ -689,10 +685,14 @@
                         <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i></p>
                     </div> -->
                     <p>This graphic representation of the data shows how frequent the combinatin of two features occur. The bigger the dot, the more institutions of the sample share a certain combination. The above mentioned fact that district prisons are often used for both men and women can be observed by the size of the dot when <strong class="underlined year-switch" onclick="changeMatrixStatus('accepted_gender','typology');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>comparing "gender" and "type"</strong>. In contrary, prisons for women only are a relatively seldom phenomenon. This possibility of freely combining the data collected allows for a more in-depth understanding of the proportions and characteristics of the detention facilities.</p>
-                    <span class="interact-with-viz">
-                        <p>Thanks to this chart it is possible to freely compare all facilities properties between each others. <span class="action"><i class="far fa-hand-pointer"></i> Click</span> on any circle to reveal a list of corresponding facilities. Switch between survey years by using the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the visualisation.</p>
-                    </span>
                     <p>By leaving this chapter the image on the side gives an impression of the <strong class="underlined year-switch" onclick="changeMatrixStatus('committing_agencies','typology');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>decision-makers involved in the use of administrative detention</strong>, that is, of the bodies of authority which decided whether an administrative detention order would be issued. In addition, it shows the wide range of authorities that were involved: cantonal authorities, the police, guardianship offices, welfare authorities for the poor, etc. The bodies responsible for the internment of detainees differed from canton to canton, and from case to case. It also shows how diffuse the rules on the use of administrative detention in Switzerland actually were.</p>
+                    <p>Look at those other interesting examples:<br/>
+                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','typology');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare "capacities" and "typologies"</strong><br/>
+                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','confession');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare "capacities" and "confessions"</strong><br/><br/>
+                    </p>
+                    <span class="interact-with-viz">
+                        <p>Thanks to this chart it is possible to freely compare all facilities properties between each others: use the <span class="action"><i class="far fa-caret-square-down"></i> dropdown menus</span> on the top to switch between them. <span class="action"><i class="far fa-hand-pointer"></i> Click</span> on any circle to reveal a list of corresponding facilities. Switch between survey years by using the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the visualisation.</p>
+                    </span>
                 </div>
             </div>
         </section>

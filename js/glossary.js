@@ -54,7 +54,7 @@ function handleSelection(d) {
             'source': "circular-area",
             'layout': {},
             'paint': {
-                'fill-color': '#B0C5CE',
+                'fill-color': '#EF9D79',
                 'fill-opacity': 0.2
             }
         });
@@ -64,7 +64,7 @@ function handleSelection(d) {
             'source': "circular-area",
             'layout': {},
             'paint': {
-                'line-color': '#B0C5CE',
+                'line-color': '#EF9D79', //'#B0C5CE'
                 'line-width': 2
             }
         });
@@ -435,17 +435,17 @@ d3.queue()
                         <div class="label">Id</div>
                         <div class="value">${d.values[0].values[0].id}</div>
                     </div>
-                    <div class="canton field">
-                        <div class="label">Canton</div>
-                        <div class="value">${d.values[0].values[0].canton}</div>
+                    <div class="institution field">
+                        <div class="label font-weight-bold">Landmark name</div>
+                        <div class="value font-weight-bold">${d.values[0].values[0].name_landmark}</div>
                     </div>
                     <div class="city field">
                         <div class="label">City</div>
                         <div class="value">${d.values[0].values[0].city}</div>
                     </div>
-                    <div class="institution field">
-                        <div class="label">Landmark name</div>
-                        <div class="value">${d.values[0].values[0].name_landmark}</div>
+                    <div class="canton field">
+                        <div class="label">Canton</div>
+                        <div class="value">${d.values[0].values[0].canton}</div>
                     </div>
                     <div class="opening field">
                         <div class="label">Opened in (alternative)</div>
