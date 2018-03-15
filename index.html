@@ -881,7 +881,10 @@
                 <div class="col-8 col-lg-6 offset-2">
                     <p>The map below shows the interconnections between the cantons. It is possible to select any given canton and see the links it maintained with other cantons. In addition, it also shows the respective partner institutions that the cantonal administrations chose to work with.</p>
                     <span class="interact-with-viz">
-                        <p>Use the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the map to switch between facilities that are accepting detainees <span class="font-weight-bold">from</span> a particular canton or facilities located <span class="font-weight-bold">into</span> a particular canton tha are accepting detainees from all over the country. <span class="action"><i class="far fa-hand-pointer"></i> Click</span> on any circle to reveal more information in the side panel.</p>
+                        <p>The map below represent the relationships of exchanges between a selected canton and all the facilities located outside of it. A relationship existed if detainees were sent from a canton to an external facility, but unfortunately we do not know the size of this phenomenon, which is to say, how many people had been forced to move. If a relationship is represented it means that there had been at least one exchange.</p>
+                        <p><span class="action"><i class="far fa-hand-pointer"></i> Click</span> on a canton to see related facilities.</p>
+                        <p>Use the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the map to switch between facilities that are accepting detainees <span class="font-weight-bold">from</span> a particular canton or facilities located <span class="font-weight-bold">into</span> a particular canton that are accepting detainees from outside.</p>
+                        <p><span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> Switch</span> between years and <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any circle to reveal more information in the side panel.</p>
                     </span>
                 </div>
             </div>
@@ -902,8 +905,8 @@
                                 <span>Selected Year</span>
                             </div>
                             <div class="col-12 btn-container mb-4">
-                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig); closeSidepanel()" data-id="1954">1954</span>
-                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig); closeSidepanel()" data-id="1965">1965</span>
+                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig); d3.select('.selected-canton span').transition().duration(300).style('opacity', 0.5).text('please click on a canton'); closeSidepanel()" data-id="1954">1954</span>
+                                <span class="btn-year btn-accepting-year" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig); d3.select('.selected-canton span').transition().duration(300).style('opacity', 0.5).text('please click on a canton'); closeSidepanel()" data-id="1965">1965</span>
                             </div>
                         </div>
                         <div class="col-3" data-toggle="buttons">
@@ -919,8 +922,8 @@
                                 </label>
                             </div> -->
                             <div class="col-12 btn-container-direction mb-2">
-                                <span class="btn-year btn-direction" onclick="acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig); closeSidepanel()" data-id="from">From</span>
-                                <span class="btn-year btn-direction" onclick="acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig); closeSidepanel()" data-id="into">Into</span>
+                                <span class="btn-year btn-direction" onclick="acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig); d3.select('.selected-canton span').transition().duration(300).style('opacity', 0.5).text('please click on a canton'); closeSidepanel()" data-id="from">From</span>
+                                <span class="btn-year btn-direction" onclick="acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig); d3.select('.selected-canton span').transition().duration(300).style('opacity', 0.5).text('please click on a canton'); closeSidepanel()" data-id="into">Into</span>
                             </div>
                             <div class="col-12 text-center year-title mb-1 selected-canton">
                                 <span>Fribourg</span>

@@ -81,7 +81,8 @@ function AcceptingInstitutions(id, data, swiss) {
                 d3.select('.selected-canton span')
                     .transition()
                     .duration(300)
-                    .style('opacity', 1e-6);
+                    .style('opacity', 0.5)
+                    .text('please click on a canton');
 
                 reset();
             })
