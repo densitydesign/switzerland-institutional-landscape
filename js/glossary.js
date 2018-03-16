@@ -159,9 +159,14 @@ function populateSidebar(data) {
         let source = filtered.sources.filter(function(e){
             return e.source_year == year
         })[0]
-        // console.log(source)
 
         if (source) {
+            
+            // this fixes a little bug :)
+            if (source[field] == ",") {
+                source[field] = '';
+            }
+
             return source[field]==''?'–':source[field];
         } else {
             return '–'
@@ -170,6 +175,7 @@ function populateSidebar(data) {
     }
 
     function getValueSourceHTML(year, field) {
+        console.log(getValueSource(year, field));
         let html = `<div class="row values">
                     <div class="col-3">Topography ${year}</div>
                     <div class="col-9">${getValueSource(year, field)}</div>
