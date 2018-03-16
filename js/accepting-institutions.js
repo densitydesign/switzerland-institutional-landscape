@@ -35,8 +35,8 @@ function AcceptingInstitutions(id, data, swiss) {
         .on("tick", null)
 
     let concordatColors = d3.scaleOrdinal()
-        .range(['#ca5268', '#85c4c9', '#97e196', '#888888'])
-        .range(['#CFB76D', '#79745C', '#B5BA72', '#EAE6DA'])
+        // .range(['#ca5268', '#85c4c9', '#97e196', '#888888'])
+        // .range(['#CFB76D', '#79745C', '#B5BA72', '#EAE6DA'])
         .range(['#CFB76D', '#79745C', '#81aa91', '#EAE6DA'])
         .domain(['c1', 'c2', 'c3', 'not specified'])
 
