@@ -990,6 +990,11 @@ span.interact-with-viz .action {
     opacity: .35;
 }
 
+#accepting-institutions .label.selected {
+    opacity: 1;
+    text-decoration: underline;
+}
+
 #accepting-institutions .node {
     fill: #333;
 }

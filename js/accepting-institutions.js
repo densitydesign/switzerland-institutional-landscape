@@ -3,9 +3,6 @@ const navScroller = scrollama();
 
 function AcceptingInstitutions(id, data, swiss) {
 
-    // console.log('accepting institutions');
-    // console.log(data);
-
     this.id = id;
 
     let svg,
@@ -51,15 +48,10 @@ function AcceptingInstitutions(id, data, swiss) {
         let thisData = null;
 
         if (config.year) {
-            // console.log(config)
             thisData = data[config.year];
         } else {
             thisData = data[1954];
         }
-
-        // console.log(thisData)
-
-        // console.log(config, thisData);
 
         width = d3.select(this.id)
             .node()
@@ -78,11 +70,6 @@ function AcceptingInstitutions(id, data, swiss) {
             .attr('fill', 'white')
             .on('click', function() {
 
-                d3.select('.selected-canton span')
-                    .transition()
-                    .duration(300)
-                    .style('opacity', 0.5)
-                    .text('please click on a canton');
 
                 reset();
             })
@@ -108,7 +95,6 @@ function AcceptingInstitutions(id, data, swiss) {
             .append('path')
             .classed('canton-contour', true)
             .style('fill', function(d) {
-                // console.log(d.properties.abbr)
                 let thisConcordat = thisData.nodes.filter(function(e) {
                     return e.id == d.properties.abbr;
                 })
@@ -117,7 +103,6 @@ function AcceptingInstitutions(id, data, swiss) {
                 } else {
                     thisConcordat = 'not specified';
                 }
-                // console.log(thisConcordat)
                 d.properties.concordat = thisConcordat;
                 return d3.color(concordatColors(d.properties.concordat));
             })
@@ -311,6 +296,12 @@ function AcceptingInstitutions(id, data, swiss) {
                     }
                 });
 
+                d3.selectAll(id + ' .label')
+                    .filter(function(e) {
+                        return e.properties.abbr == thisCantonCode;
+                    })
+                    .classed('selected', true);
+
                 d3.select(this)
                     .style('stroke', d3.color(concordatColors(thisCanton.properties.concordat)).darker(1))
                     .style('fill', d3.color(concordatColors(thisCanton.properties.concordat)).brighter(.6));
@@ -413,7 +404,6 @@ function AcceptingInstitutions(id, data, swiss) {
                     }
                 });
 
-
             simulation
                 .nodes(nodes)
                 .alpha(1)
@@ -496,9 +486,20 @@ function AcceptingInstitutions(id, data, swiss) {
                 nodes = selected_institutions;
                 update();
             });
+            d3.selectAll(id + ' .label')
+                .filter(function(e) {
+                    return e.properties.abbr == canton;
+                })
+                .classed('selected', true);
         }
 
         function reset() {
+
+            d3.select('.selected-canton span')
+                .transition()
+                .duration(300)
+                .style('opacity', 0.5)
+                .text('please click on a canton');
 
             d3.selectAll(id + ' .canton-contour')
                 .classed('sending', false)
@@ -509,6 +510,9 @@ function AcceptingInstitutions(id, data, swiss) {
                 .style('fill', function(d) { return d3.color(concordatColors(d.properties.concordat)) });
 
             d3.selectAll(id + ' .label').classed('faded', false);
+            d3.selectAll(id + ' .label').classed('sending', false);
+            d3.selectAll(id + ' .label').classed('receiving', false);
+            d3.selectAll(id + ' .label').classed('selected', false);
 
             d3.selectAll('#viz-message').remove();
 
