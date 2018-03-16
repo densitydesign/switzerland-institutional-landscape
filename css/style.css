@@ -933,6 +933,10 @@ span.interact-with-viz .action {
 
 /* typologies network of correlations */
 
+#circular-network svg {
+    /*background-color: pink;*/
+}
+
 #circular-network .node {
     stroke-width: .5px;
     cursor: pointer;

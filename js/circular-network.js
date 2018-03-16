@@ -21,7 +21,6 @@ function CircularNetwork(id, data) {
     // green: #73C86B
 
     let color = d3.scaleOrdinal()
-        .range(['#ca5268', '#85c4c9', '#97e196', '#888888'])
         .range(['#CFB76D', '#79745C', '#B5BA72', '#EAE6DA'])
         .domain(['c1', 'c2', 'c3', 'not defined'])
 
@@ -140,24 +139,34 @@ function CircularNetwork(id, data) {
 
         width = d3.select(this.id)
             .node()
-            .offsetWidth - 60;
+            .offsetWidth - 60 + 30;
 
-        let subchapterWidth = $('#temporal-framing').width();
-        if (subchapterWidth <= 930) {
-            height = width * .8;
-        } else {
-            height = width * .6;
+        let subchapterWidth = $('#circular-network').width();
+
+        // if (subchapterWidth <= 930) {
+        //     height = width * .8;
+        // } else {
+        //     height = width * .6;
+        // }
+
+        height = width;
+
+        if (height > window.innerHeight) {
+            height = window.innerHeight * .8;
+            width = height;
         }
 
-        if (height > window.innerHeight) { height = window.innerHeight * .8 }
+
         svg.attr('width', width)
-            .attr('height', height);
+            .attr('height', height)
 
-        if (subchapterWidth <= 930) {
-            g.attr("transform", "translate(" + (width / 2 - 40) + "," + height / 2 + ")");
-        } else {
-            g.attr("transform", "translate(" + (width / 2 - 100) + "," + height / 2 + ")");
-        }
+        g.attr("transform", "translate(" + (width / 2 - 40+40) + "," + height / 2 + ")");
+
+        // if (subchapterWidth <= 930) {
+        //     g.attr("transform", "translate(" + (width / 2 - 40) + "," + height / 2 + ")");
+        // } else {
+        //     g.attr("transform", "translate(" + (width / 2 - 100) + "," + height / 2 + ")");
+        // }
 
         resetRect
             .attr('x', -width / 2)

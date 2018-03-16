@@ -436,65 +436,59 @@
                     <p class="caption mb-2"><a href="./data_and_scripts/data/bubblechart.json" download="1.3_purposes_of_institutions.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
                 </div>
             </div>
-
-
             <span class="d-none"><div class="row visualisation">
                             <div id="typologies-graph" class="col-8 col-lg-7 offset-1 mt-3">
                                 <div class="col-12 typologies-buttons mx-auto">
                                     <div class="col-12 text-center year-title">
                                         <span>Selected Year</span>
-                                    </div>
-                                    <div class="col-12 btn-container mb-4 px-0 px-lg-2">
-                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1933);closeSidepanel()" data-id="1933">1933</span>
-                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1940);closeSidepanel()" data-id="1940">1940's</span>
-                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1954);closeSidepanel()" data-id="1954">1954</span>
-                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1965);closeSidepanel()" data-id="1965">1965</span>
-                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1980);closeSidepanel()" data-id="1980">1980</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 typologies-legend mb-2">
-                                    <svg class="col-lg-10 col-xl-9 offset-1 offset-lg-2 pl-xl-4" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 247.6 40.3" xml:space="preserve">
-                                        <text transform="matrix(1 0 0 1 19.4841 8.5)" class="legend-text legend-text-label">N° of institutions</text>
-                                        <circle class="legend-circle" style="fill: #DCC274;" cx="14.2" cy="24.3" r="5" />
-                                        <circle class="legend-circle" style="fill: #C9B16A;" cx="30.2" cy="24.3" r="5" />
-                                        <circle class="legend-circle" style="fill: #B6A160;" cx="46.2" cy="24.3" r="5" />
-                                        <circle class="legend-circle" style="fill: #A29055;" cx="62.2" cy="24.3" r="5" />
-                                        <circle class="legend-circle" style="fill: #8F7F4B;" cx="78.2" cy="24.3" r="5" />
-                                        <text transform="matrix(1 0 0 1 1.8589 27.1548)" class="legend-text legend-text-number">1</text>
-                                        <text transform="matrix(1 0 0 1 87.7139 27.1548)" class="legend-text legend-text-number">300</text>
-                                        <line class="legend-line" style="stroke-width: 1px;" x1="172.6" y1="34.3" x2="172.6" y2="14.3" />
-                                        <line class="legend-line" style="stroke-width: 3px;" x1="180.6" y1="34.3" x2="180.6" y2="14.3" />
-                                        <line class="legend-line" style="stroke-width: 5px;" x1="190.6" y1="34.3" x2="190.6" y2="14.3" />
-                                        <line class="legend-line" style="stroke-width: 7px;" x1="202.6" y1="34.3" x2="202.6" y2="14.3" />
-                                        <line class="legend-line" style="stroke-width: 9px;" x1="216.6" y1="34.3" x2="216.6" y2="14.3" />
-                                        <text transform="matrix(1 0 0 1 154.0215 8.5)" class="legend-text legend-text-label">Occurance of combination</text>
-                                        <text transform="matrix(1 0 0 1 164.8589 27.1548)" class="legend-text legend-text-number">1</text>
-                                        <text transform="matrix(1 0 0 1 226.0996 27.1548)" class="legend-text legend-text-number">9</text>
-                                    </svg>
-                                </div>
-                                <!-- to be filled with d3 -->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6 offset-md-2">
-                                <span class="interact-with-viz">
+            </div>
+            <div class="col-12 btn-container mb-4 px-0 px-lg-2">
+                <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1933);closeSidepanel()" data-id="1933">1933</span>
+                <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1940);closeSidepanel()" data-id="1940">1940's</span>
+                <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1954);closeSidepanel()" data-id="1954">1954</span>
+                <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1965);closeSidepanel()" data-id="1965">1965</span>
+                <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1980);closeSidepanel()" data-id="1980">1980</span>
+            </div>
+            </div>
+            <div class="col-12 typologies-legend mb-2">
+                <svg class="col-lg-10 col-xl-9 offset-1 offset-lg-2 pl-xl-4" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 247.6 40.3" xml:space="preserve">
+                    <text transform="matrix(1 0 0 1 19.4841 8.5)" class="legend-text legend-text-label">N° of institutions</text>
+                    <circle class="legend-circle" style="fill: #DCC274;" cx="14.2" cy="24.3" r="5" />
+                    <circle class="legend-circle" style="fill: #C9B16A;" cx="30.2" cy="24.3" r="5" />
+                    <circle class="legend-circle" style="fill: #B6A160;" cx="46.2" cy="24.3" r="5" />
+                    <circle class="legend-circle" style="fill: #A29055;" cx="62.2" cy="24.3" r="5" />
+                    <circle class="legend-circle" style="fill: #8F7F4B;" cx="78.2" cy="24.3" r="5" />
+                    <text transform="matrix(1 0 0 1 1.8589 27.1548)" class="legend-text legend-text-number">1</text>
+                    <text transform="matrix(1 0 0 1 87.7139 27.1548)" class="legend-text legend-text-number">300</text>
+                    <line class="legend-line" style="stroke-width: 1px;" x1="172.6" y1="34.3" x2="172.6" y2="14.3" />
+                    <line class="legend-line" style="stroke-width: 3px;" x1="180.6" y1="34.3" x2="180.6" y2="14.3" />
+                    <line class="legend-line" style="stroke-width: 5px;" x1="190.6" y1="34.3" x2="190.6" y2="14.3" />
+                    <line class="legend-line" style="stroke-width: 7px;" x1="202.6" y1="34.3" x2="202.6" y2="14.3" />
+                    <line class="legend-line" style="stroke-width: 9px;" x1="216.6" y1="34.3" x2="216.6" y2="14.3" />
+                    <text transform="matrix(1 0 0 1 154.0215 8.5)" class="legend-text legend-text-label">Occurance of combination</text>
+                    <text transform="matrix(1 0 0 1 164.8589 27.1548)" class="legend-text legend-text-number">1</text>
+                    <text transform="matrix(1 0 0 1 226.0996 27.1548)" class="legend-text legend-text-number">9</text>
+                </svg>
+            </div>
+            <!-- to be filled with d3 -->
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-lg-6 offset-md-2">
+                    <span class="interact-with-viz">
                                     <p>[Description to be written] </p>
                                 </span>
-                                <p>[Here could be more text.]</p>
-                            </div>
-                            <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
-                                <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.4 – Co-occurances of typologyes</p>
-                                <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
-                                <p class="caption mb-2"><a href="./data_and_scripts/data/typologies-graph.json" download="1.4_cooccurances_of_typologies.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
-                            </div>
-                        </div></span>
-
-
-
-
+                    <p>[Here could be more text.]</p>
+                </div>
+                <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
+                    <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.4 – Co-occurances of typologyes</p>
+                    <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
+                    <p class="caption mb-2"><a href="./data_and_scripts/data/typologies-graph.json" download="1.4_cooccurances_of_typologies.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
+                </div>
+            </div>
+            </span>
         </section>
     </section>
-    
     <section id="geographies" class="pb-4">
         <div class="container">
             <div class="row">
@@ -596,7 +590,6 @@
             </div>
         </section>
     </section>
-    
     <section id="interconnections" class="chapter mb-5 pb-5 container-fluid">
         <div class="container">
             <div class="row">
@@ -664,9 +657,13 @@
                     </div> -->
                     <p>This graphic representation of the data shows how frequent the combinatin of two features occur. The bigger the dot, the more institutions of the sample share a certain combination. The above mentioned fact that district prisons are often used for both men and women can be observed by the size of the dot when <strong class="underlined year-switch" onclick="changeMatrixStatus('accepted_gender','typology');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>comparing "gender" and "type"</strong>. In contrary, prisons for women only are a relatively seldom phenomenon. This possibility of freely combining the data collected allows for a more in-depth understanding of the proportions and characteristics of the detention facilities.</p>
                     <p>By leaving this chapter the image on the side gives an impression of the <strong class="underlined year-switch" onclick="changeMatrixStatus('committing_agencies','typology');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>decision-makers involved in the use of administrative detention</strong>, that is, of the bodies of authority which decided whether an administrative detention order would be issued. In addition, it shows the wide range of authorities that were involved: cantonal authorities, the police, guardianship offices, welfare authorities for the poor, etc. The bodies responsible for the internment of detainees differed from canton to canton, and from case to case. It also shows how diffuse the rules on the use of administrative detention in Switzerland actually were.</p>
-                    <p>Many other meaningful combinations are to be explored, for instance:<br/>
-                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','typology');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare "capacities" and "typologies"</strong><br/>
-                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','confession');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare "capacities" and "confessions"</strong><br/><br/>
+                    <p>Many other meaningful combinations are to be explored, for instance:
+                        <br/>
+                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','typology');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare "capacities" and "typologies"</strong>
+                        <br/>
+                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','confession');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare "capacities" and "confessions"</strong>
+                        <br/>
+                        <br/>
                     </p>
                     <span class="interact-with-viz">
                         <p>Thanks to this chart it is possible to freely compare all facilities properties between each others: use the <span class="action"><i class="far fa-caret-square-down"></i> dropdown menus</span> on the top to switch between them. <span class="action"><i class="far fa-hand-pointer"></i> Click</span> on any circle to reveal a list of corresponding facilities. Switch between survey years by using the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the visualisation.</p>
@@ -675,7 +672,6 @@
             </div>
         </section>
     </section>
-    
     <section id="entering-exiting" class="chapter mb-5 pb-4 container-fluid">
         <div class="container">
             <div class="row">
@@ -702,11 +698,9 @@
                 <div class="col-md-9 offset-lg-1 mb-3">
                     <img srcset="./assets/EB_Div_Photos_13_001-md.jpg 510w,
                                  ./assets/EB_Div_Photos_13_001-lg.jpg 690w,
-                                 ./assets/EB_Div_Photos_13_001-xl.jpg 825w"
-                         sizes="(max-width: 991px) 510px,
+                                 ./assets/EB_Div_Photos_13_001-xl.jpg 825w" sizes="(max-width: 991px) 510px,
                                 (max-width: 1199px) 690px,
-                                825px"
-                         src="./assets/EB_Div_Photos_13_001-xl.jpg" alt="Dalle des combles in the institutions of Bellechasse" class="img-fluid rounded" />
+                                825px" src="./assets/EB_Div_Photos_13_001-xl.jpg" alt="Dalle des combles in the institutions of Bellechasse" class="img-fluid rounded" />
                 </div>
                 <div class="col-md-3 col-lg-2">
                     <p class="caption mb-2"><span class="font-weight-bold">Img. 4.1</span> – Archives de l'Etat de Fribourg (AEF)/Staatsarchiv Freiburg (StAF), EB Div Photos 13, Bellechasse, Ancienne colonie, maison de rééducation au travail, 20-21 janvier 1938, Section V, image 1 : «Dalle des combles». </p>
@@ -782,74 +776,121 @@
                     </span>
                 </div>
                 <div class="col-12 subchapter-spacer"></div>
-                <div id="circular-network" class="col-12 d-no ne d-md-block">
+                <!-- <div class="col-12 circular-buttons">
                     <div class="row">
-                        <div class="col-4 offset-3 circular-buttons">
-                            <div class="col-12 text-center year-title">
-                                <span>Selected Year</span>
-                            </div>
-                            <div class="col-12 btn-container mb-4">
-                                <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1954);closeSidepanel()" data-id="1954">1954</span>
-                                <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1965);closeSidepanel()" data-id="1965">1965</span>
-                            </div>
+                        <div class="col-12 text-center year-title">
+                            <span>Selected Year</span>
+                        </div>
+                        <div class="col-12 btn-container mb-4">
+                            <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1954);closeSidepanel()" data-id="1954">1954</span>
+                            <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1965);closeSidepanel()" data-id="1965">1965</span>
                         </div>
                     </div>
+                </div> -->
+                <div id="circular-network" class="col-9 d-no ne d-md-flex justify-content-center flex-column">
                     <div class="row">
-                        <div class="col-md-11 col-lg-8 offset-1">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 406.9 74.4" xml:space="preserve">
-                                <text transform="matrix(1 0 0 1 2.0569 8.5)" class="legend-text legend-text-label">Belonging Concordat</text>
-                                <text transform="matrix(1 0 0 1 145.0667 8.5)" class="legend-text legend-text-label">N° of occurences</text>
-                                <text transform="matrix(1 0 0 1 243.2288 8.5)" class="legend-text legend-text-label">Edge direction</text>
-                                <text transform="matrix(1 0 0 1 349.981 8.5)" class="legend-text legend-text-label">Edge color</text>
-                                <rect x="2.1" y="15.8" style="fill: #CFB76D;" width="8" height="8" />
-                                <rect x="2.1" y="29.1" style="fill: #79745C;" width="8" height="8" />
-                                <rect x="2.1" y="42.4" style="fill: #B5BA72;" width="8" height="8" />
-                                <rect x="2.1" y="55.7" style="fill: #EAE6DA;" width="8" height="8" />
-                                <text transform="matrix(1 0 0 1 14 21.4834)" class="legend-text legend-text-sublabel">Concordat of the Latin cantons</text>
-                                <text transform="matrix(1 0 0 1 14 34.7676)" class="legend-text legend-text-sublabel">Concordat of Central and North-West Switzerland</text>
-                                <text transform="matrix(1 0 0 1 14 48.0518)" class="legend-text legend-text-sublabel">Concordat of Eastern Switzerland</text>
-                                <text transform="matrix(1 0 0 1 14 61.3359)" class="legend-text legend-text-sublabel">Not specified</text>
-                                <circle class="legend-circle" cx="167.2" cy="31.7" r="15" />
-                                <circle class="legend-circle" cx="167.2" cy="42.7" r="4" />
-                                <text transform="matrix(1 0 0 1 186.022 45.7676)" class="legend-text legend-text-sublabel">1</text>
-                                <text transform="matrix(1 0 0 1 185.8589 21.7676)" class="legend-text legend-text-sublabel">13</text>
-                                <text transform="matrix(1 0 0 1 227 39.917)" class="legend-text legend-text-sublabel">Sending</text>
-                                <text transform="matrix(1 0 0 1 286 47.917)" class="legend-text legend-text-sublabel">Sending</text>
-                                <text transform="matrix(1 0 0 1 236 65.917)" class="legend-text legend-text-sublabel">Receiving</text>
-                                <text transform="matrix(1 0 0 1 271 20.917)" class="legend-text legend-text-sublabel">Receiving</text>
-                                <path class="legend-circle" d="M267.3 27.1c-0.9-0.2-1.8-0.3-2.7-0.3 -6.9 0-12.4 5.6-12.4 12.4 0 0.9 0.1 1.7 0.3 2.5" />
-                                <polygon points="263,25.9 263.4,26.9 263.1,27.8 265.2,26.8" />
-                                <circle class="legend-circle" cx="252.3" cy="43.8" r="4" />
-                                <circle class="legend-circle" cx="269.2" cy="27.1" r="4" />
-                                <path class="legend-circle" d="M264.2 57.8c0.9 0.2 1.8 0.3 2.7 0.3 6.9 0 12.4-5.6 12.4-12.4 0-0.9-0.1-1.7-0.3-2.5" />
-                                <polygon points="268.5,58.9 268.1,58 268.4,57.1 266.3,58" />
-                                <circle class="legend-circle" cx="262.3" cy="57.8" r="4" />
-                                <circle class="legend-circle" cx="279.2" cy="41.1" r="4" />
-                                <text transform="matrix(1 0 0 1 357 70.917)" class="legend-text legend-text-sublabel">Different concordat</text>
-                                <text transform="matrix(1 0 0 1 334 20.917)" class="legend-text legend-text-sublabel">Same concordat</text>
-                                <path class="legend-edges" style="stroke: #CCCCCC;" d="M366.3 28.1c-0.9-0.2-1.8-0.3-2.7-0.3 -6.9 0-12.4 5.6-12.4 12.4 0 0.9 0.1 1.7 0.3 2.5" />
-                                <circle class="legend-circle legend-circle-filled" cx="368.2" cy="28.1" r="4" />
-                                <circle class="legend-circle legend-circle-filled" cx="351.3" cy="44.8" r="4" />
-                                <path class="legend-edges" style="stroke: #B5BA72;" d="M363.2 58.8c0.9 0.2 1.8 0.3 2.7 0.3 6.9 0 12.4-5.6 12.4-12.4 0-0.9-0.1-1.7-0.3-2.5" />
-                                <circle class="legend-circle" style="fill: #79745C;" cx="361.3" cy="58.8" r="4" />
-                                <circle class="legend-circle legend-circle-filled" cx="378.2" cy="42.1" r="4" />
-                            </svg>
+                        <div class="col-12 text-center year-title">
+                            <span>Selected Year</span>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3 col-xl-4 offset-9 offset-xl-8 sidenote mt-3">
-                            <!-- <div class="interaction-note pl-3 mb-2">
-                                <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i></p>
-                            </div> -->
-                            
-                            <div class="pl-3 mt-4">
-                                <p class="caption font-weight-bold mt-1 mb-2">Viz. 4.2 – Network between cantons</p>
-                                <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
-                                <p class="caption mb-2"><a href="./data_and_scripts/data/cantons-network.json" download="4_network_between_cantons.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
-                            </div>
+                        <div class="col-12 btn-container mb-4">
+                            <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1954);closeSidepanel()" data-id="1954">1954</span>
+                            <span class="btn-year btn-circular-year" onclick="circularNetwork.draw(1965);closeSidepanel()" data-id="1965">1965</span>
                         </div>
                     </div>
                     <!-- To be filled with D3 -->
+                </div>
+                <div class="col-3 Xsidenote mt-3 d-flex flex-column justify-content-between">
+                    <!-- <div class="pl-3 mt-4"> -->
+                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 133.64 318.76" class="w-100 pr-3 mb-4">
+                            <title>concordat-legend vertical</title>
+                            <text transform="translate(1.47 19.07)" style="font-size: 8px;font-family: Brandon Grotesque">B
+                                <tspan x="4.94" y="0">elonging </tspan>
+                                <tspan x="32.88" y="0">C</tspan>
+                                <tspan x="38.44" y="0">oncordat</tspan>
+                            </text>
+                            <rect x="2.14" y="26.39" width="8" height="8" style="fill: #cfb76d" />
+                            <rect x="2.14" y="39.67" width="8" height="8" style="fill: #79745c" />
+                            <rect x="2.14" y="52.96" width="8" height="8" style="fill: #b5ba72" />
+                            <rect x="2.14" y="66.24" width="8" height="8" style="fill: #eae6da" />
+                            <text transform="translate(14 32.06)" style="font-size: 6px;font-family: Brandon Grotesque">C
+                                <tspan x="4.17" y="0">oncordat of the Latin cantons</tspan>
+                            </text>
+                            <text transform="translate(14 45.34)" style="font-size: 6px;font-family: Brandon Grotesque">C
+                                <tspan x="4.17" y="0">oncordat of </tspan>
+                                <tspan x="32.51" y="0">C</tspan>
+                                <tspan x="36.69" y="0">entral and </tspan>
+                                <tspan x="61.3" y="0">N</tspan>
+                                <tspan x="65.83" y="0">orth</tspan>
+                                <tspan x="75.75" y="0">-</tspan>
+                                <tspan x="78.05" y="0">W</tspan>
+                                <tspan x="83.15" y="0">est </tspan>
+                                <tspan x="91.41" y="0">S</tspan>
+                                <tspan x="94.53" y="0">witzerland</tspan>
+                            </text>
+                            <text transform="translate(14 58.63)" style="font-size: 6px;font-family: Brandon Grotesque">C
+                                <tspan x="4.17" y="0">oncordat of </tspan>
+                                <tspan x="32.51" y="0">E</tspan>
+                                <tspan x="35.99" y="0">astern </tspan>
+                                <tspan x="51.75" y="0">S</tspan>
+                                <tspan x="54.87" y="0">witzerland</tspan>
+                            </text>
+                            <text transform="translate(14 71.91)" style="font-size: 6px;font-family: Brandon Grotesque">N
+                                <tspan x="4.53" y="0">ot specified</tspan>
+                            </text>
+                            <text transform="translate(1.47 101.04)" style="font-size: 8px;font-family: Brandon Grotesque">N° of occu
+                                <tspan x="33.62" y="0">r</tspan>
+                                <tspan x="36.27" y="0">ences</tspan>
+                            </text>
+                            <circle cx="17.14" cy="135.26" r="4" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <circle cx="17.14" cy="124.26" r="15" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <text transform="translate(35.95 138.31)" style="font-size: 6px;font-family: Brandon Grotesque">1</text>
+                            <text transform="translate(35.78 114.31)" style="font-size: 6px;font-family: Brandon Grotesque">13</text>
+                            <text transform="translate(2.14 167.35)" style="font-size: 8px;font-family: Brandon Grotesque">E
+                                <tspan x="4.59" y="0">dge di</tspan>
+                                <tspan x="23.1" y="0">r</tspan>
+                                <tspan x="25.74" y="0">ection</tspan>
+                            </text>
+                            <text transform="translate(2.14 198.77)" style="font-size: 6px;font-family: Brandon Grotesque">Sending</text>
+                            <text transform="translate(61.14 206.77)" style="font-size: 6px;font-family: Brandon Grotesque">Sending</text>
+                            <text transform="translate(11.14 224.77)" style="font-size: 6px;font-family: Brandon Grotesque">R
+                                <tspan x="3.79" y="0">eceiving</tspan>
+                            </text>
+                            <text transform="translate(46.14 179.77)" style="font-size: 6px;font-family: Brandon Grotesque">R
+                                <tspan x="3.79" y="0">eceiving</tspan>
+                            </text>
+                            <g>
+                                <path d="M38.88,185.68a12.42,12.42,0,0,0-11.36,14.89" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                                <polygon points="38.17 184.79 38.58 185.71 38.2 186.64 40.38 185.67 38.17 184.79" />
+                            </g>
+                            <circle cx="27.4" cy="202.63" r="4" style="fill: #fcfbfa;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <circle cx="44.37" cy="185.95" r="4" style="fill: #fcfbfa;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <g>
+                                <path d="M42.88,216.9A12.42,12.42,0,0,0,54.24,202" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                                <polygon points="43.6 217.79 43.19 216.87 43.56 215.94 41.39 216.9 43.6 217.79" />
+                            </g>
+                            <path d="M39.37,216.63a12.41,12.41,0,0,0,2,.28" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <circle cx="37.4" cy="216.63" r="4" style="fill: #fcfbfa;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <circle cx="54.37" cy="199.95" r="4" style="fill: #fcfbfa;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <text transform="translate(2.14 253.82)" style="font-size: 8px;font-family: Brandon Grotesque">E
+                                <tspan x="4.59" y="0">dge color</tspan>
+                            </text>
+                            <text transform="translate(33.14 316.23)" style="font-size: 6px;font-family: Brandon Grotesque">D
+                                <tspan x="4.4" y="0">iffe</tspan>
+                                <tspan x="11.98" y="0">r</tspan>
+                                <tspan x="13.96" y="0">ent concordat</tspan>
+                            </text>
+                            <text transform="translate(10.14 266.23)" style="font-size: 6px;font-family: Brandon Grotesque">Same concordat</text>
+                            <path d="M42.39,273.41A12.42,12.42,0,0,0,27.53,288" style="fill: none;stroke: #ccc;stroke-miterlimit: 10" />
+                            <circle cx="44.37" cy="273.41" r="4" style="fill: #b5ba72;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <circle cx="27.4" cy="290.09" r="4" style="fill: #b5ba72;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <path d="M39.37,304.09a12.42,12.42,0,0,0,14.87-14.61" style="fill: none;stroke: #b5ba72;stroke-miterlimit: 10" />
+                            <circle cx="37.4" cy="304.09" r="4" style="fill: #cfb76d;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                            <circle cx="54.37" cy="287.41" r="4" style="fill: #b5ba72;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
+                        </svg>
+                        <div class="sidenote"><p class="caption font-weight-bold mt-1 mb-2">Viz. 4.2 – Network between cantons</p>
+                                                <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
+                                                <p class="caption mb-2"><a href="./data_and_scripts/data/cantons-network.json" download="4_network_between_cantons.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p></div>
+                    <!-- </div> -->
                 </div>
             </div>
             <div class="subchapter-spacer"></div>
@@ -859,8 +900,8 @@
                     <span class="interact-with-viz">
                         <p>The map below represent the relationships of exchanges between a selected canton and all the facilities located outside of it. A relationship existed if detainees were sent from a canton to an external facility, but unfortunately we do not know the size of this phenomenon, which is to say, how many people had been forced to move. If a relationship is represented it means that there had been at least one exchange.</p>
                         <p><span class="action"><i class="far fa-hand-pointer"></i> Click</span> on a canton to see related facilities.</p>
-                        <p>Use the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the map to switch between facilities that are accepting detainees <span class="font-weight-bold">from</span> a particular canton or facilities located <span class="font-weight-bold">into</span> a particular canton that are accepting detainees from outside.</p>
-                        <p><span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> Switch</span> between years and <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any circle to reveal more information in the side panel.</p>
+                    <p>Use the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the map to switch between facilities that are accepting detainees <span class="font-weight-bold">from</span> a particular canton or facilities located <span class="font-weight-bold">into</span> a particular canton that are accepting detainees from outside.</p>
+                    <p><span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> Switch</span> between years and <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any circle to reveal more information in the side panel.</p>
                     </span>
                 </div>
             </div>
@@ -888,7 +929,8 @@
                             <div class="col-12 text-center year-title mb-1 selected-canton">
                                 <span>Fribourg</span>
                             </div>
-                        </div><!-- 
+                        </div>
+                        <!-- 
                         <div class="col-4 offset-1 align-self-center">
                         </div> -->
                     </div>
@@ -937,11 +979,9 @@
                     <div class="col-md-9 offset-lg-1 mb-3">
                         <img srcset="./assets/EB_Div_Photos_10_II_001-md.jpg 510w,
                                      ./assets/EB_Div_Photos_10_II_001-lg.jpg 690w,
-                                     ./assets/EB_Div_Photos_10_II_001-xl.jpg 825w"
-                             sizes="(max-width: 991px) 510px,
+                                     ./assets/EB_Div_Photos_10_II_001-xl.jpg 825w" sizes="(max-width: 991px) 510px,
                                     (max-width: 1199px) 690px,
-                                    825px"
-                             src="./assets/EB_Div_Photos_10_II_001-xl.jpg" alt="Aerial-view of the institutions of Bellechasse" class="img-fluid rounded" />
+                                    825px" src="./assets/EB_Div_Photos_10_II_001-xl.jpg" alt="Aerial-view of the institutions of Bellechasse" class="img-fluid rounded" />
                     </div>
                     <div class="col-md-3 col-lg-2">
                         <p class="caption mb-2"><span class="font-weight-bold">Img. 4.2</span> – Archives de l'Etat de Fribourg (AEF)/Staatsarchiv Freiburg (StAF), EB Div Photos 10 II, Bellechasse, « Photographie aérienne de Bellechasse », 1956-1972. [Photographe : B. Bachmann, Bern] </p>
@@ -970,11 +1010,9 @@
                     <div class="col-md-9 offset-lg-1 mb-3">
                         <img srcset="./assets/EB_Div_Photos_24_001-md.jpg 510w,
                                      ./assets/EB_Div_Photos_24_001-lg.jpg 690w,
-                                     ./assets/EB_Div_Photos_24_001-xl.jpg 825w"
-                             sizes="(max-width: 991px) 510px,
+                                     ./assets/EB_Div_Photos_24_001-xl.jpg 825w" sizes="(max-width: 991px) 510px,
                                     (max-width: 1199px) 690px,
-                                    825px"
-                             src="./assets/EB_Div_Photos_24_001-xl.jpg" alt="Un groupe d’assistés in the institutions of Bellechasse" class="img-fluid rounded" />
+                                    825px" src="./assets/EB_Div_Photos_24_001-xl.jpg" alt="Un groupe d’assistés in the institutions of Bellechasse" class="img-fluid rounded" />
                     </div>
                     <div class="col-md-3 col-lg-2">
                         <p class="caption mb-2"><span class="font-weight-bold">Img. 4.3</span> – Archives de l'Etat de Fribourg (AEF)/Staatsarchiv Freiburg (StAF), EB Div Photos 24, Bellechasse, « un groupe d’assistés », 1920-1930. [Photographe : Simon Glasson, Bulle] </p>
