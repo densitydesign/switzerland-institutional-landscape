@@ -53,13 +53,13 @@ function MapAll(id, swiss, data) {
     }
     let capacityScale = d3.scaleOrdinal()
         .domain(categoriesList['capacity_group'])
-        .range(['#DCC274', '#CFB76D', '#B5A060', '#8F7F4B', '#4F462A', '#38321E', '#EAE6DA']);
+        .range(['#DCC274', '#CFB76D', '#B5A060', '#8F7F4B', '#4F462A', '#38321E', '#FFFFFF']);
     let confessionScale = d3.scaleOrdinal()
         .domain(categoriesList['confession'])
-        .range(['#CC2936', '#61988E', '#EDDEA4', '#EAE6DA']);
+        .range(['#CC2936', '#61988E', '#EDDEA4', '#FFFFFF']);
     let genderScale = d3.scaleOrdinal()
         .domain(categoriesList['accepted_gender'])
-        .range(['#575A4B', '#FF6663', '#EDDEA4', '#EAE6DA']);
+        .range(['#575A4B', '#FF6663', '#EDDEA4', '#FFFFFF']);
 
     // check if svg has already been created and if not, creates it
     if (!this.svg) {
@@ -226,7 +226,6 @@ function MapAll(id, swiss, data) {
                 .append('circle')
                 .classed('dot', true)
                 .attr('r', 1e-6)
-                .style('stroke', '#333333')
                 .on("click", function(d) {
                     let activeYear = $('#maps .active-year').attr('data-id');
                     buildSidepanel(d.id, activeYear);
@@ -246,6 +245,16 @@ function MapAll(id, swiss, data) {
                 })
                 .attr('data-hover', function(d){
                     return d[category];
+                })
+                .attr('stroke', function(d) {
+                    if ((category === 'capacity_group' && d.capacity_group == "not specified") || (category === 'confession' && d.confession == "not specified") || (category === 'accepted_gender' && d.accepted_gender == "not specified")) {
+                        return '#074050';
+                    }
+                })
+                .attr('stroke-width', function(d) {
+                    if ((category === 'capacity_group' && d.capacity_group == "not specified") || (category === 'confession' && d.confession == "not specified") || (category === 'accepted_gender' && d.accepted_gender == "not specified")) {
+                        return .5 + 'px';
+                    }
                 });
 
             node.transition()
@@ -330,6 +339,16 @@ function MapAll(id, swiss, data) {
                             return confessionScale(d);
                         } else {
                             return genderScale(d);
+                        }
+                    })
+                    .attr('stroke', function(d) {
+                        if (d == "not specified") {
+                            return '#074050';
+                        }
+                    })
+                    .attr('stroke-width', function(d) {
+                        if (d == "not specified") {
+                            return .5 + 'px';
                         }
                     })
                     .style('opacity', 1);

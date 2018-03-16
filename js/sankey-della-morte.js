@@ -220,11 +220,11 @@ function SurviesSankey(id, data) {
             .attr("y", function(d) { return d.y0; })
             .attr("height", function(d) { return d.y1 - d.y0; })
             .attr("width", function(d) { return d.x1 - d.x0; })
-            .style("fill", function(d) { return nodesColor(d.name); })
-            .style("stroke", function(d) {
-                return d3.color(nodesColor(d.name)).darker(1);
-            })
-            .style('stroke-width', .5);
+            .style("fill", function(d) { return nodesColor(d.name); });
+            // .style("stroke", function(d) {
+            //     return d3.color(nodesColor(d.name)).darker(1);
+            // })
+            // .style('stroke-width', .5);
 
         node.append("text")
             .classed('label', true)

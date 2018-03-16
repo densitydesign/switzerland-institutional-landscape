@@ -241,19 +241,16 @@ function Bubblechart(id, data) {
                     let canton_code = thisRecord.canton_code;
                     return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}, ${canton_code}</span></div>`;
                 })
-                // .on('mouseenter', function(d) {
-                //     svg.selectAll('.label')
-                //         .filter(function(e) { return e.id == d.id })
-                //         .classed('hidden', false);
-                // })
-                // .on("mouseleave", function(d) {
-                //     svg.selectAll('.label')
-                //         .filter(function(e) {
-                //             console.log(e);
-                //             console.log(d);
-                //             return e.id == d.id })
-                //         .classed('hidden', true);
-                // })
+                .attr('stroke', function(d) {
+                    if (d.capacity_group == "not specified") {
+                        return '#074050';
+                    }
+                })
+                .attr('stroke-width', function(d) {
+                    if (d.capacity_group == "not specified") {
+                        return .5 + 'px';
+                    }
+                })
                 .on("click", function(d) {
                     let activeYear = $('#bubblechart .active-year').attr('data-id');
                     buildSidepanel(d.id, activeYear);
@@ -392,8 +389,11 @@ function Bubblechart(id, data) {
             .attr('stroke', function(d, i) {
                 if (d == "not specified") {
                     return '#074050';
-                } else {
-                    return '';
+                }
+            })
+            .attr('stroke-width', function(d) {
+                if (d.capacity_group == "not specified") {
+                    return .5 + 'px';
                 }
             })
             .attr('r', function(d) { return radius(d) })

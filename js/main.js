@@ -181,7 +181,7 @@ $(document).ready(function() {
         containerCircularWidth = $('#circular-network .btn-container').width();
         containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
         containerAcceptingDirectionWidth = $('#accepting-institutions .btn-container-direction').width();
-        buttonWidth = $('.btn-typologies-year').width();
+        buttonWidth = $('.btn-bubblechart-year[data-id=1940]').width();
 
         if (subchapterWidth > 960) {
             matrixSpacer = 8;
@@ -740,7 +740,7 @@ function updateMap(step) {
             }
         } else {
             $('#maps .btn-maps-year').each(function(i, btn) {
-                $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', ' + currentEl + ');closeSidepanel()');
+                $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "' + currentEl + '");closeSidepanel()');
             });
             map_all_institutions.draw(newMapYear, currentEl);
             changeButton(newMapYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
