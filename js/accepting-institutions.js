@@ -411,7 +411,7 @@ function AcceptingInstitutions(id, data, swiss) {
                 .duration(500)
                 .attr('r', fixedRadius)
                 .on("end", function(){
-                    $('[data-toggle="tooltip"]').tooltip()
+                    // $('[data-toggle="tooltip"]').tooltip()
                 });
 
             nodeLabel = nodeLabel.data(nodes, function(d) { return d.id; });
