@@ -351,22 +351,12 @@
                         <strong>Level 3, Detention facilities:</strong> The majority of the detention facilities were established in the 19th and early 20th centuries. Between 1930 and 1980, they were supplemented by smaller facilities, which were used mainly for psychiatric cases. Beginning in the 1970s, there is a discernible trend towards the closing of district prisons, juvenile correction facilities, and labour colonies (presumably for purposes of centralisation under intercantonal conventions on correctional measures).
                     </p>
                 </div>
-                <!-- <div class="col-2 offset-2">
-                    <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.1 – Temporal Framing</p>
-                    <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
-                    <p class="caption mb-2"><a href="./data_and_scripts/data/timeline.json" download="1.1_temporal-framing.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
-                </div> -->
             </div>
         </section>
         <section id="surveyed-institutions" class="sub-chapter container pt-5">
             <div class="row visualisation">
                 <div class="col-8 d-none d-md-block">
                     <div id="sankey" class="sticky-top pt-4 pb-1">
-                        <!-- <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-secondary" onclick="surveySankeyMode = 'mosaic'; surviesSankey.draw(surveySankeyMode);">Mosaic</button>
-                            <button type="button" class="btn btn-secondary" onclick="surveySankeyMode = 'sankey'; surviesSankey.draw(surveySankeyMode);">Sankey</button>
-                        </div>
-                        <div class="clearfix"></div> -->
                         <svg>
                             <!-- to be filled with D3 -->
                         </svg>
@@ -389,9 +379,6 @@
                             <h3 class="mb-2"><a href="#surveyed-institutions"></a>Sources</h3>
                         </div>
                     </div>
-                    <!-- <div class="interaction-note mb-2 d-none d-md-block">
-                        <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i></p>
-                    </div> -->
                     <p>This segment is about the sources, their quality and validity. The information on which the charts are based was gathered from five sources respectively lists of the facilities and institutions that were used for correctional purposes and the execution of administrative detention orders. Those directories were compiled at different times and by different authors. Common to all of the directories is that they cover the whole of Switzerland. In addition, at the time when they were compiled, they all served as guides (reference works) for committing agencies and are comparable in the amount of detail they include.</p>
                     <span class="interact-with-viz">
                         <p>The chart represent the surveyed facilities and their corresponding status year by year. <span class="action"><i class="fas fa-angle-double-down"></i> scroll down</span> to switch from this mosaic plot to a sankey diagram, <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any block or flow to reveal the list of facilities beloinging to the corresponding group in the side panel.</p>
@@ -422,13 +409,6 @@
             </div>
             <div class="row visualisation">
                 <div id="bubblechart" class="col-12 pt-3 mb-4">
-                    <!-- <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1933)">1933</button>
-                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1940)">1940</button>
-                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1954)">1954</button>
-                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1965)">1965</button>
-                        <button type="button" class="btn btn-secondary" onclick="bubblechart.draw(1980)">1980</button>
-                    </div> -->
                     <div class="col-9 bubblechart-buttons mx-auto">
                         <div class="col-12 text-center year-title">
                             <span>Selected Year</span>
@@ -447,73 +427,72 @@
             <div class="row">
                 <div class="col-md-7 col-lg-6 offset-md-2">
                     <span class="interact-with-viz">
-                        <p>In the chart above, facilities are clustered depending on the number of typologies of individuals they hosted.</br>Move the <span class="action"><i class="fas fa-mouse-pointer"></i> mouse cursor</span> over any element to learn name and location of facilities, <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any element to reveal further information in the side panel. Switch between survey years by using the <span class="action"><i class="fas fa-caret-left"></i> <i class="fas fa-caret-right"></i> menu</span> on top of the visualisation. <span class="action"><i class="fas fa-mouse-pointer"></i> hover</span> on legend items to highlight corresponding elements.</p>
+                        <p>In the chart above, facilities are grouped depending on the number of typologies of individuals they hosted. Move the <span class="action"><i class="fas fa-mouse-pointer"></i> mouse cursor</span> over any element to learn name and location of facilities, <span class="action"><i class="far fa-hand-pointer"></i> click</span> on any element to reveal further information in the side panel, such as facilities typologies. Switch between survey years by using the <span class="action">menu</span> on top of the visualisation. <span class="action"><i class="fas fa-mouse-pointer"></i> hover</span> on legend items to highlight corresponding elements.</p>
                     </span>
                     <p>The chart below shows the most common combinations of facility types. One can see, for instance, that in 1954 the combination Asylums for alcoholics - psychiatric facilities was common.</p>
                 </div>
                 <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
-                    <!-- <div class="interaction-note mb-2">
-                        <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i><i class="fas fa-mouse-pointer fa-sm" data-fa-transform="right-14"></i></p>
-                    </div> -->
                     <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.3 – Purposes of institutions</p>
                     <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
                     <p class="caption mb-2"><a href="./data_and_scripts/data/bubblechart.json" download="1.3_purposes_of_institutions.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
                 </div>
             </div>
-            <div class="row visualisation">
-                <div id="typologies-graph" class="col-8 col-lg-7 offset-1 mt-3">
-                    <div class="col-12 typologies-buttons mx-auto">
-                        <div class="col-12 text-center year-title">
-                            <span>Selected Year</span>
+
+
+            <span class="d-none"><div class="row visualisation">
+                            <div id="typologies-graph" class="col-8 col-lg-7 offset-1 mt-3">
+                                <div class="col-12 typologies-buttons mx-auto">
+                                    <div class="col-12 text-center year-title">
+                                        <span>Selected Year</span>
+                                    </div>
+                                    <div class="col-12 btn-container mb-4 px-0 px-lg-2">
+                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1933);closeSidepanel()" data-id="1933">1933</span>
+                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1940);closeSidepanel()" data-id="1940">1940's</span>
+                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1954);closeSidepanel()" data-id="1954">1954</span>
+                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1965);closeSidepanel()" data-id="1965">1965</span>
+                                        <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1980);closeSidepanel()" data-id="1980">1980</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 typologies-legend mb-2">
+                                    <svg class="col-lg-10 col-xl-9 offset-1 offset-lg-2 pl-xl-4" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 247.6 40.3" xml:space="preserve">
+                                        <text transform="matrix(1 0 0 1 19.4841 8.5)" class="legend-text legend-text-label">N° of institutions</text>
+                                        <circle class="legend-circle" style="fill: #DCC274;" cx="14.2" cy="24.3" r="5" />
+                                        <circle class="legend-circle" style="fill: #C9B16A;" cx="30.2" cy="24.3" r="5" />
+                                        <circle class="legend-circle" style="fill: #B6A160;" cx="46.2" cy="24.3" r="5" />
+                                        <circle class="legend-circle" style="fill: #A29055;" cx="62.2" cy="24.3" r="5" />
+                                        <circle class="legend-circle" style="fill: #8F7F4B;" cx="78.2" cy="24.3" r="5" />
+                                        <text transform="matrix(1 0 0 1 1.8589 27.1548)" class="legend-text legend-text-number">1</text>
+                                        <text transform="matrix(1 0 0 1 87.7139 27.1548)" class="legend-text legend-text-number">300</text>
+                                        <line class="legend-line" style="stroke-width: 1px;" x1="172.6" y1="34.3" x2="172.6" y2="14.3" />
+                                        <line class="legend-line" style="stroke-width: 3px;" x1="180.6" y1="34.3" x2="180.6" y2="14.3" />
+                                        <line class="legend-line" style="stroke-width: 5px;" x1="190.6" y1="34.3" x2="190.6" y2="14.3" />
+                                        <line class="legend-line" style="stroke-width: 7px;" x1="202.6" y1="34.3" x2="202.6" y2="14.3" />
+                                        <line class="legend-line" style="stroke-width: 9px;" x1="216.6" y1="34.3" x2="216.6" y2="14.3" />
+                                        <text transform="matrix(1 0 0 1 154.0215 8.5)" class="legend-text legend-text-label">Occurance of combination</text>
+                                        <text transform="matrix(1 0 0 1 164.8589 27.1548)" class="legend-text legend-text-number">1</text>
+                                        <text transform="matrix(1 0 0 1 226.0996 27.1548)" class="legend-text legend-text-number">9</text>
+                                    </svg>
+                                </div>
+                                <!-- to be filled with d3 -->
+                            </div>
                         </div>
-                        <div class="col-12 btn-container mb-4 px-0 px-lg-2">
-                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1933);closeSidepanel()" data-id="1933">1933</span>
-                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1940);closeSidepanel()" data-id="1940">1940's</span>
-                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1954);closeSidepanel()" data-id="1954">1954</span>
-                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1965);closeSidepanel()" data-id="1965">1965</span>
-                            <span class="btn-year btn-typologies-year" onclick="typologiesGraph.draw(1980);closeSidepanel()" data-id="1980">1980</span>
-                        </div>
-                    </div>
-                    <div class="col-12 typologies-legend mb-2">
-                        <svg class="col-lg-10 col-xl-9 offset-1 offset-lg-2 pl-xl-4" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 247.6 40.3" xml:space="preserve">
-                            <text transform="matrix(1 0 0 1 19.4841 8.5)" class="legend-text legend-text-label">N° of institutions</text>
-                            <circle class="legend-circle" style="fill: #DCC274;" cx="14.2" cy="24.3" r="5" />
-                            <circle class="legend-circle" style="fill: #C9B16A;" cx="30.2" cy="24.3" r="5" />
-                            <circle class="legend-circle" style="fill: #B6A160;" cx="46.2" cy="24.3" r="5" />
-                            <circle class="legend-circle" style="fill: #A29055;" cx="62.2" cy="24.3" r="5" />
-                            <circle class="legend-circle" style="fill: #8F7F4B;" cx="78.2" cy="24.3" r="5" />
-                            <text transform="matrix(1 0 0 1 1.8589 27.1548)" class="legend-text legend-text-number">1</text>
-                            <text transform="matrix(1 0 0 1 87.7139 27.1548)" class="legend-text legend-text-number">300</text>
-                            <line class="legend-line" style="stroke-width: 1px;" x1="172.6" y1="34.3" x2="172.6" y2="14.3" />
-                            <line class="legend-line" style="stroke-width: 3px;" x1="180.6" y1="34.3" x2="180.6" y2="14.3" />
-                            <line class="legend-line" style="stroke-width: 5px;" x1="190.6" y1="34.3" x2="190.6" y2="14.3" />
-                            <line class="legend-line" style="stroke-width: 7px;" x1="202.6" y1="34.3" x2="202.6" y2="14.3" />
-                            <line class="legend-line" style="stroke-width: 9px;" x1="216.6" y1="34.3" x2="216.6" y2="14.3" />
-                            <text transform="matrix(1 0 0 1 154.0215 8.5)" class="legend-text legend-text-label">Occurance of combination</text>
-                            <text transform="matrix(1 0 0 1 164.8589 27.1548)" class="legend-text legend-text-number">1</text>
-                            <text transform="matrix(1 0 0 1 226.0996 27.1548)" class="legend-text legend-text-number">9</text>
-                        </svg>
-                    </div>
-                    <!-- to be filled with d3 -->
-                </div>
-                
-            </div>
-            <div class="row">
-                <div class="col-md-7 col-lg-6 offset-md-2">
-                    <span class="interact-with-viz">
-                        <p>[Description to be written] </p>
-                    </span>
-                    <p>[Here could be more text.]</p>
-                </div>
-                <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
-                    <!-- <div class="interaction-note mb-2">
-                        <p>Interactions: <i class="far fa-hand-pointer fa-sm" data-fa-transform="right-6"></i><i class="fas fa-mouse-pointer fa-sm" data-fa-transform="right-14"></i></p>
-                    </div> -->
-                    <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.4 – Co-occurances of typologyes</p>
-                    <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
-                    <p class="caption mb-2"><a href="./data_and_scripts/data/typologies-graph.json" download="1.4_cooccurances_of_typologies.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
-                </div>
-            </div>
+                        <div class="row">
+                            <div class="col-md-7 col-lg-6 offset-md-2">
+                                <span class="interact-with-viz">
+                                    <p>[Description to be written] </p>
+                                </span>
+                                <p>[Here could be more text.]</p>
+                            </div>
+                            <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
+                                <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.4 – Co-occurances of typologyes</p>
+                                <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
+                                <p class="caption mb-2"><a href="./data_and_scripts/data/typologies-graph.json" download="1.4_cooccurances_of_typologies.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
+                            </div>
+                        </div></span>
+
+
+
+
         </section>
     </section>
     <div class="section-divider mb-5"></div>
@@ -1076,7 +1055,7 @@
     <script src="./js/timeline.js"></script>
     <script src="./js/sankey-della-morte.js"></script>
     <script src="./js/bubblechart.js"></script>
-    <script src="./js/typologies-graph.js"></script>
+    <!-- <script src="./js/typologies-graph.js"></script> -->
     <script src="./js/map_all_institutions.js"></script>
     <script src="./js/map_typologies.js"></script>
     <script src="./js/matrix.js"></script>

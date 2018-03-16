@@ -127,16 +127,20 @@ function AcceptingInstitutions(id, data, swiss) {
             .merge(cantonsBorders)
             .on("click", function(d) {
 
+                let thisCanton = d;
+
+                let thisCantonCode = thisCanton.properties.abbr;
                 let sending = [];
                 let receiving = [];
                 let exchanges = [];
                 let viz_message;
+                let target_institutions = [];
 
-                let selected_canton = d.properties.name;
+                let selected_canton = thisCanton.properties.name;
 
                 let canton_selection = d3.select('.selected-canton span')
                     .style('opacity', 1e-6)
-                    .text(function(d){
+                    .text(function(d) {
                         return selected_canton;
                     });
 
@@ -145,16 +149,15 @@ function AcceptingInstitutions(id, data, swiss) {
                     .style('opacity', 1);
 
                 if (config.direction == 'from') {
-                    // console.log(config.year, config.direction, d.properties.abbr, d.properties);
 
-                    sending.push(d.properties.abbr);
+                    sending.push(thisCanton.properties.abbr);
 
                     let dataSelection = d3.nest()
                         .key(function(e) { return e.sourceName })
                         .entries(thisData.edges);
 
                     dataSelection = dataSelection.filter(function(e) {
-                        return e.key == d.properties.abbr;
+                        return e.key == thisCanton.properties.abbr;
                     })
 
                     if (dataSelection.length > 0) {
@@ -171,25 +174,32 @@ function AcceptingInstitutions(id, data, swiss) {
                                 'target_institutions': e.target_institutions
                             }
                         })
-                        // console.log('sending', sending);
-                        // console.log('receiving', receiving);
-                        // console.log('exchanges', exchanges);
                     } else {
-                        // console.log('no cantons receiving from', d.properties.abbr);
-                        viz_message = d.properties.name + ' did not send detainees to other cantons in ' + config.year + '.';
+                        viz_message = thisCanton.properties.name + ' did not send detainees to other cantons in ' + config.year + '.';
                     }
+
+                    target_institutions = masterData.filter(function(f) {
+                        return thisCantonCode == f.canton_code;
+                    })
+
+                    target_institutions = target_institutions.filter(function(f) {
+                        return f.survey_year == config.year;
+                    })
+
+                    target_institutions.forEach(function(e) {
+                        e.overSelectedCanton = true;
+                    })
 
                 } else {
 
-                    // console.log(config.year, config.direction, d.properties.abbr);
-                    receiving.push(d.properties.abbr);
+                    receiving.push(thisCanton.properties.abbr);
 
                     let dataSelection = d3.nest()
                         .key(function(e) { return e.targetName })
                         .entries(thisData.edges);
 
                     dataSelection = dataSelection.filter(function(e) {
-                        return e.key == d.properties.abbr;
+                        return e.key == thisCanton.properties.abbr;
                     })
 
                     if (dataSelection.length > 0) {
@@ -206,12 +216,8 @@ function AcceptingInstitutions(id, data, swiss) {
                                 'target_institutions': e.target_institutions
                             }
                         })
-                        // console.log('sending', sending);
-                        // console.log('receiving', receiving);
-                        // console.log('exchanges', exchanges);
                     } else {
-                        // console.log('no cantons sending to', d.properties.abbr);
-                        viz_message = d.properties.name + ' did not received detainees from other cantons in ' + config.year + '.';
+                        viz_message = thisCanton.properties.name + ' did not received detainees from other cantons in ' + config.year + '.';
                     }
 
                 }
@@ -223,11 +229,11 @@ function AcceptingInstitutions(id, data, swiss) {
 
                 target_institutions_ids = _.uniq(target_institutions_ids);
 
-                let target_institutions = [];
                 target_institutions_ids.forEach(function(e) {
                     let correspondingId = masterData.filter(function(f) {
-                        return e == f.id;
+                        return e == f.id
                     })
+                    correspondingId[0].overSelectedCanton = false;
                     target_institutions.push(correspondingId[0]);
                 })
 
@@ -243,9 +249,7 @@ function AcceptingInstitutions(id, data, swiss) {
                 })
 
                 if (receivingNotPlottable.length > 0) {
-                    // console.log(receivingNotPlottable);
                     receivingNotPlottable.forEach(function(f) {
-                        // console.log(f.target, notSpecifiedLabels(f.target))
                         target_institutions.push({
                             "accepted_gender": "not specified",
                             "canton": "not specified",
@@ -308,8 +312,8 @@ function AcceptingInstitutions(id, data, swiss) {
                 });
 
                 d3.select(this)
-                    .style('stroke', d3.color(concordatColors(d.properties.concordat)).darker(1))
-                    .style('fill', d3.color(concordatColors(d.properties.concordat)).brighter(.6));
+                    .style('stroke', d3.color(concordatColors(thisCanton.properties.concordat)).darker(1))
+                    .style('fill', d3.color(concordatColors(thisCanton.properties.concordat)).brighter(.6));
 
                 svg.append('text')
                     .attr('id', 'viz-message')
@@ -354,6 +358,9 @@ function AcceptingInstitutions(id, data, swiss) {
             node = node.enter()
                 .append("circle")
                 .classed('node', true)
+                .classed('over-selected-canton', function(d) {
+                    return d.overSelectedCanton;
+                })
                 .attr("r", 1)
                 .style('cursor', 'pointer')
                 .merge(node)
@@ -364,11 +371,11 @@ function AcceptingInstitutions(id, data, swiss) {
                 .attr('data-placement', 'top')
                 .attr('data-html', 'true')
                 .attr('trigger', 'click')
-                .attr('title', function(d){
-                    if (d.id.substring(0,2) == 'XX') {
+                .attr('title', function(d) {
+                    if (d.id.substring(0, 2) == 'XX') {
                         return `<div class="viz-tooltip"><span>Landmarks not specified</span></div>`;
                     } else {
-                        let thisRecord = masterData.filter(function(e){
+                        let thisRecord = masterData.filter(function(e) {
                             return e.id == d.id;
                         })[0]
                         let name_landmark = thisRecord.name_landmark;
@@ -376,41 +383,13 @@ function AcceptingInstitutions(id, data, swiss) {
                         return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}</span></div>`;
                     }
                 })
-            // .on('mouseenter', function(d) {
-            //     d3.selectAll(id + ' .node')
-            //         .style('opacity', .4)
-            //
-            //     d3.select(this)
-            //         .style('opacity', 1)
-            //         .transition()
-            //         .duration(300)
-            //         .attr('r', fixedRadius * 1.5)
-            //
-            //     d3.selectAll(id + ' .nodeLabel')
-            //         .filter(function(e) { return e.id == d.id })
-            //         .transition()
-            //         .duration(500)
-            //         .style('opacity', 1)
-            // })
-            // .on('mouseout', function(d) {
-            //     d3.selectAll(id + ' .node')
-            //         .style('opacity', 1)
-            //
-            //     d3.select(this).transition()
-            //         .duration(300)
-            //         .attr('r', fixedRadius)
-            //
-            //     d3.selectAll(id + ' .nodeLabel')
-            //         .filter(function(e) { return e.id == d.id })
-            //         .transition()
-            //         .duration(500)
-            //         .style('opacity', 0)
-            // })
 
             node.transition()
                 .duration(500)
-                .attr('r', fixedRadius)
-                .on("end", function(){
+                .attr('r', function(d) {
+                    return d.overSelectedCanton ? 3 : fixedRadius;
+                })
+                .on("end", function() {
                     $('[data-toggle="tooltip"]').tooltip()
                 });
 
@@ -427,7 +406,7 @@ function AcceptingInstitutions(id, data, swiss) {
             nodeLabel.transition()
                 .duration(500)
                 .delay(300)
-                .style('opacity', function(d){
+                .style('opacity', function(d) {
                     let code = d.id.match(/\D+/)[0];
                     if (code == 'XX') {
                         return 1;
@@ -453,7 +432,7 @@ function AcceptingInstitutions(id, data, swiss) {
 
         if (canton != undefined) {
 
-            let filtered_edges = thisData.edges.filter(function(e){
+            let filtered_edges = thisData.edges.filter(function(e) {
                 if (config.direction == 'from') {
                     return e.sourceName == canton;
                 } else {
@@ -462,7 +441,7 @@ function AcceptingInstitutions(id, data, swiss) {
             });
 
             let selected_institutions_id = [];
-            filtered_edges.forEach(function(el){
+            filtered_edges.forEach(function(el) {
                 // console.log(el.target_institutions);
                 selected_institutions_id = selected_institutions_id.concat(el.target_institutions);
             });
@@ -485,22 +464,22 @@ function AcceptingInstitutions(id, data, swiss) {
 
             d3.selectAll(id + ' .canton-contour').each(function(d) {
 
-                let sendingMatch = filtered_edges.find(function(el){
+                let sendingMatch = filtered_edges.find(function(el) {
                     return d.properties.abbr == el.sourceName;
                 });
-                let receivingMatch = filtered_edges.find(function(el){
+                let receivingMatch = filtered_edges.find(function(el) {
                     return d.properties.abbr == el.targetName;
                 });
 
-                d3.select(this).classed('faded', function(d){
+                d3.select(this).classed('faded', function(d) {
                     return sendingMatch == undefined && receivingMatch == undefined;
                 });
 
-                d3.select(this).classed('sending', function(d){
+                d3.select(this).classed('sending', function(d) {
                     return sendingMatch != undefined;
                 });
 
-                d3.select(this).classed('receiving', function(d){
+                d3.select(this).classed('receiving', function(d) {
                     return receivingMatch != undefined;
                 });
 
@@ -573,12 +552,13 @@ function AcceptingInstitutions(id, data, swiss) {
 
     function updateNavbar(step) {
         if (step.direction == 'down') {
-            $('#navigation-sidebar').animate({opacity: 0}, 350);
+            $('#navigation-sidebar').animate({ opacity: 0 }, 350);
         }
     }
+
     function resetNavbar(step) {
         if (step.direction == 'up') {
-            $('#navigation-sidebar').animate({opacity: 1}, 350);
+            $('#navigation-sidebar').animate({ opacity: 1 }, 350);
         }
     }
 

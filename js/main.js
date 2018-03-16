@@ -5,8 +5,9 @@ let masterData,
 
 let surviesSankey,
     surveySankeyMode = 'mosaic',
-    bubblechart,
-    typologiesGraph;
+    bubblechart;
+
+// let typologiesGraph;
 
 let years = [1933, 1940, 1954, 1965, 1980],
     yearsAlternative = [1900, 1933, 1940, 1954, 1965, 1980],
@@ -73,8 +74,8 @@ $(document).ready(function() {
                     bubblechart = new Bubblechart('#bubblechart', datasets[1]);
                     bubblechart.draw();
 
-                    typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
-                    typologiesGraph.draw(1954);
+                    // typologiesGraph = new TypologiesGraph('#typologies-graph', datasets[2]);
+                    // typologiesGraph.draw(1954);
 
                     // To be called after all the charts have been initialized
                     // call here the functions the initialize scrollama for chapter 2, because it needs to calculate the space occupied by the viz in chapter 1
@@ -267,7 +268,7 @@ $(document).ready(function() {
 
             surviesSankey.draw(surveySankeyMode);
             bubblechart.draw(bubblechartYearState);
-            typologiesGraph.draw(typologiesYearState);
+            // typologiesGraph.draw(typologiesYearState);
 
             let mapState = $('#maps-visualization .map-container').attr('data-category');
             if (mapState == 'hidden') {
