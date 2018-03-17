@@ -57,17 +57,10 @@ html {
 
 body {
     position: relative;
-    -webkit-transition: right 0.5s ease;
-    transition: right 0.5s ease;
-    right: 0;
     font-family: 'Brandon Grotesque', sans-serif;
     -webkit-box-shadow: 0px 0px 5px #B0C5CE;
             box-shadow: 0px 0px 5px #B0C5CE;
     color: #2f3236;
-}
-
-body.sidebar-open {
-    right: 25%;
 }
 
 a {
@@ -113,6 +106,13 @@ p {
     margin-bottom: 1rem;
     font-family: "Brandon Grotesque", sans-serif;
 }
+aside {
+    background-color: #F3F7F9;
+    z-index: 9000;
+    -webkit-box-shadow: -2px 0 4px rgba(176, 197, 206, 0.4);
+            box-shadow: -2px 0 4px rgba(176, 197, 206, 0.4);
+}
+
 aside p {
     font-family: "Brandon Grotesque", sans-serif;
 }
