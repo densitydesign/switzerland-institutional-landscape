@@ -73,8 +73,6 @@ function MapTypologies(id, swiss, data) {
         .scale(1);
 
     let active = d3.select(null);
-    
-    let isZoomed = false;
 
     // check if svg has already been created and if not, creates it
     if (!this.div_typology) {
@@ -123,10 +121,10 @@ function MapTypologies(id, swiss, data) {
             .style('pointer-events', 'all');
         
         d3.selectAll('body > .tooltip')
-        .transition()
-        .duration(250)
-        .style('opacity', 1e-6)
-        .remove();
+            .transition()
+            .duration(250)
+            .style('opacity', 1e-6)
+            .remove();
 
         currentMapsCategory = 'none';
 
@@ -365,6 +363,36 @@ function MapTypologies(id, swiss, data) {
                         let activeYear = $('#maps .active-year').attr('data-id');
                         buildSidepanel(d.id, activeYear);
                     })
+                    .on("mouseenter", function(d) {
+                        if(active.node() == null) {
+                            d3.selectAll('.dot-small')
+                                .classed('dot-hover', false)
+                                .classed('dot-faded', true)
+                                .transition()
+                                .duration(500)
+                                .ease(d3.easeBackOut.overshoot(4))
+                                .attr('r', radius);
+                            
+                            d3.selectAll('.dot-small[data-id=' + d.id + ']')
+                                .classed('dot-faded', false)
+                                .classed('dot-hover', true)
+                                .transition()
+                                .duration(500)
+                                .ease(d3.easeBackOut.overshoot(6))
+                                .attr('r', radius * 2);
+                        }
+                    })
+                    .on("mouseleave", function(d) {                
+                        d3.selectAll('.dot-hover')
+                            .transition()
+                            .duration(500)
+                            .ease(d3.easeBackOut.overshoot(4))
+                            .attr('r', radius);
+                            
+                        d3.selectAll('.dot-small')
+                            .classed('dot-hover', false)
+                            .classed('dot-faded', false)
+                    })
                     .merge(node)
                     .attr('data-id', function(d) {
                         return d.id;
@@ -464,7 +492,6 @@ function MapTypologies(id, swiss, data) {
 
     function zoomed() {
       let transform = d3.event.transform;
-      isZoomed = true;
 
       g.attr("transform", transform);
     }
@@ -472,7 +499,6 @@ function MapTypologies(id, swiss, data) {
     function reset() {
       active.classed("zoom-active", false);
       active = d3.select(null);
-      isZoomed = false;
 
       g.transition()
           .duration(750)

@@ -802,13 +802,14 @@ span.interact-with-viz .action {
 
 /* map_all_institutions styles */
 
-.dot {
+.dot,
+.dot-small {
     fill: #333333;
     cursor: pointer;
 }
 .dot-small {
-    fill: #333333;
-    cursor: pointer;
+    -webkit-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
 }
 
 .item-text {
@@ -829,6 +830,9 @@ span.interact-with-viz .action {
 
 .map-background {
     fill: none;
+}
+.dot-faded {
+    opacity: .3;
 }
 
 
