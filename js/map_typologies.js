@@ -10,7 +10,7 @@ function MapTypologies(id, swiss, data) {
         // console.log(swiss);
     }
 
-    let categories = ["forced labour institution (restricted)", "forced labour institution (semi-open)", "educational institution", "asylum for alcoholics", "prison", "psychiatric facility", "poor house", "institution for people with special needs"];
+    let categories = ["forced labour institution", "labour colony", "juvenile correction facility", "alcohol rehabilitation facility", "prison", "psychiatric institution", "municipal poorhouse", "special needs facility"];
 
     //define elements that will be present in the visualization
     let mapsSvg,

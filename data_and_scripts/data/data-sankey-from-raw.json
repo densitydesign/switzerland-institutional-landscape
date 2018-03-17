@@ -5,15 +5,15 @@
         "group": "1933"
     },
     {
-        "name": "2_closed",
+        "name": "2_closed or not yet opened",
         "group": "1933"
     },
     {
-        "name": "3_open but not surveyed",
+        "name": "3_open but not included in directory",
         "group": "1933"
     },
     {
-        "name": "4_open and surveyed",
+        "name": "4_open and included in directory",
         "group": "1933"
     },
     {
@@ -21,15 +21,15 @@
         "group": "1940"
     },
     {
-        "name": "2_closed",
+        "name": "2_closed or not yet opened",
         "group": "1940"
     },
     {
-        "name": "3_open but not surveyed",
+        "name": "3_open but not included in directory",
         "group": "1940"
     },
     {
-        "name": "4_open and surveyed",
+        "name": "4_open and included in directory",
         "group": "1940"
     },
     {
@@ -37,15 +37,15 @@
         "group": "1954"
     },
     {
-        "name": "2_closed",
+        "name": "2_closed or not yet opened",
         "group": "1954"
     },
     {
-        "name": "3_open but not surveyed",
+        "name": "3_open but not included in directory",
         "group": "1954"
     },
     {
-        "name": "4_open and surveyed",
+        "name": "4_open and included in directory",
         "group": "1954"
     },
     {
@@ -53,15 +53,15 @@
         "group": "1965"
     },
     {
-        "name": "2_closed",
+        "name": "2_closed or not yet opened",
         "group": "1965"
     },
     {
-        "name": "3_open but not surveyed",
+        "name": "3_open but not included in directory",
         "group": "1965"
     },
     {
-        "name": "4_open and surveyed",
+        "name": "4_open and included in directory",
         "group": "1965"
     },
     {
@@ -69,15 +69,15 @@
         "group": "1980"
     },
     {
-        "name": "2_closed",
+        "name": "2_closed or not yet opened",
         "group": "1980"
     },
     {
-        "name": "3_open but not surveyed",
+        "name": "3_open but not included in directory",
         "group": "1980"
     },
     {
-        "name": "4_open and surveyed",
+        "name": "4_open and included in directory",
         "group": "1980"
     }],
     "links": [

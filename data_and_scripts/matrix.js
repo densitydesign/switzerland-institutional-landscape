@@ -4,7 +4,7 @@ const node_xj = require("xls-to-json");
 const categories = JSON.parse(fs.readFileSync('data/matrix-categories-list.json', 'utf8'));
 
 node_xj({
-    input: "data/master-dataset-13-nov.xlsx", // input xls
+    input: "data/master-dataset.xlsx", // input xls
     output: null, // output json
     // sheet: "sheetname"  // specific sheetname
 }, function(err, result) {

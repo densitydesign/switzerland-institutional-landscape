@@ -56,7 +56,7 @@ $(document).ready(function() {
                 timelineData = dataTimeline;
 
                 // load asynchronously the datasets
-                var dataFiles = ['./data_and_scripts/data/sankey-institutions-with-list.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
+                var dataFiles = ['./data_and_scripts/data/sankey-institutions-with-list.json', './data_and_scripts/data/bubblechart.json'],
                     queue = d3.queue();
 
                 dataFiles.forEach(function(filename) {

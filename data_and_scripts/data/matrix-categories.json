@@ -2,19 +2,19 @@
     "typology": [
         {
             "code": 1,
-            "label": "forced labour institution (restricted)"
+            "label": "forced labour institution"
         },
         {
             "code": 2,
-            "label": "forced labour institution (semi-open)"
+            "label": "labour colony"
         },
         {
             "code": 3,
-            "label": "educational institution"
+            "label": "juvenile correction facility"
         },
         {
             "code": 4,
-            "label": "asylum for alcoholics"
+            "label": "alcohol rehabilitation facility"
         },
         {
             "code": 5,
@@ -22,15 +22,15 @@
         },
         {
             "code": 6,
-            "label": "psychiatric facility"
+            "label": "psychiatric institution"
         },
         {
             "code": 7,
-            "label": "poor house"
+            "label": "municipal poorhouse"
         },
         {
             "code": 8,
-            "label": "institution for people with special needs"
+            "label": "special needs facility"
         },
         {
             "code": 9,
@@ -40,15 +40,15 @@
     "accepted_gender": [
         {
             "code": 1,
-            "label": "males"
+            "label": "male"
         },
         {
             "code": 2,
-            "label": "females"
+            "label": "female"
         },
         {
             "code": 3,
-            "label": "both genders"
+            "label": "mixed"
         },
         {
             "code": 4,
@@ -78,7 +78,7 @@
         },
         {
             "code": 6,
-            "label": "200 - over"
+            "label": "200 or more"
         },
         {
             "code": 7,
@@ -88,11 +88,11 @@
     "confession": [
         {
             "code": 1,
-            "label": "protestants"
+            "label": "protestant"
         },
         {
             "code": 2,
-            "label": "catholics"
+            "label": "catholic"
         },
         {
             "code": 3,
@@ -106,7 +106,7 @@
     "funding_agency": [
         {
             "code": 1,
-            "label": "governmental funded"
+            "label": "government funded"
         },
         {
             "code": 2,
@@ -114,7 +114,7 @@
         },
         {
             "code": 3,
-            "label": "public-private mix"
+            "label": "public-private"
         },
         {
             "code": 4,
@@ -124,11 +124,11 @@
     "committing_agencies": [
         {
             "code": 1,
-            "label": "courts of justice"
+            "label": "courts"
         },
         {
             "code": 2,
-            "label": "coroner"
+            "label": "investigating magistrate"
         },
         {
             "code": 3,
@@ -136,11 +136,11 @@
         },
         {
             "code": 4,
-            "label": "youth advocacy"
+            "label": "juvenile prosecutor"
         },
         {
             "code": 5,
-            "label": "senior civil servants"
+            "label": "government council (municipal)"
         },
         {
             "code": 6,
@@ -148,7 +148,7 @@
         },
         {
             "code": 7,
-            "label": "legal authority"
+            "label": "correctional authority"
         },
         {
             "code": 8,
@@ -156,7 +156,7 @@
         },
         {
             "code": 9,
-            "label": "social authority"
+            "label": "social welfare authority"
         },
         {
             "code": 10,
@@ -172,11 +172,11 @@
         },
         {
             "code": 13,
-            "label": "youth welfare services"
+            "label": "juvenile welfare services"
         },
         {
             "code": 14,
-            "label": "associations"
+            "label": "private individuals/associations"
         },
         {
             "code": 15,

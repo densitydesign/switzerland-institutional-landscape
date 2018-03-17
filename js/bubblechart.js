@@ -39,12 +39,12 @@ function Bubblechart(id, data) {
 
     radius = d3.scaleOrdinal()
         .range(radiusses)
-        .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over"])
+        .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more"])
 
-    let dataLegend = ['Capacities'].concat(radius.domain())
+    let dataLegend = ['Capacity'].concat(radius.domain())
 
     let capacityColor = d3.scaleOrdinal()
-        .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over"])
+        .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more"])
         // red
         .range(['#ffffff', '#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a'])
         // green

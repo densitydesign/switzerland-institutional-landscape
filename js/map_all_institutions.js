@@ -47,9 +47,9 @@ function MapAll(id, swiss, data) {
 
     // define color scales, with ranges and domains
     let categoriesList = {
-        'capacity_group': ["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over", "not specified"],
-        'confession': ["protestants", "catholics", "interdenominational", "not specified"],
-        'accepted_gender': ["males", "females", "both genders", "not specified"]
+        'capacity_group': ["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more", "not specified"],
+        'confession': ["protestant", "catholic", "interdenominational", "not specified"],
+        'accepted_gender': ["male", "female", "mixed", "not specified"]
     }
     let capacityScale = d3.scaleOrdinal()
         .domain(categoriesList['capacity_group'])

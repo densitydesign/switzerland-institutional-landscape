@@ -340,7 +340,7 @@
                             <text transform="matrix(1 0 0 1 30.8633 186.9157)" class="timeline-legend timeline-legend-subtitle timeline-legend-det">Opened in</text>
                             <text transform="matrix(1 0 0 1 30.8633 202.9157)" class="timeline-legend timeline-legend-subtitle timeline-legend-det">Closed in</text>
                             <text transform="matrix(1 0 0 1 1.8633 108.4162)" class="timeline-legend timeline-legend-title timeline-legend-leg">Legislation</text>
-                            <text transform="matrix(1 0 0 1 1.8633 42.9157)" class="timeline-legend timeline-legend-title timeline-legend-soc">Social historical events</text>
+                            <text transform="matrix(1 0 0 1 1.8633 42.9157)" class="timeline-legend timeline-legend-title timeline-legend-soc">Socio-historical events</text>
                             <polygon class="timeline-legend timeline-legend-det dots-det" points="18.6 184.2 23.1 179.7 25.5 179.7 25.5 188.7 23.1 188.7 " />
                             <polygon class="timeline-legend timeline-legend-det dots-det det-closing" points="26.5 199.2 22 203.7 19.6 203.7 19.6 194.7 22 194.7 " />
                         </g>
@@ -370,12 +370,12 @@
                             <!-- to be filled with D3 -->
                         </svg>
                         <div class="row">
-                            <div class="col-4">
-                                <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.2 – Surveyes and institutional landmarks</p>
+                            <div class="col-3">
+                                <p class="caption font-weight-bold mt-1 mb-2">Visualisation 1.2 – Directories and detention facilities</p>
                                 <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
                                 <p class="caption mb-2"><a href="./data_and_scripts/data/sankey-institutions.json" download="1.2_surveyes_and_institutional_landmarks.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
                             </div>
-                            <div class="col-8">
+                            <div class="col-9">
                                 <div class="legend d-flex justify-content-between flex-wrap mt-2">
                                 </div>
                             </div>
@@ -385,7 +385,7 @@
                 <div class="col-md-4 mb-md-5">
                     <div class="row">
                         <div class="col-10">
-                            <h3 class="mb-2"><a href="#surveyed-institutions"></a>Source</h3>
+                            <h3 class="mb-2"><a href="#surveyed-institutions"></a>Sources</h3>
                         </div>
                     </div>
                     <p>
@@ -449,7 +449,7 @@
                     </span>
                 </div>
                 <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
-                    <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.3 – Purposes of institutions</p>
+                    <p class="caption font-weight-bold mt-1 mb-2">Visualisation 1.3 – Purposes of institutions</p>
                     <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
                     <p class="caption mb-2"><a href="./data_and_scripts/data/bubblechart.json" download="1.3_purposes_of_institutions.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
                 </div>
@@ -499,7 +499,7 @@
                     <p>[Here could be more text.]</p>
                 </div>
                 <div class="col-3 col-lg-4 pl-4 d-none d-md-block">
-                    <p class="caption font-weight-bold mt-1 mb-2">Viz. 1.4 – Co-occurances of typologyes</p>
+                    <p class="caption font-weight-bold mt-1 mb-2">Visualisation 1.4 – Co-occurances of typologyes</p>
                     <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
                     <p class="caption mb-2"><a href="./data_and_scripts/data/typologies-graph.json" download="1.4_cooccurances_of_typologies.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
                 </div>
@@ -639,22 +639,22 @@
                                 <label>Y Axis:</label>
                                 <select id='scatterplot-y' class="pr-lg-4 ml-2 custom-select" onchange="matrix.draw(1954)">
                                     <option value='capacity_group'>Capacity</option>
-                                    <option value='committing_agencies'>Committing Agency</option>
-                                    <option value='confession'>Confession</option>
-                                    <option value='funding_agency'>Funding Body</option>
-                                    <option value='accepted_gender' selected>Gender</option>
-                                    <option value='typology'>Typology</option>
+                                    <option value='committing_agencies'>Ordering Authority</option>
+                                    <option value='confession'>Religious Affiliation</option>
+                                    <option value='funding_agency'>Funding Agency</option>
+                                    <option value='accepted_gender' selected>Gender Ratio</option>
+                                    <option value='typology'>Facility Types</option>
                                 </select>
                             </div>
                             <div class='select-container'>
                                 <label>X Axis:</label>
                                 <select id='scatterplot-x' class="pr-lg-4 ml-2 custom-select" onchange="matrix.draw(1954)">
                                     <option value='capacity_group'>Capacity</option>
-                                    <option value='committing_agencies'>Committing Agency</option>
-                                    <option value='confession'>Confession</option>
-                                    <option value='funding_agency'>Funding Body</option>
-                                    <option value='accepted_gender'>Gender</option>
-                                    <option value='typology' selected>Typology</option>
+                                    <option value='committing_agencies'>Ordering Authority</option>
+                                    <option value='confession'>Religious Affiliation</option>
+                                    <option value='funding_agency'>Funding Agency</option>
+                                    <option value='accepted_gender'>Gender Ratio</option>
+                                    <option value='typology' selected>Facility Types</option>
                                 </select>
                             </div>
                         </div>
@@ -672,7 +672,7 @@
                             <!-- to be filled with d3 -->
                         </div>
                         <div class="col-4">
-                            <p class="caption font-weight-bold mt-1 mb-2">Viz. 3.1 – Correlation matrix</p>
+                            <p class="caption font-weight-bold mt-1 mb-2">Visualisation 3.1 – Correlation matrix</p>
                             <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
                             <p class="caption mb-2"><a href="./data_and_scripts/data/matrix.json" download="3.1_correlation_matrix.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
                         </div>
@@ -696,9 +696,9 @@
                     <p>
                         Many other meaningful combinations are to be explored, for instance:
                         <br/>
-                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','typology');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare "capacities" and "typologies"</strong>
+                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','typology');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare capacities and facility types</strong>
                         <br/>
-                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','confession');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare "capacities" and "confessions"</strong>
+                        <strong class="underlined year-switch" onclick="changeMatrixStatus('capacity_group','confession');closeSidepanel()"><i class="far fa-hand-pointer fa-sm" data-fa-transform="left-2" style="color: #81AA91;"></i>compare capacities and religious affiliations</strong>
                         <br/>
                         <br/>
                     </p>
@@ -754,36 +754,36 @@
                 <div class="col-md-10 col-xl-8 offset-md-1 diagram-container">
                     <svg class="svg-diagram my-4" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 406.9 138.4" xml:space="preserve">
                         <path class="legend-rect" d="M74.3 46.8h-69c-1.1 0-2-0.9-2-2V5.3c0-1.1 0.9-2 2-2h69c1.1 0 2 0.9 2 2v39.5C76.3 45.9 75.4 46.8 74.3 46.8z" />
-                        <text transform="matrix(1 0 0 1 8.2683 15.5)" class="legend-text legend-title">Denouncing</text>
+                        <text transform="matrix(1 0 0 1 8.2683 15.5)" class="legend-text legend-title">Complaint</text>
                         <text transform="matrix(1 0 0 1 8 25.4834)">
-                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">By the municipality </tspan>
+                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">by municipal </tspan>
                             <tspan x="0" y="7.2" class="legend-text legend-text-sublabel">authorities</tspan>
                         </text>
                         <path class="legend-rect" d="M183.3 46.8h-69c-1.1 0-2-0.9-2-2V5.3c0-1.1 0.9-2 2-2h69c1.1 0 2 0.9 2 2v39.5C185.3 45.9 184.4 46.8 183.3 46.8z" />
-                        <text transform="matrix(1 0 0 1 117.2683 15.5)" class="legend-text legend-title">Inquiry</text>
+                        <text transform="matrix(1 0 0 1 117.2683 15.5)" class="legend-text legend-title">Investigation</text>
                         <text transform="matrix(1 0 0 1 117 25.4834)">
-                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">By a prefect with hearings </tspan>
-                            <tspan x="0" y="7.2" class="legend-text legend-text-sublabel">of the denounced and </tspan>
-                            <tspan x="0" y="14.4" class="legend-text legend-text-sublabel">possible witnesses</tspan>
+                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">by prefect, with hearing </tspan>
+                            <tspan x="0" y="7.2" class="legend-text legend-text-sublabel">of accused and </tspan>
+                            <tspan x="0" y="14.4" class="legend-text legend-text-sublabel">available witnesses</tspan>
                         </text>
                         <path class="legend-rect" d="M292.3 46.8h-69c-1.1 0-2-0.9-2-2V5.3c0-1.1 0.9-2 2-2h69c1.1 0 2 0.9 2 2v39.5C294.3 45.9 293.4 46.8 292.3 46.8z" />
-                        <text transform="matrix(1 0 0 1 226.2683 15.5)" class="legend-text legend-title">Decision</text>
+                        <text transform="matrix(1 0 0 1 226.2683 15.5)" class="legend-text legend-title">Order</text>
                         <text transform="matrix(1 0 0 1 226 25.4834)">
-                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">By a prefect as a reasoned </tspan>
-                            <tspan x="0" y="7.2" class="legend-text legend-text-sublabel">order</tspan>
+                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">by a prefect, with statement </tspan>
+                            <tspan x="0" y="7.2" class="legend-text legend-text-sublabel">of legal grounds</tspan>
                         </text>
                         <path class="legend-rect" d="M304.3 134.3h-81c-1.1 0-2-0.9-2-2v-49c0-1.1 0.9-2 2-2h81c1.1 0 2 0.9 2 2v49C306.3 133.4 305.4 134.3 304.3 134.3z" />
-                        <text transform="matrix(1 0 0 1 226.2683 93.5)" class="legend-text legend-title">Recourse</text>
+                        <text transform="matrix(1 0 0 1 226.2683 93.5)" class="legend-text legend-title">Appeal</text>
                         <text transform="matrix(1 0 0 1 226 103.4834)">
-                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">To the State Board</tspan>
+                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">to the Government Council.</tspan>
                             <tspan x="0" y="10" class="legend-text legend-text-sublabel">The municipality can also appeal</tspan>
-                            <tspan x="0" y="17.2" class="legend-text legend-text-sublabel">against the prefect’s decision</tspan>
-                            <tspan x="0" y="24.4" class="legend-text legend-text-sublabel">of non-internment</tspan>
+                            <tspan x="0" y="17.2" class="legend-text legend-text-sublabel">against non-internment decision</tspan>
+                            <tspan x="0" y="24.4" class="legend-text legend-text-sublabel">by prefect</tspan>
                         </text>
                         <path class="legend-rect" d="M401.3 46.8h-69c-1.1 0-2-0.9-2-2V5.3c0-1.1 0.9-2 2-2h69c1.1 0 2 0.9 2 2v39.5C403.3 45.9 402.4 46.8 401.3 46.8z" />
                         <text transform="matrix(1 0 0 1 335.2683 15.5)" class="legend-text legend-title">Detention</text>
                         <text transform="matrix(1 0 0 1 335 25.4834)">
-                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">From 6 months up to </tspan>
+                            <tspan x="0" y="0" class="legend-text legend-text-sublabel">for term of 6 months to</tspan>
                             <tspan x="0" y="7.2" class="legend-text legend-text-sublabel">2 years in a labour </tspan>
                             <tspan x="0" y="14.4" class="legend-text legend-text-sublabel">camp (Bellechasse)</tspan>
                         </text>
@@ -844,46 +844,18 @@
                 </div>
                 <div class="col-3 Xsidenote mt-3 d-flex flex-column justify-content-between">
                     <!-- <div class="pl-3 mt-4"> -->
-                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 133.64 318.76" class="w-100 pr-3 mb-4">
+                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 133.64 318.76" class="w-100 pr-3 mb-4">
                             <title>concordat-legend vertical</title>
-                            <text transform="translate(1.47 19.07)" style="font-size: 8px;font-family: Brandon Grotesque">B
-                                <tspan x="4.94" y="0">elonging </tspan>
-                                <tspan x="32.88" y="0">C</tspan>
-                                <tspan x="38.44" y="0">oncordat</tspan>
-                            </text>
+                            <text transform="translate(1.47 19.07)" style="font-size: 8px;font-family: Brandon Grotesque">Applicable Convention</text>
                             <rect x="2.14" y="26.39" width="8" height="8" style="fill: #cfb76d" />
                             <rect x="2.14" y="39.67" width="8" height="8" style="fill: #79745c" />
                             <rect x="2.14" y="52.96" width="8" height="8" style="fill: #b5ba72" />
                             <rect x="2.14" y="66.24" width="8" height="8" style="fill: #eae6da" />
-                            <text transform="translate(14 32.06)" style="font-size: 6px;font-family: Brandon Grotesque">C
-                                <tspan x="4.17" y="0">oncordat of the Latin cantons</tspan>
-                            </text>
-                            <text transform="translate(14 45.34)" style="font-size: 6px;font-family: Brandon Grotesque">C
-                                <tspan x="4.17" y="0">oncordat of </tspan>
-                                <tspan x="32.51" y="0">C</tspan>
-                                <tspan x="36.69" y="0">entral and </tspan>
-                                <tspan x="61.3" y="0">N</tspan>
-                                <tspan x="65.83" y="0">orth</tspan>
-                                <tspan x="75.75" y="0">-</tspan>
-                                <tspan x="78.05" y="0">W</tspan>
-                                <tspan x="83.15" y="0">est </tspan>
-                                <tspan x="91.41" y="0">S</tspan>
-                                <tspan x="94.53" y="0">witzerland</tspan>
-                            </text>
-                            <text transform="translate(14 58.63)" style="font-size: 6px;font-family: Brandon Grotesque">C
-                                <tspan x="4.17" y="0">oncordat of </tspan>
-                                <tspan x="32.51" y="0">E</tspan>
-                                <tspan x="35.99" y="0">astern </tspan>
-                                <tspan x="51.75" y="0">S</tspan>
-                                <tspan x="54.87" y="0">witzerland</tspan>
-                            </text>
-                            <text transform="translate(14 71.91)" style="font-size: 6px;font-family: Brandon Grotesque">N
-                                <tspan x="4.53" y="0">ot specified</tspan>
-                            </text>
-                            <text transform="translate(1.47 101.04)" style="font-size: 8px;font-family: Brandon Grotesque">N° of occu
-                                <tspan x="33.62" y="0">r</tspan>
-                                <tspan x="36.27" y="0">ences</tspan>
-                            </text>
+                            <text transform="translate(14 32.06)" style="font-size: 6px;font-family: Brandon Grotesque">Intercantonal Convention of the Latin Switzerland</text>
+                            <text transform="translate(14 45.34)" style="font-size: 6px;font-family: Brandon Grotesque">Intercantonal Convention of Central and North-West Switzerland</text>
+                            <text transform="translate(14 58.63)" style="font-size: 6px;font-family: Brandon Grotesque">Intercantonal Convention of Eastern Switzerland</text>
+                            <text transform="translate(14 71.91)" style="font-size: 6px;font-family: Brandon Grotesque">Not specified</text>
+                            <text transform="translate(1.47 101.04)" style="font-size: 8px;font-family: Brandon Grotesque">N° of occurences</text>
                             <circle cx="17.14" cy="135.26" r="4" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
                             <circle cx="17.14" cy="124.26" r="15" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
                             <text transform="translate(35.95 138.31)" style="font-size: 6px;font-family: Brandon Grotesque">1</text>
@@ -930,7 +902,7 @@
                             <circle cx="37.4" cy="304.09" r="4" style="fill: #cfb76d;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
                             <circle cx="54.37" cy="287.41" r="4" style="fill: #b5ba72;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px" />
                         </svg>
-                        <div class="sidenote"><p class="caption font-weight-bold mt-1 mb-2">Viz. 4.2 – Network between cantons</p>
+                        <div class="sidenote"><p class="caption font-weight-bold mt-1 mb-2">Visualisation 4.2 – Network between cantons</p>
                                                 <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
                                                 <p class="caption mb-2"><a href="./data_and_scripts/data/cantons-network.json" download="4_network_between_cantons.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p></div>
                     <!-- </div> -->
@@ -965,7 +937,7 @@
                         </div>
                         <div class="col-3" data-toggle="buttons">
                             <div class="col-12 text-center year-title mb-1">
-                                <span>Facilities accepting detainees</span>
+                                <span>Facilities housing detainees</span>
                             </div>
                             <div class="col-12 btn-container-direction mb-2">
                                 <span class="btn-year btn-direction" onclick="acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig); d3.select('.selected-canton span').transition().duration(300).style('opacity', 0.5).text('please click on a canton'); closeSidepanel()" data-id="from">From</span>
@@ -982,14 +954,14 @@
                     <div class="row">
                         <div class="col-md-11 col-lg-9 col-xl-8 offset-1 concordat-legend">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 406.9 74.4" xml:space="preserve">
-                                <text transform="matrix(1 0 0 1 2.0569 8.5)" class="legend-text legend-text-label">Belonging Concordat</text>
+                                <text transform="matrix(1 0 0 1 2.0569 8.5)" class="legend-text legend-text-label">Applicable Convention</text>
                                 <rect x="2.1" y="15.8" style="fill: #CFB76D;" width="8" height="8" />
                                 <rect x="2.1" y="29.1" style="fill: #79745C;" width="8" height="8" />
                                 <rect x="2.1" y="42.4" style="fill: #81aa91;" width="8" height="8" />
                                 <!-- <rect x="2.1" y="55.7" style="fill: #EAE6DA;" width="8" height="8" /> -->
-                                <text transform="matrix(1 0 0 1 14 21.4834)" class="legend-text legend-text-sublabel">Concordat of the Latin cantons</text>
-                                <text transform="matrix(1 0 0 1 14 34.7676)" class="legend-text legend-text-sublabel">Concordat of Central and North-West Switzerland</text>
-                                <text transform="matrix(1 0 0 1 14 48.0518)" class="legend-text legend-text-sublabel">Concordat of Eastern Switzerland</text>
+                                <text transform="matrix(1 0 0 1 14 21.4834)" class="legend-text legend-text-sublabel">Intercantonal Convention of the Latin Switzerland</text>
+                                <text transform="matrix(1 0 0 1 14 34.7676)" class="legend-text legend-text-sublabel">Intercantonal Convention of Central and North-West Switzerland</text>
+                                <text transform="matrix(1 0 0 1 14 48.0518)" class="legend-text legend-text-sublabel">Intercantonal Convention of Eastern Switzerland</text>
                                 <!-- <text transform="matrix(1 0 0 1 14 61.3359)" class="legend-text legend-text-sublabel">Not specified</text> -->
                             </svg>
                         </div>
@@ -997,7 +969,7 @@
                     <!-- To be filled with D3 -->
                 </div>
                 <div class="col-4 offset-2">
-                    <p class="caption font-weight-bold mt-1 mb-2">Viz. 4.3 – Accepting institutions</p>
+                    <p class="caption font-weight-bold mt-1 mb-2">Visualisation 4.3 – Accepting institutions</p>
                     <p class="caption open-in-external-window mb-2"><i class="fas fa-link" aria-hidden="true"></i> Open in a separate window</p>
                     <p class="caption mb-2"><a href="./data_and_scripts/data/cantons-network.json" download="4_network_between_cantons.json"><i class="fas fa-download" aria-hidden="true"></i> Download the data</a></p>
                 </div>
