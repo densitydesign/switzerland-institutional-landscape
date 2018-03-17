@@ -354,7 +354,7 @@ $(document).on('setWaypoints', function() {
     // waypoint for sankey/mosaic. call function sankey if going down, mosaic if going up
     sankeyScroller.setup({
             step: '#sankey-text',
-            offset: 0.4
+            offset: 0.5
         })
         .onStepEnter(updateSankey)
         .onStepExit(resetSankey);

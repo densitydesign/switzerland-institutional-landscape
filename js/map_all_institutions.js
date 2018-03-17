@@ -78,17 +78,17 @@ function MapAll(id, swiss, data) {
         //remove precedent map with a transition
         d3.selectAll('#maps-visualization .maps-swiss path')
             .transition()
-            .duration(300)
+            .duration(250)
             .style('opacity', 1e-6)
             .remove();
         d3.selectAll('#maps-visualization .maps-dots circle')
             .transition()
-            .duration(300)
+            .duration(250)
             .attr('r', 1e-6)
             .remove();
         d3.selectAll('#maps-visualization .maps-label text')
             .transition()
-            .duration(300)
+            .duration(250)
             .style('opacity', 1e-6)
             .remove();
         d3.select('#maps-visualization .maps-container')
@@ -96,6 +96,12 @@ function MapAll(id, swiss, data) {
             .style('pointer-events', 'none');
         d3.select('#maps-visualization .maps-container rect')
             .style('pointer-events', 'none');
+        
+        d3.selectAll('body > .tooltip')
+            .transition()
+            .duration(250)
+            .style('opacity', 1e-6)
+            .remove();
 
         //calculate width and height of the viz container and set them as svg dimensions
         width = $('#maps-visualization').width();
@@ -137,7 +143,7 @@ function MapAll(id, swiss, data) {
 
         swissBorder.exit()
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 1e-6)
             .remove();
 
@@ -148,7 +154,7 @@ function MapAll(id, swiss, data) {
             .merge(swissBorder)
             .attr("d", path)
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 0.5);
 
         let cantonsBorder = cantonsBorderContainer.selectAll('path')
@@ -162,7 +168,7 @@ function MapAll(id, swiss, data) {
 
         cantonsBorder.exit()
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 1e-6)
             .remove();
 
@@ -173,7 +179,7 @@ function MapAll(id, swiss, data) {
             .merge(cantonsBorder)
             .attr('d', path)
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 0.5);
 
         //filter the data for the correct year
@@ -216,7 +222,7 @@ function MapAll(id, swiss, data) {
 
         node.exit()
             .transition()
-            .duration(500)
+            .duration(350)
             .attr('r', 1e-6)
             .remove();
 
@@ -258,7 +264,7 @@ function MapAll(id, swiss, data) {
                 });
 
             node.transition()
-                .duration(500)
+                .duration(350)
                 .delay(function(d, i) { return i * 2 })
                 .style('fill', function(d){
                     if (category === 'capacity_group') {
@@ -278,7 +284,7 @@ function MapAll(id, swiss, data) {
 
                 item.exit()
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .style('opacity', 1e-6)
                     .remove();
 
@@ -293,24 +299,24 @@ function MapAll(id, swiss, data) {
                     .on('mouseenter', function(d) {
                         d3.selectAll('#maps .dot')
                             .transition()
-                            .duration(500)
+                            .duration(350)
                             .style('opacity', .1)
 
                         d3.selectAll('#maps .dot[data-hover="' + d + '"]')
                             .transition()
-                            .duration(500)
+                            .duration(350)
                             .style('opacity', 1)
                     })
                     .on('mouseleave', function(d) {
                         d3.selectAll('#maps .dot')
                             .transition()
-                            .duration(500)
+                            .duration(350)
                             .style('opacity', 1)
                     });
 
                 item.selectAll('*')
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .style('opacity', 1e-6)
                     .remove();
 
@@ -330,7 +336,7 @@ function MapAll(id, swiss, data) {
                         return i * 20;
                     })
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .delay(function(d, i) { return i * 2 })
                     .style('fill', function(d){
                         if (category === 'capacity_group') {
@@ -370,7 +376,7 @@ function MapAll(id, swiss, data) {
                         return d;
                     })
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .delay(function(d, i) { return i * 2 })
                     .style('opacity', 1);
 
@@ -400,7 +406,7 @@ function MapAll(id, swiss, data) {
                 });
 
             node.transition()
-                .duration(500)
+                .duration(350)
                 .delay(function(d, i) { return i * 2 })
                 .attr('r', radius);
 
