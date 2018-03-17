@@ -496,7 +496,7 @@ span.interact-with-viz .action {
     font-size: 0.83em;
     margin-bottom: 12px;
 }
-.sidepanel p:first-of-type {
+.sidepanel p.institution-subtitle {
     margin-bottom: 1.5rem;
 }
 .sidepanel-list-item a {

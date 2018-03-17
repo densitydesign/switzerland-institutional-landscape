@@ -476,6 +476,7 @@ function buildSidepanel(id, year) {
             .text(filtered_institution[0].institution);
 
         panel.append('p')
+            .classed('institution-subtitle', true)
             .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
 
         panel.append('p')
