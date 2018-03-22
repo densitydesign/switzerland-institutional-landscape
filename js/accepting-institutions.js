@@ -535,8 +535,8 @@ function AcceptingInstitutions(id, data, swiss) {
 
         // scrollama for hiding navbar at the bottom of the page
         navScroller.setup({
-                step: '#last-paragraph',
-                offset: 0.7
+                step: '#last-element',
+                offset: 0.25
             })
             .onStepEnter(updateNavbar)
             .onStepExit(resetNavbar);

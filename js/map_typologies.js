@@ -10,7 +10,7 @@ function MapTypologies(id, swiss, data) {
         // console.log(swiss);
     }
 
-    let categories = ["forced labour institution (restricted)", "forced labour institution (semi-open)", "educational institution", "asylum for alcoholics", "prison", "psychiatric facility", "poor house", "institution for people with special needs"];
+    let categories = ["forced labour institution", "labour colony", "juvenile correction facility", "alcohol rehabilitation facility", "prison", "psychiatric institution", "municipal poorhouse", "special needs facility"];
 
     //define elements that will be present in the visualization
     let mapsSvg,
@@ -99,17 +99,17 @@ function MapTypologies(id, swiss, data) {
         //remove precedent map with a transition
         d3.selectAll('#maps-visualization .map-swiss path')
             .transition()
-            .duration(300)
+            .duration(250)
             .style('opacity', 1e-6)
             .remove();
         d3.selectAll('#maps-visualization .map-dots circle')
             .transition()
-            .duration(300)
+            .duration(250)
             .attr('r', 1e-6)
             .remove();
         d3.selectAll('#maps-visualization .map-legend .item')
             .transition()
-            .duration(300)
+            .duration(250)
             .style('opacity', 1e-6)
             .remove();
         d3.select('#maps-visualization .map-container')
@@ -119,6 +119,12 @@ function MapTypologies(id, swiss, data) {
             .style('pointer-events', 'auto');
         d3.select('#maps-visualization .maps-container rect')
             .style('pointer-events', 'all');
+        
+        d3.selectAll('body > .tooltip')
+            .transition()
+            .duration(250)
+            .style('opacity', 1e-6)
+            .remove();
 
         currentMapsCategory = 'none';
 
@@ -129,7 +135,7 @@ function MapTypologies(id, swiss, data) {
         if (height > vHeight) {
             height = vHeight;
         }
-        radius = 1.5;
+        radius = 1.75;
         mapsWidth = width / 3 - 30;
         mapsHeight = mapsWidth * .7;
 
@@ -177,7 +183,7 @@ function MapTypologies(id, swiss, data) {
 
         swissBorder.exit()
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 1e-6)
             .remove();
 
@@ -214,7 +220,7 @@ function MapTypologies(id, swiss, data) {
                 }
             })
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 0.5);
 
         let cantonsBorder = cantonsBorderContainer.selectAll('path')
@@ -238,7 +244,7 @@ function MapTypologies(id, swiss, data) {
 
         cantonsBorder.exit()
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 1e-6)
             .remove();
 
@@ -276,7 +282,7 @@ function MapTypologies(id, swiss, data) {
             })
             .on("click", clicked)
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 0.5);
 
         // add labels to maps
@@ -285,7 +291,7 @@ function MapTypologies(id, swiss, data) {
 
         label.exit()
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 1e-6)
             .remove();
 
@@ -308,7 +314,7 @@ function MapTypologies(id, swiss, data) {
             .text(function(d){return d;})
             .on("click", clicked)
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 1);
 
         // d3.selectAll('text.maps-label')
@@ -345,7 +351,7 @@ function MapTypologies(id, swiss, data) {
 
                 node.exit()
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .attr('r', 1e-6)
                     .remove();
 
@@ -357,7 +363,40 @@ function MapTypologies(id, swiss, data) {
                         let activeYear = $('#maps .active-year').attr('data-id');
                         buildSidepanel(d.id, activeYear);
                     })
+                    .on("mouseenter", function(d) {
+                        if(active.node() == null) {
+                            d3.selectAll('.dot-small')
+                                .classed('dot-hover', false)
+                                .classed('dot-faded', true)
+                                .transition()
+                                .duration(500)
+                                .ease(d3.easeBackOut.overshoot(4))
+                                .attr('r', radius);
+                            
+                            d3.selectAll('.dot-small[data-id=' + d.id + ']')
+                                .classed('dot-faded', false)
+                                .classed('dot-hover', true)
+                                .transition()
+                                .duration(500)
+                                .ease(d3.easeBackOut.overshoot(6))
+                                .attr('r', radius * 2);
+                        }
+                    })
+                    .on("mouseleave", function(d) {                
+                        d3.selectAll('.dot-hover')
+                            .transition()
+                            .duration(500)
+                            .ease(d3.easeBackOut.overshoot(4))
+                            .attr('r', radius);
+                            
+                        d3.selectAll('.dot-small')
+                            .classed('dot-hover', false)
+                            .classed('dot-faded', false)
+                    })
                     .merge(node)
+                    .attr('data-id', function(d) {
+                        return d.id;
+                    })
                     .attr('data-toggle', 'tooltip')
                     .attr('data-placement', 'top')
                     .attr('data-html', 'true')
@@ -372,7 +411,7 @@ function MapTypologies(id, swiss, data) {
                     });
 
                 node.transition()
-                    .duration(500)
+                    .duration(350)
                     .delay(function(d, i) { return i * 2 })
                     .attr('r', radius);
 
@@ -385,7 +424,7 @@ function MapTypologies(id, swiss, data) {
                         return d.y;
                     }).strength(0.1))
                     .force('collision', d3.forceCollide().radius(function(d) {
-                        return radius + 0.5;
+                        return radius + 0.25;
                     }))
                     .on("tick", ticked)
                     .restart();
@@ -398,7 +437,7 @@ function MapTypologies(id, swiss, data) {
                 // if there isn't, clear the svg
                 d3.select(this).selectAll('circle')
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .attr('r', 1e-6)
                     .remove();
             }
@@ -411,9 +450,7 @@ function MapTypologies(id, swiss, data) {
             reset();
         })
 
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+        $('[data-toggle="tooltip"]').tooltip();
     }
 
     function getCoordinates(d, i, counter) {

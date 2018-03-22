@@ -2,7 +2,7 @@ const fs = require('fs');
 const node_xj = require("xls-to-json");
 
 node_xj({
-    input: "data/master-dataset-13-nov.xlsx", // input xls
+    input: "data/master-dataset.xlsx", // input xls
     output: null, // output json
     // sheet: "sheetname"  // specific sheetname
 }, function(err, result) {
@@ -13,7 +13,6 @@ node_xj({
             return {
                 'id': d.id,
                 'survey_year': d.survey_year,
-                'typologies': d.typologies,
                 'group': d.typologies.split(';').length,
                 'capacity_group': d.capacity_group
             }

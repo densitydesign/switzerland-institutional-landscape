@@ -47,19 +47,19 @@ function MapAll(id, swiss, data) {
 
     // define color scales, with ranges and domains
     let categoriesList = {
-        'capacity_group': ["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 - over", "not specified"],
-        'confession': ["protestants", "catholics", "interdenominational", "not specified"],
-        'accepted_gender': ["males", "females", "both genders", "not specified"]
+        'capacity_group': ["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more", "not specified"],
+        'confession': ["protestant", "catholic", "interdenominational", "not specified"],
+        'accepted_gender': ["male", "female", "mixed", "not specified"]
     }
     let capacityScale = d3.scaleOrdinal()
         .domain(categoriesList['capacity_group'])
-        .range(['#DCC274', '#CFB76D', '#B5A060', '#8F7F4B', '#4F462A', '#38321E', '#EAE6DA']);
+        .range(['#DCC274', '#CFB76D', '#B5A060', '#8F7F4B', '#4F462A', '#38321E', '#FFFFFF']);
     let confessionScale = d3.scaleOrdinal()
         .domain(categoriesList['confession'])
-        .range(['#CC2936', '#61988E', '#EDDEA4', '#EAE6DA']);
+        .range(['#CC2936', '#61988E', '#EDDEA4', '#FFFFFF']);
     let genderScale = d3.scaleOrdinal()
         .domain(categoriesList['accepted_gender'])
-        .range(['#575A4B', '#FF6663', '#EDDEA4', '#EAE6DA']);
+        .range(['#575A4B', '#FF6663', '#EDDEA4', '#FFFFFF']);
 
     // check if svg has already been created and if not, creates it
     if (!this.svg) {
@@ -78,17 +78,17 @@ function MapAll(id, swiss, data) {
         //remove precedent map with a transition
         d3.selectAll('#maps-visualization .maps-swiss path')
             .transition()
-            .duration(300)
+            .duration(250)
             .style('opacity', 1e-6)
             .remove();
         d3.selectAll('#maps-visualization .maps-dots circle')
             .transition()
-            .duration(300)
+            .duration(250)
             .attr('r', 1e-6)
             .remove();
         d3.selectAll('#maps-visualization .maps-label text')
             .transition()
-            .duration(300)
+            .duration(250)
             .style('opacity', 1e-6)
             .remove();
         d3.select('#maps-visualization .maps-container')
@@ -96,6 +96,12 @@ function MapAll(id, swiss, data) {
             .style('pointer-events', 'none');
         d3.select('#maps-visualization .maps-container rect')
             .style('pointer-events', 'none');
+        
+        d3.selectAll('body > .tooltip')
+            .transition()
+            .duration(250)
+            .style('opacity', 1e-6)
+            .remove();
 
         //calculate width and height of the viz container and set them as svg dimensions
         width = $('#maps-visualization').width();
@@ -137,7 +143,7 @@ function MapAll(id, swiss, data) {
 
         swissBorder.exit()
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 1e-6)
             .remove();
 
@@ -148,7 +154,7 @@ function MapAll(id, swiss, data) {
             .merge(swissBorder)
             .attr("d", path)
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 0.5);
 
         let cantonsBorder = cantonsBorderContainer.selectAll('path')
@@ -162,7 +168,7 @@ function MapAll(id, swiss, data) {
 
         cantonsBorder.exit()
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 1e-6)
             .remove();
 
@@ -173,7 +179,7 @@ function MapAll(id, swiss, data) {
             .merge(cantonsBorder)
             .attr('d', path)
             .transition()
-            .duration(500)
+            .duration(350)
             .style('opacity', 0.5);
 
         //filter the data for the correct year
@@ -216,7 +222,7 @@ function MapAll(id, swiss, data) {
 
         node.exit()
             .transition()
-            .duration(500)
+            .duration(350)
             .attr('r', 1e-6)
             .remove();
 
@@ -226,7 +232,6 @@ function MapAll(id, swiss, data) {
                 .append('circle')
                 .classed('dot', true)
                 .attr('r', 1e-6)
-                .style('stroke', '#333333')
                 .on("click", function(d) {
                     let activeYear = $('#maps .active-year').attr('data-id');
                     buildSidepanel(d.id, activeYear);
@@ -246,10 +251,20 @@ function MapAll(id, swiss, data) {
                 })
                 .attr('data-hover', function(d){
                     return d[category];
+                })
+                .attr('stroke', function(d) {
+                    if ((category === 'capacity_group' && d.capacity_group == "not specified") || (category === 'confession' && d.confession == "not specified") || (category === 'accepted_gender' && d.accepted_gender == "not specified")) {
+                        return '#074050';
+                    }
+                })
+                .attr('stroke-width', function(d) {
+                    if ((category === 'capacity_group' && d.capacity_group == "not specified") || (category === 'confession' && d.confession == "not specified") || (category === 'accepted_gender' && d.accepted_gender == "not specified")) {
+                        return .5 + 'px';
+                    }
                 });
 
             node.transition()
-                .duration(500)
+                .duration(350)
                 .delay(function(d, i) { return i * 2 })
                 .style('fill', function(d){
                     if (category === 'capacity_group') {
@@ -269,7 +284,7 @@ function MapAll(id, swiss, data) {
 
                 item.exit()
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .style('opacity', 1e-6)
                     .remove();
 
@@ -284,24 +299,24 @@ function MapAll(id, swiss, data) {
                     .on('mouseenter', function(d) {
                         d3.selectAll('#maps .dot')
                             .transition()
-                            .duration(500)
+                            .duration(350)
                             .style('opacity', .1)
 
                         d3.selectAll('#maps .dot[data-hover="' + d + '"]')
                             .transition()
-                            .duration(500)
+                            .duration(350)
                             .style('opacity', 1)
                     })
                     .on('mouseleave', function(d) {
                         d3.selectAll('#maps .dot')
                             .transition()
-                            .duration(500)
+                            .duration(350)
                             .style('opacity', 1)
                     });
 
                 item.selectAll('*')
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .style('opacity', 1e-6)
                     .remove();
 
@@ -321,7 +336,7 @@ function MapAll(id, swiss, data) {
                         return i * 20;
                     })
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .delay(function(d, i) { return i * 2 })
                     .style('fill', function(d){
                         if (category === 'capacity_group') {
@@ -330,6 +345,16 @@ function MapAll(id, swiss, data) {
                             return confessionScale(d);
                         } else {
                             return genderScale(d);
+                        }
+                    })
+                    .attr('stroke', function(d) {
+                        if (d == "not specified") {
+                            return '#074050';
+                        }
+                    })
+                    .attr('stroke-width', function(d) {
+                        if (d == "not specified") {
+                            return .5 + 'px';
                         }
                     })
                     .style('opacity', 1);
@@ -351,7 +376,7 @@ function MapAll(id, swiss, data) {
                         return d;
                     })
                     .transition()
-                    .duration(500)
+                    .duration(350)
                     .delay(function(d, i) { return i * 2 })
                     .style('opacity', 1);
 
@@ -381,7 +406,7 @@ function MapAll(id, swiss, data) {
                 });
 
             node.transition()
-                .duration(500)
+                .duration(350)
                 .delay(function(d, i) { return i * 2 })
                 .attr('r', radius);
 

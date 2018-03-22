@@ -86,7 +86,7 @@ function SurviesSankey(id, data) {
                 function capitalizeFirstLetter(string) {
                     return string.charAt(0).toUpperCase() + string.slice(1);
                 }
-                let innerHtml = '<span class="color-square" style="background-color: ' + nodesColor(d) + ';"></span> ' + capitalizeFirstLetter(d.replace('1_', '').replace('2_', '').replace('closed', 'closed or not yet opened').replace('3_', '').replace('4_', ''));
+                let innerHtml = '<span class="color-square" style="background-color: ' + nodesColor(d) + ';"></span> ' + capitalizeFirstLetter(d.replace('1_', '').replace('2_', '').replace('3_', '').replace('4_', ''));
 
                 return capitalizeFirstLetter(innerHtml);
             })
@@ -220,11 +220,11 @@ function SurviesSankey(id, data) {
             .attr("y", function(d) { return d.y0; })
             .attr("height", function(d) { return d.y1 - d.y0; })
             .attr("width", function(d) { return d.x1 - d.x0; })
-            .style("fill", function(d) { return nodesColor(d.name); })
-            .style("stroke", function(d) {
-                return d3.color(nodesColor(d.name)).darker(1);
-            })
-            .style('stroke-width', .5);
+            .style("fill", function(d) { return nodesColor(d.name); });
+            // .style("stroke", function(d) {
+            //     return d3.color(nodesColor(d.name)).darker(1);
+            // })
+            // .style('stroke-width', .5);
 
         node.append("text")
             .classed('label', true)

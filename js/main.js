@@ -56,7 +56,7 @@ $(document).ready(function() {
                 timelineData = dataTimeline;
 
                 // load asynchronously the datasets
-                var dataFiles = ['./data_and_scripts/data/sankey-institutions-with-list.json', './data_and_scripts/data/bubblechart.json', './data_and_scripts/data/typologies-graph.json'],
+                var dataFiles = ['./data_and_scripts/data/sankey-institutions-with-list.json', './data_and_scripts/data/bubblechart.json'],
                     queue = d3.queue();
 
                 dataFiles.forEach(function(filename) {
@@ -181,7 +181,7 @@ $(document).ready(function() {
         containerCircularWidth = $('#circular-network .btn-container').width();
         containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
         containerAcceptingDirectionWidth = $('#accepting-institutions .btn-container-direction').width();
-        buttonWidth = $('.btn-typologies-year').width();
+        buttonWidth = $('.btn-bubblechart-year[data-id=1940]').width();
 
         if (subchapterWidth > 960) {
             matrixSpacer = 8;
@@ -354,7 +354,7 @@ $(document).on('setWaypoints', function() {
     // waypoint for sankey/mosaic. call function sankey if going down, mosaic if going up
     sankeyScroller.setup({
             step: '#sankey-text',
-            offset: 0.4
+            offset: 0.5
         })
         .onStepEnter(updateSankey)
         .onStepExit(resetSankey);
@@ -476,6 +476,7 @@ function buildSidepanel(id, year) {
             .text(filtered_institution[0].institution);
 
         panel.append('p')
+            .classed('institution-subtitle', true)
             .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
 
         panel.append('p')
@@ -740,7 +741,7 @@ function updateMap(step) {
             }
         } else {
             $('#maps .btn-maps-year').each(function(i, btn) {
-                $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', ' + currentEl + ');closeSidepanel()');
+                $(this).attr('onclick', 'map_all_institutions.draw(' + years[i] + ', "' + currentEl + '");closeSidepanel()');
             });
             map_all_institutions.draw(newMapYear, currentEl);
             changeButton(newMapYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);

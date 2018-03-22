@@ -3,10 +3,10 @@ let lawsData;
 
 // set the dimensions of the timeline
 let marginTimeline = {top: 0, right: 20, bottom: 0, left: 20},
-    widthTimeline = ($('.timeline-container div').width() - marginTimeline.left - marginTimeline.right) * 8,
+    widthTimeline = ($('.timeline-container div').width() - marginTimeline.left - marginTimeline.right) * 12,
     heightTimeline = $('.timeline-container').height() - 20;
 
-let marginMap = {top: 40, right: 40, bottom: 0, left: 40},
+let marginMap = {top: 40, right: 40, bottom: 0, left: 80},
     widthMap = $('.geo-container').width() - marginMap.left - marginMap.right,
     heightMap = widthMap * .7 - marginMap.top;
 
@@ -122,7 +122,7 @@ d3.queue()
             .attr('cx', function(d) {
                 return timeScale(d.issue_date);
             })
-            .attr('cy', function(d) { return (heightTimeline + 20) / 2 - d.level * 12; })
+            .attr('cy', function(d) { return (heightTimeline + 40) / 2 - d.level * 12; })
             .attr('data-id', function(d){ return d.id;})
             .style('fill', function(d){
                 return colorScale(d.range);
@@ -179,6 +179,8 @@ d3.queue()
 
         oldCantons.features[1] = union;
         oldCantons.features.pop();
+        
+        populatePanel(lawsData);
 
         if (location.hash && location.hash != '#no-selection') {
             let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
@@ -193,12 +195,20 @@ d3.queue()
                 .duration(500)
                 .ease(d3.easeBackOut.overshoot(6))
                 .attr('r', 7);
+            
+            d3.select('.item[id="' + location.hash.substring(10) + '"]')
+                .classed('active', true);
 
-            let elementOffset = $('.law-selected').offset().left - $('.timeline-container').width() / 2;
+            let timelineCentered = $('.description-container').width() + $('.timeline-container').width() / 2;
+            let elementOffset = $('.law-selected').offset().left - timelineCentered;
 
             if (elementOffset > 0) {
                 $('.timeline-container div').animate({
                     scrollLeft: elementOffset
+                }, 2000);
+            } else {
+                $('.timeline-container div').animate({
+                    scrollLeft: 0
                 }, 2000);
             }
 
@@ -206,12 +216,9 @@ d3.queue()
 
         } else {
             drawMap(2000, 'none');
-            populatePanel();
         }
-
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+        
+        $('[data-toggle="tooltip"]').tooltip()
     });
 
 function customAxis(g) {
@@ -334,11 +341,11 @@ function drawMap(selectedYear, canton) {
         .delay(500)
         .style('opacity', 1);;
 
-    let item = legendGroup.selectAll('.item')
+    let item = legendGroup.selectAll('.item-legend')
         .data([{'color': '#CC2936', 'label': 'cantonal'}, {'color': '#61988E', 'label': 'federal'}, {'color': '#EDDEA4', 'label': 'intercantonal'}, {'color': '#EAE6DA', 'label': 'international'}])
         .enter()
         .append('g')
-        .classed('item', true);
+        .classed('item-legend', true);
 
     item.append('rect')
         .classed('item-color', true)
@@ -378,124 +385,104 @@ function drawMap(selectedYear, canton) {
 function populatePanel(data) {
     // console.log(data);
 
-    if (data != undefined) {
-        // console.log(data);
-        let lawData = [];
-        if (Array.isArray(data)) {
-            lawData = data;
-        } else {
-            lawData.push(data);
-        }
-
-        d3.select('.no-info-box')
-            .transition()
-            .duration(300)
-            .style('opacity', 1e-6)
-            .remove();
-
-        let infoBox = infoContainer.selectAll('.info-box')
-            .data(lawData);
-
-        infoBox.enter()
-            .append('div')
-            .classed('row', true)
-            .append('div')
-            .attr('class', 'col-11 info-box mt-4 pl-4')
-            .style('opacity', 1e-6)
-            .merge(infoBox)
-            .html(function(d){
-                let issueDate,
-                    inforceDate,
-                    repealDate;
-
-                if (d.original_issue_date.length == 4) {
-                    issueDate = d.original_issue_date;
-                } else {
-                    issueDate = formatDate(d.issue_date);
-                }
-
-                let newContent = `
-                    <div class="title">
-                        <h6 class="font-weight-bold">Legal text information:</h6>
-                    </div>
-                    <div class="typology field">
-                        <div class="label">Typology</div>
-                        <div class="value">${d.typology == null ? '-' : d.typology}</div>
-                    </div>
-                    <div class="range field">
-                        <div class="label">Range</div>
-                        <div class="value">${d.range}</div>
-                    </div>
-                    <div class="name field">
-                        <div class="label">Title</div>
-                        <div class="value">${d.title}</div>
-                    </div>
-                    <div class="canton field">
-                        <div class="label">Affected Cantons</div>
-                        <div class="value">${d.canton == 'CH' || d.canton == 'IN' ? 'All' : d.range == 'intercantonal' && d.canton.length > 0 ? d.canton.slice(24) : d.canton == '' ? 'Not specified' : d.canton}</div>
-                    </div>
-                    <div class="issue-date field">
-                        <div class="label">Issue Date</div>
-                        <div class="value">${issueDate}</div>
-                    </div>`;
-                if (d.inforce_date != null) {
-                    if (d.original_inforce_date.length == 4) {
-                        inforceDate = d.original_inforce_date;
-                    } else {
-                        inforceDate = formatDate(d.inforce_date);
-                    }
-                    newContent += `
-                        <div class="inforce-date field">
-                            <div class="label">Enforcement Date</div>
-                            <div class="value">${inforceDate}</div>
-                        </div>`;
-                }
-                if (d.repeal_date != null) {
-                    if (d.original_repeal_date.length == 4) {
-                        repealDate = d.original_repeal_date;
-                    } else {
-                        repealDate = formatDate(d.repeal_date);
-                    }
-                    newContent += `
-                        <div class="repeal-date field">
-                            <div class="label">Repeal Date</div>
-                            <div class="value">${repealDate}</div>
-                        </div>`;
-                }
-                if (d.articles != '') {
-                    newContent += `
-                        <div class="articles field">
-                            <div class="label">Relevant Articles</div>
-                            <div class="value">${d.articles}</div>
-                        </div>`;
-                }
-                return newContent;
-            })
-            .transition()
-            .duration(300)
-            .delay(300)
-            .style('opacity', 1);
-
+    let lawData = [];
+    if (Array.isArray(data)) {
+        lawData = data;
     } else {
-        d3.select('.info-box')
-            .transition()
-            .duration(300)
-            .style('opacity', 1e-6)
-            .remove();
-
-        let noInfoText = infoContainer
-            .append('div')
-            .classed('row', true)
-            .append('div')
-            .attr('class', 'col-12 no-info-box text-center mt-5')
-            .style('opacity', 1e-6)
-            .text('No legal text selected.')
-
-        noInfoText.transition()
-            .duration(300)
-            .delay(500)
-            .style('opacity', 1);
+        lawData.push(data);
     }
+
+    let infoBox = infoContainer.selectAll('.item')
+        .data(lawData);
+
+    infoBox.enter()
+        .append('div')
+        .attr('class', 'col-12 item py-3 pl-1 pr-4')
+        .attr('id', function(d) {
+            return d.id;
+        })
+        .style('opacity', 1e-6)
+        .merge(infoBox)
+        .html(function(d){
+            let issueDate,
+                inforceDate,
+                repealDate;
+
+            if (d.original_issue_date.length == 4) {
+                issueDate = d.original_issue_date;
+            } else {
+                issueDate = formatDate(d.issue_date);
+            }
+
+            let newContent = `
+                <div class="name field">
+                    <div class="label font-weight-bold">Title</div>
+                    <div class="value font-weight-bold">${d.title}</div>
+                </div>
+                <div class="typology field">
+                    <div class="label">Typology</div>
+                    <div class="value">${d.typology == null ? '-' : d.typology}</div>
+                </div>
+                <div class="range field">
+                    <div class="label">Range</div>
+                    <div class="value">${d.range}</div>
+                </div>
+                <div class="canton field">
+                    <div class="label">Affected Cantons</div>
+                    <div class="value">${d.canton == 'CH' || d.canton == 'IN' ? 'All' : d.range == 'intercantonal' && d.canton.length > 0 ? d.canton.slice(24) : d.canton == '' ? 'Not specified' : d.canton}</div>
+                </div>
+                <div class="issue-date field">
+                    <div class="label">Issue Date</div>
+                    <div class="value">${issueDate}</div>
+                </div>`;
+            if (d.inforce_date != null) {
+                if (d.original_inforce_date.length == 4) {
+                    inforceDate = d.original_inforce_date;
+                } else {
+                    inforceDate = formatDate(d.inforce_date);
+                }
+                newContent += `
+                    <div class="inforce-date field">
+                        <div class="label">Enforcement Date</div>
+                        <div class="value">${inforceDate}</div>
+                    </div>`;
+            }
+            if (d.repeal_date != null) {
+                if (d.original_repeal_date.length == 4) {
+                    repealDate = d.original_repeal_date;
+                } else {
+                    repealDate = formatDate(d.repeal_date);
+                }
+                newContent += `
+                    <div class="repeal-date field">
+                        <div class="label">Repeal Date</div>
+                        <div class="value">${repealDate}</div>
+                    </div>`;
+            }
+            if (d.articles != '') {
+                newContent += `
+                    <div class="articles field">
+                        <div class="label">Relevant Articles</div>
+                        <div class="value">${d.articles}</div>
+                    </div>`;
+            }
+            return newContent;
+        })
+        .transition()
+        .duration(300)
+        .delay(300)
+        .style('opacity', 1);
+    
+    let navHeight = $('.glossary-nav').height();
+    d3.selectAll('.item').each(function(d){
+        let el = d3.select(this);
+        let offset = $(el.node()).offset().top - navHeight;
+        
+        el.attr('data-offset', function(dd) {
+                return offset;
+            });
+    })
+
 }
 
 function updateGlossary(d) {
@@ -512,6 +499,17 @@ function updateGlossary(d) {
         drawMap(+newYear, d.canton);
     }
 
-    populatePanel(d);
+    let itemOffset = $('.item[id=' + d.id +']').attr('data-offset');
+    
+    $('.description-container').animate({
+        scrollTop: itemOffset + 'px'
+    }, 750);
+    
+    // document.getElementById(d.id).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    
+    $('.item').removeClass('active');
+    $('.item[id=' + d.id +']').addClass('active');
+
+    // populatePanel(d);
 
 }

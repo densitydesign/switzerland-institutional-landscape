@@ -1,19 +1,19 @@
 {
     "typology": {
-        "forced labour institution (restricted)": 1,
-        "forced labour institution (semi-open)": 2,
-        "educational institution": 3,
-        "asylum for alcoholics": 4,
+        "forced labour institution": 1,
+        "labour colony": 2,
+        "juvenile correction facility": 3,
+        "alcohol rehabilitation facility": 4,
         "prison": 5,
-        "psychiatric facility": 6,
-        "poor house": 7,
-        "institution for people with special needs": 8,
+        "psychiatric institution": 6,
+        "municipal poorhouse": 7,
+        "special needs facility": 8,
         "not specified": 9
     },
     "gender": {
-        "males": 1,
-        "females": 2,
-        "both genders": 3,
+        "male": 1,
+        "female": 2,
+        "mixed": 3,
         "not specified": 4
     },
     "capacity": {
@@ -22,36 +22,36 @@
         "50 - 99": 3,
         "100 - 149": 4,
         "150 - 199": 5,
-        "200 - over": 6,
+        "200 or more": 6,
         "not specified": 7
     },
     "confession": {
-        "protestants": 1,
-        "catholics": 2,
+        "protestant": 1,
+        "catholic": 2,
         "interdenominational": 3,
         "not specified": 4
     },
     "fundingAgency": {
-        "governmental funded": 1,
+        "government funded": 1,
         "privately funded": 2,
-        "public-private mix": 3,
+        "public-private": 3,
         "not specified": 4
     },
     "committingAgency": {
-        "courts of justice": 1,
-        "coroner": 2,
+        "courts": 1,
+        "investigating magistrate": 2,
         "prosecutor": 3,
-        "youth advocacy": 4,
-        "senior civil servants": 5,
+        "juvenile prosecutor": 4,
+        "government council (municipal)": 5,
         "administrative agency": 6,
-        "legal authority": 7,
+        "correctional authority": 7,
         "police authority": 8,
-        "social authority": 9,
+        "social welfare authority": 9,
         "guardianship authority": 10,
         "district authorities": 11,
         "legal guardians": 12,
-        "youth welfare services": 13,
-        "associations": 14,
+        "juvenile welfare services": 13,
+        "private individuals/associations": 14,
         "not specified": 15
     }
 }
