@@ -1021,6 +1021,12 @@ span.interact-with-viz .action {
     top: -3px;
 }
 
+.selected-canton {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
 .concordat-legend {
     margin-bottom: -3rem;
     pointer-events: none;

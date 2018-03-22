@@ -70,7 +70,11 @@ function AcceptingInstitutions(id, data, swiss) {
             .attr('height', height)
             .attr('fill', 'white')
             .on('click', function() {
-
+                d3.select('.selected-canton span')
+                    .transition()
+                    .duration(300)
+                    .style('opacity', 0.5)
+                    .text('please click on a canton');
 
                 reset();
             })
@@ -495,12 +499,6 @@ function AcceptingInstitutions(id, data, swiss) {
         }
 
         function reset() {
-
-            d3.select('.selected-canton span')
-                .transition()
-                .duration(300)
-                .style('opacity', 0.5)
-                .text('please click on a canton');
 
             d3.selectAll(id + ' .canton-contour')
                 .classed('sending', false)
