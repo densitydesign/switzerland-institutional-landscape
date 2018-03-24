@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <nav class="glossary-nav">
+    <nav class="glossary-nav glossary-laws">
         <nav class="navbar navbar-light navbar-expand-md nav-menu">
              <a class="navbar-brand" href="#"><img src="./../assets/logo-uek.png" class="logo-img" alt="Logo"></a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#glossaryNavbar" aria-controls="glossaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,12 +36,12 @@
                  </ul>
              </div>
          </nav>
-         <nav class="navbar navbar-light justify-content-center">
-             <form class="search-institution form-inline my-lg-0 order-md-1" style="opacity: 0">
-                 <input id="lawsSearchList" onkeyup="searchLawList()" class="form-control mr-sm-2 w-100 text-center" Xtype="search" placeholder="Search here or click on a legal text in the timeline to show further details" Xaria-label="Search">
+         <nav class="navbar navbar-light justify-content-center glossary-search">
+             <form class="search-institution form-inline my-lg-0 order-md-1">
+                 <input id="lawsSearchList" onkeyup="searchLawList()" class="form-control mr-sm-2 w-100 text-center" Xtype="search" placeholder="Search here or click on a legal text in the list or in the timeline to show further details" Xaria-label="Search">
              </form>
              <span class="selected-institution navbar-text order-md-1">
-                     <span>Selected: </span><span class="selected-name"> ID - Name</span><span class="ml-2" onclick="resetLaws(true);"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                     <span>Selected: </span><p class="selected-name"> ID - Name</p><span class="ml-2" onclick="resetLaws();"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
              </span>
          </nav>
  </nav>

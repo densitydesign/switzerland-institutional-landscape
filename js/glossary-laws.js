@@ -160,6 +160,7 @@ d3.queue()
                     
                 updateMap(d);
                 updateGlossary(d);
+                updateSearch(d);
                 location.replace(`#selected-${encodeURIComponent(d.id)}`);
                 d3.event.preventDefault();
             });
@@ -185,11 +186,12 @@ d3.queue()
         
         populatePanel(lawsData);
 
-        if (location.hash && location.hash != '#no-selection') {
+        if (location.hash) {
             let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
             
             updateTimeline(selectedLaw);
             updateMap(selectedLaw);
+            updateSearch(selectedLaw);
         
         } else {
             drawMap(2000, 'none');
@@ -378,13 +380,13 @@ function populatePanel(data) {
         .attr('id', function(d) {
             return d.id;
         })
-        .style('opacity', 1e-6)
         .on('click', function(d) {
             $('.item').removeClass('active');
             $('.item[id=' + d.id +']').addClass('active');
             
             updateMap(d);
             updateTimeline(d);
+            updateSearch(d);
             location.replace(`#selected-${encodeURIComponent(d.id)}`);
             d3.event.preventDefault();
         })
@@ -453,18 +455,12 @@ function populatePanel(data) {
                     </div>`;
             }
             return newContent;
-        })
-        .transition()
-        .duration(300)
-        .style('opacity', 1)
-        .on('end', function(d,i,a){
-            if (i == a.length - 1) {
-                if (location.hash && location.hash != '#no-selection') {
-                    let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
-                    updateGlossary(selectedLaw);
-                }
-            }
         });
+        
+        if (location.hash) {
+            let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
+            updateGlossary(selectedLaw);
+        }
 }
 
 function updateMap(d) {
@@ -529,3 +525,124 @@ function updateTimeline(d) {
         scrollLeft: dotOffset
     }, 1000);
 }
+
+function searchLawList(d) {
+    // Declare variables
+    var input, filter, ul, li, a, i;
+
+    input = document.getElementById('lawsSearchList');
+    filter = input.value.toUpperCase();
+
+    ul = document.getElementsByClassName("description-container");
+    // console.log(ul)
+    li = ul[0].getElementsByClassName('item');
+    // console.log(li)
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        
+        let currentId = li[i].getAttribute('id');
+        let currentLaw = $('.law-dot[data-id="' + currentId + '"]');
+        li[i].style.display = "none";
+        currentLaw.addClass('law-hidden');
+
+        value = li[i].getElementsByClassName("name")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            currentLaw.removeClass('law-hidden');
+        }
+
+        value = li[i].getElementsByClassName("typology")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            currentLaw.removeClass('law-hidden');
+        }
+
+        value = li[i].getElementsByClassName("range")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            currentLaw.removeClass('law-hidden');
+        }
+
+        value = li[i].getElementsByClassName("canton")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            currentLaw.removeClass('law-hidden');
+        }
+
+        value = li[i].getElementsByClassName("issue-date")[0].getElementsByClassName("value")[0];
+        if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            currentLaw.removeClass('law-hidden');
+        }
+        
+        if (li[i].getElementsByClassName("inforce-date").length > 0) {
+            value = li[i].getElementsByClassName("inforce-date")[0].getElementsByClassName("value")[0];
+            if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+                currentLaw.removeClass('law-hidden');
+            }
+        }
+        
+        if (li[i].getElementsByClassName("repeal-date").length > 0) {
+            value = li[i].getElementsByClassName("repeal-date")[0].getElementsByClassName("value")[0];
+            if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+                currentLaw.removeClass('law-hidden');
+            }
+        }
+        
+        if (li[i].getElementsByClassName("articles").length > 0) {
+            value = li[i].getElementsByClassName("articles")[0].getElementsByClassName("value")[0];
+            if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+                currentLaw.removeClass('law-hidden');
+            }
+        }
+
+    }
+}
+
+function updateSearch(d) {
+    let selectionName = `${d.id} - ${d.title}`;
+    d3.select('.selected-institution .selected-name')
+        .html(selectionName);
+
+    d3.select('.selected-institution')
+        .style('display', 'block');
+
+    d3.select('.search-institution')
+        .style('display', 'none');
+    
+    $('.search-institution input').val('');
+}
+
+function resetLaws() {
+    // console.log('reset');
+    d3.select('.selected-institution')
+        .style('display', 'none')
+
+    d3.select('.search-institution')
+        .style('display', 'flex')
+
+    $('.item').removeClass('active');
+    
+    d3.selectAll('.law-dot')
+        .classed('law-selected', false)
+        .classed('law-faded', false)
+        .classed('law-hidden', false)
+        .transition()
+        .duration(350)
+        .ease(d3.easeBackIn.overshoot(4))
+        .attr('r', 5);
+    
+    drawMap(2000, 'none');
+    
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+}
+
+$(document).keyup(function(e) {
+    if (e.keyCode == 27) { // escape key maps to keycode `27`
+        resetLaws();
+    }
+});

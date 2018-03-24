@@ -207,6 +207,15 @@ nav.navbar:last-of-type {
 }
 
 /* Glossary of legal text styles */
+.glossary-laws .selected-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 60vw;
+    display: inline-block;
+    margin-bottom: -6px;
+}
+
 .timeline-container {
     height: calc(50vh - var(--glossary-nav-heigth));
 }
@@ -254,6 +263,12 @@ nav.navbar:last-of-type {
 
 .law-dot.law-faded:hover {
     opacity: 0.8;
+}
+
+.law-dot.law-hidden {
+    opacity: 0;
+    pointer-events: none;
+    cursor: default;
 }
 
 text.item-title {
