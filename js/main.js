@@ -463,9 +463,9 @@ function buildSidepanel(id, year) {
             .classed('sidepanel-data', true)
             .text(function(d) {
                 if (year != 1940 && year != 1900) {
-                    return 'Survey of ' + year;
+                    return 'Source of ' + year;
                 } else if (year == 1900) {
-                    return 'Unspecified survey';
+                    return 'Unspecified source';
                 } else {
                     return 'Data from the 1940s';
                 }
@@ -489,10 +489,10 @@ function buildSidepanel(id, year) {
             .html('<span class="section-title">capacity</span></br>' + filtered_institution[0].capacity_group);
 
         panel.append('p')
-            .html('<span class="section-title">accepted gender</span></br>' + filtered_institution[0].accepted_gender);
+            .html('<span class="section-title">gender ratio</span></br>' + filtered_institution[0].accepted_gender);
 
         panel.append('p')
-            .html('<span class="section-title">confession</span></br>' + filtered_institution[0].confession);
+            .html('<span class="section-title">religious affiliation</span></br>' + filtered_institution[0].confession);
 
         panel.append('p')
             .html('<span class="section-title">typology</span></br>' + filtered_institution[0].typologies.replace(/;/g, '; '));
