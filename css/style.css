@@ -731,7 +731,6 @@ span.interact-with-viz .action {
 
 .step:last-of-type {
     height: 60vh;
-    margin-bottom: 0;
 }
 
 #maps {

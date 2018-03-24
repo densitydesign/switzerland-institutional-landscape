@@ -385,8 +385,10 @@ function AcceptingInstitutions(id, data, swiss) {
                 .attr('r', function(d) {
                     return d.overSelectedCanton ? 3 : fixedRadius;
                 })
-                .on("end", function() {
-                    $('[data-toggle="tooltip"]').tooltip()
+                .on("end", function(d,i,a) {
+                    if (i == a.length - 1) {
+                        $('[data-toggle="tooltip"]').tooltip()
+                    }
                 });
 
             nodeLabel = nodeLabel.data(nodes, function(d) { return d.id; });

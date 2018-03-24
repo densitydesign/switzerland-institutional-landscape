@@ -55,6 +55,8 @@ let mapGroup = svgMap.append('g').classed('map-swiss', true).attr('transform', '
 
 let infoContainer = d3.select('.description-container');
 
+let navHeight = $('.glossary-nav').height();
+
 d3.queue()
     .defer(d3.json, './../data_and_scripts/data/glossary-laws.json')
     .defer(d3.json, './../data_and_scripts/data/ch.json')
@@ -155,7 +157,8 @@ d3.queue()
                     .duration(500)
                     .ease(d3.easeBackOut.overshoot(6))
                     .attr('r', 7);
-
+                    
+                updateMap(d);
                 updateGlossary(d);
                 location.replace(`#selected-${encodeURIComponent(d.id)}`);
                 d3.event.preventDefault();
@@ -184,36 +187,10 @@ d3.queue()
 
         if (location.hash && location.hash != '#no-selection') {
             let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
-
-            d3.selectAll('.law-dot')
-                .classed('law-faded', true);
-
-            d3.select('.law-dot[data-id="' + location.hash.substring(10) + '"]')
-                .classed('law-selected', true)
-                .classed('law-faded', false)
-                .transition()
-                .duration(500)
-                .ease(d3.easeBackOut.overshoot(6))
-                .attr('r', 7);
             
-            d3.select('.item[id="' + location.hash.substring(10) + '"]')
-                .classed('active', true);
-
-            let timelineCentered = $('.description-container').width() + $('.timeline-container').width() / 2;
-            let elementOffset = $('.law-selected').offset().left - timelineCentered;
-
-            if (elementOffset > 0) {
-                $('.timeline-container div').animate({
-                    scrollLeft: elementOffset
-                }, 2000);
-            } else {
-                $('.timeline-container div').animate({
-                    scrollLeft: 0
-                }, 2000);
-            }
-
-            updateGlossary(selectedLaw);
-
+            updateTimeline(selectedLaw);
+            updateMap(selectedLaw);
+        
         } else {
             drawMap(2000, 'none');
         }
@@ -402,6 +379,15 @@ function populatePanel(data) {
             return d.id;
         })
         .style('opacity', 1e-6)
+        .on('click', function(d) {
+            $('.item').removeClass('active');
+            $('.item[id=' + d.id +']').addClass('active');
+            
+            updateMap(d);
+            updateTimeline(d);
+            location.replace(`#selected-${encodeURIComponent(d.id)}`);
+            d3.event.preventDefault();
+        })
         .merge(infoBox)
         .html(function(d){
             let issueDate,
@@ -470,24 +456,18 @@ function populatePanel(data) {
         })
         .transition()
         .duration(300)
-        .delay(300)
-        .style('opacity', 1);
-    
-    let navHeight = $('.glossary-nav').height();
-    d3.selectAll('.item').each(function(d){
-        let el = d3.select(this);
-        let offset = $(el.node()).offset().top - navHeight;
-        
-        el.attr('data-offset', function(dd) {
-                return offset;
-            });
-    })
-
+        .style('opacity', 1)
+        .on('end', function(d,i,a){
+            if (i == a.length - 1) {
+                if (location.hash && location.hash != '#no-selection') {
+                    let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
+                    updateGlossary(selectedLaw);
+                }
+            }
+        });
 }
 
-function updateGlossary(d) {
-    // console.log(d);
-
+function updateMap(d) {
     let cantonArray = [];
     let newYear = formatYear(d.issue_date);
 
@@ -498,18 +478,54 @@ function updateGlossary(d) {
     } else {
         drawMap(+newYear, d.canton);
     }
+}
 
-    let itemOffset = $('.item[id=' + d.id +']').attr('data-offset');
-    
-    $('.description-container').animate({
-        scrollTop: itemOffset + 'px'
-    }, 750);
-    
-    // document.getElementById(d.id).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+function updateGlossary(d) {
     
     $('.item').removeClass('active');
     $('.item[id=' + d.id +']').addClass('active');
+    
+    let scrollOffset = document.querySelector('.description-container').scrollTop;
+    let itemOffset = $('.item[id=' + d.id +']').offset().top + scrollOffset - navHeight;
+    // console.log(scrollOffset);
+    // console.log($('.item[id=' + d.id +']').offset().top);
+    // console.log(itemOffset);    
+    
+    $('.description-container').animate({
+        scrollTop: itemOffset + 'px'
+    }, 1000);
 
-    // populatePanel(d);
+}
 
+function updateTimeline(d) {
+    
+    d3.selectAll('.law-dot')
+        .classed('law-selected', false)
+        .classed('law-faded', true)
+        .transition()
+        .duration(350)
+        .ease(d3.easeBackIn.overshoot(4))
+        .attr('r', 5);
+
+    d3.select('.law-dot[data-id="' + d.id + '"]')
+        .classed('law-selected', true)
+        .classed('law-faded', false)
+        .transition()
+        .duration(500)
+        .ease(d3.easeBackOut.overshoot(6))
+        .attr('r', 7);
+
+    d3.select('.item[id="' + d.id + '"]')
+        .classed('active', true);
+    
+    let timelineCentered = $('.description-container').width() + $('.timeline-container').width() / 2;
+    let timelineOffset = document.querySelector('.timeline-container div').scrollLeft;
+    let dotOffset = $('.law-dot[data-id="' + d.id + '"]').offset().left + timelineOffset - timelineCentered;
+    // console.log(timelineOffset);
+    // console.log($('.law-dot[data-id="' + d.id + '"]').offset().top);
+    // console.log(dotOffset); 
+    
+    $('.timeline-container div').animate({
+        scrollLeft: dotOffset
+    }, 1000);
 }
