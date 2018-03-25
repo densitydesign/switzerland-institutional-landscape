@@ -262,12 +262,12 @@ p.caption:first-child {
     border-top-color: rgb(144, 188, 204) !important;
 }
 
-.viz-tooltip{
+.viz-tooltip {
     font-size: .7rem;
     font-family: 'Brandon Grotesque', sans-serif;
 }
 
-.viz-tooltip span:nth-of-type(2){
+.viz-tooltip span:nth-of-type(2) {
     font-size: .50rem;
     letter-spacing: .1px;
     /*font-style: italic;*/

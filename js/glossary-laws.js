@@ -135,12 +135,18 @@ d3.queue()
             .attr('title', function(d){
                 let lawTitle = d.title;
                 let lawDate;
+                let lawCanton;
                 if (d.original_issue_date.length == 4) {
                     lawDate = d.original_issue_date;
                 } else {
                     lawDate = formatDate(d.issue_date);
                 }
-                return `<div class="viz-tooltip"><span>${lawTitle}</span><br/><span>${lawDate}</span></div>`;
+                if (d.range == 'cantonal') {
+                    lawCanton = 'canton ' + d.canton;
+                } else {
+                    lawCanton = d.range;
+                }
+                return `<div class="viz-tooltip-laws"><span>${lawCanton}</span><br/><span>${lawTitle}</span><br/><span>${lawDate}</span></div>`;
             })
             .on('click', function(d){
                 d3.selectAll('.law-dot')
