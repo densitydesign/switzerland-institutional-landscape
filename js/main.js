@@ -94,7 +94,7 @@ $(document).ready(function() {
                         map_all_institutions = new MapAll('#maps-visualization', swiss, data_all);
                         map_all_institutions.draw(1900);
 
-                        map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
+                        // map_typologies = new MapTypologies('#maps-visualization', swiss, data_typologies);
 
                         circularNetwork = new CircularNetwork('#circular-network', cantonsNetwork);
                         circularNetwork.draw(1954, 'FR');

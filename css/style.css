@@ -304,6 +304,15 @@ span.interact-with-viz .action {
     white-space: pre;
 }
 
+.small-screen-viz svg,
+.small-screen-viz img {
+    width: 100%;
+}
+.small-screen-viz svg {
+    font-family: 'Brandon Grotesque', sans-serif;
+    font-size: 14px;
+}
+
 /* Cover */
 
 .cover {
@@ -664,20 +673,6 @@ span.interact-with-viz .action {
 }
 
 /* 1.4 typologies network of correlations */
-#typologies-graph circle.node {
-    stroke-width: .5px;
-    cursor: pointer;
-}
-
-#typologies-graph line.link {
-    stroke: #EAE6DA;
-    opacity: .8;
-    cursor: pointer;
-}
-
-#typologies-graph .label {
-    text-anchor: middle;
-}
 
 .legend-text {
     font-family: 'Brandon Grotesque', sans-serif;
@@ -726,11 +721,11 @@ span.interact-with-viz .action {
 }
 
 .step {
-    margin-bottom: 160px;
+    margin-bottom: 80px;
 }
 
 .step:last-of-type {
-    height: 60vh;
+    margin-bottom: 0;
 }
 
 #maps {
@@ -1048,6 +1043,9 @@ span.interact-with-viz .action {
     .svg-diagram {
         width: 100%;
     }
+    .step {
+        margin-bottom: 160px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -1059,9 +1057,6 @@ span.interact-with-viz .action {
     }
     #maps {
         height: 84vh;
-    }
-    .step:last-of-type {
-        height: 80vh;
     }
     .concordat-legend {
         margin-bottom: -5rem;

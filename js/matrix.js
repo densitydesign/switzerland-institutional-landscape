@@ -47,7 +47,7 @@ function Matrix(id, data, categories) {
         //calculate dimensions of the viz container, axis and grids
         width = $('#matrix-visualization').width();
         height = width * .8;
-        margin = 110;
+        margin = 100;
         svg.attr('width', width)
             .attr('height', height);
         matrix_x_axis.attr('transform', 'translate(0,' + (height - margin) + ')');
