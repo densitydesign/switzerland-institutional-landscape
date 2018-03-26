@@ -161,7 +161,7 @@ function populateSidebar(data) {
         })[0]
 
         if (source) {
-            
+
             // this fixes a little bug :)
             if (source[field] == ",") {
                 source[field] = '';
@@ -193,7 +193,7 @@ function populateSidebar(data) {
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940s</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
         <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
@@ -301,7 +301,7 @@ function populateSidebar(data) {
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940s</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
         <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
@@ -312,7 +312,7 @@ function populateSidebar(data) {
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940s</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
         <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
@@ -323,7 +323,7 @@ function populateSidebar(data) {
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940s</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
         <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
@@ -334,7 +334,7 @@ function populateSidebar(data) {
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940s</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
         <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
@@ -345,7 +345,7 @@ function populateSidebar(data) {
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
         <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1940's</div><div class="col-9">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940s</div><div class="col-9">${getValue(1940,thisField)}</div></div>
         <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
         <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
@@ -463,7 +463,7 @@ d3.queue()
                     </div>
                     <div class="surveyes field">
                         <div class="label">Surveyes</div>
-                        <div class="value"><span class="${fn(1933)}">1933</span><span class="${fn(1940)}">1940's</span><span class="${fn(1954)}">1954</span><span class="${fn(1965)}">1965</span><span class="${fn(1980)}">1980</span></div>
+                        <div class="value"><span class="${fn(1933)}">1933</span><span class="${fn(1940)}">1940s</span><span class="${fn(1954)}">1954</span><span class="${fn(1965)}">1965</span><span class="${fn(1980)}">1980</span></div>
                     </div>
             `;
                 return thisHtml;

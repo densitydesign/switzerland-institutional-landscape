@@ -158,8 +158,8 @@ $(document).ready(function() {
     if (loadingSize > 767) {
         // set events for timeline
         $('.dots-det').click(function() {
-            let dotId = $(this).attr('data-id');
-            buildSidepanel(dotId, 1900);
+            let elementYear = $(this).attr('data-id');
+            buildTimelineSidepanel('directory', elementYear);
         })
         $('.dots-leg').click(function() {
             let elementYear = $(this).attr('data-id');
@@ -599,7 +599,7 @@ function buildTimelineSidepanel(type, year) {
     panel.append('h6')
         .classed('sidepanel-data', true)
         .text(function(d) {
-            if (type == 'events') {
+            if (type == 'events' || type == 'directory') {
                 return filtered_element[0].date;
             } else {
                 let date = filtered_element[0].date.match(/\d+/g);
@@ -619,7 +619,11 @@ function buildTimelineSidepanel(type, year) {
         });
 
     panel.append('p')
-        .text(filtered_element[0].text);
+        .text(function(d) {
+            if (filtered_element[0].text != null) {
+                return filtered_element[0].text
+            }
+        });
 
     if (filtered_element[0].link != null) {
         panel.append('p')
