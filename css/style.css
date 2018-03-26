@@ -79,8 +79,8 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 0;
     font-weight: 600;
-    margin-bottom: 5rem;
-    margin-top: 4rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 h3 {
@@ -304,9 +304,14 @@ span.interact-with-viz .action {
     white-space: pre;
 }
 
+.viz-title {
+    margin-bottom: 0;
+}
+
 .small-screen-viz svg,
 .small-screen-viz img {
     width: 100%;
+    margin: .4rem 0 .6rem;
 }
 .small-screen-viz svg {
     font-family: 'Brandon Grotesque', sans-serif;
@@ -706,7 +711,7 @@ span.interact-with-viz .action {
 }
 
 .step {
-    margin-bottom: 80px;
+    margin-bottom: 30px;
 }
 
 .step:last-of-type {
@@ -1001,6 +1006,8 @@ span.interact-with-viz .action {
 @media (min-width: 768px) {
     h2 {
         font-size: 2.2rem;
+        margin-bottom: 5rem;
+        margin-top: 4rem;
     }
     .initial-loader div {
         width: 20vw;
