@@ -110,6 +110,8 @@ nav.navbar:last-of-type {
     border: 1px solid var(--uek-dark-blue);
     padding: 2px 5px 1px;
     border-radius: 2px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
     line-height: 1rem;
     margin-top: 0.3rem;

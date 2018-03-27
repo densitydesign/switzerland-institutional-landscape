@@ -383,10 +383,11 @@ function reset(url) {
         }
     }
 
-    if (url) {
-        location.replace('#no-selection');
-        // d3.event.preventDefault();
-    }
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+    // if (url) {
+    //     location.replace('#no-selection');
+    //     // d3.event.preventDefault();
+    // }
 }
 
 d3.queue()
@@ -436,7 +437,7 @@ d3.queue()
                 }
 
                 let name = d.values[0].values[0].name_landmark;
-                let proj = 'Switzerland’s institutional landscape 1933–198';
+                let proj = 'Switzerland’s institutional landscape 1933–1980';
                 let date = new Date()
                 let url = location;
 
@@ -476,7 +477,7 @@ d3.queue()
                         <div class="label"></div>
                         <div class="value"><div id="copy-${d.values[0].values[0].id}" class="item-copy-to-clipboard" data-clipboard-text="${quotation}">Copy citation to clipboard</div></div>
                     </div>
-                    
+
             `;
                 return thisHtml;
             })
@@ -487,7 +488,7 @@ d3.queue()
             })
             .merge(item);
 
-        reset();
+        // reset();
 
         d3.json('./../data_and_scripts/data/ch.json', function(err, ch) {
             if (err) throw err;
@@ -534,19 +535,6 @@ d3.queue()
             })
 
         })
-
-        // d3.selectAll('.item-copy-to-clipboard').on('click', function(){
-        //     let thisId = d3.select(this).attr('id');
-
-        //     let name = 'Arbeitskolonie Murimoos';
-        //     let proj = 'Switzerland’s institutional landscape 1933–198';
-        //     let url = 'ciaociaociaourl';
-        //     let date = 'March 22nd, 2018';
-
-        //     let quotation=`${name}, in: ${proj}, Independent Expert Commission on Administrative Detention (Ed.), accessed on ${date}, URL: ${url}.`;
-
-        //     console.log(thisId);
-        // })
 
         new ClipboardJS('.item-copy-to-clipboard');
 

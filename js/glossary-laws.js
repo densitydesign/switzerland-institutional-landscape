@@ -163,7 +163,7 @@ d3.queue()
                     .duration(500)
                     .ease(d3.easeBackOut.overshoot(6))
                     .attr('r', 7);
-                    
+
                 updateMap(d);
                 updateGlossary(d);
                 updateSearch(d);
@@ -189,20 +189,20 @@ d3.queue()
 
         oldCantons.features[1] = union;
         oldCantons.features.pop();
-        
+
         populatePanel(lawsData);
 
         if (location.hash) {
             let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
-            
+
             updateTimeline(selectedLaw);
             updateMap(selectedLaw);
             updateSearch(selectedLaw);
-        
+
         } else {
             drawMap(2000, 'none');
         }
-        
+
         $('[data-toggle="tooltip"]').tooltip()
     });
 
@@ -389,7 +389,7 @@ function populatePanel(data) {
         .on('click', function(d) {
             $('.item').removeClass('active');
             $('.item[id=' + d.id +']').addClass('active');
-            
+
             updateMap(d);
             updateTimeline(d);
             updateSearch(d);
@@ -401,6 +401,11 @@ function populatePanel(data) {
             let issueDate,
                 inforceDate,
                 repealDate;
+
+            let date = new Date()
+            let url = location;
+
+            let quotation = `${d.title}, in: Switzerland's institutional landscape 1933–1980, Independent Expert Commission on Administrative Detention (Ed.), accessed on ${date.toDateString()}, URL: ${url}.`;
 
             if (d.original_issue_date.length == 4) {
                 issueDate = d.original_issue_date;
@@ -460,13 +465,20 @@ function populatePanel(data) {
                         <div class="value">${d.articles}</div>
                     </div>`;
             }
+            newContent += `
+                <div class="copy field">
+                    <div class="label"></div>
+                    <div class="value"><div class="item-copy-to-clipboard" data-clipboard-text="${quotation}">Copy citation to clipboard</div></div>
+                </div>`;
             return newContent;
         });
-        
+
         if (location.hash) {
             let selectedLaw = lawsData.find(function(d) { return d.id == location.hash.substring(10) });
             updateGlossary(selectedLaw);
         }
+
+        new ClipboardJS('.item-copy-to-clipboard');
 }
 
 function updateMap(d) {
@@ -483,16 +495,16 @@ function updateMap(d) {
 }
 
 function updateGlossary(d) {
-    
+
     $('.item').removeClass('active');
     $('.item[id=' + d.id +']').addClass('active');
-    
+
     let scrollOffset = document.querySelector('.description-container').scrollTop;
     let itemOffset = $('.item[id=' + d.id +']').offset().top + scrollOffset - navHeight;
     // console.log(scrollOffset);
     // console.log($('.item[id=' + d.id +']').offset().top);
-    // console.log(itemOffset);    
-    
+    // console.log(itemOffset);
+
     $('.description-container').animate({
         scrollTop: itemOffset + 'px'
     }, 1000);
@@ -500,7 +512,7 @@ function updateGlossary(d) {
 }
 
 function updateTimeline(d) {
-    
+
     d3.selectAll('.law-dot')
         .classed('law-selected', false)
         .classed('law-faded', true)
@@ -519,14 +531,14 @@ function updateTimeline(d) {
 
     d3.select('.item[id="' + d.id + '"]')
         .classed('active', true);
-    
+
     let timelineCentered = $('.description-container').width() + $('.timeline-container').width() / 2;
     let timelineOffset = document.querySelector('.timeline-container div').scrollLeft;
     let dotOffset = $('.law-dot[data-id="' + d.id + '"]').offset().left + timelineOffset - timelineCentered;
     // console.log(timelineOffset);
     // console.log($('.law-dot[data-id="' + d.id + '"]').offset().top);
-    // console.log(dotOffset); 
-    
+    // console.log(dotOffset);
+
     $('.timeline-container div').animate({
         scrollLeft: dotOffset
     }, 1000);
@@ -546,7 +558,7 @@ function searchLawList(d) {
 
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
-        
+
         let currentId = li[i].getAttribute('id');
         let currentLaw = $('.law-dot[data-id="' + currentId + '"]');
         li[i].style.display = "none";
@@ -581,7 +593,7 @@ function searchLawList(d) {
             li[i].style.display = "";
             currentLaw.removeClass('law-hidden');
         }
-        
+
         if (li[i].getElementsByClassName("inforce-date").length > 0) {
             value = li[i].getElementsByClassName("inforce-date")[0].getElementsByClassName("value")[0];
             if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
@@ -589,7 +601,7 @@ function searchLawList(d) {
                 currentLaw.removeClass('law-hidden');
             }
         }
-        
+
         if (li[i].getElementsByClassName("repeal-date").length > 0) {
             value = li[i].getElementsByClassName("repeal-date")[0].getElementsByClassName("value")[0];
             if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
@@ -597,7 +609,7 @@ function searchLawList(d) {
                 currentLaw.removeClass('law-hidden');
             }
         }
-        
+
         if (li[i].getElementsByClassName("articles").length > 0) {
             value = li[i].getElementsByClassName("articles")[0].getElementsByClassName("value")[0];
             if (value.innerHTML.toUpperCase().indexOf(filter) > -1) {
@@ -619,7 +631,7 @@ function updateSearch(d) {
 
     d3.select('.search-institution')
         .style('display', 'none');
-    
+
     $('.search-institution input').val('');
 }
 
@@ -632,7 +644,7 @@ function resetLaws() {
         .style('display', 'flex')
 
     $('.item').removeClass('active');
-    
+
     d3.selectAll('.law-dot')
         .classed('law-selected', false)
         .classed('law-faded', false)
@@ -641,9 +653,9 @@ function resetLaws() {
         .duration(350)
         .ease(d3.easeBackIn.overshoot(4))
         .attr('r', 5);
-    
+
     drawMap(2000, 'none');
-    
+
     history.pushState("", document.title, window.location.pathname + window.location.search);
 }
 
