@@ -2,7 +2,7 @@ let map, swissbbox, master, sourcesData;
 
 let circularArea = {
     'center': [5.9814056, 46.7912769],
-    'radius': 5,
+    'radius': 4,
     'options': { steps: 64, units: 'kilometers', properties: { foo: 'bar' } }
 };
 
@@ -143,20 +143,20 @@ function populateSidebar(data) {
             // console.log(filtered[0].values[0]);
             value = filtered[0].values[0][field];
         }
-        return value.replace(/;/g,'; ');
+        return value.replace(/;/g, '; ');
     }
 
     function getValueSource(year, field) {
         // console.log(year, field, data.key);
 
-        year = year+'';
+        year = year + '';
 
-        let filtered = sourcesData.filter(function(e){
+        let filtered = sourcesData.filter(function(e) {
             return e.id == data.key;
         })[0]
         // console.log(filtered)
 
-        let source = filtered.sources.filter(function(e){
+        let source = filtered.sources.filter(function(e) {
             return e.source_year == year
         })[0]
 
@@ -167,7 +167,7 @@ function populateSidebar(data) {
                 source[field] = '';
             }
 
-            return source[field]==''?'–':source[field];
+            return source[field] == '' ? '–' : source[field];
         } else {
             return '–'
         }
@@ -175,7 +175,7 @@ function populateSidebar(data) {
     }
 
     function getValueSourceHTML(year, field) {
-        console.log(getValueSource(year, field));
+        // console.log(getValueSource(year, field));
         let html = `<div class="row values">
                     <div class="col-3">Topography ${year}</div>
                     <div class="col-9">${getValueSource(year, field)}</div>
@@ -435,6 +435,13 @@ d3.queue()
                     d.values[0].values[0].closed_alternative = '(' + d.values[0].values[0].closed_alternative + ')'
                 }
 
+                let name = d.values[0].values[0].name_landmark;
+                let proj = 'Switzerland’s institutional landscape 1933–198';
+                let date = new Date()
+                let url = location;
+
+                let quotation = `${name}, in: ${proj}, Independent Expert Commission on Administrative Detention (Ed.), accessed on ${date.toDateString()}, URL: ${url}.`;
+
 
                 let thisHtml = `
                     <div class="id field d-none">
@@ -465,6 +472,11 @@ d3.queue()
                         <div class="label">Surveyes</div>
                         <div class="value"><span class="${fn(1933)}">1933</span><span class="${fn(1940)}">1940s</span><span class="${fn(1954)}">1954</span><span class="${fn(1965)}">1965</span><span class="${fn(1980)}">1980</span></div>
                     </div>
+                    <div class="copy field">
+                        <div class="label"></div>
+                        <div class="value"><div id="copy-${d.values[0].values[0].id}" class="item-copy-to-clipboard" data-clipboard-text="${quotation}">Copy citation to clipboard</div></div>
+                    </div>
+                    
             `;
                 return thisHtml;
             })
@@ -522,6 +534,21 @@ d3.queue()
             })
 
         })
+
+        // d3.selectAll('.item-copy-to-clipboard').on('click', function(){
+        //     let thisId = d3.select(this).attr('id');
+
+        //     let name = 'Arbeitskolonie Murimoos';
+        //     let proj = 'Switzerland’s institutional landscape 1933–198';
+        //     let url = 'ciaociaociaourl';
+        //     let date = 'March 22nd, 2018';
+
+        //     let quotation=`${name}, in: ${proj}, Independent Expert Commission on Administrative Detention (Ed.), accessed on ${date}, URL: ${url}.`;
+
+        //     console.log(thisId);
+        // })
+
+        new ClipboardJS('.item-copy-to-clipboard');
 
     })
 

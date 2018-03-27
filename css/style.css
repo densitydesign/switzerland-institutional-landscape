@@ -292,6 +292,26 @@ p.caption:first-child {
     color: #666;
 }
 
+span.note-on-data {
+    background-color: #fbfdfe;
+    border: 1px solid var(--uek-blue);
+    display: block;
+    border-radius: 3px;
+    padding: 15px;
+    padding-top: 0.65rem;
+    margin-bottom: 1rem;
+}
+
+span.note-on-data:before {
+    content: 'Note about the data';
+    display: inline-block;
+    font-size: 0.666rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
 span.interact-with-viz:before {
     content: 'How to interact with the visualisation';
     display: inline-block;
