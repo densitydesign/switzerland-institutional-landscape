@@ -1,5 +1,4 @@
 function Matrix(id, data, categories) {
-
     this.id = id;
 
     // set variable to save the two dimensions that will be visualized in the matrix
