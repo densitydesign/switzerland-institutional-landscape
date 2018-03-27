@@ -509,6 +509,10 @@ function buildSidepanel(id, year) {
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
+    $('.sidepanel-layer').addClass('is-visible');
+    $('.sidepanel-layer.is-visible').on('click', function(){
+        closeSidepanel();
+    });
     $('[data-toggle="tooltip"]').tooltip('disable');
 }
 
@@ -572,6 +576,10 @@ function buildSidepanelList(list) {
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
+    $('.sidepanel-layer').addClass('is-visible');
+    $('.sidepanel-layer.is-visible').on('click', function(){
+        closeSidepanel();
+    });
 }
 
 function buildTimelineSidepanel(type, year) {
@@ -646,6 +654,10 @@ function buildTimelineSidepanel(type, year) {
 
     $('body').addClass('sidebar-open modal-open');
     $('.sidepanel').addClass('sidepanel-open');
+    $('.sidepanel-layer').addClass('is-visible');
+    $('.sidepanel-layer.is-visible').on('click', function(){
+        closeSidepanel();
+    });
     $('[data-toggle="tooltip"]').tooltip('disable');
 }
 
@@ -663,6 +675,7 @@ function closeSidepanel() {
 
     $('body').removeClass('sidebar-open modal-open');
     $('.sidepanel').removeClass('sidepanel-open');
+    $('.sidepanel-layer').removeClass('is-visible');
     $('[data-toggle="tooltip"]').tooltip('enable');
 }
 

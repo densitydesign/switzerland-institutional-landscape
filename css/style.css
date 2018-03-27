@@ -106,6 +106,23 @@ p {
     margin-bottom: 1rem;
     font-family: "Brandon Grotesque", sans-serif;
 }
+.sidepanel-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 8999;
+    -webkit-transition: opacity .5s ease;
+    transition: opacity .5s ease;
+}
+.sidepanel-layer.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
 aside {
     background-color: #F3F7F9;
     z-index: 9000;
