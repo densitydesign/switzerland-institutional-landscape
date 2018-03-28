@@ -160,13 +160,22 @@ nav.navbar:last-of-type {
 }
 
 .value {
-    -ms-flex-preferred-size: 0.75%;
+    /*-ms-flex-preferred-size: 0.75%;
         flex-basis: 0.75%;
     -webkit-box-flex: 7;
         -ms-flex-positive: 7;
             flex-grow: 7;
     font-size: 0.83rem;
-    line-height: 2rem;
+    line-height: 2rem;*/
+
+    -ms-flex-preferred-size: 0.75%;
+    flex-basis: 0.75%;
+    -webkit-box-flex: 7;
+    -ms-flex-positive: 7;
+    flex-grow: 7;
+    font-size: 0.83rem;
+    line-height: 1rem;
+    padding-top: 0.45rem;
 }
 
 .surveyes .value span {
