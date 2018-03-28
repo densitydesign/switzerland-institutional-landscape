@@ -56,10 +56,10 @@ function MapAll(id, swiss, data) {
         .range(['#DCC274', '#CFB76D', '#B5A060', '#8F7F4B', '#4F462A', '#38321E', '#FFFFFF']);
     let confessionScale = d3.scaleOrdinal()
         .domain(categoriesList['confession'])
-        .range(['#CC2936', '#61988E', '#EDDEA4', '#FFFFFF']);
+        .range(['#E95B59', '#7FA3B4', '#CFB76D', '#FFFFFF']);
     let genderScale = d3.scaleOrdinal()
         .domain(categoriesList['accepted_gender'])
-        .range(['#575A4B', '#FF6663', '#EDDEA4', '#FFFFFF']);
+        .range(['#81AA91', '#684F42', '#CFB76D', '#FFFFFF']);
 
     // check if svg has already been created and if not, creates it
     if (!this.svg) {
@@ -96,7 +96,7 @@ function MapAll(id, swiss, data) {
             .style('pointer-events', 'none');
         d3.select('#maps-visualization .maps-container rect')
             .style('pointer-events', 'none');
-        
+
         d3.selectAll('body > .tooltip')
             .transition()
             .duration(250)

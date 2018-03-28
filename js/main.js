@@ -826,7 +826,7 @@ function updateMatrix(step) {
         d3.selectAll('.matrix-highlight')
             .transition()
             .duration(500)
-            .style('color', '#b49536');
+            .style('color', '#B49536');
     }
 }
 
