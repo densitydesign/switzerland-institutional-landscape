@@ -482,11 +482,22 @@ d3.queue()
                 return thisHtml;
             })
             .on('click', function(d) {
+                // console.log(d);
                 handleSelection(d);
                 location.replace(`#selected-${encodeURIComponent(d.key)}`);
                 d3.event.preventDefault();
             })
             .merge(item);
+
+        d3.selectAll('.item-copy-to-clipboard').on('click', function(){
+            // console.log(this);
+            d3.selectAll('.item-copy-to-clipboard')
+                .classed('copied', false)
+                .html('Copy citation to clipboard');
+            d3.select(this)
+                .classed('copied', true)
+                .html('Citation copied to clipboard');
+        })
 
         // reset();
 

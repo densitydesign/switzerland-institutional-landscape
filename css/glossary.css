@@ -129,6 +129,16 @@ nav.navbar:last-of-type {
     border-color: #EF9D79;
 }
 
+.item.active .item-copy-to-clipboard.copied {
+    background-color: #EF9D79;
+    color: white;
+    border-color: #EF9D79;
+}
+
+.item.active .item-copy-to-clipboard.copied:hover {
+    color: white;
+}
+
 .field {
     display: -webkit-box;
     display: -ms-flexbox;

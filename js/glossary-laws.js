@@ -478,6 +478,16 @@ function populatePanel(data) {
             updateGlossary(selectedLaw);
         }
 
+        d3.selectAll('.item-copy-to-clipboard').on('click', function(){
+            // console.log(this);
+            d3.selectAll('.item-copy-to-clipboard')
+                .classed('copied', false)
+                .html('Copy citation to clipboard');
+            d3.select(this)
+                .classed('copied', true)
+                .html('Citation copied to clipboard');
+        })
+
         new ClipboardJS('.item-copy-to-clipboard');
 }
 
