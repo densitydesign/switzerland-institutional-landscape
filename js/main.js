@@ -41,6 +41,7 @@ let circularNetwork,
 const timelineScroller = scrollama();
 const sankeyScroller = scrollama();
 const mapScroller = scrollama();
+const matrixScroller = scrollama();
 
 $(document).ready(function() {
 
@@ -377,6 +378,15 @@ $(document).on('setWaypoints', function() {
         changeButton(newYear, containerMapsWidth, '.btn-maps-year', mapsSpacer);
     });
 
+});
+
+$(document).on('setNavigation', function() {
+    matrixScroller.setup({
+            step: '.matrix-text',
+            offset: 0.3
+        })
+        .onStepEnter(updateMatrix)
+        .onStepExit(resetMatrix);
 });
 
 function changeButton(year, width, buttons, spacer) {
@@ -765,4 +775,76 @@ function updateMap(step) {
         }
         mapStep = currentEl;
     }
+}
+
+function updateMatrix(step) {
+    let Yselect = $('#scatterplot-y').val();
+    let Xselect = $('#scatterplot-x').val();
+    if(Yselect == 'accepted_gender' && Xselect == 'typology') {
+        d3.selectAll('.matrix-svg .axis-x .tick')
+            .each(function(d){
+                if (d == 'juvenile correction facility' || d == 'labour colony') {
+                    d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .style('opacity', 1);
+                } else {
+                    d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .style('opacity', .2);
+                }
+            });
+        d3.selectAll('.matrix-svg .grid-x .tick')
+            .each(function(d){
+                if (d == 'juvenile correction facility' || d == 'labour colony') {
+                    d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .style('opacity', 1);
+                } else {
+                    d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .style('opacity', .2);
+                }
+            });
+        d3.selectAll('.matrix-svg .matrix-bubbles .bubble')
+            .each(function(d){
+                if (d.value.x == 'juvenile correction facility' || d.value.x == 'labour colony') {
+                    d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .style('opacity', 1);
+                } else {
+                    d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .style('opacity', .2);
+                }
+            });
+        d3.selectAll('.matrix-highlight')
+            .transition()
+            .duration(500)
+            .style('color', '#b49536');
+    }
+}
+
+function resetMatrix(step) {
+    d3.selectAll('.matrix-svg .axis-x .tick')
+        .transition()
+        .duration(500)
+        .style('opacity', 1);
+    d3.selectAll('.matrix-svg .grid-x .tick')
+        .transition()
+        .duration(500)
+        .style('opacity', 1);
+    d3.selectAll('.matrix-svg .matrix-bubbles .bubble')
+        .transition()
+        .duration(500)
+        .style('opacity', 1);
+    d3.selectAll('.matrix-highlight')
+        .transition()
+        .duration(500)
+        .style('color', '#2f3236');
 }

@@ -137,6 +137,8 @@ function Matrix(id, data, categories) {
         svg.select('.axis-x')
             // .transition()
             .call(xAxis)
+            .selectAll(".tick")
+            .style('opacity', 1)
             .selectAll(".tick text")
             .call(wrapX, 110);
 
@@ -147,7 +149,9 @@ function Matrix(id, data, categories) {
             .call(yGrid);
         svg.select('.grid-x')
             .transition()
-            .call(xGrid);
+            .call(xGrid)
+            .selectAll('.tick')
+            .style('opacity', 1);
 
         //draw bubbles on matrix
         bubbles = bubblesArea.selectAll('.bubble')
@@ -181,9 +185,15 @@ function Matrix(id, data, categories) {
 
         bubbles.transition()
             .duration(300)
+            .style('opacity', 1)
             .attr('r', function(d) {
                 return rScale(d.value.amount);
             });
+
+        d3.selectAll('.matrix-highlight')
+            .transition()
+            .duration(500)
+            .style('color', '#2f3236');
 
     }
 
