@@ -157,7 +157,7 @@ p.caption:first-child {
     position: fixed;
     width: 100%;
     height: 100vh;
-    background-color: #81AA91;
+    background-color: var(--uek-blue);
     z-index: 9999;
 }
 
