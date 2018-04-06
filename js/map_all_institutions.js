@@ -261,11 +261,7 @@ function MapAll(id, swiss, data) {
                     if ((category === 'capacity_group' && d.capacity_group == "not specified") || (category === 'confession' && d.confession == "not specified") || (category === 'accepted_gender' && d.accepted_gender == "not specified")) {
                         return .5 + 'px';
                     }
-                });
-
-            node.transition()
-                .duration(350)
-                .delay(function(d, i) { return i * 2 })
+                })
                 .style('fill', function(d){
                     if (category === 'capacity_group') {
                         return capacityScale(d[category]);
@@ -274,7 +270,20 @@ function MapAll(id, swiss, data) {
                     } else {
                         return genderScale(d[category]);
                     }
-                })
+                });
+
+            node.transition()
+                .duration(350)
+                .delay(function(d, i) { return i * 2 })
+                // .style('fill', function(d){
+                //     if (category === 'capacity_group') {
+                //         return capacityScale(d[category]);
+                //     } else if (category === 'confession') {
+                //         return confessionScale(d[category]);
+                //     } else {
+                //         return genderScale(d[category]);
+                //     }
+                // })
                 .attr('r', radius);
 
             if (currentMapsCategory != category) {
@@ -403,6 +412,9 @@ function MapAll(id, swiss, data) {
                     let city = thisRecord.city;
                     let canton_code = thisRecord.canton_code;
                     return `<div class="viz-tooltip"><span>${name_landmark}</span><br/><span>${city}, ${canton_code}</span></div>`;
+                })
+                .style('fill', function(d){
+                    return 'black';
                 });
 
             node.transition()

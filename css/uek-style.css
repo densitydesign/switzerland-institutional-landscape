@@ -25,10 +25,10 @@
 
 * {
     /* With this definition you're able to give the body-tag a font-family and it's inherited downwards */
-    font-size: inherit;
+    /*font-size: inherit;
     font-family: inherit;
     font-weight: inherit;
-    line-height: inherit;
+    line-height: inherit;*/
 }
 
 /* End - Fonts */
@@ -83,7 +83,7 @@
 
 /* Start - Page layout */
 
-body {
+xbody, .header-siec {
     font-family: 'Brandon Grotesque', serif;
     font-weight: 400;
     font-size: 18px;
@@ -91,13 +91,13 @@ body {
 }
 
 @media (max-width: 1260px) {
-    body {
+    xbody, .header-siec {
         font-size: 1.42857143vw;
     }
 }
 
 @media (max-width: 767px) {
-    body {
+    xbody, .header-siec {
         font-size: 5vw;
     }
 }
