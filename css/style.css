@@ -378,8 +378,9 @@ span.interact-with-viz .action {
 /* Cover */
 
 .cover {
-    width: 100vw;
-    background-image: url(../assets/cover-image-PS-ok.png);
+    width: 100%;
+    background-color: var(--uek-blue);
+    background-image: url(../assets/cover-image-sm.jpg);
     background-size: cover;
     background-position: center 70%;
     height: 45vh;
@@ -1199,6 +1200,7 @@ body.color-scheme-laser .sidepanel p a {
     }
 
     .cover {
+        background-image: url(../assets/cover-image-lg.jpg);
         height: 60vw;
         max-height: 65vh;
         margin-top: 4.5rem !important;
@@ -1262,5 +1264,11 @@ body.color-scheme-laser .sidepanel p a {
     }
     .concordat-legend {
         margin-bottom: -3rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .cover {
+        background-image: url(../assets/cover-image-xl.jpg);
     }
 }
