@@ -388,8 +388,9 @@ span.interact-with-viz .action {
 /* Cover */
 
 .cover {
-    width: 100vw;
-    background-image: url(../assets/cover-image-PS-ok.png);
+    width: 100%;
+    background-color: var(--uek-blue);
+    background-image: url(../assets/cover-image-sm.jpg);
     background-size: cover;
     background-position: center 70%;
     height: 45vh;
@@ -1159,8 +1160,10 @@ body.color-scheme-laser .sidepanel p a {
 }
 
 #accepting-institutions .node.over-selected-canton {
-    fill: rgba(255, 255, 255, .35);
-    stroke: white;
+    /*fill: rgba(255, 255, 255, .35);*/
+    fill: #ffffff47;
+    stroke: black;
+    stroke-width: 0.5px;
 }
 
 #accepting-institutions .nodeLabel {
@@ -1183,7 +1186,7 @@ body.color-scheme-laser .sidepanel p a {
 }
 
 .concordat-legend {
-    margin-bottom: -3rem;
+    margin-bottom: -1rem;
     pointer-events: none;
 }
 
@@ -1214,6 +1217,7 @@ body.color-scheme-laser .sidepanel p a {
     }
 
     .cover {
+        background-image: url(../assets/cover-image-lg.jpg);
         height: 60vw;
         max-height: 65vh;
         margin-top: 4.5rem !important;
@@ -1255,6 +1259,7 @@ body.color-scheme-laser .sidepanel p a {
     }
     .diagram-container {
         overflow-x: inherit;
+        background-color: transparent;
     }
     .svg-diagram {
         width: 100%;
@@ -1275,6 +1280,12 @@ body.color-scheme-laser .sidepanel p a {
         height: 84vh;
     }
     .concordat-legend {
-        margin-bottom: -5rem;
+        margin-bottom: -3rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .cover {
+        background-image: url(../assets/cover-image-xl.jpg);
     }
 }

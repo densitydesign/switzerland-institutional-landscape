@@ -710,7 +710,7 @@ function updateTimeline(step) {
 }
 
 function resetTimeline(step) {
-    if ((step.index == 0 && step.direction == 'up') || (step.index == 2 && step.direction == 'down')) {
+    if ((step.index == 0 && step.direction == 'up') || (step.index == 1 && step.direction == 'down')) {
         $('.timeline-dots').removeClass('element-grayed');
         $('#texts .timeline-legend').removeClass('element-grayed');
         $('.timeline-text').removeClass('text-highlighted');
@@ -738,7 +738,7 @@ function updateMap(step) {
         let newMapYear = (currentEl == 'total') ? 1900 : (currentEl == 'capacity_group') ? 1954 : 1965;
 
         if (currentEl == 'total') {
-            $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(` + newMapYear + `);closeSidepanel()" data-id="` + newMapYear + `">All</span>`).fadeIn(function() {
+            $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(` + newMapYear + `);closeSidepanel()" data-id="` + newMapYear + `">All</span>`).fadeIn(250, function() {
                 $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + yearsAlternative[i] + ');closeSidepanel()');
                 });
@@ -751,7 +751,7 @@ function updateMap(step) {
             });
         } else if (currentEl == 'typology') {
             if (step.direction == 'down') {
-                $('.year-all').fadeOut(function() {
+                $('.year-all').fadeOut(250, function() {
                     $(this).remove();
                     $('#maps .btn-maps-year').each(function(i) {
                         $(this).attr('onclick', 'map_typologies.draw(' + years[i] + ');closeSidepanel()');
