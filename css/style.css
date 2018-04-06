@@ -22,6 +22,27 @@
     }
 }
 
+@font-face {
+    font-family: "Brandon Grotesque";
+    font-weight: 700;
+    src: url("../assets/fonts/1114474/c12a6d37-72c1-408b-9ca9-32946956c57f.eot?#iefix");
+    src: url("../assets/fonts/1114474/c12a6d37-72c1-408b-9ca9-32946956c57f.eot?#iefix") format("eot"), url("../assets/fonts/1114474/df1cd944-a6a3-4d30-8fd3-391c2e9531f1.woff2") format("woff2"), url("Fonts/1114474/4f2d0548-c7dc-459b-a2e0-e86656a10ded.woff") format("woff"), url("../assets/fonts/1114474/dc21d9e5-516f-4e7e-9a84-7be79a44c2dd.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Brandon Grotesque";
+    font-weight: 600;
+    src: url("../assets/fonts/1114492/172fdde2-f56b-433a-a6e2-ebeab9dfb588.eot?#iefix");
+    src: url("../assets/fonts/1114492/172fdde2-f56b-433a-a6e2-ebeab9dfb588.eot?#iefix") format("eot"), url("../assets/fonts/1114492/50ca6f6f-b64d-4af0-9b30-526cf363d87e.woff2") format("woff2"), url("Fonts/1114492/050c2cbf-b818-4b8e-b6d2-71b70478bd9d.woff") format("woff"), url("../assets/fonts/1114492/7da41ce3-b3fd-4fca-a85f-4f3099884c15.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Brandon Grotesque";
+    font-weight: 400;
+    src: url("../assets/fonts/1114498/49d8a110-dd06-4918-9fea-516c27058edf.eot?#iefix");
+    src: url("../assets/fonts/1114498/49d8a110-dd06-4918-9fea-516c27058edf.eot?#iefix") format("eot"), url("../assets/fonts/1114498/1e5fc8fa-a98c-4613-a08e-c6c975759a80.woff2") format("woff2"), url("Fonts/1114498/6b45f9ca-22b4-48ca-962f-6ff1fa7fc196.woff") format("woff"), url("../assets/fonts/1114498/7fdcfbf6-62ea-4d31-935f-cac99a996c73.ttf") format("truetype");
+}
+
 :root {
     --uek-blue: #B0C5CE;
     --uek-middle-light-blue: #E7EDEF;
