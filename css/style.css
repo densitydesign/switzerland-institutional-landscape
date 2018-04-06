@@ -1149,8 +1149,10 @@ body.color-scheme-laser .sidepanel p a {
 }
 
 #accepting-institutions .node.over-selected-canton {
-    fill: rgba(255, 255, 255, .35);
-    stroke: white;
+    /*fill: rgba(255, 255, 255, .35);*/
+    fill: #ffffff47;
+    stroke: black;
+    stroke-width: 0.5px;
 }
 
 #accepting-institutions .nodeLabel {
@@ -1173,7 +1175,7 @@ body.color-scheme-laser .sidepanel p a {
 }
 
 .concordat-legend {
-    margin-bottom: -3rem;
+    margin-bottom: -1rem;
     pointer-events: none;
 }
 
@@ -1238,6 +1240,7 @@ body.color-scheme-laser .sidepanel p a {
     }
     .diagram-container {
         overflow-x: inherit;
+        background-color: transparent;
     }
     .svg-diagram {
         width: 100%;
@@ -1258,6 +1261,6 @@ body.color-scheme-laser .sidepanel p a {
         height: 84vh;
     }
     .concordat-legend {
-        margin-bottom: -5rem;
+        margin-bottom: -3rem;
     }
 }
