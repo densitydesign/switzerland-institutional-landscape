@@ -45,6 +45,10 @@ const matrixScroller = scrollama();
 
 $(document).ready(function() {
 
+    d3.select('.mobile-message').on('click', function(d){
+        d3.select(this).transition().duration(249).style('opacity',1e-6).remove();
+    })
+
     loadingSize = $(window).width();
 
     if (loadingSize > 767) {
