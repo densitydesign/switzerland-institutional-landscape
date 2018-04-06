@@ -378,7 +378,8 @@ span.interact-with-viz .action {
 /* Cover */
 
 .cover {
-    width: 100vw;
+    width: 100%;
+    background-color: var(--uek-blue);
     background-image: url(../assets/cover-image-PS-ok.png);
     background-size: cover;
     background-position: center 70%;
