@@ -710,7 +710,7 @@ function updateTimeline(step) {
 }
 
 function resetTimeline(step) {
-    if ((step.index == 0 && step.direction == 'up') || (step.index == 2 && step.direction == 'down')) {
+    if ((step.index == 0 && step.direction == 'up') || (step.index == 1 && step.direction == 'down')) {
         $('.timeline-dots').removeClass('element-grayed');
         $('#texts .timeline-legend').removeClass('element-grayed');
         $('.timeline-text').removeClass('text-highlighted');
