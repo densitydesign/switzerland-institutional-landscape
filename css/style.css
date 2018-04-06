@@ -22,6 +22,27 @@
     }
 }
 
+@font-face {
+    font-family: "Brandon Grotesque";
+    font-weight: 700;
+    src: url("../assets/fonts/1114474/c12a6d37-72c1-408b-9ca9-32946956c57f.eot?#iefix");
+    src: url("../assets/fonts/1114474/c12a6d37-72c1-408b-9ca9-32946956c57f.eot?#iefix") format("eot"), url("../assets/fonts/1114474/df1cd944-a6a3-4d30-8fd3-391c2e9531f1.woff2") format("woff2"), url("Fonts/1114474/4f2d0548-c7dc-459b-a2e0-e86656a10ded.woff") format("woff"), url("../assets/fonts/1114474/dc21d9e5-516f-4e7e-9a84-7be79a44c2dd.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Brandon Grotesque";
+    font-weight: 600;
+    src: url("../assets/fonts/1114492/172fdde2-f56b-433a-a6e2-ebeab9dfb588.eot?#iefix");
+    src: url("../assets/fonts/1114492/172fdde2-f56b-433a-a6e2-ebeab9dfb588.eot?#iefix") format("eot"), url("../assets/fonts/1114492/50ca6f6f-b64d-4af0-9b30-526cf363d87e.woff2") format("woff2"), url("Fonts/1114492/050c2cbf-b818-4b8e-b6d2-71b70478bd9d.woff") format("woff"), url("../assets/fonts/1114492/7da41ce3-b3fd-4fca-a85f-4f3099884c15.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Brandon Grotesque";
+    font-weight: 400;
+    src: url("../assets/fonts/1114498/49d8a110-dd06-4918-9fea-516c27058edf.eot?#iefix");
+    src: url("../assets/fonts/1114498/49d8a110-dd06-4918-9fea-516c27058edf.eot?#iefix") format("eot"), url("../assets/fonts/1114498/1e5fc8fa-a98c-4613-a08e-c6c975759a80.woff2") format("woff2"), url("Fonts/1114498/6b45f9ca-22b4-48ca-962f-6ff1fa7fc196.woff") format("woff"), url("../assets/fonts/1114498/7fdcfbf6-62ea-4d31-935f-cac99a996c73.ttf") format("truetype");
+}
+
 :root {
     --uek-blue: #B0C5CE;
     --uek-middle-light-blue: #E7EDEF;
@@ -32,9 +53,36 @@
     --glossary-nav-heigth: 134px;
 }
 
+.mobile-message {
+    background-color: var(--uek-yellow);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 8px 60px 10px 15px;
+}
 
+.mobile-message::before, .mobile-message::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 30px;
+    display: block;
+    background: black;
+    right: 23px;
+    top: 33px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
 
+.mobile-message::after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
 
+.mobile-message p {
+    margin: 0;
+}
 
 /* General for all viz */
 
@@ -87,24 +135,35 @@ h1 {
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    line-height: 1.7rem;
     text-transform: uppercase;
     letter-spacing: 0;
     font-weight: 700;
     margin-bottom: 2rem;
     margin-top: 2rem;
+    z-index: 9999;
+}
+
+.title-decor {
+    content: "";
+    position:relative;
+    top: 1rem;
+    width: 100%;
+    max-width: 200px;
+    height: 2px;
+    background: black;
+    z-index: 0;
 }
 
 h3 {
-    font-size: 1.33rem;
+    font-size: 1.20rem;
     font-weight: 700;
     color: rgba(0, 0, 0, 0.90);
     letter-spacing: 0;
     line-height: 1.55rem;
     text-transform: uppercase;
 }
-
-hr {}
 
 .section-divider {
     border: 0;
@@ -361,8 +420,7 @@ span.interact-with-viz .action {
     margin-bottom: 0;
 }
 
-.small-screen-viz svg,
-.small-screen-viz img {
+.small-screen-viz svg, .small-screen-viz img {
     width: 100%;
     margin: .4rem 0 .6rem;
 }
@@ -371,9 +429,6 @@ span.interact-with-viz .action {
     font-family: 'Brandon Grotesque', sans-serif;
     font-size: 14px;
 }
-
-
-
 
 /* Cover */
 
@@ -399,7 +454,6 @@ span.interact-with-viz .action {
     top: 0.2rem;
 }
 
-
 .cover h1 span {
     font-weight: 700;
 }
@@ -408,13 +462,9 @@ span.interact-with-viz .action {
     font-size: 3rem;
 }
 
-
-
-
 /* Navigation form UEK */
 
-.navigation-wrapper input[type="text"],
-.navigation-wrapper input[type="submit"] {
+.navigation-wrapper input[type="text"], .navigation-wrapper input[type="submit"] {
     background-color: transparent;
     text-transform: inherit;
 }
@@ -422,9 +472,6 @@ span.interact-with-viz .action {
 .navigation-wrapper input[type="submit"] {
     border: none;
 }
-
-
-
 
 /* Navigation Sidebar */
 
@@ -491,30 +538,22 @@ span.interact-with-viz .action {
     border-radius: 2px;
 }
 
-.link-introduction,
-#navigation-sidebar .nav-link.link-introduction:hover,
-.link-introduction h6 {
+.link-introduction, #navigation-sidebar .nav-link.link-introduction:hover, .link-introduction h6 {
     width: 123px;
     opacity: 1;
 }
 
-.link-geographies,
-#navigation-sidebar .nav-link.link-geographies:hover,
-.link-geographies h6 {
+.link-geographies, #navigation-sidebar .nav-link.link-geographies:hover, .link-geographies h6 {
     width: 208px;
     opacity: 1;
 }
 
-.link-interconnections,
-#navigation-sidebar .nav-link.link-interconnections:hover,
-.link-interconnections h6 {
+.link-interconnections, #navigation-sidebar .nav-link.link-interconnections:hover, .link-interconnections h6 {
     width: 160px;
     opacity: 1;
 }
 
-.link-entering-exiting,
-#navigation-sidebar .nav-link.link-entering-exiting:hover,
-.link-entering-exiting h6 {
+.link-entering-exiting, #navigation-sidebar .nav-link.link-entering-exiting:hover, .link-entering-exiting h6 {
     width: 202px;
     opacity: 1;
 }
@@ -543,10 +582,7 @@ span.interact-with-viz .action {
     display: block;
 }
 
-#navigation-sidebar .subnav a,
-#navigation-sidebar .subnav p,
-#navigation-sidebar .subnav,
-#navigation-sidebar .link-container {
+#navigation-sidebar .subnav a, #navigation-sidebar .subnav p, #navigation-sidebar .subnav, #navigation-sidebar .link-container {
     pointer-events: none;
 }
 
@@ -554,20 +590,15 @@ span.interact-with-viz .action {
     pointer-events: auto;
 }
 
-#navigation-sidebar .subnav a:not(.active),
-#navigation-sidebar .subnav a:not(.active) p {
+#navigation-sidebar .subnav a:not(.active), #navigation-sidebar .subnav a:not(.active) p {
     opacity: 0;
     -webkit-transition: opacity 0.3s ease;
     transition: opacity 0.3s ease;
 }
 
-#navigation-sidebar .subnav .active,
-#navigation-sidebar .subnav .active p {
+#navigation-sidebar .subnav .active, #navigation-sidebar .subnav .active p {
     opacity: 1;
 }
-
-
-
 
 /* Sidepanel */
 
@@ -642,9 +673,7 @@ span.interact-with-viz .action {
     cursor: pointer;
 }
 
-.sidepanel-button a,
-.sidepanel-button a:hover,
-.sidepanel-button a:focus {
+.sidepanel-button a, .sidepanel-button a:hover, .sidepanel-button a:focus {
     color: #000000;
     text-decoration: none;
 }
@@ -661,10 +690,6 @@ span.interact-with-viz .action {
 body.color-scheme-laser .sidepanel p a {
     color: var(--uek-dark-blue);
 }
-
-
-
-
 
 /* 1.1 timeline */
 
@@ -729,9 +754,7 @@ body.color-scheme-laser .sidepanel p a {
     opacity: 0.2;
 }
 
-.dots-soc,
-.dots-leg,
-.dots-det {
+.dots-soc, .dots-leg, .dots-det {
     fill: #90BCCC;
 }
 
@@ -749,10 +772,6 @@ body.color-scheme-laser .sidepanel p a {
     position: relative;
     top: 64px;
 }
-
-
-
-
 
 /* 1.2 mosaic plot and sankey */
 
@@ -773,13 +792,9 @@ body.color-scheme-laser .sidepanel p a {
     opacity: .6 !important;
 }
 
-
-
-
 /* 1.3 bubblechart - purpose of institutions */
 
-#bubblechart circle.node,
-#bubblechart .item circle {
+#bubblechart circle.node, #bubblechart .item circle {
     cursor: pointer;
 }
 
@@ -800,9 +815,6 @@ body.color-scheme-laser .sidepanel p a {
 #bubblechart .legend g:first-child circle {
     display: none;
 }
-
-
-
 
 /* 1.4 typologies network of correlations */
 
@@ -850,11 +862,7 @@ body.color-scheme-laser .sidepanel p a {
     font-weight: 700;
 }
 
-
-
-
 /* STYLES CHAPTER 2 */
-
 
 /* container styles */
 
@@ -880,8 +888,7 @@ body.color-scheme-laser .sidepanel p a {
     height: 60vh;
 }
 
-.btn-container,
-.btn-container-direction {
+.btn-container, .btn-container-direction {
     position: relative;
     height: 22px;
 }
@@ -930,9 +937,6 @@ body.color-scheme-laser .sidepanel p a {
     white-space: pre;
 }
 
-
-
-
 /* swiss map styles */
 
 .swiss-contour {
@@ -950,13 +954,9 @@ body.color-scheme-laser .sidepanel p a {
     stroke-width: .5px;
 }
 
-
-
-
 /* map_all_institutions styles */
 
-.dot,
-.dot-small {
+.dot, .dot-small {
     fill: #333333;
     cursor: pointer;
 }
@@ -969,9 +969,6 @@ body.color-scheme-laser .sidepanel p a {
 .item-text {
     font-size: .65rem;
 }
-
-
-
 
 /* map_typologies styles */
 
@@ -993,13 +990,7 @@ body.color-scheme-laser .sidepanel p a {
     opacity: .3;
 }
 
-
-
-
-
-
 /* STYLES CHAPTER 3 */
-
 
 /* matrix */
 
@@ -1059,10 +1050,6 @@ body.color-scheme-laser .sidepanel p a {
     padding-bottom: 0.1rem;
 }
 
-
-
-
-
 /* STYLES CHAPTER 4 */
 
 .diagram-container {
@@ -1073,9 +1060,6 @@ body.color-scheme-laser .sidepanel p a {
 .svg-diagram {
     width: 230%;
 }
-
-
-
 
 /* typologies network of correlations */
 
@@ -1089,7 +1073,6 @@ body.color-scheme-laser .sidepanel p a {
     -webkit-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
 }
-
 
 #circular-network .link {
     fill: none;
@@ -1192,11 +1175,18 @@ body.color-scheme-laser .sidepanel p a {
         font-size: 3.8rem;
         line-height: 3.4rem;
     }
-
     h2 {
         font-size: 2.2rem;
+        font-size: 2.3rem;
         margin-bottom: 5rem;
         margin-top: 4rem;
+    }
+
+    .title-decor {
+        position: relative;
+        right: -1rem;
+        margin-bottom: 5rem;
+        margin-top: 4.2rem;
     }
 
     .cover {
@@ -1205,7 +1195,6 @@ body.color-scheme-laser .sidepanel p a {
         max-height: 65vh;
         margin-top: 4.5rem !important;
     }
-
     /*.cover {
         height: 40vw;
         max-height: 75vh;
@@ -1219,14 +1208,12 @@ body.color-scheme-laser .sidepanel p a {
         letter-spacing: 1.5px;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
     }*/
-
     .initial-loader div {
         width: 20vw;
     }
     .initial-loader svg {
         width: 20vw;
     }
-
     .initial-loader p {
         width: 20vw;
     }
@@ -1255,6 +1242,7 @@ body.color-scheme-laser .sidepanel p a {
 @media (min-width: 992px) {
     h2 {
         font-size: 2.5rem;
+        line-height: 2.6rem;
     }
     .sidepanel-button {
         width: 70%;
