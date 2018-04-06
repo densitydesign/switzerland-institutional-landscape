@@ -93,6 +93,18 @@ h2 {
     font-weight: 700;
     margin-bottom: 2rem;
     margin-top: 2rem;
+    z-index: 9999;
+}
+
+.title-decor {
+    content: "";
+    position:relative;
+    top: 1rem;
+    width: 100%;
+    max-width: 200px;
+    height: 2px;
+    background: black;
+    z-index: 0;
 }
 
 h3 {
@@ -103,8 +115,6 @@ h3 {
     line-height: 1.55rem;
     text-transform: uppercase;
 }
-
-hr {}
 
 .section-divider {
     border: 0;
@@ -1194,6 +1204,13 @@ body.color-scheme-laser .sidepanel p a {
         font-size: 2.2rem;
         margin-bottom: 5rem;
         margin-top: 4rem;
+    }
+
+    .title-decor {
+        position: relative;
+        right: -1rem;
+        margin-bottom: 5rem;
+        margin-top: 4.2rem;
     }
 
     .cover {
