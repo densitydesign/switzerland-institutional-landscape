@@ -60,6 +60,7 @@
     width: 100%;
     font-size: 0.9rem;
     padding: 8px 60px 10px 15px;
+    z-index: 3000;
 }
 
 .mobile-message::before, .mobile-message::after {
