@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <section id="entering-exiting" class="chapter container-fluid">
+        <section id="network" class="sub-chapter container">
+            <div class="row visualisation">
+                <div id="accepting-institutions" class="col-12">
+                    <h4>Accepting institutions</h4>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-secondary active" onclick="acceptingInstitutionsConfig.year = 1954; acceptingInstitutions.draw(acceptingInstitutionsConfig)">
+                            <input type="radio" name="options" id="ai1954" autocomplete="off" checked> 1954
+                        </label>
+                        <label class="btn btn-secondary" onclick="acceptingInstitutionsConfig.year = 1965; acceptingInstitutions.draw(acceptingInstitutionsConfig)">
+                            <input type="radio" name="options" id="ai1965" autocomplete="off"> 1965
+                        </label>
+                    </div>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-secondary active" onclick=" acceptingInstitutionsConfig.direction = 'from'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
+                            <input type="radio" name="options" id="aiFrom" autocomplete="off" checked> From
+                        </label>
+                        <label class="btn btn-secondary" onclick=" acceptingInstitutionsConfig.direction = 'into'; acceptingInstitutions.draw(acceptingInstitutionsConfig) ">
+                            <input type="radio" name="options" id="aiInto" autocomplete="off"> Into
+                        </label>
+                    </div>
+                    <p>Click on a canton to see related institutions if any.</p>
+                    <!-- To be filled with D3 -->
+                </div>
+                <div class="col-8 mx-auto">
+                    <!-- asdasdasd -->
+                </div>
+            </div>
+            <hr class="mb-5" />
+        </section>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <!-- Visualizations -->
+    <script src="./js/accepting-institutions.js"></script>
+    <!-- <script src="./js/map_cap-con-gen.js"></script> -->
+    <!-- Keep at the end of everything -->
+    <script>
+    let masterData;
+    let acceptingInstitutions,
+        acceptingInstitutionsConfig = {
+            'direction': 'from',
+            'year': 1954
+        }
+
+    d3.queue()
+        .defer(d3.json, './data_and_scripts/data/master.json')
+        .defer(d3.json, './data_and_scripts/data/ch.json')
+        .defer(d3.json, './data_and_scripts/data/cantons-network.json')
+        .await(function(error, master, swiss, cantonsNetwork) {
+            if (error) throw error;
+            masterData = master;
+            acceptingInstitutions = new AcceptingInstitutions('#accepting-institutions', cantonsNetwork, swiss, acceptingInstitutionsConfig);
+            acceptingInstitutions.draw(acceptingInstitutionsConfig);
+        });
+    </script>
+</body>
+
+</html>
