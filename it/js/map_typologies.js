@@ -10,7 +10,7 @@ function MapTypologies(id, swiss, data) {
         // console.log(swiss);
     }
 
-    let categories = ["forced labour institution", "labour colony", "juvenile correction facility", "alcohol rehabilitation facility", "prison", "psychiatric institution", "municipal poorhouse", "special needs facility"];
+    let categories = ["casa di lavoro", "colonia di lavoro", "istituto di rieducazione", "casa per bevitori", "penitenziario", "istituto psichiatrico", "casa dei poveri", "istituto per persone con bisogni speciali"];
 
     //define elements that will be present in the visualization
     let mapsSvg,
@@ -119,7 +119,7 @@ function MapTypologies(id, swiss, data) {
             .style('pointer-events', 'auto');
         d3.select('#maps-visualization .maps-container rect')
             .style('pointer-events', 'all');
-        
+
         d3.selectAll('body > .tooltip')
             .transition()
             .duration(250)
@@ -372,7 +372,7 @@ function MapTypologies(id, swiss, data) {
                                 .duration(500)
                                 .ease(d3.easeBackOut.overshoot(4))
                                 .attr('r', radius);
-                            
+
                             d3.selectAll('.dot-small[data-id=' + d.id + ']')
                                 .classed('dot-faded', false)
                                 .classed('dot-hover', true)
@@ -382,13 +382,13 @@ function MapTypologies(id, swiss, data) {
                                 .attr('r', radius * 2);
                         }
                     })
-                    .on("mouseleave", function(d) {                
+                    .on("mouseleave", function(d) {
                         d3.selectAll('.dot-hover')
                             .transition()
                             .duration(500)
                             .ease(d3.easeBackOut.overshoot(4))
                             .attr('r', radius);
-                            
+
                         d3.selectAll('.dot-small')
                             .classed('dot-hover', false)
                             .classed('dot-faded', false)
