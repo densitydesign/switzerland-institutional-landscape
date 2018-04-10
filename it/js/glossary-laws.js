@@ -310,7 +310,7 @@ function drawMap(selectedYear, canton) {
 
     // add legend
     let legendTitle = legendGroup.selectAll('.item-title')
-        .data(['Legal text range:']);
+        .data(['Portata testo legale:']);
 
     legendTitle.enter()
         .append('text')
@@ -327,7 +327,7 @@ function drawMap(selectedYear, canton) {
         .style('opacity', 1);;
 
     let item = legendGroup.selectAll('.item-legend')
-        .data([{'color': '#CC2936', 'label': 'cantonal'}, {'color': '#61988E', 'label': 'federal'}, {'color': '#EDDEA4', 'label': 'intercantonal'}, {'color': '#EAE6DA', 'label': 'international'}])
+        .data([{'color': '#CC2936', 'label': 'cantonale'}, {'color': '#61988E', 'label': 'federale'}, {'color': '#EDDEA4', 'label': 'intercantonale'}, {'color': '#EAE6DA', 'label': 'internazionale'}])
         .enter()
         .append('g')
         .classed('item-legend', true);
@@ -415,15 +415,15 @@ function populatePanel(data) {
 
             let newContent = `
                 <div class="name field">
-                    <div class="label font-weight-bold">Title</div>
+                    <div class="label font-weight-bold">Titolo</div>
                     <div class="value font-weight-bold">${d.title}</div>
                 </div>
                 <div class="typology field">
-                    <div class="label">Typology</div>
+                    <div class="label">Tipologia</div>
                     <div class="value">${d.typology == null ? '-' : d.typology}</div>
                 </div>
                 <div class="range field">
-                    <div class="label">Range</div>
+                    <div class="label">Portata</div>
                     <div class="value">${d.range}</div>
                 </div>
                 <div class="canton field">

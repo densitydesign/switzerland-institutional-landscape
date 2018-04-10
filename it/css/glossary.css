@@ -267,6 +267,7 @@ nav.navbar:last-of-type {
 
 .timeline-container {
     height: calc(50vh - var(--glossary-nav-heigth));
+    border-bottom: 1px solid var(--uek-blue);
 }
 
 .timeline-container div {
@@ -284,6 +285,7 @@ nav.navbar:last-of-type {
 .description-container {
     height: calc(100vh - var(--glossary-nav-heigth));
     overflow-y: scroll;
+    border-right: 1px solid var(--uek-blue);
 }
 
 .description-container .value {
