@@ -74,7 +74,7 @@ function AcceptingInstitutions(id, data, swiss) {
                     .transition()
                     .duration(300)
                     .style('opacity', 0.5)
-                    .text('click on a canton');
+                    .text('seleziona un cantone');
 
                 reset();
             })

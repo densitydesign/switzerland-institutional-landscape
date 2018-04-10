@@ -1,5 +1,6 @@
 .tbtranslated {
     color: tomato !important;
+    fill: tomato !important;
     text-decoration: underline;
 }
 
@@ -550,17 +551,17 @@ span.interact-with-viz .action {
 }
 
 .link-geographies, #navigation-sidebar .nav-link.link-geographies:hover, .link-geographies h6 {
-    width: 208px;
+    width: 216px;
     opacity: 1;
 }
 
 .link-interconnections, #navigation-sidebar .nav-link.link-interconnections:hover, .link-interconnections h6 {
-    width: 160px;
+    width: 137px;
     opacity: 1;
 }
 
 .link-entering-exiting, #navigation-sidebar .nav-link.link-entering-exiting:hover, .link-entering-exiting h6 {
-    width: 202px;
+    width: 232px;
     opacity: 1;
 }
 

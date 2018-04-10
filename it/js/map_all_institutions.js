@@ -383,6 +383,18 @@ function MapAll(id, swiss, data) {
                         return i * 20 + 12;
                     })
                     .text(function(d){
+                        console.log(d)
+                        d=d.replace('200 or more','200 o più')
+                            .replace('not specified','non specificato')
+
+                            .replace('protestant','protestante')
+                            .replace('catholic','cattolica')
+                            .replace('interdenominational','interconfessionale')
+
+                            .replace('male','maschile')
+                            .replace('female','femminile')
+                            .replace('mixed','misto')
+                            
                         return d;
                     })
                     .transition()

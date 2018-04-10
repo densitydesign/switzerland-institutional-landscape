@@ -45,12 +45,12 @@ function Bubblechart(id, data) {
 
     let capacityColor = d3.scaleOrdinal()
         .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more"])
-        // red
-        .range(['#ffffff', '#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a'])
-        // green
-        .range(['#ffffff', '#074050', '#217a79', '#4c9b82', '#6cc08b', '#97e196', '#d3f2a3'])
-        //yellow
-        .range(['#ffffff', '#DCC274', '#CFB76D', '#B5A060', '#8F7F4B', '#4F462A', '#38321E'])
+        // // red
+        // .range(['#ffffff', '#fae6c4', '#f0b8a3', '#e38984', '#c5626c', '#99445b', '#70284a'])
+        // // green
+        // .range(['#ffffff', '#074050', '#217a79', '#4c9b82', '#6cc08b', '#97e196', '#d3f2a3'])
+        // //yellow
+        // .range(['#ffffff', '#DCC274', '#CFB76D', '#B5A060', '#8F7F4B', '#4F462A', '#38321E'])
         .range(['#ffffff', '#38321E', '#4F462A', '#8F7F4B', '#B5A060', '#CFB76D', '#DCC274']);
 
     // #d3f23,#97e196,#6cc08b,#4c9b82,#217a79,#105965,#074050
@@ -303,16 +303,16 @@ function Bubblechart(id, data) {
                     let thisName;
                     switch (d) {
                         case '1':
-                            thisName = 'Single purpose';
+                            thisName = 'Singola finalità';
                             break;
                         case '2':
-                            thisName = 'Two purposes';
+                            thisName = 'Due finalità';
                             break;
                         case '3':
-                            thisName = 'Three purposes';
+                            thisName = 'Tre finalità';
                             break;
                         default:
-                            thisName = 'Four purposes';
+                            thisName = 'Quattro finalità';
                     }
                     return thisName;
                 })
@@ -406,7 +406,16 @@ function Bubblechart(id, data) {
             .attr('x', function(d){
                 return radius(d) + 3
             })
-            .text(function(d) { return d })
+            .style('text-transform', function(d){
+                if (d == '200 or more') {
+                    return 'lowercase';
+                }
+            })
+            .text(function(d) { 
+                d=d.replace('Capacity','Capacità').replace('not specified','non specificato').replace('200 or more','200 o più');
+                console.log(d);
+                return d;
+            })
 
         // d3.selectAll('.year')
         //     .attr('y', height - 14)
