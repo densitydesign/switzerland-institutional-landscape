@@ -3,7 +3,7 @@
     "nodes": [
       {
         "id": "VS",
-        "label": "Wallis",
+        "label": "Valais",
         "concordat": "c1",
         "count": 1,
         "inDegree": 0,
@@ -11,7 +11,7 @@
       },
       {
         "id": "FR",
-        "label": "Freiburg",
+        "label": "Fribourg",
         "concordat": "c1",
         "count": 8,
         "inDegree": 7,
@@ -19,7 +19,7 @@
       },
       {
         "id": "NE",
-        "label": "Neuenburg",
+        "label": "Neuchâtel",
         "concordat": "c1",
         "count": 5,
         "inDegree": 4,
@@ -27,7 +27,7 @@
       },
       {
         "id": "TI",
-        "label": "Tessin",
+        "label": "Ticino",
         "concordat": "c1",
         "count": 1,
         "inDegree": 0,
@@ -35,7 +35,7 @@
       },
       {
         "id": "VD",
-        "label": "Waadt",
+        "label": "Vaud",
         "concordat": "c1",
         "count": 3,
         "inDegree": 2,
@@ -43,7 +43,7 @@
       },
       {
         "id": "GE",
-        "label": "Genf",
+        "label": "Geneva",
         "concordat": "c1",
         "count": 1,
         "inDegree": 0,
@@ -155,7 +155,7 @@
       },
       {
         "id": "AI",
-        "label": "Appenzell-Innerrhoden",
+        "label": "Appenzell Innerrhoden",
         "concordat": "c3",
         "count": 1,
         "inDegree": 0,
@@ -171,7 +171,7 @@
       },
       {
         "id": "AR",
-        "label": "Appenzell-Ausserrhoden",
+        "label": "Appenzell Ausserrhoden",
         "concordat": "c3",
         "count": 3,
         "inDegree": 2,
@@ -195,7 +195,7 @@
       },
       {
         "id": "SG",
-        "label": "StGallen",
+        "label": "St. Gallen",
         "concordat": "c3",
         "count": 8,
         "inDegree": 7,

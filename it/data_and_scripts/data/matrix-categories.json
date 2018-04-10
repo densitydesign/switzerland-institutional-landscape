@@ -2,57 +2,57 @@
     "typology": [
         {
             "code": 1,
-            "label": "forced labour institution"
+            "label": "casa di lavoro"
         },
         {
             "code": 2,
-            "label": "labour colony"
+            "label": "colonia di lavoro"
         },
         {
             "code": 3,
-            "label": "juvenile correction facility"
+            "label": "istituto di rieducazione"
         },
         {
             "code": 4,
-            "label": "alcohol rehabilitation facility"
+            "label": "casa per bevitori"
         },
         {
             "code": 5,
-            "label": "prison"
+            "label": "penitenziario"
         },
         {
             "code": 6,
-            "label": "psychiatric institution"
+            "label": "istituto psichiatrico"
         },
         {
             "code": 7,
-            "label": "municipal poorhouse"
+            "label": "casa dei poveri"
         },
         {
             "code": 8,
-            "label": "special needs facility"
+            "label": "istituto per persone con bisogni speciali"
         },
         {
             "code": 9,
-            "label": "not specified"
+            "label": "non indicato"
         }
     ],
     "accepted_gender": [
         {
             "code": 1,
-            "label": "male"
+            "label": "maschile"
         },
         {
             "code": 2,
-            "label": "female"
+            "label": "femminile"
         },
         {
             "code": 3,
-            "label": "mixed"
+            "label": "misto"
         },
         {
             "code": 4,
-            "label": "not specified"
+            "label": "non indicato"
         }
     ],
     "capacity_group": [
@@ -78,109 +78,109 @@
         },
         {
             "code": 6,
-            "label": "200 or more"
+            "label": "200 o più"
         },
         {
             "code": 7,
-            "label": "not specified"
+            "label": "non indicato"
         }
     ],
     "confession": [
         {
             "code": 1,
-            "label": "protestant"
+            "label": "protestante"
         },
         {
             "code": 2,
-            "label": "catholic"
+            "label": "cattolica"
         },
         {
             "code": 3,
-            "label": "interdenominational"
+            "label": "interconfessionale"
         },
         {
             "code": 4,
-            "label": "not specified"
+            "label": "non indicato"
         }
     ],
     "funding_agency": [
         {
             "code": 1,
-            "label": "government funded"
+            "label": "statale"
         },
         {
             "code": 2,
-            "label": "privately funded"
+            "label": "privato"
         },
         {
             "code": 3,
-            "label": "public-private"
+            "label": "misto"
         },
         {
             "code": 4,
-            "label": "not specified"
+            "label": "non indicato"
         }
     ],
     "committing_agencies": [
         {
             "code": 1,
-            "label": "courts"
+            "label": "tribunali"
         },
         {
             "code": 2,
-            "label": "investigating magistrate"
+            "label": "giudice d'istruzione"
         },
         {
             "code": 3,
-            "label": "prosecutor"
+            "label": "pubblico ministero"
         },
         {
             "code": 4,
-            "label": "juvenile prosecutor"
+            "label": "magistratura dei minorenni"
         },
         {
             "code": 5,
-            "label": "government council (municipal)"
+            "label": "consiglio di stato"
         },
         {
             "code": 6,
-            "label": "administrative agency"
+            "label": "autorità amministrative"
         },
         {
             "code": 7,
-            "label": "correctional authority"
+            "label": "autorità giudiziaria"
         },
         {
             "code": 8,
-            "label": "police authority"
+            "label": "autorità di polizia/giudici d’istruzione"
         },
         {
             "code": 9,
-            "label": "social welfare authority"
+            "label": "autorità assistenziali"
         },
         {
             "code": 10,
-            "label": "guardianship authority"
+            "label": "autorità tutelare"
         },
         {
             "code": 11,
-            "label": "district authorities"
+            "label": "autorità distrettuali/prefetti"
         },
         {
             "code": 12,
-            "label": "legal guardians"
+            "label": "tutela d'ufficio"
         },
         {
             "code": 13,
-            "label": "juvenile welfare services"
+            "label": "uffici dei minori"
         },
         {
             "code": 14,
-            "label": "private individuals/associations"
+            "label": "privati/associazioni"
         },
         {
             "code": 15,
-            "label": "not specified"
+            "label": "non indicato"
         }
     ]
 }

@@ -20,6 +20,7 @@ let years = [1933, 1940, 1954, 1965, 1980],
     containerAcceptingWidth,
     containerAcceptingDirectionWidth,
     buttonWidth,
+    buttonDirectionWidth,
     bubblechartSpacer,
     typologiesSpacer,
     mapsSpacer,
@@ -27,7 +28,8 @@ let years = [1933, 1940, 1954, 1965, 1980],
     map_all_institutions,
     map_typologies,
     currentMapsCategory,
-    matrix;
+    matrix,
+    directionSpacer;
 
 let circularNetwork,
     ciDirection = 'all', // could be all, into, from
@@ -187,19 +189,23 @@ $(document).ready(function() {
         containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
         containerAcceptingDirectionWidth = $('#accepting-institutions .btn-container-direction').width();
         buttonWidth = $('.btn-bubblechart-year[data-id=1940]').width();
+        buttonDirectionWidth = $('.btn-direction.direction-to').width();
 
         if (subchapterWidth > 960) {
             matrixSpacer = 8;
             bubblechartSpacer = 7;
             typologiesSpacer = 7;
+            directionSpacer = 20;
         } else if (subchapterWidth > 720) {
             matrixSpacer = 12;
             bubblechartSpacer = 10;
             typologiesSpacer = 14;
+            directionSpacer = 40;
         } else {
             matrixSpacer = 30;
             bubblechartSpacer = 20;
             typologiesSpacer = 400;
+            directionSpacer = 40;
         }
 
         //set up initial active buttons
@@ -208,7 +214,7 @@ $(document).ready(function() {
         changeButton(1954, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
         changeButton(1954, containerCircularWidth, '.btn-circular-year', 8);
         changeButton(1954, containerAcceptingWidth, '.btn-accepting-year', 8);
-        changeButton('into', containerAcceptingDirectionWidth, '.btn-direction', 8);
+        changeButton('into', containerAcceptingDirectionWidth, '.btn-direction', directionSpacer);
 
         $('.btn-bubblechart-year').on('click', function() {
             let newYear = $(this).attr('data-id');
@@ -247,7 +253,7 @@ $(document).ready(function() {
         $('.btn-direction').on('click', function() {
             let newDirection = $(this).attr('data-id');
 
-            changeButton(newDirection, containerAcceptingDirectionWidth, '.btn-direction', 8);
+            changeButton(newDirection, containerAcceptingDirectionWidth, '.btn-direction', directionSpacer);
         });
     }
 
@@ -303,16 +309,19 @@ $(document).ready(function() {
                 matrixSpacer = 8;
                 bubblechartSpacer = 7;
                 typologiesSpacer = 7;
+                directionSpacer = 20;
             } else if (subchapterWidth > 720) {
                 mapsSpacer = 14;
                 matrixSpacer = 12;
                 bubblechartSpacer = 10;
                 typologiesSpacer = 14;
+                directionSpacer = 40;
             } else {
                 mapsSpacer = 20;
                 matrixSpacer = 30;
                 bubblechartSpacer = 20;
                 typologiesSpacer = 400;
+                directionSpacer = 40;
             }
 
             changeButton(bubblechartYearState, containerBubblechartWidth, '.btn-bubblechart-year', bubblechartSpacer);
@@ -321,7 +330,7 @@ $(document).ready(function() {
             changeButton(matrixYearState, containerMatrixWidth, '.btn-matrix-year', matrixSpacer);
             changeButton(circularYearState, containerCircularWidth, '.btn-circular-year', 8);
             changeButton(acceptingYearState, containerAcceptingWidth, '.btn-accepting-year', 8);
-            changeButton(acceptingDirectionState, containerAcceptingDirectionWidth, '.btn-direction', 8);
+            changeButton(acceptingDirectionState, containerAcceptingDirectionWidth, '.btn-direction', directionSpacer);
 
             timelineScroller.resize();
             sankeyScroller.resize();
@@ -397,19 +406,32 @@ function changeButton(year, width, buttons, spacer) {
     $(buttons).removeClass('active-year');
     $(buttons + '[data-id=' + year + ']').addClass('active-year');
     let indexButton = $(buttons).index($(buttons + '.active-year'));
+    let centeringWidth = (buttons == '.btn-direction') ? buttonDirectionWidth : buttonWidth;
     $(buttons).each(function(i) {
         if (i == indexButton) {
-            $(this).css('left', width / 2);
+            if (buttons == '.btn-direction') {
+                $(this).css('left', (width / 2 - $(this).width() / 2));
+            } else {
+                $(this).css('left', width / 2);
+            }
             if ($(buttons).length == 6 && buttons == '.btn-maps-year' && spacer == 20) {
                 $(this).css('top', 25);
             } else {
                 $(this).css('top', 0);
             }
         } else if (i < indexButton) {
-            $(this).css('left', 15 + (15 + buttonWidth) * i + width / spacer);
+            if (buttons == '.btn-direction') {
+                $(this).css('left', (15 + centeringWidth) * i + width / spacer);
+            } else {
+                $(this).css('left', 15 + (15 + centeringWidth) * i + width / spacer);
+            }
             $(this).css('top', 0);
         } else {
-            $(this).css('left', width - 15 - (15 + buttonWidth) * ($(buttons).length - i - 1) - width / spacer);
+            if (buttons == '.btn-direction') {
+                $(this).css('left', width - 15 - (15 + centeringWidth) * ($(buttons).length - i - 1) - width / spacer - $(this).width() / 2);
+            } else {
+                $(this).css('left', width - 15 - (15 + centeringWidth) * ($(buttons).length - i - 1) - width / spacer);
+            }
             $(this).css('top', 0);
         }
     })
@@ -436,14 +458,14 @@ function buildSidepanel(id, year) {
 
         panel.append('h6')
             .classed('sidepanel-data', true)
-            .text('Unspecified survey');
+            .text('Registro non indicato');
 
         panel.append('h5')
             .classed('sidepanel-name', true)
-            .text('Other');
+            .text('Altro');
 
         panel.append('p')
-            .text('There is not enough information about the institution.');
+            .text('Non ci sono abbastanza informazioni sulla struttura.');
 
     } else {
         if (year == 1900) {
@@ -477,11 +499,11 @@ function buildSidepanel(id, year) {
             .classed('sidepanel-data', true)
             .text(function(d) {
                 if (year != 1940 && year != 1900) {
-                    return 'Source of ' + year;
+                    return 'Registro del ' + year;
                 } else if (year == 1900) {
-                    return 'Unspecified source';
+                    return 'Registro non indicato';
                 } else {
-                    return 'Data from the 1940s';
+                    return "Data degli anni '40";
                 }
             });
 
@@ -494,22 +516,22 @@ function buildSidepanel(id, year) {
             .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
 
         panel.append('p')
-            .html('<span class="section-title">opened</span></br>' + filtered_institution[0].opened);
+            .html('<span class="section-title">apertura</span></br>' + filtered_institution[0].opened);
 
         panel.append('p')
-            .html('<span class="section-title">closed</span></br>' + filtered_institution[0].closed);
+            .html('<span class="section-title">chiusura</span></br>' + filtered_institution[0].closed);
 
         panel.append('p')
-            .html('<span class="section-title">capacity</span></br>' + filtered_institution[0].capacity_group);
+            .html('<span class="section-title">capienza</span></br>' + filtered_institution[0].capacity_group);
 
         panel.append('p')
-            .html('<span class="section-title">gender ratio</span></br>' + filtered_institution[0].accepted_gender);
+            .html('<span class="section-title">genere degli internati</span></br>' + filtered_institution[0].accepted_gender);
 
         panel.append('p')
-            .html('<span class="section-title">religious affiliation</span></br>' + filtered_institution[0].confession);
+            .html('<span class="section-title">confessione religiosa</span></br>' + filtered_institution[0].confession);
 
         panel.append('p')
-            .html('<span class="section-title">typology</span></br>' + filtered_institution[0].typologies.replace(/;/g, '; '));
+            .html(`<span class="section-title">tipologia dell'istituto</span></br>` + filtered_institution[0].typologies.replace(/;/g, '; '));
 
         panel.append('div')
             .classed('sidepanel-button', true)
@@ -518,7 +540,7 @@ function buildSidepanel(id, year) {
                 return './glossaries/institutions-glossary.html#selected-' + filtered_institution[0].id;
             })
             .attr('target', '_blank')
-            .text('Get more details');
+            .text('Vai al glossario');
     }
 
     $('body').addClass('sidebar-open modal-open');
@@ -558,7 +580,7 @@ function buildSidepanelList(list) {
 
     panel.append('h5')
         .classed('sidepanel-support-title', true)
-        .text('Click on an institution to get more details:');
+        .text("Clicca su un'instituzione per andare al glossario:");
 
     let institutionList = panel.selectAll('.institution-list')
         .data(filtered_institution, function(d) {
@@ -634,7 +656,12 @@ function buildTimelineSidepanel(type, year) {
         .style('text-transform', 'capitalize')
         .text(function(d) {
             if (filtered_element[0].title == null) {
-                return filtered_element[0].type;
+                let elType = filtered_element[0].type
+                if (elType == 'legal text') {
+                    return 'Testo legale';
+                } else {
+                    return 'Evento storico';
+                }
             } else {
                 return filtered_element[0].title;
             }
@@ -652,7 +679,7 @@ function buildTimelineSidepanel(type, year) {
             .append('a')
             .attr('href', filtered_element[0].link)
             .attr('target', '_blank')
-            .text('Link to source');
+            .text('Link al registro');
     }
 
     if (type == 'legal text' && filtered_element[0].id != null) {
@@ -663,7 +690,7 @@ function buildTimelineSidepanel(type, year) {
                 return './glossaries/laws-glossary.html#selected-' + encodeURIComponent(filtered_element[0].id);
             })
             .attr('target', '_blank')
-            .text('Get more details');
+            .text('Vai al glossario');
     }
 
     $('body').addClass('sidebar-open modal-open');
@@ -742,7 +769,7 @@ function updateMap(step) {
         let newMapYear = (currentEl == 'total') ? 1900 : (currentEl == 'capacity_group') ? 1954 : 1965;
 
         if (currentEl == 'total') {
-            $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(` + newMapYear + `);closeSidepanel()" data-id="` + newMapYear + `">All</span>`).fadeIn(250, function() {
+            $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(` + newMapYear + `);closeSidepanel()" data-id="` + newMapYear + `">Tutti</span>`).fadeIn(250, function() {
                 $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + yearsAlternative[i] + ');closeSidepanel()');
                 });
@@ -787,7 +814,7 @@ function updateMatrix(step) {
     if(Yselect == 'accepted_gender' && Xselect == 'typology') {
         d3.selectAll('.matrix-svg .axis-x .tick')
             .each(function(d){
-                if (d == 'juvenile correction facility' || d == 'labour colony') {
+                if (d == 'istituto di rieducazione' || d == 'colonia di lavoro') {
                     d3.select(this)
                         .transition()
                         .duration(500)
@@ -801,7 +828,7 @@ function updateMatrix(step) {
             });
         d3.selectAll('.matrix-svg .grid-x .tick')
             .each(function(d){
-                if (d == 'juvenile correction facility' || d == 'labour colony') {
+                if (d == 'istituto di rieducazione' || d == 'colonia di lavoro') {
                     d3.select(this)
                         .transition()
                         .duration(500)
@@ -815,7 +842,7 @@ function updateMatrix(step) {
             });
         d3.selectAll('.matrix-svg .matrix-bubbles .bubble')
             .each(function(d){
-                if (d.value.x == 'juvenile correction facility' || d.value.x == 'labour colony') {
+                if (d.value.x == 'istituto di rieducazione' || d.value.x == 'colonia di lavoro') {
                     d3.select(this)
                         .transition()
                         .duration(500)
