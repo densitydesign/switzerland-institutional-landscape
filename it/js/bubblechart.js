@@ -411,9 +411,9 @@ function Bubblechart(id, data) {
                     return 'lowercase';
                 }
             })
-            .text(function(d) { 
+            .text(function(d) {
                 d=d.replace('Capacity','Capacità').replace('not specified','non specificato').replace('200 or more','200 o più');
-                console.log(d);
+                // console.log(d);
                 return d;
             })
 
