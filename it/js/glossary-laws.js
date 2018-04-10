@@ -14,7 +14,7 @@ let marginMap = {top: 40, right: 40, bottom: 0, left: 80},
 let timeScale = d3.scaleTime()
     .range([0, widthTimeline]);
 let colorScale = d3.scaleOrdinal()
-    .domain(['cantonal', 'federal', 'intercantonal', 'international'])
+    .domain(['cantonale', 'federale', 'intercantonale', 'internazionale'])
     .range(['#CC2936', '#61988E', '#EDDEA4', '#EAE6DA']);
 
 // time parser
@@ -310,7 +310,7 @@ function drawMap(selectedYear, canton) {
 
     // add legend
     let legendTitle = legendGroup.selectAll('.item-title')
-        .data(['Portata testo legale:']);
+        .data(['Giurisdizione testo legale:']);
 
     legendTitle.enter()
         .append('text')
@@ -405,7 +405,7 @@ function populatePanel(data) {
             let date = new Date()
             let url = location;
 
-            let quotation = `${d.title}, in: Switzerland's institutional landscape 1933–1980, Independent Expert Commission on Administrative Detention (Ed.), accessed on ${date.toDateString()}, URL: ${url}.`;
+            let quotation = `${d.title}, in: Panorama degli istituti svizzeri 1933–1980, Commissione Peritale Indipendente per l'Analisi Scientifica degli Internamenti Amministrativi, accesso eseguito il ${date.toDateString()}, URL: ${url}.`;
 
             if (d.original_issue_date.length == 4) {
                 issueDate = d.original_issue_date;
@@ -423,15 +423,15 @@ function populatePanel(data) {
                     <div class="value">${d.typology == null ? '-' : d.typology}</div>
                 </div>
                 <div class="range field">
-                    <div class="label">Portata</div>
+                    <div class="label">Giurisdizione</div>
                     <div class="value">${d.range}</div>
                 </div>
                 <div class="canton field">
-                    <div class="label">Affected Cantons</div>
+                    <div class="label">Cantoni interessati</div>
                     <div class="value">${d.canton == 'CH' || d.canton == 'IN' ? 'All' : d.range == 'intercantonal' && d.canton.length > 0 ? d.canton.slice(24) : d.canton == '' ? 'Not specified' : d.canton}</div>
                 </div>
                 <div class="issue-date field">
-                    <div class="label">Issue Date</div>
+                    <div class="label">Data di emanazione</div>
                     <div class="value">${issueDate}</div>
                 </div>`;
             if (d.inforce_date != null) {
@@ -442,7 +442,7 @@ function populatePanel(data) {
                 }
                 newContent += `
                     <div class="inforce-date field">
-                        <div class="label">Enforcement Date</div>
+                        <div class="label">Entrata in vigore</div>
                         <div class="value">${inforceDate}</div>
                     </div>`;
             }
@@ -454,21 +454,21 @@ function populatePanel(data) {
                 }
                 newContent += `
                     <div class="repeal-date field">
-                        <div class="label">Repeal Date</div>
+                        <div class="label">Data di abrogazione</div>
                         <div class="value">${repealDate}</div>
                     </div>`;
             }
             if (d.articles != '') {
                 newContent += `
                     <div class="articles field">
-                        <div class="label">Relevant Articles</div>
+                        <div class="label">Articoli rilevanti</div>
                         <div class="value">${d.articles}</div>
                     </div>`;
             }
             newContent += `
                 <div class="copy field">
                     <div class="label"></div>
-                    <div class="value"><div class="item-copy-to-clipboard" data-clipboard-text="${quotation}">Copy citation to clipboard</div></div>
+                    <div class="value"><div class="item-copy-to-clipboard" data-clipboard-text="${quotation}">Copia citazione</div></div>
                 </div>`;
             return newContent;
         });
@@ -482,10 +482,10 @@ function populatePanel(data) {
             // console.log(this);
             d3.selectAll('.item-copy-to-clipboard')
                 .classed('copied', false)
-                .html('Copy citation to clipboard');
+                .html('Copia citazione');
             d3.select(this)
                 .classed('copied', true)
-                .html('Citation copied to clipboard');
+                .html('Citazione copiata');
         })
 
         new ClipboardJS('.item-copy-to-clipboard');
@@ -495,7 +495,7 @@ function updateMap(d) {
     let cantonArray = [];
     let newYear = formatYear(d.issue_date);
 
-    if (d.range == 'intercantonal' && d.canton.length > 0) {
+    if (d.range == 'intercantonale' && d.canton.length > 0) {
         let cantonList = d.canton.slice(24).split(', ');
         cantonArray = cantonArray.concat(cantonList);
         drawMap(+newYear, cantonArray);
