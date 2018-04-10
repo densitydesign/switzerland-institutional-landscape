@@ -3,7 +3,7 @@
     "nodes": [
       {
         "id": "VS",
-        "label": "Wallis",
+        "label": "Vallese",
         "concordat": "c1",
         "count": 1,
         "inDegree": 0,
@@ -11,7 +11,7 @@
       },
       {
         "id": "FR",
-        "label": "Freiburg",
+        "label": "Friburgo",
         "concordat": "c1",
         "count": 8,
         "inDegree": 7,
@@ -19,7 +19,7 @@
       },
       {
         "id": "NE",
-        "label": "Neuenburg",
+        "label": "Neuchâtel",
         "concordat": "c1",
         "count": 5,
         "inDegree": 4,
@@ -27,7 +27,7 @@
       },
       {
         "id": "TI",
-        "label": "Tessin",
+        "label": "Ticino",
         "concordat": "c1",
         "count": 1,
         "inDegree": 0,
@@ -35,7 +35,7 @@
       },
       {
         "id": "VD",
-        "label": "Waadt",
+        "label": "Vaud",
         "concordat": "c1",
         "count": 3,
         "inDegree": 2,
@@ -43,7 +43,7 @@
       },
       {
         "id": "GE",
-        "label": "Genf",
+        "label": "Ginevra",
         "concordat": "c1",
         "count": 1,
         "inDegree": 0,
@@ -51,7 +51,7 @@
       },
       {
         "id": "BS",
-        "label": "Basel-Stadt",
+        "label": "Basilea-Città",
         "concordat": "c2",
         "count": 3,
         "inDegree": 2,
@@ -59,7 +59,7 @@
       },
       {
         "id": "ZG",
-        "label": "Zug",
+        "label": "Zugo",
         "concordat": "c2",
         "count": 2,
         "inDegree": 1,
@@ -75,7 +75,7 @@
       },
       {
         "id": "BE",
-        "label": "Bern",
+        "label": "Berna",
         "concordat": "c2",
         "count": 11,
         "inDegree": 10,
@@ -83,7 +83,7 @@
       },
       {
         "id": "SZ",
-        "label": "Schwyz",
+        "label": "Svitto",
         "concordat": "c2",
         "count": 2,
         "inDegree": 1,
@@ -91,7 +91,7 @@
       },
       {
         "id": "OW",
-        "label": "Obwalden",
+        "label": "Obvaldo",
         "concordat": "c2",
         "count": 1,
         "inDegree": 0,
@@ -99,7 +99,7 @@
       },
       {
         "id": "NW",
-        "label": "Nidwalden",
+        "label": "Nidvaldo",
         "concordat": "c2",
         "count": 1,
         "inDegree": 0,
@@ -107,7 +107,7 @@
       },
       {
         "id": "BL",
-        "label": "Basel-Landschaft",
+        "label": "Basilea-Campagna",
         "concordat": "c2",
         "count": 4,
         "inDegree": 3,
@@ -115,7 +115,7 @@
       },
       {
         "id": "AG",
-        "label": "Aargau",
+        "label": "Argovia",
         "concordat": "c2",
         "count": 8,
         "inDegree": 7,
@@ -123,7 +123,7 @@
       },
       {
         "id": "LU",
-        "label": "Luzern",
+        "label": "Lucerna",
         "concordat": "c2",
         "count": 6,
         "inDegree": 5,
@@ -131,7 +131,7 @@
       },
       {
         "id": "SO",
-        "label": "Solothurn",
+        "label": "Soletta",
         "concordat": "c2",
         "count": 3,
         "inDegree": 2,
@@ -139,7 +139,7 @@
       },
       {
         "id": "GL",
-        "label": "Glarus",
+        "label": "Glarona",
         "concordat": "c3",
         "count": 1,
         "inDegree": 0,
@@ -147,7 +147,7 @@
       },
       {
         "id": "GR",
-        "label": "Graubünden",
+        "label": "Grigioni",
         "concordat": "c3",
         "count": 1,
         "inDegree": 0,
@@ -155,7 +155,7 @@
       },
       {
         "id": "AI",
-        "label": "Appenzell-Innerrhoden",
+        "label": "Appenzello Interno",
         "concordat": "c3",
         "count": 1,
         "inDegree": 0,
@@ -163,7 +163,7 @@
       },
       {
         "id": "SH",
-        "label": "Schaffhausen",
+        "label": "Sciaffusa",
         "concordat": "c3",
         "count": 1,
         "inDegree": 0,
@@ -171,7 +171,7 @@
       },
       {
         "id": "AR",
-        "label": "Appenzell-Ausserrhoden",
+        "label": "Appenzello Esterno",
         "concordat": "c3",
         "count": 3,
         "inDegree": 2,
@@ -179,7 +179,7 @@
       },
       {
         "id": "ZH",
-        "label": "Zürich",
+        "label": "Zurigo",
         "concordat": "c3",
         "count": 9,
         "inDegree": 8,
@@ -187,7 +187,7 @@
       },
       {
         "id": "TG",
-        "label": "Thurgau",
+        "label": "Turgovia",
         "concordat": "c3",
         "count": 6,
         "inDegree": 5,
@@ -195,7 +195,7 @@
       },
       {
         "id": "SG",
-        "label": "StGallen",
+        "label": "San Gallo",
         "concordat": "c3",
         "count": 8,
         "inDegree": 7,
@@ -203,7 +203,7 @@
       },
       {
         "id": "XX1",
-        "label": "Other",
+        "label": "Non indicato",
         "concordat": "not defined",
         "count": 12,
         "inDegree": 12,

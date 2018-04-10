@@ -42,7 +42,7 @@ function AcceptingInstitutions(id, data, swiss) {
 
     let notSpecifiedLabels = d3.scaleOrdinal()
         .domain(['XX1', 'XX2', 'XX3', 'XX4'])
-        .range(['Other', 'Region-Nordwest-Innerschweiz', 'Region-Ostschweiz', "Choix-de-l'établissement-ou-de-l'home-selon-le-cas"])
+        .range(['Non indicato', 'Region-Nordwest-Innerschweiz', 'Region-Ostschweiz', "Choix-de-l'établissement-ou-de-l'home-selon-le-cas"])
 
     this.draw = function(config, canton) {
 
@@ -165,7 +165,7 @@ function AcceptingInstitutions(id, data, swiss) {
                             }
                         })
                     } else {
-                        viz_message = thisCanton.properties.name + ' did not send detainees to other cantons in ' + config.year + '.';
+                        viz_message = thisCanton.properties.name + ' non ha inviato internati verso altri cantoni nel ' + config.year + '.';
                     }
 
                     target_institutions = masterData.filter(function(f) {
@@ -207,7 +207,7 @@ function AcceptingInstitutions(id, data, swiss) {
                             }
                         })
                     } else {
-                        viz_message = thisCanton.properties.name + ' did not received detainees from other cantons in ' + config.year + '.';
+                        viz_message = thisCanton.properties.name + ' non ha ricevuto internati da altri cantoni nel ' + config.year + '.';
                     }
 
                 }

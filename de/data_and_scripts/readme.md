@@ -1,0 +1,13 @@
+- timeline
+- mosaic + sankey
+- bubblechart (master)
+- network of typologies
+- mappa totale (master)
+- mappa tipologie
+- confession (master)
+- gender (master)
+- capacity (master)
+- matrix
+- rete circcolare
+- mappa rete cantoni
+- master

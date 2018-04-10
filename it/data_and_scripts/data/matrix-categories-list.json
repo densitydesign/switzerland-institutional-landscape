@@ -1,20 +1,20 @@
 {
     "typology": {
-        "forced labour institution": 1,
-        "labour colony": 2,
-        "juvenile correction facility": 3,
-        "alcohol rehabilitation facility": 4,
-        "prison": 5,
-        "psychiatric institution": 6,
-        "municipal poorhouse": 7,
-        "special needs facility": 8,
-        "not specified": 9
+        "casa di lavoro": 1,
+        "colonia di lavoro": 2,
+        "istituto di rieducazione": 3,
+        "casa per bevitori": 4,
+        "penitenziario": 5,
+        "istituto psichiatrico": 6,
+        "casa dei poveri": 7,
+        "istituto per persone con bisogni speciali": 8,
+        "non indicato": 9
     },
     "gender": {
-        "male": 1,
-        "female": 2,
-        "mixed": 3,
-        "not specified": 4
+        "maschile": 1,
+        "femminile": 2,
+        "misto": 3,
+        "non indicato": 4
     },
     "capacity": {
         "0 - 19": 1,
@@ -22,36 +22,36 @@
         "50 - 99": 3,
         "100 - 149": 4,
         "150 - 199": 5,
-        "200 or more": 6,
-        "not specified": 7
+        "200 o più": 6,
+        "non indicato": 7
     },
     "confession": {
-        "protestant": 1,
-        "catholic": 2,
-        "interdenominational": 3,
-        "not specified": 4
+        "protestante": 1,
+        "cattolica": 2,
+        "interconfessionale": 3,
+        "non indicato": 4
     },
     "fundingAgency": {
-        "government funded": 1,
-        "privately funded": 2,
-        "public-private": 3,
-        "not specified": 4
+        "statale": 1,
+        "privato": 2,
+        "misto": 3,
+        "non indicato": 4
     },
     "committingAgency": {
-        "courts": 1,
-        "investigating magistrate": 2,
-        "prosecutor": 3,
-        "juvenile prosecutor": 4,
-        "government council (municipal)": 5,
-        "administrative agency": 6,
-        "correctional authority": 7,
-        "police authority": 8,
-        "social welfare authority": 9,
-        "guardianship authority": 10,
-        "district authorities": 11,
-        "legal guardians": 12,
-        "juvenile welfare services": 13,
-        "private individuals/associations": 14,
-        "not specified": 15
+        "tribunali": 1,
+        "giudice d'istruzione": 2,
+        "pubblico ministero": 3,
+        "magistratura dei minorenni": 4,
+        "consiglio di stato": 5,
+        "autorità amministrative": 6,
+        "autorità giudiziaria": 7,
+        "autorità di polizia/giudici d’istruzione": 8,
+        "autorità assistenziali": 9,
+        "autorità tutelare": 10,
+        "autorità distrettuali/prefetti": 11,
+        "tutela d'ufficio": 12,
+        "uffici dei minori": 13,
+        "privati/associazioni": 14,
+        "non indicato": 15
     }
 }

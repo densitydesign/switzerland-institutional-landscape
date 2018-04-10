@@ -1,0 +1,186 @@
+{
+    "typology": [
+        {
+            "code": 1,
+            "label": "forced labour institution"
+        },
+        {
+            "code": 2,
+            "label": "labour colony"
+        },
+        {
+            "code": 3,
+            "label": "juvenile correction facility"
+        },
+        {
+            "code": 4,
+            "label": "alcohol rehabilitation facility"
+        },
+        {
+            "code": 5,
+            "label": "prison"
+        },
+        {
+            "code": 6,
+            "label": "psychiatric institution"
+        },
+        {
+            "code": 7,
+            "label": "municipal poorhouse"
+        },
+        {
+            "code": 8,
+            "label": "special needs facility"
+        },
+        {
+            "code": 9,
+            "label": "not specified"
+        }
+    ],
+    "accepted_gender": [
+        {
+            "code": 1,
+            "label": "male"
+        },
+        {
+            "code": 2,
+            "label": "female"
+        },
+        {
+            "code": 3,
+            "label": "mixed"
+        },
+        {
+            "code": 4,
+            "label": "not specified"
+        }
+    ],
+    "capacity_group": [
+        {
+            "code": 1,
+            "label": "0 - 19"
+        },
+        {
+            "code": 2,
+            "label": "20 - 49"
+        },
+        {
+            "code": 3,
+            "label": "50 - 99"
+        },
+        {
+            "code": 4,
+            "label": "100 - 149"
+        },
+        {
+            "code": 5,
+            "label": "150 - 199"
+        },
+        {
+            "code": 6,
+            "label": "200 or more"
+        },
+        {
+            "code": 7,
+            "label": "not specified"
+        }
+    ],
+    "confession": [
+        {
+            "code": 1,
+            "label": "protestant"
+        },
+        {
+            "code": 2,
+            "label": "catholic"
+        },
+        {
+            "code": 3,
+            "label": "interdenominational"
+        },
+        {
+            "code": 4,
+            "label": "not specified"
+        }
+    ],
+    "funding_agency": [
+        {
+            "code": 1,
+            "label": "government funded"
+        },
+        {
+            "code": 2,
+            "label": "privately funded"
+        },
+        {
+            "code": 3,
+            "label": "public-private"
+        },
+        {
+            "code": 4,
+            "label": "not specified"
+        }
+    ],
+    "committing_agencies": [
+        {
+            "code": 1,
+            "label": "courts"
+        },
+        {
+            "code": 2,
+            "label": "investigating magistrate"
+        },
+        {
+            "code": 3,
+            "label": "prosecutor"
+        },
+        {
+            "code": 4,
+            "label": "juvenile prosecutor"
+        },
+        {
+            "code": 5,
+            "label": "government council (municipal)"
+        },
+        {
+            "code": 6,
+            "label": "administrative agency"
+        },
+        {
+            "code": 7,
+            "label": "correctional authority"
+        },
+        {
+            "code": 8,
+            "label": "police authority"
+        },
+        {
+            "code": 9,
+            "label": "social welfare authority"
+        },
+        {
+            "code": 10,
+            "label": "guardianship authority"
+        },
+        {
+            "code": 11,
+            "label": "district authorities"
+        },
+        {
+            "code": 12,
+            "label": "legal guardians"
+        },
+        {
+            "code": 13,
+            "label": "juvenile welfare services"
+        },
+        {
+            "code": 14,
+            "label": "private individuals/associations"
+        },
+        {
+            "code": 15,
+            "label": "not specified"
+        }
+    ]
+}
