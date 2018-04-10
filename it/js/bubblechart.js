@@ -41,7 +41,7 @@ function Bubblechart(id, data) {
         .range(radiusses)
         .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more"])
 
-    let dataLegend = ['Capacity'].concat(radius.domain())
+    let dataLegend = ['Capienza'].concat(radius.domain())
 
     let capacityColor = d3.scaleOrdinal()
         .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more"])
