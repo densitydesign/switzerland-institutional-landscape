@@ -428,7 +428,7 @@ function populatePanel(data) {
                 </div>
                 <div class="canton field">
                     <div class="label">Cantoni interessati</div>
-                    <div class="value">${d.canton == 'CH' || d.canton == 'IN' ? 'All' : d.range == 'intercantonal' && d.canton.length > 0 ? d.canton.slice(24) : d.canton == '' ? 'Not specified' : d.canton}</div>
+                    <div class="value">${d.canton == 'CH' || d.canton == 'IN' ? 'Tutti' : d.range == 'intercantonale' && d.canton.length > 0 ? d.canton.slice(24) : d.canton == '' ? 'Non indicato' : d.canton}</div>
                 </div>
                 <div class="issue-date field">
                     <div class="label">Data di emanazione</div>
