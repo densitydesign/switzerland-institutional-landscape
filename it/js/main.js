@@ -656,7 +656,7 @@ function buildTimelineSidepanel(type, year) {
         .style('text-transform', 'capitalize')
         .text(function(d) {
             if (filtered_element[0].title == null) {
-                let elType = filtered_element[0].type
+                let elType = filtered_element[0].type;
                 if (elType == 'legal text') {
                     return 'Testo legale';
                 } else {
