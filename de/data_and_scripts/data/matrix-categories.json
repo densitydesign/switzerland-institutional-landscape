@@ -2,57 +2,57 @@
     "typology": [
         {
             "code": 1,
-            "label": "forced labour institution"
+            "label": "arbeitsanstalt"
         },
         {
             "code": 2,
-            "label": "labour colony"
+            "label": "arbeiterkolonie"
         },
         {
             "code": 3,
-            "label": "juvenile correction facility"
+            "label": "erziehungsanstalt"
         },
         {
             "code": 4,
-            "label": "alcohol rehabilitation facility"
+            "label": "trinkerheilanstalt"
         },
         {
             "code": 5,
-            "label": "prison"
+            "label": "strafanstalt"
         },
         {
             "code": 6,
-            "label": "psychiatric institution"
+            "label": "psychiatrische einrichtung"
         },
         {
             "code": 7,
-            "label": "municipal poorhouse"
+            "label": "armenhaus"
         },
         {
             "code": 8,
-            "label": "special needs facility"
+            "label": "spezialanstalt/sonderanstalt"
         },
         {
             "code": 9,
-            "label": "not specified"
+            "label": "keine angabe"
         }
     ],
     "accepted_gender": [
         {
             "code": 1,
-            "label": "male"
+            "label": "männlich"
         },
         {
             "code": 2,
-            "label": "female"
+            "label": "weiblich"
         },
         {
             "code": 3,
-            "label": "mixed"
+            "label": "gemischt"
         },
         {
             "code": 4,
-            "label": "not specified"
+            "label": "keine angabe"
         }
     ],
     "capacity_group": [
@@ -78,109 +78,109 @@
         },
         {
             "code": 6,
-            "label": "200 or more"
+            "label": "200 und mehr"
         },
         {
             "code": 7,
-            "label": "not specified"
+            "label": "keine angabe"
         }
     ],
     "confession": [
         {
             "code": 1,
-            "label": "protestant"
+            "label": "protestantisch"
         },
         {
             "code": 2,
-            "label": "catholic"
+            "label": "katholisch"
         },
         {
             "code": 3,
-            "label": "interdenominational"
+            "label": "interkonfessionell"
         },
         {
             "code": 4,
-            "label": "not specified"
+            "label": "keine angabe"
         }
     ],
     "funding_agency": [
         {
             "code": 1,
-            "label": "government funded"
+            "label": "staatlich"
         },
         {
             "code": 2,
-            "label": "privately funded"
+            "label": "privat"
         },
         {
             "code": 3,
-            "label": "public-private"
+            "label": "gemischt"
         },
         {
             "code": 4,
-            "label": "not specified"
+            "label": "keine angabe"
         }
     ],
     "committing_agencies": [
         {
             "code": 1,
-            "label": "courts"
+            "label": "gerichte"
         },
         {
             "code": 2,
-            "label": "investigating magistrate"
+            "label": "untersuchungsrichter"
         },
         {
             "code": 3,
-            "label": "prosecutor"
+            "label": "staatsanwaltschaft"
         },
         {
             "code": 4,
-            "label": "juvenile prosecutor"
+            "label": "jugendanwaltschaft"
         },
         {
             "code": 5,
-            "label": "government council (municipal)"
+            "label": "regierungsrat"
         },
         {
             "code": 6,
-            "label": "administrative agency"
+            "label": "administrativbehörde"
         },
         {
             "code": 7,
-            "label": "correctional authority"
+            "label": "justizbehörde/strafvollzugsbehörde"
         },
         {
             "code": 8,
-            "label": "police authority"
+            "label": "polizeibehörde/verhöramt"
         },
         {
             "code": 9,
-            "label": "social welfare authority"
+            "label": "armenbehörde/fürsorgebehörde"
         },
         {
             "code": 10,
-            "label": "guardianship authority"
+            "label": "vormundschaftsbehörde"
         },
         {
             "code": 11,
-            "label": "district authorities"
+            "label": "bezirksämter/statthalterämter"
         },
         {
             "code": 12,
-            "label": "legal guardians"
+            "label": "amtsvormünder"
         },
         {
             "code": 13,
-            "label": "juvenile welfare services"
+            "label": "jugendämter"
         },
         {
             "code": 14,
-            "label": "private individuals/associations"
+            "label": "private/vereine"
         },
         {
             "code": 15,
-            "label": "not specified"
+            "label": "keine angabe"
         }
     ]
 }

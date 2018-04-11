@@ -436,7 +436,7 @@ function buildSidepanel(id, year) {
 
         panel.append('h6')
             .classed('sidepanel-data', true)
-            .text('Relèvement non spécifiée');
+            .text('Enquête non spécifiée');
 
         panel.append('h5')
             .classed('sidepanel-name', true)
@@ -477,9 +477,9 @@ function buildSidepanel(id, year) {
             .classed('sidepanel-data', true)
             .text(function(d) {
                 if (year != 1940 && year != 1900) {
-                    return 'Relèvement de ' + year;
+                    return 'Enquête de ' + year;
                 } else if (year == 1900) {
-                    return 'Relèvement non spécifiée';
+                    return 'Enquête non spécifiée';
                 } else {
                     return 'Les données des années 1940';
                 }
@@ -636,7 +636,7 @@ function buildTimelineSidepanel(type, year) {
             if (filtered_element[0].title == null) {
                 let elType = filtered_element[0].type;
                 if (elType == 'legal text') {
-                    return 'texte de loi';
+                    return 'Texte de loi';
                 } else {
                     return 'Événement historique';
                 }

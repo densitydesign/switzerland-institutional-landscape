@@ -1,20 +1,20 @@
 {
     "typology": {
-        "forced labour institution": 1,
-        "labour colony": 2,
-        "juvenile correction facility": 3,
-        "alcohol rehabilitation facility": 4,
-        "prison": 5,
-        "psychiatric institution": 6,
-        "municipal poorhouse": 7,
-        "special needs facility": 8,
-        "not specified": 9
+        "arbeitsanstalt": 1,
+        "arbeiterkolonie": 2,
+        "erziehungsanstalt": 3,
+        "trinkerheilanstalt": 4,
+        "strafanstalt": 5,
+        "psychiatrische einrichtung": 6,
+        "armenhaus": 7,
+        "spezialanstalt/sonderanstalt": 8,
+        "keine angabe": 9
     },
     "gender": {
-        "male": 1,
-        "female": 2,
-        "mixed": 3,
-        "not specified": 4
+        "männlich": 1,
+        "weiblich": 2,
+        "gemischt": 3,
+        "keine angabe": 4
     },
     "capacity": {
         "0 - 19": 1,
@@ -22,36 +22,36 @@
         "50 - 99": 3,
         "100 - 149": 4,
         "150 - 199": 5,
-        "200 or more": 6,
-        "not specified": 7
+        "200 und mehr": 6,
+        "keine angabe": 7
     },
     "confession": {
-        "protestant": 1,
-        "catholic": 2,
-        "interdenominational": 3,
-        "not specified": 4
+        "protestantisch": 1,
+        "katholisch": 2,
+        "interkonfessionell": 3,
+        "keine angabe": 4
     },
     "fundingAgency": {
-        "government funded": 1,
-        "privately funded": 2,
-        "public-private": 3,
-        "not specified": 4
+        "staatlich": 1,
+        "privat": 2,
+        "gemischt": 3,
+        "keine angabe": 4
     },
     "committingAgency": {
-        "courts": 1,
-        "investigating magistrate": 2,
-        "prosecutor": 3,
-        "juvenile prosecutor": 4,
-        "government council (municipal)": 5,
-        "administrative agency": 6,
-        "correctional authority": 7,
-        "police authority": 8,
-        "social welfare authority": 9,
-        "guardianship authority": 10,
-        "district authorities": 11,
-        "legal guardians": 12,
-        "juvenile welfare services": 13,
-        "private individuals/associations": 14,
-        "not specified": 15
+        "gerichte": 1,
+        "untersuchungsrichter": 2,
+        "staatsanwaltschaft": 3,
+        "jugendanwaltschaft": 4,
+        "regierungsrat": 5,
+        "administrativbehörde": 6,
+        "justizbehörde/strafvollzugsbehörde": 7,
+        "polizeibehörde/verhöramt": 8,
+        "armenbehörde/fürsorgebehörde": 9,
+        "vormundschaftsbehörde": 10,
+        "bezirksämter/statthalterämter": 11,
+        "amtsvormünder": 12,
+        "jugendämter": 13,
+        "private/vereine": 14,
+        "keine angabe": 15
     }
 }

@@ -57,25 +57,25 @@ node_xj({
 
             switch (+el.typology) {
                 case 1:
-                    typology = 'law';
+                    typology = 'loi';
                     break;
                 case 2:
-                    typology = 'act';
+                    typology = 'acte';
                     break;
                 case 3:
-                    typology = 'regulation';
+                    typology = 'règlement';
                     break;
                 case 4:
-                    typology = 'enactment';
+                    typology = 'promulgation';
                     break;
                 case 5:
-                    typology = 'decree';
+                    typology = 'décret';
                     break;
                 case 6:
-                    typology = 'contract';
+                    typology = 'accord';
                     break;
                 case 7:
-                    typology = 'not specified';
+                    typology = "pas d'indication";
                     break;
                 default:
                     typology = null;

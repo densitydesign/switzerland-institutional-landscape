@@ -307,7 +307,7 @@ function populateSidebar(data) {
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
     //Confession
-    thisTitle = 'Confession';
+    thisTitle = 'Religious affiliation';
     thisField = 'confession';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
@@ -318,7 +318,7 @@ function populateSidebar(data) {
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
     //Accepted gender
-    thisTitle = 'Accepted gender';
+    thisTitle = 'Gender ratio';
     thisField = 'accepted_gender';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
@@ -340,7 +340,7 @@ function populateSidebar(data) {
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
     //Committing agencies
-    thisTitle = 'Committing agencies';
+    thisTitle = 'Ordering authority';
     thisField = 'committing_agencies';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
@@ -441,7 +441,7 @@ d3.queue()
                 let date = new Date()
                 let url = location;
 
-                let quotation = `${name}, in: ${proj}, Independent Expert Commission on Administrative Detention (Ed.), accessed on ${date.toDateString()}, URL: ${url}.`;
+                let quotation = `${name}, in: ${proj}, Independent Expert Commission on Administrative Detention (IEC), accessed on ${date.toDateString()}, URL: ${url}.`;
 
 
                 let thisHtml = `
