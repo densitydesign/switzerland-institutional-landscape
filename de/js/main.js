@@ -634,7 +634,12 @@ function buildTimelineSidepanel(type, year) {
         .style('text-transform', 'capitalize')
         .text(function(d) {
             if (filtered_element[0].title == null) {
-                return filtered_element[0].type;
+                let elType = filtered_element[0].type;
+                if (elType == 'legal text') {
+                    return 'Rechtserlasse';
+                } else {
+                    return 'Sozialgeschichtliche Ereignisse';
+                }
             } else {
                 return filtered_element[0].title;
             }
@@ -652,7 +657,7 @@ function buildTimelineSidepanel(type, year) {
             .append('a')
             .attr('href', filtered_element[0].link)
             .attr('target', '_blank')
-            .text('Link to source');
+            .text('Link zur Quelle');
     }
 
     if (type == 'legal text' && filtered_element[0].id != null) {

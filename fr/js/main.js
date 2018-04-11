@@ -636,7 +636,7 @@ function buildTimelineSidepanel(type, year) {
             if (filtered_element[0].title == null) {
                 let elType = filtered_element[0].type;
                 if (elType == 'legal text') {
-                    return 'texte de loi';
+                    return 'Texte de loi';
                 } else {
                     return 'Événement historique';
                 }
