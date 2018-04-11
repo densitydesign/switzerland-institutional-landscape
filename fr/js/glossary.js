@@ -229,7 +229,7 @@ function populateSidebar(data) {
                     <div class="col-9">${getValueSource(1933,'categories')}</div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topographie 1940ies<br/>Source of 1939</div>
+                    <div class="col-3">Topographie 1940ies<br/>Source de 1939</div>
                     <div class="col-9">
                         ${getValueSource('1940ies','categories')}
                     </div>
@@ -256,25 +256,25 @@ function populateSidebar(data) {
                 </div>
 
                 <div class="row values">
-                    <div class="col-3">Topographie 1940ies<br/>Source of 1933</div>
+                    <div class="col-3">Topographie 1940ies<br/>Source de 1933</div>
                     <div class="col-9">
                         ${getValueSource('1940ies','capacities_source1933')}
                     </div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topographie 1940ies<br/>Source of 1939</div>
+                    <div class="col-3">Topographie 1940ies<br/>Source de 1939</div>
                     <div class="col-9">
                         ${getValueSource('1940ies','capacities_source1944')}
                     </div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topographie 1940ies<br/>Source of 1944</div>
+                    <div class="col-3">Topographie 1940ies<br/>Source de 1944</div>
                     <div class="col-9">
                         ${getValueSource('1940ies','capacities_source1944')}
                     </div>
                 </div>
                 <div class="row values">
-                    <div class="col-3">Topographie 1940ies<br/>Source of 1945</div>
+                    <div class="col-3">Topographie 1940ies<br/>Source de 1945</div>
                     <div class="col-9">
                         ${getValueSource('1940ies','capacities_source1945')}
                     </div>
