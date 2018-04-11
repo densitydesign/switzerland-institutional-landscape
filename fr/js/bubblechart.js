@@ -406,7 +406,11 @@ function Bubblechart(id, data) {
             .attr('x', function(d){
                 return radius(d) + 3
             })
-            .text(function(d) { return d })
+            .text(function(d) {
+                d=d.replace('Capacity','Capacité').replace('not specified','pas d\'indication').replace('200 or more','plus de 200');
+                // console.log(d);
+                return d;
+            })
 
         // d3.selectAll('.year')
         //     .attr('y', height - 14)
