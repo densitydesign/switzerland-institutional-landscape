@@ -437,11 +437,11 @@ d3.queue()
                 }
 
                 let name = d.values[0].values[0].name_landmark;
-                let proj = 'Switzerland’s institutional landscape 1933–1980';
+                let proj = 'Panorama degli istituti svizzeri 1933–1980';
                 let date = new Date()
                 let url = location;
 
-                let quotation = `${name}, in: ${proj}, Independent Expert Commission on Administrative Detention (Ed.), accessed on ${date.toDateString()}, URL: ${url}.`;
+                let quotation = `${name}, in: ${proj}, Commissione Peritale Indipendente (CPI), accesso eseguito il ${date.toDateString()}, URL: ${url}.`;
 
 
                 let thisHtml = `

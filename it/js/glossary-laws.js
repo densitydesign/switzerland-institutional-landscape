@@ -19,7 +19,14 @@ let colorScale = d3.scaleOrdinal()
 
 // time parser
 let formatYear = d3.timeFormat('%Y');
-let formatDate = d3.timeFormat('%B %d, %Y');
+let formatDate;
+d3.json("../data_and_scripts/data/locale_it_IT.json", function(error, locale) {
+  if (error) throw error;
+
+  d3.timeFormatDefaultLocale(locale);
+
+  formatDate = d3.timeFormat('%d %B, %Y');
+});
 
 // set up axis
 let xAxis = d3.axisBottom(timeScale)
@@ -405,7 +412,7 @@ function populatePanel(data) {
             let date = new Date()
             let url = location;
 
-            let quotation = `${d.title}, in: Panorama degli istituti svizzeri 1933–1980, Commissione Peritale Indipendente per l'Analisi Scientifica degli Internamenti Amministrativi, accesso eseguito il ${date.toDateString()}, URL: ${url}.`;
+            let quotation = `${d.title}, in: Panorama degli istituti svizzeri 1933–1980, Commissione Peritale Indipendente (CPI), accesso eseguito il ${date.toDateString()}, URL: ${url}.`;
 
             if (d.original_issue_date.length == 4) {
                 issueDate = d.original_issue_date;
