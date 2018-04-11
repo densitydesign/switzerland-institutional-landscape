@@ -6,6 +6,6 @@ The project is designed and developed by the Swiss Independent Expert Commission
 - [English version](en/)
 - [Italian version](it/)
 - [French version](fr/)
-- [German version](de/)
+- [German version](./de/)
 
 (This page is not part of the report)
