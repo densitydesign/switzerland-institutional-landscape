@@ -1,3 +1,15 @@
+.tbtranslated {
+    color: tomato !important;
+    fill: tomato !important;
+    text-decoration: underline;
+}
+
+.transbyus {
+    color: slateblue !important;
+    fill: slateblue !important;
+    text-decoration: underline;
+}
+
 @-webkit-keyframes loadSwiss {
     0% {
         opacity: 1;
