@@ -19,7 +19,14 @@ let colorScale = d3.scaleOrdinal()
 
 // time parser
 let formatYear = d3.timeFormat('%Y');
-let formatDate = d3.timeFormat('%B %d, %Y');
+let formatDate;
+d3.json("../data_and_scripts/data/locale_de-DE.json", function(error, locale) {
+  if (error) throw error;
+
+  d3.timeFormatDefaultLocale(locale);
+
+  formatDate = d3.timeFormat('%d. %B %Y');
+});
 
 // set up axis
 let xAxis = d3.axisBottom(timeScale)

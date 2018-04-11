@@ -47,9 +47,9 @@ function MapAll(id, swiss, data) {
 
     // define color scales, with ranges and domains
     let categoriesList = {
-        'capacity_group': ["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more", "not specified"],
-        'confession': ["protestant", "catholic", "interdenominational", "not specified"],
-        'accepted_gender': ["male", "female", "mixed", "not specified"]
+        'capacity_group': ["0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 und mehr", "keine angabe"],
+        'confession': ["protestantisch", "katholisch", "interkonfessionell", "keine angabe"],
+        'accepted_gender': ["männlich", "weiblich", "gemischt", "keine angabe"]
     }
     let capacityScale = d3.scaleOrdinal()
         .domain(categoriesList['capacity_group'])
@@ -253,12 +253,12 @@ function MapAll(id, swiss, data) {
                     return d[category];
                 })
                 .attr('stroke', function(d) {
-                    if ((category === 'capacity_group' && d.capacity_group == "not specified") || (category === 'confession' && d.confession == "not specified") || (category === 'accepted_gender' && d.accepted_gender == "not specified")) {
+                    if ((category === 'capacity_group' && d.capacity_group == "keine angabe") || (category === 'confession' && d.confession == "keine angabe") || (category === 'accepted_gender' && d.accepted_gender == "keine angabe")) {
                         return '#074050';
                     }
                 })
                 .attr('stroke-width', function(d) {
-                    if ((category === 'capacity_group' && d.capacity_group == "not specified") || (category === 'confession' && d.confession == "not specified") || (category === 'accepted_gender' && d.accepted_gender == "not specified")) {
+                    if ((category === 'capacity_group' && d.capacity_group == "keine angabe") || (category === 'confession' && d.confession == "keine angabe") || (category === 'accepted_gender' && d.accepted_gender == "keine angabe")) {
                         return .5 + 'px';
                     }
                 })
@@ -357,12 +357,12 @@ function MapAll(id, swiss, data) {
                         }
                     })
                     .attr('stroke', function(d) {
-                        if (d == "not specified") {
+                        if (d == "keine angabe") {
                             return '#074050';
                         }
                     })
                     .attr('stroke-width', function(d) {
-                        if (d == "not specified") {
+                        if (d == "keine angabe") {
                             return .5 + 'px';
                         }
                     })

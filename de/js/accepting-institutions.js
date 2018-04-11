@@ -42,7 +42,7 @@ function AcceptingInstitutions(id, data, swiss) {
 
     let notSpecifiedLabels = d3.scaleOrdinal()
         .domain(['XX1', 'XX2', 'XX3', 'XX4'])
-        .range(['Other', 'Region-Nordwest-Innerschweiz', 'Region-Ostschweiz', "Choix-de-l'établissement-ou-de-l'home-selon-le-cas"])
+        .range(['Andere', 'Region-Nordwest-Innerschweiz', 'Region-Ostschweiz', "Choix-de-l'établissement-ou-de-l'home-selon-le-cas"])
 
     this.draw = function(config, canton) {
 
@@ -74,7 +74,7 @@ function AcceptingInstitutions(id, data, swiss) {
                     .transition()
                     .duration(300)
                     .style('opacity', 0.5)
-                    .text('click on a canton');
+                    .text('Klicken Sie auf einen Kanton');
 
                 reset();
             })
@@ -165,7 +165,7 @@ function AcceptingInstitutions(id, data, swiss) {
                             }
                         })
                     } else {
-                        viz_message = thisCanton.properties.name + ' did not send detainees to other cantons in ' + config.year + '.';
+                        viz_message = thisCanton.properties.name + ' schickte ' + config.year + 'keine Häftlinge in andere Kantone.';
                     }
 
                     target_institutions = masterData.filter(function(f) {
@@ -207,7 +207,7 @@ function AcceptingInstitutions(id, data, swiss) {
                             }
                         })
                     } else {
-                        viz_message = thisCanton.properties.name + ' did not received detainees from other cantons in ' + config.year + '.';
+                        viz_message = thisCanton.properties.name + ' erhielt ' + config.year + 'keine Häftlinge aus anderen Kantonen.';
                     }
 
                 }
@@ -369,7 +369,7 @@ function AcceptingInstitutions(id, data, swiss) {
                 .attr('trigger', 'click')
                 .attr('title', function(d) {
                     if (d.id.substring(0, 2) == 'XX') {
-                        return `<div class="viz-tooltip"><span>Landmarks not specified</span></div>`;
+                        return `<div class="viz-tooltip"><span>nicht spezifiziertes Institut</span></div>`;
                     } else {
                         let thisRecord = masterData.filter(function(e) {
                             return e.id == d.id;

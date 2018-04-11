@@ -436,14 +436,14 @@ function buildSidepanel(id, year) {
 
         panel.append('h6')
             .classed('sidepanel-data', true)
-            .text('Unspecified survey');
+            .text('nicht spezifizierte Erhebung');
 
         panel.append('h5')
             .classed('sidepanel-name', true)
-            .text('Other');
+            .text('Andere');
 
         panel.append('p')
-            .text('There is not enough information about the institution.');
+            .text('Es gibt nicht genügend Informationen über die Institution.');
 
     } else {
         if (year == 1900) {
@@ -477,11 +477,11 @@ function buildSidepanel(id, year) {
             .classed('sidepanel-data', true)
             .text(function(d) {
                 if (year != 1940 && year != 1900) {
-                    return 'Source of ' + year;
+                    return 'Quelle von ' + year;
                 } else if (year == 1900) {
-                    return 'Unspecified source';
+                    return 'unspezifizierte Quelle';
                 } else {
-                    return 'Data from the 1940s';
+                    return 'Daten aus den 1940er Jahren';
                 }
             });
 
@@ -494,22 +494,22 @@ function buildSidepanel(id, year) {
             .text(filtered_institution[0].city + ' - ' + filtered_institution[0].canton_code);
 
         panel.append('p')
-            .html('<span class="section-title">opened</span></br>' + filtered_institution[0].opened);
+            .html('<span class="section-title">öffnung</span></br>' + filtered_institution[0].opened);
 
         panel.append('p')
-            .html('<span class="section-title">closed</span></br>' + filtered_institution[0].closed);
+            .html('<span class="section-title">schließen</span></br>' + filtered_institution[0].closed);
 
         panel.append('p')
-            .html('<span class="section-title">capacity</span></br>' + filtered_institution[0].capacity_group);
+            .html('<span class="section-title">kapazitäten</span></br>' + filtered_institution[0].capacity_group);
 
         panel.append('p')
-            .html('<span class="section-title">gender ratio</span></br>' + filtered_institution[0].accepted_gender);
+            .html('<span class="section-title">geschlecht der insassen</span></br>' + filtered_institution[0].accepted_gender);
 
         panel.append('p')
-            .html('<span class="section-title">religious affiliation</span></br>' + filtered_institution[0].confession);
+            .html('<span class="section-title">konfession</span></br>' + filtered_institution[0].confession);
 
         panel.append('p')
-            .html('<span class="section-title">typology</span></br>' + filtered_institution[0].typologies.replace(/;/g, '; '));
+            .html('<span class="section-title">Typologie</span></br>' + filtered_institution[0].typologies.replace(/;/g, '; '));
 
         panel.append('div')
             .classed('sidepanel-button', true)
@@ -518,7 +518,7 @@ function buildSidepanel(id, year) {
                 return './glossaries/institutions-glossary.html#selected-' + filtered_institution[0].id;
             })
             .attr('target', '_blank')
-            .text('Get more details');
+            .text('Gehe zum Glossar');
     }
 
     $('body').addClass('sidebar-open modal-open');
@@ -558,7 +558,7 @@ function buildSidepanelList(list) {
 
     panel.append('h5')
         .classed('sidepanel-support-title', true)
-        .text('Click on an institution to get more details:');
+        .text('Klicken Sie auf eine Institution für weitere Informationen:');
 
     let institutionList = panel.selectAll('.institution-list')
         .data(filtered_institution, function(d) {
@@ -663,7 +663,7 @@ function buildTimelineSidepanel(type, year) {
                 return './glossaries/laws-glossary.html#selected-' + encodeURIComponent(filtered_element[0].id);
             })
             .attr('target', '_blank')
-            .text('Get more details');
+            .text('Gehe zum Glossar');
     }
 
     $('body').addClass('sidebar-open modal-open');
@@ -742,7 +742,7 @@ function updateMap(step) {
         let newMapYear = (currentEl == 'total') ? 1900 : (currentEl == 'capacity_group') ? 1954 : 1965;
 
         if (currentEl == 'total') {
-            $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(` + newMapYear + `);closeSidepanel()" data-id="` + newMapYear + `">All</span>`).fadeIn(250, function() {
+            $('#maps .btn-container').prepend(`<span class="btn-year btn-maps-year year-all" onclick="map_all_institutions.draw(` + newMapYear + `);closeSidepanel()" data-id="` + newMapYear + `">Alle</span>`).fadeIn(250, function() {
                 $('#maps .btn-maps-year').each(function(i, btn) {
                     $(this).attr('onclick', 'map_all_institutions.draw(' + yearsAlternative[i] + ');closeSidepanel()');
                 });
@@ -787,7 +787,7 @@ function updateMatrix(step) {
     if(Yselect == 'accepted_gender' && Xselect == 'typology') {
         d3.selectAll('.matrix-svg .axis-x .tick')
             .each(function(d){
-                if (d == 'juvenile correction facility' || d == 'labour colony') {
+                if (d == 'erziehungsanstalt' || d == 'arbeiterkolonie') {
                     d3.select(this)
                         .transition()
                         .duration(500)
@@ -801,7 +801,7 @@ function updateMatrix(step) {
             });
         d3.selectAll('.matrix-svg .grid-x .tick')
             .each(function(d){
-                if (d == 'juvenile correction facility' || d == 'labour colony') {
+                if (d == 'erziehungsanstalt' || d == 'arbeiterkolonie') {
                     d3.select(this)
                         .transition()
                         .duration(500)
@@ -815,7 +815,7 @@ function updateMatrix(step) {
             });
         d3.selectAll('.matrix-svg .matrix-bubbles .bubble')
             .each(function(d){
-                if (d.value.x == 'juvenile correction facility' || d.value.x == 'labour colony') {
+                if (d.value.x == 'erziehungsanstalt' || d.value.x == 'arbeiterkolonie') {
                     d3.select(this)
                         .transition()
                         .duration(500)
