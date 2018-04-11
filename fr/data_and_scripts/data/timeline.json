@@ -2,129 +2,129 @@
     {
       "type" : "directory",
       "date" : "1933",
-      "title" : "Directory of 1933",
-      "link" : "https://opendata.swiss/en/dataset/anstaltstopografie/resource/1aec5065-5440-436d-87c2-357faa22980e"
+      "title" : "Enquête de 1933",
+      "link" : "https://opendata.swiss/fr/dataset/anstaltstopografie/resource/1aec5065-5440-436d-87c2-357faa22980e"
     },
     {
       "type" : "directory",
       "date" : "1939-1945",
-      "title" : "Data of the 1940s",
-      "link" : "https://opendata.swiss/en/dataset/anstaltstopografie/resource/c3d3e87f-b78d-4965-9d8a-a3cc469471e1"
+      "title" : "Les données des années 1940",
+      "link" : "https://opendata.swiss/fr/dataset/anstaltstopografie/resource/c3d3e87f-b78d-4965-9d8a-a3cc469471e1"
     },
     {
       "type" : "directory",
       "date" : "1954",
-      "title" : "Directory of 1954",
-      "link" : "https://opendata.swiss/en/dataset/anstaltstopografie/resource/e4afa330-3635-4857-9f34-357681b4ca55"
+      "title" : "Enquête de 1954",
+      "link" : "https://opendata.swiss/fr/dataset/anstaltstopografie/resource/e4afa330-3635-4857-9f34-357681b4ca55"
     },
     {
       "type" : "directory",
       "date" : "1965",
-      "title" : "Directory of 1965",
-      "link" : "https://opendata.swiss/en/dataset/anstaltstopografie/resource/53bae8b3-5089-4f5b-a2d1-52f11d1ede5a"
+      "title" : "Enquête de 1965",
+      "link" : "https://opendata.swiss/fr/dataset/anstaltstopografie/resource/53bae8b3-5089-4f5b-a2d1-52f11d1ede5a"
     },
     {
       "type" : "directory",
       "date" : "1980",
-      "title" : "Directory of 1980",
-      "link" : "https://opendata.swiss/en/dataset/anstaltstopografie/resource/cda7c7d4-c79e-4d61-9b87-8c358fb99c52"
+      "title" : "Enquête de 1980",
+      "link" : "https://opendata.swiss/fr/dataset/anstaltstopografie/resource/cda7c7d4-c79e-4d61-9b87-8c358fb99c52"
     },
     {
       "type" : "events",
       "date" : "1925",
-      "title" : "First step towards a Federal Old Age and Survivors' Insurance",
-      "text" : "In 1925, the sovereign approved a constitutional article authorizing the Confederation to sketch an Old-age and survivors' insurance (AHV). The template is not a comprehensive breakthrough, but rather the result of a precarious compromise. Especially in the delicate question of financing, the article remains vague.",
+      "title" : "La première pierre de l’AVS est posée",
+      "text" : "En 1925, le peuple adopte un article constitutionnel qui autorise la Confédération à élaborer une assurance-vieillesse et survivants (AVS). La proposition n’est pas une percée décisive, mais plutôt le résultat d’un compromis précaire. L’article laisse notamment en suspens la délicate question du financement de l’assurance.",
       "link" : "http://www.storiadellasicurezzasociale.ch/sintesi/#c69"
     },
     {
       "type" : "events",
       "date" : "1932-1937",
-      "title" : "Social security on the defensive",
-      "text" : "The global economic crisis is leading to social emergencies in various areas in Switzerland. However, the political forces are divided over the appropriate crisis management. First, the cities are responding with the expansion of social care. The Confederation catches up late to deal actively with unemployment.",
+      "title" : "La sécurité sociale sur la défensive",
+      "text" : "En raison de la crise économique mondiale, la Suisse est confrontée dans plusieurs domaines à de graves difficultés sociales. Les forces politiques ont du mal à se mettre d’accord sur la façon d’y remédier. Les villes sont les premières à développer des programmes d’assistance. La Confédération, quant à elle, ne se décide que tardivement à combattre activement le chômage.",
       "link" : "http://www.storiadellasicurezzasociale.ch/sintesi/#c71"
     },
     {
       "type" : "events",
       "date" : "1939-1945",
-      "title" : "During the war: towards innovation or stagnation in social policy?",
-      "text" : "Unlike the First, the Second World War embodies a development thrust for social security. The most visible sign is the introduction of a wage and earnings order and after the war, the founding of the Federal Old Age and Survivors' Insurance (AHV). However, the progress regarding the expansion of the welfare state remains modest and limited.",
+      "title" : "Avancée ou stagnation de la politique sociale?",
+      "text" : "La Deuxième Guerre mondiale, contrairement à la première, est marquée par des développements de la sécurité sociale au plan fédéral. Le signe le plus visible est l’introduction d’un régime d’allocations pour perte de salaire et de gain, puis, après la guerre, la création de l’AVS. Le développement de l’Etat social reste néanmoins modeste et limité.",
       "link" : "http://www.storiadellasicurezzasociale.ch/sintesi/#c73"
     },
     {
       "type" : "events",
       "date" : "1947",
-      "title" : "The Federal Old Age and Survivors' Insurance: Centerpiece of social security",
-      "text" : "In his 1944 New Year's speech, Federal Councilor Stampfli announces with a big media response the rapid establishment of a state pension scheme. Three years later, on July 6th, 1947, the voters adopted the Federal Old Age and Survivors' Insurance (AHV) legislation; At the beginning of 1948, the first pensions will be paid out. The AHV quickly becomes the symbol of the Swiss welfare state par excellence.",
+      "title" : "L’AVS: pièce maîtresse de la sécurité sociale",
+      "text" : "Dans son allocution de Nouvel An 1944, le conseiller fédéral Stampfli annonce la création rapide d’une prévoyance vieillesse publique. Trois ans plus tard, le peuple accepte la loi sur l’AVS; les premières rentes sont versées début 1948. L’AVS devient le symbole de l’Etat social suisse.",
       "link" : "http://www.storiadellasicurezzasociale.ch/sintesi/#c77"
     },
     {
       "type" : "events",
       "date" : "1948-1990",
-      "title" : "Blocked expansion of health insurance",
-      "text" : "Unlike the progress of establishing the Federal Old Age and Survivors' Insurance (AHV), the health insurance legislation stagnates after the Second World War. The modest proposal for a Federal Tuberculosis Insurance does not find favor with the urn at all. Further concerns, such as a national mandatory health insurance, are therefore off the table.",
+      "title" : "Blocage du développement de l’assurance-maladie",
+      "text" : "Contrairement à l’AVS, l’assurance-maladie n’est pas réformée au sortir de la Deuxième Guerre mondiale. Avec l’échec devant le peuple d’un projet modeste d’assurance fédérale en cas de tuberculose, les revendications plus ambitieuses, comme une assurance-maladie obligatoire à l'échelle nationale, sont reportées sine die.",
       "link" : "http://www.storiadellasicurezzasociale.ch/sintesi/#c89"
     },
     {
       "type" : "events",
       "date" : "1952",
       "title" : null,
-      "text" : "Message of the Federal Council to the Federal Assembly concerning the support of schools for social work (of October 17th, 1952).",
+      "text" : "Message du Conseil fédéral à l'Assemblée fédérale concernant l'octroi de subventions à des écoles de service social (du 17 octobre 1952).",
       "link" : "https://www.amtsdruckschriften.bar.admin.ch/viewOrigDoc/10038063.pdf?id=10038063"
     },
     {
       "type" : "events",
       "date" : "1959",
-      "title" : "Invalidity: insurance and integration instead of social assistance",
-      "text" : "In the late 1950ies, the time has come for the introduction of the Federal Invalidity Insurance (IV). Although modestly equipped, it closes an important gap in the social security system and is committed to an innovative principle: «integration before retirement».",
+      "title" : "Invalidité : assurance et réadaptation au lieu de l’aide sociale",
+      "text" : "A la fin des années 1950, l’heure est favorable à l’introduction de l’assurance-invalidité. Si les moyens octroyés restent limités, cette assurance vient combler une lacune importante dans le système de sécurité sociale et se fixe un principe novateur : «la réadaptation prime sur la rente».",
       "link" : "http://www.storiadellasicurezzasociale.ch/sintesi/#c92"
     },
     {
       "type" : "events",
       "date" : "1960-1975",
-      "title" : "Social Casework and Social Subsistence Minimum: Modernization of Social Welfare",
-      "text" : "After 1960, many cantons reformed their social assistance approaches. The motto is now «Helping people help themselves». The models for the innovations, such as the social case work, originate mainly from the USA.",
+      "title" : "«Social case work» et minimum social d’existence: l’aide sociale se modernisee",
+      "text" : "Après 1960, de nombreux cantons réforment l’assistance publique. La devise est désormais d’aider les gens à s’en sortir par leurs propres moyens. Les méthodes nouvelles, comme le casework, proviennent avant tout des Etats-Unis.",
       "link" : "https://www.geschichtedersozialensicherheit.ch/synthese/#c139"
     },
     {
       "type" : "events",
       "date" : "1961",
       "title" : null,
-      "text" : "Federal Council's message to the Federal Assembly on a federal decree extending the deadline for implementing institutional reforms under the Criminal Code (dated March 20th, 1961).",
+      "text" : "Message du Conseil fédéral à l'Assemblée fédérale à l'appui d'un arrêté fédéral prolongeant le délai d'exécution de la réforme des établissements prescrits par le code pénal (du 20 mars 1961).",
       "link" : "https://www.amtsdruckschriften.bar.admin.ch/viewOrigDoc/10041260.pdf?id=10041260"
     },
     {
       "type" : "events",
       "date" : "1965",
-      "title" : "Towards a minimal wage in old-age provision care",
-      "text" : "The pensions of the Federal Old Age and Survivors' Insurance (AHV) and the Federal invalidity Insurance (IV) are well below the subsistence level in the 1960ies. Many retirees continue to suffer from poverty. For them, supplementary benefits are introduced in 1965. At the same time, this reduces the pressure to further expand state pension provision.",
+      "title" : "Vers une couverture des besoins vitaux dans la prévoyance vieillesse",
+      "text" : "Dans les années 1960, les rentes de l’AVS et de l’AI sont nettement inférieures au minimum vital. De nombreux retraitées et retraités vivent dans la pauvreté. Les prestations complémentaires sont introduites à leur intention en 1965. Cette mesure ciblée, sous condition de ressource, permet de réduire la pression exercée en vue d’une augmentation générale des rentes de vieillesse, d’invalidité et de survivants.",
       "link" : "https://www.geschichtedersozialensicherheit.ch/synthese/#c101"
     },
     {
       "type" : "events",
       "date" : "1975",
-      "title" : "Introduction of the residence principle in social assistance",
-      "text" : "Until the 1970ies, impoverished citizens can be turned away from their place of residence and transferred to their community of citizenship. In 1975, this relic is finally abolished. Now, all the impoverished have the full freedom of establishment.",
+      "title" : "Adoption du principe du lieu de domicile dans l’aide sociale",
+      "text" : "Jusque dans les années 1970, les personnes tombant dans l’indigence peuvent être expulsées de leur canton de domicile et renvoyées dans leur commune d’origine. En 1975, cette réglementation est définitivement abolie : toutes les personnes de nationalité suisse disposent d’une liberté d’établissement absolue, qu’il soit ou non tributaire de l’assistance publique.",
       "link" : "https://www.geschichtedersozialensicherheit.ch/synthese/#c103"
     },
     {
       "type" : "events",
       "date" : "1976",
-      "title" : "Reacting to the economic crisis: reorganization of the unemployment insurance",
-      "text" : "In response to the recession of 1974-75, Switzerland introduces a federal mandatory unemployment insurance scheme. The implementation, however, is dragging on. Finally, in 1984 a definitive solution comes into effect.",
+      "title" : "Réorganisation de l’assurance-chômage en réponse à la crise économique",
+      "text" : "Pour faire face à la récession des années 1974/75, la Suisse introduit l’assurance-chômage obligatoire à l’échelle nationale. Sa mise en œuvre prend toutefois plusieurs années et la version définitive de la loi entre en vigueur en 1984.",
       "link" : "https://www.geschichtedersozialensicherheit.ch/synthese/#c100"
     },
     {
       "type" : "events",
       "date" : "1981",
-      "title" : "First step towards a Federal Old Age and Survivors' Insurance",
-      "text" : "The focus of the Independent Expert Commission's (IEC) investigations is on recent modern history, specifically, the period commencing around the year 1930 and continuing up to 1981. In 1981, seven years after Switzerland's ratification of the European Human Rights Convention, the legal procedures for ordering involuntary commitment were incorporated into the Swiss Civil Code. While public authorities were still permitted under those provisions to institutionalise individuals against their will and for their own safety, the new statutes established conditions applicable nationwide for ordering such a major infringement of an individual's basic rights. Prior to the adoption of the federal provisions on involuntary commitment, the rules on administrative detention in almost all of the cantons failed, with few exceptions, to provide for any judicial appeals process in such cases.",
+      "title" : null,
+      "text" : "Les recherches de la Commission indépendante d'experts (CIE) portent principalement sur l’époque contemporaine, c’est à dire sur les années 1930 à 1981. En 1981, soit sept ans après la ratification de la Convention européenne des droits de l’homme par la Suisse, le placement à des fins d’assistance (PAFA) a été introduit dans le Code civil suisse. Sur la base de ces dispositions les autorités pouvaient continuer de placer des personnes contre leur volonté ou pour leur propre sécurité. Cependant, les conditions selon lesquelles une telle intervention pouvait être décidée étaient désormais fixées par une loi nationale définie sur la base des droits fondamentaux des hommes et des femmes. Jusqu’à l’introduction du PAFA, presque tous les cantons étaient dotés de dispositions sur les internements, qui, à quelques exceptions près, ne prévoyaient aucun recours judiciaire.",
       "link" : "https://www.uek-administrative-versorgungen.ch/en/Glossary.2.html"
     },
     {
       "type" : "legal text",
       "date" : "1912",
       "title" : null,
-      "text" : "Implementation of the Swiss Civil Code (ZGB)",
+      "text" : "L’instauration du Code civile Suisse",
       "link" : "http://www.hls-dhs-dss.ch/textes/d/D30734.php",
       "id" : null
     },
@@ -132,7 +132,7 @@
       "type" : "legal text",
       "date" : "1919",
       "title" : null,
-      "text" : "Canton of Neuenburg: Law on the administrative detention of drinkers of April 22nd, 1919",
+      "text" : "Canton de Neuchâtel: Loi sur l’internement administratif des buveurs du 22 avril 1919",
       "link" : null,
       "id" : "NE002"
     },
@@ -140,7 +140,7 @@
       "type" : "legal text",
       "date" : "1927",
       "title" : null,
-      "text" : "Canton of Geneva: Law on the correction and detention of alcoholics June 18th, 1927",
+      "text" : "Canton de Genève: Loi sur le relêvement et l’internement des alcooliques du 18 juin 1927",
       "link" : null,
       "id" : "GE001"
     },
@@ -148,7 +148,7 @@
       "type" : "legal text",
       "date" : "1932",
       "title" : null,
-      "text" : "Canton of Appenzell Innerhoden: Treaty between the Government of the Canton of Appenzell I.Rh. on the one hand and the Government of the Canton of Fribourg on the other hand from August 10th/23rd, 1932 concerning accommodation of administrative detainees in the institutions of Bellechasse in the canton of Fribourg",
+      "text" : "Canton d'Appenzell Innerhoden: Traité entre le gouvernement du canton d'Appenzell I.Rh. d'une part et le gouvernement du Canton de Fribourg d'autre part du 10./23. Août 1932 concernant l'internement administratif des personnes dans les institutions fribourgeoises de Bellechasse",
       "link" : null,
       "id" : "AI011"
     },
@@ -156,7 +156,7 @@
       "type" : "legal text",
       "date" : "1933",
       "title" : null,
-      "text" : "Canton of Fribourg: Law of February 10th, 1933 regarding the institutions of Bellechasse",
+      "text" : "Canton de Fribourg: Loi organique du 10 février 1933 concernant les Etablissements de Bellechasse",
       "link" : null,
       "id" : "FR016"
     },
@@ -164,7 +164,7 @@
       "type" : "legal text",
       "date" : "1941",
       "title" : null,
-      "text" : "Canton of Vaud: Law of December 8th, 1941 on the administrative detention of socially dangerous elements",
+      "text" : "Canton de Vaud: Loi du 8 décembre 1941 sur l’internement administratif d’éléments dangereux pour la société",
       "link" : null,
       "id" : "VD017"
     },
@@ -172,7 +172,7 @@
       "type" : "legal text",
       "date" : "1942",
       "title" : null,
-      "text" : "Canton of Friborg: Law of May 13th, 1942 on the administrative detention of individuals endangering public security",
+      "text" : "Canton de Fribourg: Loi du 13 mai 1942 sur l’internement administratif d’individus compromettant la santé ou la sécurité publique",
       "link" : null,
       "id" : "FR018"
     },
@@ -180,7 +180,7 @@
       "type" : "legal text",
       "date" : "1942a",
       "title" : null,
-      "text" : "Implementation of the Swiss criminal code (StGB)",
+      "text" : "L’instauration du Code pénal suisse",
       "link" : "http://www.hls-dhs-dss.ch/textes/d/D9616.php",
       "id" : null
     },
@@ -188,7 +188,7 @@
       "type" : "legal text",
       "date" : "1950",
       "title" : null,
-      "text" : "Canton of Valais: Order of April 27th, 1950 concerning the administrative detention",
+      "text" : "Canton du Valais: Arrêté du 27 avril 1950 relatif à la détention administrative",
       "link" : null,
       "id" : "VS005"
     },
@@ -196,7 +196,7 @@
       "type" : "legal text",
       "date" : "1956",
       "title" : null,
-      "text" : "Agreement between the eastern cantons of Switzerland regarding the execution of prison sentences and imprisonments, as well as the measures according to the Swiss Criminal Code and the provisions of the cantonal law of January 27th, 1956",
+      "text" : "Accord entre les cantons de l'est de la Suisse concernant l'exécution des peines d'emprisonnement et les mesures prévues par le Code pénal suisse et les dispositions de la loi cantonale du 27 janvier 1956",
       "link" : "https://www.konkordate.ch/",
       "id" : null
     },
@@ -204,7 +204,7 @@
       "type" : "legal text",
       "date" : "1958",
       "title" : null,
-      "text" : "Canton of Aargau: Agreement on the allowances for forced laborers assigned to the institution of Sedel in the canton of Lucerne of May 29th, 1958",
+      "text" : "Canton d'Argovie: Décision sur la fixation de l'allocation pour les travailleurs forcés assignée administrativement à l’institution Sedel au canton de Lucerne du 29 mai 1958",
       "link" : null,
       "id" : "AG036"
     },
@@ -212,7 +212,7 @@
       "type" : "legal text",
       "date" : "1959",
       "title" : null,
-      "text" : "Concordat on the Execution of penal sentences and measures according to the Swiss Criminal Code and the law of the cantons of northwest and central Switzerland of March 4th, 1959",
+      "text" : "Concordat sur l'exécution des peines d’emprisonnement et les mesures prévues par le Code pénal suisse et les dispositions de la loi des cantons du Nord-Ouest et de la Suisse centrale du 4 mars 1959",
       "link" : "http://www.lexfind.ch/dtah/21581/2/253-010.pdf",
       "id" : null
     },
@@ -220,7 +220,7 @@
       "type" : "legal text",
       "date" : "1963",
       "title" : null,
-      "text" : "Concordat on the Execution of penal sentences and measures for adults in the French-speaking cantons of November 21st, 1963",
+      "text" : "Concordat du 21 novembre 1963 sur l’exécution des peines et mesures concernant les adultes dans les cantons romands",
       "link" : null,
       "id" : "IC006"
     },
@@ -228,7 +228,7 @@
       "type" : "legal text",
       "date" : "1965",
       "title" : null,
-      "text" : "Canton of Fribourg: Law of May 7th, 1965 on the fight against alcoholism",
+      "text" : "Canton de Fribourg: Loi du 7 mai 1965 sur la lutte contre l’alcoolisme",
       "link" : null,
       "id" : "FR025"
     },
@@ -236,7 +236,7 @@
       "type" : "legal text",
       "date" : "1966",
       "title" : null,
-      "text" : "Federal Act on federal subsidies for prisons and educational institutions of October 6th, 1966",
+      "text" : "Loi fédérale sur les subventions de la Confédération aux établissements servant à l'exécution des peines et mesures et aux maison d'éducation (du 6 octobre 1966)",
       "link" : "https://www.amtsdruckschriften.bar.admin.ch/viewOrigDoc/10043418.pdf?id=10043418",
       "id" : null
     },
@@ -244,7 +244,7 @@
       "type" : "legal text",
       "date" : "1971",
       "title" : null,
-      "text" : "Canton of St. Gallen: Law on the abolition of administrative detention of June 15th, 1971",
+      "text" : "Canton de Saint-Gall: Loi sur l'abrogation des dispositions sur l’internement administratif du 15 juin 1971",
       "link" : null,
       "id" : "SG025"
     },
@@ -252,7 +252,7 @@
       "type" : "legal text",
       "date" : "1977",
       "title" : null,
-      "text" : "Message on the amendment of the Swiss Civil Code (deprivation of freedom) and the withdrawal of the reservation on article 5 of the Convention for the Protection of Human Rights and Fundamental Freedoms of August 17th, 1977",
+      "text" : "Message concernant la modification du code civil suisse (privation de liberté à des fins d'assistance) et le retrait de la réserve apportée à l'article 5 de la Convention de sauvegarde des droits de l'homme et des libertés fondamentales du 17 août 1977",
       "link" : "https://www.amtsdruckschriften.bar.admin.ch/viewOrigDoc/10047151.pdf?id=10047151",
       "id" : null
     },
@@ -260,7 +260,7 @@
       "type" : "legal text",
       "date" : "1984",
       "title" : null,
-      "text" : "Concordat on the execution of penal sentences and measures for adults and adolescents in the cantons of western Switzerland and in the canton of Ticino on October 22nd, 1984",
+      "text" : "Concordat du 22 octobre 1984 sur l’exécution des peines et mesures concernant les adultes et les jeunes adultes dans les cantons romands et du Tessin",
       "link" : null,
       "id" : "IC009"
     }
