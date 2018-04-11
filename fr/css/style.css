@@ -1,3 +1,15 @@
+.tbtranslated {
+    color: tomato !important;
+    fill: tomato !important;
+    text-decoration: underline;
+}
+
+.transbyus {
+    color: slateblue !important;
+    fill: slateblue !important;
+    text-decoration: underline;
+}
+
 @-webkit-keyframes loadSwiss {
     0% {
         opacity: 1;
@@ -379,7 +391,7 @@ span.note-on-data {
 }
 
 span.note-on-data:before {
-    content: 'Note about the data';
+    content: 'Remarques concernant les données';
     display: inline-block;
     font-size: 0.666rem;
     font-weight: 700;

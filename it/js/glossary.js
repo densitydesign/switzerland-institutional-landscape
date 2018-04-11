@@ -188,7 +188,7 @@ function populateSidebar(data) {
     let furtherInformations = ``;
 
     //Institution name
-    thisTitle = 'Institution name';
+    thisTitle = 'Nome dell\'istituto';
     thisField = 'institution';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
@@ -199,7 +199,7 @@ function populateSidebar(data) {
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
     //Institution purposes as from sources
-    thisTitle = 'Institution purposes as reported in source';
+    thisTitle = 'Finalità dell\'istituto come riportato nelle fonti';
     furtherInformations += `
                 <div class="row section-title">
                     <div class="col-3"></div>
@@ -218,7 +218,7 @@ function populateSidebar(data) {
                 ${getValueSourceHTML(1980,'purpose3')}`;
 
     //Institution categories as from sources
-    thisTitle = 'Institution categories as reported in source';
+    thisTitle = 'Categorie dell\'istituto come riportato nelle fonti';
     furtherInformations += `
                 <div class="row section-title">
                     <div class="col-3"></div>
@@ -244,7 +244,7 @@ function populateSidebar(data) {
                 </div>`;
 
     //Capacities as from sources
-    thisTitle = 'Institution capacities as reported in source';
+    thisTitle = 'Capienza dell\'istituto come riportato nelle fonti';
     furtherInformations += `
                 <div class="row section-title">
                     <div class="col-3"></div>
@@ -296,7 +296,7 @@ function populateSidebar(data) {
                 </div>`;
 
     //Typologies
-    thisTitle = 'Typologies';
+    thisTitle = 'Tipologia';
     thisField = 'typologies';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
@@ -307,7 +307,7 @@ function populateSidebar(data) {
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
     //Confession
-    thisTitle = 'Confession';
+    thisTitle = 'Confessione religiosa';
     thisField = 'confession';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
@@ -318,7 +318,7 @@ function populateSidebar(data) {
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
     //Accepted gender
-    thisTitle = 'Accepted gender';
+    thisTitle = 'Genere dei detenuti ospitati';
     thisField = 'accepted_gender';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
@@ -329,7 +329,7 @@ function populateSidebar(data) {
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
     //Funding agencies
-    thisTitle = 'Funding agencies';
+    thisTitle = 'Gestione, ente fondatore';
     thisField = 'funding_agency';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
@@ -340,7 +340,7 @@ function populateSidebar(data) {
         <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
 
     //Committing agencies
-    thisTitle = 'Committing agencies';
+    thisTitle = 'Autorità che dispone gli internamenti';
     thisField = 'committing_agencies';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
@@ -450,32 +450,32 @@ d3.queue()
                         <div class="value">${d.values[0].values[0].id}</div>
                     </div>
                     <div class="institution field">
-                        <div class="label font-weight-bold">Landmark name</div>
+                        <div class="label font-weight-bold">Istituto</div>
                         <div class="value font-weight-bold">${d.values[0].values[0].name_landmark}</div>
                     </div>
                     <div class="city field">
-                        <div class="label">City</div>
+                        <div class="label">Città</div>
                         <div class="value">${d.values[0].values[0].city}</div>
                     </div>
                     <div class="canton field">
-                        <div class="label">Canton</div>
+                        <div class="label">Cantone</div>
                         <div class="value">${d.values[0].values[0].canton}</div>
                     </div>
                     <div class="opening field">
-                        <div class="label">Opened in (alternative)</div>
+                        <div class="label">Apertura (alternativa)</div>
                         <div class="value">${d.values[0].values[0].opened} ${d.values[0].values[0].opened_alternative}</div>
                     </div>
                     <div class="closing field">
-                        <div class="label">Closed in (Alternative)</div>
+                        <div class="label">Chiusura (alternativa)</div>
                         <div class="value">${d.values[0].values[0].closed} ${d.values[0].values[0].closed_alternative}</div>
                     </div>
                     <div class="surveyes field">
-                        <div class="label">Surveyes</div>
+                        <div class="label">Registri</div>
                         <div class="value"><span class="${fn(1933)}">1933</span><span class="${fn(1940)}">1940s</span><span class="${fn(1954)}">1954</span><span class="${fn(1965)}">1965</span><span class="${fn(1980)}">1980</span></div>
                     </div>
                     <div class="copy field">
                         <div class="label"></div>
-                        <div class="value"><div id="copy-${d.values[0].values[0].id}" class="item-copy-to-clipboard" data-clipboard-text="${quotation}">Copy citation to clipboard</div></div>
+                        <div class="value"><div id="copy-${d.values[0].values[0].id}" class="item-copy-to-clipboard" data-clipboard-text="${quotation}">Copia citazione negli appunti</div></div>
                     </div>
 
             `;
@@ -493,10 +493,10 @@ d3.queue()
             // console.log(this);
             d3.selectAll('.item-copy-to-clipboard')
                 .classed('copied', false)
-                .html('Copy citation to clipboard');
+                .html('Copia citazione negli appunti');
             d3.select(this)
                 .classed('copied', true)
-                .html('Citation copied to clipboard');
+                .html('Citazione copiata negli appunti');
         })
 
         // reset();
