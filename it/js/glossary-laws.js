@@ -468,7 +468,7 @@ function populatePanel(data) {
             newContent += `
                 <div class="copy field">
                     <div class="label"></div>
-                    <div class="value"><div class="item-copy-to-clipboard" data-clipboard-text="${quotation}">Copia citazione</div></div>
+                    <div class="value"><div class="item-copy-to-clipboard" data-clipboard-text="${quotation}">Copia citazione negli appunti</div></div>
                 </div>`;
             return newContent;
         });
@@ -482,10 +482,10 @@ function populatePanel(data) {
             // console.log(this);
             d3.selectAll('.item-copy-to-clipboard')
                 .classed('copied', false)
-                .html('Copia citazione');
+                .html('Copia citazione negli appunti');
             d3.select(this)
                 .classed('copied', true)
-                .html('Citazione copiata');
+                .html('Citazione copiata negli appunti');
         })
 
         new ClipboardJS('.item-copy-to-clipboard');
