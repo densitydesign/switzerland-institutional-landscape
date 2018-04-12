@@ -391,7 +391,7 @@ span.note-on-data {
 }
 
 span.note-on-data:before {
-    content: 'Note about the data';
+    content: 'Notiz zu den Daten';
     display: inline-block;
     font-size: 0.666rem;
     font-weight: 700;
