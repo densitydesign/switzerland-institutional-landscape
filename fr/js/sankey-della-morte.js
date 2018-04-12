@@ -87,7 +87,7 @@ function SurviesSankey(id, data) {
                     return string.charAt(0).toUpperCase() + string.slice(1);
                 }
                 let innerHtml = '<span class="color-square" style="background-color: ' + nodesColor(d) + ';"></span> ' + capitalizeFirstLetter(d.replace('1_', '').replace('2_', '').replace('3_', '').replace('4_', ''));
-
+                innerHtml = innerHtml.replace('Uncertain', 'Incertain').replace('Closed or not yet opened', 'Fermé').replace('Open but not included in directory', 'Ouvert mais pas recensé').replace('Open and included in directory', 'Ouvert et recensé');
                 return capitalizeFirstLetter(innerHtml);
             })
 
