@@ -303,16 +303,16 @@ function Bubblechart(id, data) {
                     let thisName;
                     switch (d) {
                         case '1':
-                            thisName = 'Single purpose';
+                            thisName = 'Einzweck';
                             break;
                         case '2':
-                            thisName = 'Two purposes';
+                            thisName = 'Zwei Zwecke';
                             break;
                         case '3':
-                            thisName = 'Three purposes';
+                            thisName = 'Drei Zwecke';
                             break;
                         default:
-                            thisName = 'Four purposes';
+                            thisName = 'Vier Zwecke';
                     }
                     return thisName;
                 })
