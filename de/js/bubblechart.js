@@ -41,7 +41,7 @@ function Bubblechart(id, data) {
         .range(radiusses)
         .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more"])
 
-    let dataLegend = ['Capacity'].concat(radius.domain())
+    let dataLegend = ['Pätze'].concat(radius.domain())
 
     let capacityColor = d3.scaleOrdinal()
         .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more"])
@@ -303,16 +303,16 @@ function Bubblechart(id, data) {
                     let thisName;
                     switch (d) {
                         case '1':
-                            thisName = 'Single purpose';
+                            thisName = 'Einzweck';
                             break;
                         case '2':
-                            thisName = 'Two purposes';
+                            thisName = 'Zwei Zwecke';
                             break;
                         case '3':
-                            thisName = 'Three purposes';
+                            thisName = 'Drei Zwecke';
                             break;
                         default:
-                            thisName = 'Four purposes';
+                            thisName = 'Vier Zwecke';
                     }
                     return thisName;
                 })
@@ -406,7 +406,11 @@ function Bubblechart(id, data) {
             .attr('x', function(d){
                 return radius(d) + 3
             })
-            .text(function(d) { return d })
+            .text(function(d) {
+                d=d.replace('Capacity','Pätze').replace('not specified','keine angabe').replace('200 or more','200 und mehr');
+                // console.log(d);
+                return d;
+            })
 
         // d3.selectAll('.year')
         //     .attr('y', height - 14)
