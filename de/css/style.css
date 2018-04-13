@@ -401,7 +401,7 @@ span.note-on-data:before {
 }
 
 span.interact-with-viz:before {
-    content: 'How to interact with the visualisation';
+    content: 'Interaktion mit der Visualisierung';
     display: inline-block;
     font-size: 0.666rem;
     font-weight: 700;
