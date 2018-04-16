@@ -1252,6 +1252,39 @@ body.color-scheme-laser .sidepanel p a {
     }
 }
 
+@media (max-width: 575px) {
+    .cover h1 {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        font-size: 6.8vw;
+        line-height: 6.8vw;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        line-height: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .cover h1 {
+        font-size: 2.4rem;
+        line-height: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .cover h1 {
+        font-size: 2.8rem;
+        line-height: 2.9rem;
+    }
+}
+
 @media (min-width: 992px) {
     h2 {
         font-size: 2.5rem;
