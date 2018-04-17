@@ -566,28 +566,28 @@ span.interact-with-viz .action {
 .link-introduction,
 #navigation-sidebar .nav-link.link-introduction:hover,
 .link-introduction h6 {
-    width: 123px;
+    width: 97px;
     opacity: 1;
 }
 
 .link-geographies,
 #navigation-sidebar .nav-link.link-geographies:hover,
 .link-geographies h6 {
-    width: 208px;
+    width: 225px;
     opacity: 1;
 }
 
 .link-interconnections,
 #navigation-sidebar .nav-link.link-interconnections:hover,
 .link-interconnections h6 {
-    width: 160px;
+    width: 132px;
     opacity: 1;
 }
 
 .link-entering-exiting,
 #navigation-sidebar .nav-link.link-entering-exiting:hover,
 .link-entering-exiting h6 {
-    width: 202px;
+    width: 231px;
     opacity: 1;
 }
 
