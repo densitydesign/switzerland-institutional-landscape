@@ -450,16 +450,33 @@ span.interact-with-viz .action {
 /* Cover */
 
 .cover {
-    width: 100%;
     background-color: var(--uek-blue);
-    background-image: url(../assets/cover-image-sm.jpg);
-    background-size: cover;
-    background-position: center 70%;
-    height: 45vh;
-    overflow: hidden;
     position: relative;
+    z-index: 15;
+    height: 58.3vw;
+    margin-top: 90px;
+}
+
+.cover img {
+    width:100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+}
+
+.cover span.darker {
+    background: black;
+    opacity: 0.15;
+    display: block;
+    height: 85.5%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.cover .container {
     position: relative;
-    z-index: 2000;
+    top: -6.5%;
 }
 
 .cover h1 {
@@ -468,7 +485,7 @@ span.interact-with-viz .action {
     font-weight: 400;
     letter-spacing: 1.5px;
     margin-bottom: 0;
-    text-shadow: 0 1px 10px rgba(37, 33, 19, 0.7);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     top: 0.2rem;
 }
 
@@ -476,8 +493,10 @@ span.interact-with-viz .action {
     font-weight: 700;
 }
 
-.cover .container {
-    /*background-color: rgba(0,0,0,.1);*/
+@media (max-width: 767px) {
+    .cover {
+        margin-top: 1vw;
+    }
 }
 
 .report-title {
@@ -512,7 +531,7 @@ span.interact-with-viz .action {
     transform: rotate(-90deg);
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
-    z-index: 2000;
+    z-index: 15;
 }
 
 .nav-divider {
@@ -1247,26 +1266,6 @@ body.color-scheme-laser .sidepanel p a {
         margin-bottom: 5rem;
         margin-top: 4.2rem;
     }
-
-    .cover {
-        background-image: url(../assets/cover-image-lg.jpg);
-        height: 60vw;
-        max-height: 65vh;
-        margin-top: 4.5rem !important;
-    }
-    /*.cover {
-        height: 40vw;
-        max-height: 75vh;
-    }
-
-    .cover h1 {
-        color: white;
-        position: absolute;
-        bottom: 4rem;
-        font-weight: 400;
-        letter-spacing: 1.5px;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
-    }*/
     .initial-loader div {
         width: 20vw;
     }
@@ -1344,11 +1343,5 @@ body.color-scheme-laser .sidepanel p a {
     }
     .concordat-legend {
         margin-bottom: -3rem;
-    }
-}
-
-@media (min-width: 1200px) {
-    .cover {
-        background-image: url(../assets/cover-image-xl.jpg);
     }
 }
