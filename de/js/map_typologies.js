@@ -300,6 +300,7 @@ function MapTypologies(id, swiss, data) {
             .classed('maps-label', true)
             .style('opacity', 1e-6)
             .attr('text-anchor', 'middle')
+            .style('text-transform', 'capitalize')
             .attr('x', function(d){
                 let baseContainer = this.parentNode.parentNode.parentNode.getBoundingClientRect();
                 let thisMap = d3.select(this.parentNode.parentNode).select('.maps-swiss').node().getBoundingClientRect();

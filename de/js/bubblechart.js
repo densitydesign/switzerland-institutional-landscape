@@ -41,7 +41,7 @@ function Bubblechart(id, data) {
         .range(radiusses)
         .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more"])
 
-    let dataLegend = ['Pätze'].concat(radius.domain())
+    let dataLegend = ['Plätze'].concat(radius.domain())
 
     let capacityColor = d3.scaleOrdinal()
         .domain(["not specified", "0 - 19", "20 - 49", "50 - 99", "100 - 149", "150 - 199", "200 or more"])
@@ -407,7 +407,7 @@ function Bubblechart(id, data) {
                 return radius(d) + 3
             })
             .text(function(d) {
-                d=d.replace('Capacity','Pätze').replace('not specified','keine angabe').replace('200 or more','200 und mehr');
+                d=d.replace('capacity','Plätze').replace('not specified','keine Angabe').replace('200 or more','200 und mehr');
                 // console.log(d);
                 return d;
             })

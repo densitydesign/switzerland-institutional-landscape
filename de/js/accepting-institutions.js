@@ -165,7 +165,7 @@ function AcceptingInstitutions(id, data, swiss) {
                             }
                         })
                     } else {
-                        viz_message = thisCanton.properties.name + ' schickte ' + config.year + 'keine Häftlinge in andere Kantone.';
+                        viz_message = thisCanton.properties.name + ' schickte ' + config.year + ' keine Häftlinge in andere Kantone.';
                     }
 
                     target_institutions = masterData.filter(function(f) {
@@ -207,7 +207,7 @@ function AcceptingInstitutions(id, data, swiss) {
                             }
                         })
                     } else {
-                        viz_message = thisCanton.properties.name + ' erhielt ' + config.year + 'keine Häftlinge aus anderen Kantonen.';
+                        viz_message = thisCanton.properties.name + ' erhielt ' + config.year + ' keine Häftlinge aus anderen Kantonen.';
                     }
 
                 }

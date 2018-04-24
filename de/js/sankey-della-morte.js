@@ -163,7 +163,7 @@ function SurviesSankey(id, data) {
             .attr('text-anchor', 'middle')
             .text(function(d) {
                 if (d == 1940) {
-                    return '1940s';
+                    return '1940er';
                 } else {
                     return d;
                 }

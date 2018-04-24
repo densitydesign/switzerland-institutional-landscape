@@ -2,39 +2,39 @@
     "typology": [
         {
             "code": 1,
-            "label": "arbeitsanstalt"
+            "label": "Arbeitsanstalt"
         },
         {
             "code": 2,
-            "label": "arbeiterkolonie"
+            "label": "Arbeiterkolonie"
         },
         {
             "code": 3,
-            "label": "erziehungsanstalt"
+            "label": "Erziehungsanstalt"
         },
         {
             "code": 4,
-            "label": "trinkerheilanstalt"
+            "label": "Trinkerheilanstalt"
         },
         {
             "code": 5,
-            "label": "strafanstalt"
+            "label": "Strafanstalt"
         },
         {
             "code": 6,
-            "label": "psychiatrische einrichtung"
+            "label": "Psychiatrische Einrichtung"
         },
         {
             "code": 7,
-            "label": "armenhaus"
+            "label": "Armenhaus"
         },
         {
             "code": 8,
-            "label": "spezialanstalt/sonderanstalt"
+            "label": "Spezialanstalt/Sonderanstalt"
         },
         {
             "code": 9,
-            "label": "keine angabe"
+            "label": "keine Angabe"
         }
     ],
     "accepted_gender": [
@@ -52,7 +52,7 @@
         },
         {
             "code": 4,
-            "label": "keine angabe"
+            "label": "keine Angabe"
         }
     ],
     "capacity_group": [
@@ -82,7 +82,7 @@
         },
         {
             "code": 7,
-            "label": "keine angabe"
+            "label": "keine Angabe"
         }
     ],
     "confession": [
@@ -100,7 +100,7 @@
         },
         {
             "code": 4,
-            "label": "keine angabe"
+            "label": "keine Angabe"
         }
     ],
     "funding_agency": [
@@ -118,7 +118,7 @@
         },
         {
             "code": 4,
-            "label": "keine angabe"
+            "label": "keine Angabe"
         }
     ],
     "committing_agencies": [
@@ -180,7 +180,7 @@
         },
         {
             "code": 15,
-            "label": "keine angabe"
+            "label": "keine Angabe"
         }
     ]
 }

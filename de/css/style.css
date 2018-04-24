@@ -295,7 +295,6 @@ p.caption:first-child {
     font-size: .65rem;
     pointer-events: none;
     opacity: 1;
-    text-transform: capitalize;
 }
 
 .label.hidden {
@@ -1095,7 +1094,7 @@ body.color-scheme-laser .sidepanel p a {
 
 #matrix text {
     font-family: 'Brandon Grotesque', sans-serif;
-    font-size: .65rem;
+    font-size: .5rem;
 }
 
 .axis-x text {

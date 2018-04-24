@@ -653,7 +653,6 @@ function buildTimelineSidepanel(type, year) {
 
     panel.append('h5')
         .classed('sidepanel-name', true)
-        .style('text-transform', 'capitalize')
         .text(function(d) {
             if (filtered_element[0].title == null) {
                 let elType = filtered_element[0].type;

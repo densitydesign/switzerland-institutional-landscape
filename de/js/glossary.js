@@ -344,11 +344,11 @@ function populateSidebar(data) {
     thisField = 'committing_agencies';
     furtherInformations += `
                 <div class="row section-title"><div class="col-3"></div><div class="col-9">${thisTitle}</div></div>
-        <div class="row values"><div class="col-3">1933</div><div class="col-9">${getValue(1933,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1940er</div><div class="col-9">${getValue(1940,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1954</div><div class="col-9">${getValue(1954,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1965</div><div class="col-9">${getValue(1965,thisField)}</div></div>
-        <div class="row values"><div class="col-3">1980</div><div class="col-9">${getValue(1980,thisField)}</div></div>`;
+        <div class="row values"><div class="col-3">1933</div><div class="col-9" style="text-transform: capitalize;">${getValue(1933,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1940er</div><div class="col-9" style="text-transform: capitalize;">${getValue(1940,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1954</div><div class="col-9" style="text-transform: capitalize;">${getValue(1954,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1965</div><div class="col-9" style="text-transform: capitalize;">${getValue(1965,thisField)}</div></div>
+        <div class="row values"><div class="col-3">1980</div><div class="col-9" style="text-transform: capitalize;">${getValue(1980,thisField)}</div></div>`;
 
     d3.select('.further-info').html(furtherInformations);
 }
@@ -462,12 +462,12 @@ d3.queue()
                         <div class="value">${d.values[0].values[0].canton}</div>
                     </div>
                     <div class="opening field">
-                        <div class="label">Eröffnet in (Alternative)</div>
-                        <div class="value">${d.values[0].values[0].opened} ${d.values[0].values[0].opened_alternative}</div>
+                        <div class="label">Eröffnet (Alternative)</div>
+                        <div class="value">${d.values[0].values[0].opened == "unbekannte" ? "unbekannt" : d.values[0].values[0].opened} ${d.values[0].values[0].opened_alternative}</div>
                     </div>
                     <div class="closing field">
-                        <div class="label">Geschlossen in (Alternative)</div>
-                        <div class="value">${d.values[0].values[0].closed} ${d.values[0].values[0].closed_alternative}</div>
+                        <div class="label">Geschlossen (Alternative)</div>
+                        <div class="value">${d.values[0].values[0].closed == "unbekannte" ? "unbekannt" : d.values[0].values[0].closed} ${d.values[0].values[0].closed_alternative}</div>
                     </div>
                     <div class="surveyes field">
                         <div class="label">Quellen</div>

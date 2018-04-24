@@ -382,7 +382,11 @@ function MapAll(id, swiss, data) {
                         return i * 20 + 12;
                     })
                     .text(function(d){
-                        return d;
+                        if (d == "keine angabe") {
+                            return "keine Angabe";
+                        } else {
+                            return d;
+                        }
                     })
                     .transition()
                     .duration(350)

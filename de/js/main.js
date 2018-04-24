@@ -186,7 +186,7 @@ $(document).ready(function() {
         containerCircularWidth = $('#circular-network .btn-container').width();
         containerAcceptingWidth = $('#accepting-institutions .btn-container').width();
         containerAcceptingDirectionWidth = $('#accepting-institutions .btn-container-direction').width();
-        buttonWidth = $('.btn-bubblechart-year[data-id=1940]').width();
+        buttonWidth = $('.btn-bubblechart-year[data-id=1940]').width() - 5;
 
         if (subchapterWidth > 960) {
             matrixSpacer = 8;
@@ -342,7 +342,7 @@ $(document).ready(function() {
 $(document).on('setWaypoints', function() {
     //calculate container and button width
     containerMapsWidth = $('#maps .btn-container').width();
-    buttonWidth = $('.btn-maps-year[data-id=1940]').width();
+    buttonWidth = $('.btn-maps-year[data-id=1940]').width() - 5;
     let subchapterWidth = $('#temporal-framing').width();
     if (subchapterWidth > 960) {
         mapsSpacer = 7;
@@ -497,7 +497,7 @@ function buildSidepanel(id, year) {
             .html('<span class="section-title">öffnung</span></br>' + filtered_institution[0].opened);
 
         panel.append('p')
-            .html('<span class="section-title">schließen</span></br>' + filtered_institution[0].closed);
+            .html('<span class="section-title">schließung</span></br>' + filtered_institution[0].closed);
 
         panel.append('p')
             .html('<span class="section-title">kapazitäten</span></br>' + filtered_institution[0].capacity_group);
@@ -509,7 +509,7 @@ function buildSidepanel(id, year) {
             .html('<span class="section-title">konfession</span></br>' + filtered_institution[0].confession);
 
         panel.append('p')
-            .html('<span class="section-title">Typologie</span></br>' + filtered_institution[0].typologies.replace(/;/g, '; '));
+            .html('<span class="section-title">Typologie</span></br><span style="text-transform: capitalize;">' + filtered_institution[0].typologies.replace(/;/g, '; ')) + '</span>';
 
         panel.append('div')
             .classed('sidepanel-button', true)
@@ -631,7 +631,6 @@ function buildTimelineSidepanel(type, year) {
 
     panel.append('h5')
         .classed('sidepanel-name', true)
-        .style('text-transform', 'capitalize')
         .text(function(d) {
             if (filtered_element[0].title == null) {
                 let elType = filtered_element[0].type;
