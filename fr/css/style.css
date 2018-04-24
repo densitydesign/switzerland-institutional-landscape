@@ -446,7 +446,7 @@ span.interact-with-viz .action {
 /* Cover */
 
 .cover {
-    background-color: var(--uek-blue);
+    /*background-color: var(--uek-blue);*/
     position: relative;
     z-index: 15;
     height: 58.3vw;
