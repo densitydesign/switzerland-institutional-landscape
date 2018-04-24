@@ -711,6 +711,7 @@ body .menu.white .language {
 body .language.smartphone {
     margin-top: 2em;
     color: #fff;
+    padding-bottom: 10vh;
 }
 
 body .language.smartphone .language-wheel {

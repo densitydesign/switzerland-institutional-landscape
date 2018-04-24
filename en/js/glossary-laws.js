@@ -405,7 +405,7 @@ function populatePanel(data) {
             let date = new Date()
             let url = location;
 
-            let quotation = `${d.title}, in: Switzerland's institutional landscape 1933–1980, Independent Expert Commission on Administrative Detention (Ed.), accessed on ${date.toDateString()}, URL: ${url}.`;
+            let quotation = `${d.title}, in: Switzerland's institutional landscape 1933–1980, Independent Expert Commission on Administrative Detention (Ed.), accessed on ${date.toDateString()}, URL: ${url}`;
 
             if (d.original_issue_date.length == 4) {
                 issueDate = d.original_issue_date;

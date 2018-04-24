@@ -441,7 +441,7 @@ d3.queue()
                 let date = new Date()
                 let url = location;
 
-                let quotation = `${name}, in: Zugriff auf ${proj}, Unabhängige Expertenkommission (UEK) am ${date.toDateString()}, URL: ${url}.`;
+                let quotation = `${name}, in: Zugriff auf ${proj}, Unabhängige Expertenkommission (UEK) am ${date.toDateString()}, URL: ${url}`;
 
 
                 let thisHtml = `

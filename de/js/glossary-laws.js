@@ -412,7 +412,7 @@ function populatePanel(data) {
             let date = new Date()
             let url = location;
 
-            let quotation = `${d.title}, in: Zugriff auf Die institutionelle Landschaft der Schweiz 1933-1980, Unabhängige Expertenkommission (UEK) am ${date.toDateString()}, URL: ${url}.`;
+            let quotation = `${d.title}, in: Zugriff auf Die institutionelle Landschaft der Schweiz 1933-1980, Unabhängige Expertenkommission (UEK) am ${date.toDateString()}, URL: ${url}`;
 
             if (d.original_issue_date.length == 4) {
                 issueDate = d.original_issue_date;

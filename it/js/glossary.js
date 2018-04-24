@@ -441,7 +441,7 @@ d3.queue()
                 let date = new Date()
                 let url = location;
 
-                let quotation = `${name}, in: ${proj}, Commissione Peritale Indipendente (CPI), accesso eseguito il ${date.toDateString()}, URL: ${url}.`;
+                let quotation = `${name}, in: ${proj}, Commissione Peritale Indipendente (CPI), accesso eseguito il ${date.toDateString()}, URL: ${url}`;
 
 
                 let thisHtml = `
