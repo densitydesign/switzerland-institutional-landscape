@@ -88,7 +88,7 @@ function SurviesSankey(id, data) {
                 }
                 let innerHtml = '<span class="color-square" style="background-color: ' + nodesColor(d) + ';"></span> ' + capitalizeFirstLetter(d.replace('1_', '').replace('2_', '').replace('3_', '').replace('4_', ''));
 
-                return capitalizeFirstLetter(innerHtml);
+                return capitalizeFirstLetter(innerHtml.toLowerCase());
             })
 
 
