@@ -124,59 +124,59 @@
     "committing_agencies": [
         {
             "code": 1,
-            "label": "gerichte"
+            "label": "Gerichte"
         },
         {
             "code": 2,
-            "label": "untersuchungsrichter"
+            "label": "Untersuchungsrichter"
         },
         {
             "code": 3,
-            "label": "staatsanwaltschaft"
+            "label": "Staatsanwaltschaft"
         },
         {
             "code": 4,
-            "label": "jugendanwaltschaft"
+            "label": "Jugendanwaltschaft"
         },
         {
             "code": 5,
-            "label": "regierungsrat"
+            "label": "Regierungsrat"
         },
         {
             "code": 6,
-            "label": "administrativbehörde"
+            "label": "Administrativbehörde"
         },
         {
             "code": 7,
-            "label": "justizbehörde/strafvollzugsbehörde"
+            "label": "Justizbehörde/Strafvollzugsbehörde"
         },
         {
             "code": 8,
-            "label": "polizeibehörde/verhöramt"
+            "label": "Polizeibehörde/Verhöramt"
         },
         {
             "code": 9,
-            "label": "armenbehörde/fürsorgebehörde"
+            "label": "Armenbehörde/Fürsorgebehörde"
         },
         {
             "code": 10,
-            "label": "vormundschaftsbehörde"
+            "label": "Vormundschaftsbehörde"
         },
         {
             "code": 11,
-            "label": "bezirksämter/statthalterämter"
+            "label": "Bezirksämter/Statthalterämter"
         },
         {
             "code": 12,
-            "label": "amtsvormünder"
+            "label": "Amtsvormünder"
         },
         {
             "code": 13,
-            "label": "jugendämter"
+            "label": "Jugendämter"
         },
         {
             "code": 14,
-            "label": "private/vereine"
+            "label": "Private/Vereine"
         },
         {
             "code": 15,
