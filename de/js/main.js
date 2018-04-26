@@ -819,7 +819,7 @@ function updateMatrix(step) {
             });
         d3.selectAll('.matrix-svg .matrix-bubbles .bubble')
             .each(function(d){
-                if (d.value.x == 'erziehungsanstalt' || d.value.x == 'arbeiterkolonie') {
+                if (d.value.x == 'Erziehungsanstalt' || d.value.x == 'Arbeiterkolonie') {
                     d3.select(this)
                         .transition()
                         .duration(500)
