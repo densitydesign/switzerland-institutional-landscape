@@ -791,7 +791,7 @@ function updateMatrix(step) {
     if(Yselect == 'accepted_gender' && Xselect == 'typology') {
         d3.selectAll('.matrix-svg .axis-x .tick')
             .each(function(d){
-                if (d == 'erziehungsanstalt' || d == 'arbeiterkolonie') {
+                if (d == 'Erziehungsanstalt' || d == 'Arbeiterkolonie') {
                     d3.select(this)
                         .transition()
                         .duration(500)
@@ -805,7 +805,7 @@ function updateMatrix(step) {
             });
         d3.selectAll('.matrix-svg .grid-x .tick')
             .each(function(d){
-                if (d == 'erziehungsanstalt' || d == 'arbeiterkolonie') {
+                if (d == 'Erziehungsanstalt' || d == 'Arbeiterkolonie') {
                     d3.select(this)
                         .transition()
                         .duration(500)
