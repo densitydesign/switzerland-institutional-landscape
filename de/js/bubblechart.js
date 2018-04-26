@@ -303,7 +303,7 @@ function Bubblechart(id, data) {
                     let thisName;
                     switch (d) {
                         case '1':
-                            thisName = 'Einzweck';
+                            thisName = 'Ein Zweck';
                             break;
                         case '2':
                             thisName = 'Zwei Zwecke';

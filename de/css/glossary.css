@@ -252,7 +252,7 @@ nav.navbar:last-of-type {
 }
 .about-btn a {
     color: #212529;
-    padding: 9px 42px;
+    padding: 9px 0;
 }
 
 /* Glossary of legal text styles */
