@@ -447,9 +447,9 @@ span.interact-with-viz .action {
 
 /* Outdated browser */
 body .buorg {
-    background-color: var(--uek-yellow);
+    background-color: #CFB76D;
     font-family: 'Brandon Grotesque', sans-serif;
-    font-size: 1rem;
+    font-size: 18px;
 }
 
 body .buorg-buttons {
@@ -458,11 +458,11 @@ body .buorg-buttons {
 
 body #buorgul,
 body #buorgpermanent {
-    background-color: var(--uek-green);
+    background-color: #81AA91;
 }
 
 body #buorgig {
-    background-color: var(--uek-yellow);
+    background-color: #CFB76D;
 }
 
 /* Cover */
