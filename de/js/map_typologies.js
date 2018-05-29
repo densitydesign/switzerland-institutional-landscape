@@ -312,7 +312,13 @@ function MapTypologies(id, swiss, data) {
                 return thisMap.top - baseContainer.top + mapsHeight + 6;
             })
             .merge(label)
-            .text(function(d){return d;})
+            .text(function(d){
+                if (d == "spezialanstalt/sonderanstalt") {
+                    return "Spezialanstalt/Sonderanstalt";
+                } else {
+                    return d;
+                }
+            })
             .on("click", clicked)
             .transition()
             .duration(350)

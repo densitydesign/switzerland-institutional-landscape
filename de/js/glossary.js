@@ -143,7 +143,11 @@ function populateSidebar(data) {
             // console.log(filtered[0].values[0]);
             value = filtered[0].values[0][field];
         }
-        return value.replace(/;/g, '; ');
+        if (field == 'typologies') {
+            return '<span style="text-transform: capitalize;">' + value.replace(/;/g, '; ').replace(/keine angabe/g, 'keine Angabe').replace(/\/(.)/g, '/<span style="text-transform: uppercase;">$1</span>') + '</span>';
+        } else {
+            return value.replace(/;/g, '; ').replace(/keine angabe/g, 'keine Angabe');
+        }
     }
 
     function getValueSource(year, field) {
@@ -167,7 +171,7 @@ function populateSidebar(data) {
                 source[field] = '';
             }
 
-            return source[field] == '' ? '–' : source[field];
+            return source[field] == '' ? '–' : source[field].replace(/keine angabe/g, 'keine Angabe');
         } else {
             return '–'
         }

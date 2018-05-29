@@ -509,7 +509,7 @@ function buildSidepanel(id, year) {
             .html('<span class="section-title">konfession</span></br>' + filtered_institution[0].confession);
 
         panel.append('p')
-            .html('<span class="section-title">Typologie</span></br><span style="text-transform: capitalize;">' + filtered_institution[0].typologies.replace(/;/g, '; ')) + '</span>';
+            .html('<span class="section-title">Typologie</span></br><span style="text-transform: capitalize;">' + filtered_institution[0].typologies.replace(/;/g, '; ').replace(/\/(.)/g, '/<span style="text-transform: uppercase;">$1</span>')) + '</span>';
 
         panel.append('div')
             .classed('sidepanel-button', true)
