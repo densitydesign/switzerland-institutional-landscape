@@ -119,7 +119,7 @@ function MapTypologies(id, swiss, data) {
             .style('pointer-events', 'auto');
         d3.select('#maps-visualization .maps-container rect')
             .style('pointer-events', 'all');
-        
+
         d3.selectAll('body > .tooltip')
             .transition()
             .duration(250)
@@ -372,7 +372,7 @@ function MapTypologies(id, swiss, data) {
                                 .duration(500)
                                 .ease(d3.easeBackOut.overshoot(4))
                                 .attr('r', radius);
-                            
+
                             d3.selectAll('.dot-small[data-id=' + d.id + ']')
                                 .classed('dot-faded', false)
                                 .classed('dot-hover', true)
@@ -382,13 +382,13 @@ function MapTypologies(id, swiss, data) {
                                 .attr('r', radius * 2);
                         }
                     })
-                    .on("mouseleave", function(d) {                
+                    .on("mouseleave", function(d) {
                         d3.selectAll('.dot-hover')
                             .transition()
                             .duration(500)
                             .ease(d3.easeBackOut.overshoot(4))
                             .attr('r', radius);
-                            
+
                         d3.selectAll('.dot-small')
                             .classed('dot-hover', false)
                             .classed('dot-faded', false)
@@ -401,9 +401,9 @@ function MapTypologies(id, swiss, data) {
                     .attr('data-placement', 'top')
                     .attr('data-html', 'true')
                     .attr('title', function(d){
-                        let thisRecord = masterData.filter(function(e){
+                        let thisRecord = masterData.find(function(e){
                             return e.id == d.id;
-                        })[0]
+                        })
                         let name_landmark = thisRecord.name_landmark;
                         let city = thisRecord.city;
                         let canton_code = thisRecord.canton_code;
@@ -415,7 +415,7 @@ function MapTypologies(id, swiss, data) {
                     .delay(function(d, i) { return i * 2 })
                     .attr('r', radius);
 
-                d3.forceSimulation().alpha(1)
+                d3.forceSimulation().alpha(1).alphaDecay(0.05)
                     .nodes(institutions)
                     .force('x', d3.forceX().x(function(d) {
                         return d.x;

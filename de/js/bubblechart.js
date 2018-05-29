@@ -233,9 +233,9 @@ function Bubblechart(id, data) {
                 .attr('data-placement', 'top')
                 .attr('data-html', 'true')
                 .attr('title', function(d){
-                    let thisRecord = masterData.filter(function(e){
+                    let thisRecord = masterData.find(function(e){
                         return e.id == d.id;
-                    })[0]
+                    })
                     let name_landmark = thisRecord.name_landmark;
                     let city = thisRecord.city;
                     let canton_code = thisRecord.canton_code;
