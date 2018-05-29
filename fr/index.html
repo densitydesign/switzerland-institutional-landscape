@@ -1251,6 +1251,38 @@
     <div class="d-md-none mobile-message">
         <p>Visitez cette page à partir d'un appareil de bureau pour découvrir pleinement toutes ses fonctionnalités interactives.</p>
     </div>
+
+    <!-- Browser check -->
+    <script>
+        var $buoop = {
+            required: {
+                e: -4,
+                i: 999,
+                f: -3,
+                o: -3,
+                s: -1,
+                c: -3
+            },
+            insecure: true,
+            // test: true,
+            l: 'Fr',
+            style: 'top',
+            shift_down_page: false,
+            api: 2018.05
+        };
+
+        function $buo_f() {
+            var e = document.createElement("script");
+            e.src = "//browser-update.org/update.min.js";
+            document.body.appendChild(e);
+        };
+        try {
+            document.addEventListener("DOMContentLoaded", $buo_f, false)
+        } catch (e) {
+            window.attachEvent("onload", $buo_f)
+        }
+    </script>
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>

@@ -432,6 +432,26 @@ span.interact-with-viz .action {
     font-size: 14px;
 }
 
+/* Outdated browser */
+body .buorg {
+    background-color: #CFB76D;
+    font-family: 'Brandon Grotesque', sans-serif;
+    font-size: 18px;
+}
+
+body .buorg-buttons {
+    margin: 8px 10px 4px;
+}
+
+body #buorgul,
+body #buorgpermanent {
+    background-color: #81AA91;
+}
+
+body #buorgig {
+    background-color: #CFB76D;
+}
+
 /* Cover */
 
 .cover {
