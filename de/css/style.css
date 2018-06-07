@@ -1111,9 +1111,13 @@ body.color-scheme-laser .sidepanel p a {
     cursor: pointer;
 }
 
+#matrix-visualization {
+    padding-left: 0;
+}
+
 #matrix text {
     font-family: 'Brandon Grotesque', sans-serif;
-    font-size: .5rem;
+    font-size: .6rem;
 }
 
 .axis-x text {

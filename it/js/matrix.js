@@ -45,8 +45,8 @@ function Matrix(id, data, categories) {
 
         //calculate dimensions of the viz container, axis and grids
         width = $('#matrix-visualization').width();
-        height = width * .8;
-        margin = 100;
+        height = width * .82;
+        margin = 115;
         svg.attr('width', width)
             .attr('height', height);
         matrix_x_axis.attr('transform', 'translate(0,' + (height - margin) + ')');
@@ -132,7 +132,7 @@ function Matrix(id, data, categories) {
             //.transition()
             .call(yAxis)
             .selectAll(".tick text")
-            .call(wrapY, 96);
+            .call(wrapY, 98);
 
         svg.select('.axis-x')
             // .transition()
@@ -215,7 +215,7 @@ function Matrix(id, data, categories) {
             word,
             line = [],
             lineNumber = 0,
-            lineHeight = 0.65, // ems
+            lineHeight = 0.6, // ems
             x = text.attr('x'),
             y = text.attr('y'),
             dy = parseFloat(text.attr('dy') || 0),
@@ -257,7 +257,7 @@ function Matrix(id, data, categories) {
             word,
             line = [],
             lineNumber = 0,
-            lineHeight = 1, // ems
+            lineHeight = 0.85, // ems
             x = text.attr('x'),
             y = text.attr('y'),
             dy = parseFloat(text.attr('dy') || 0),
